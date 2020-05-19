@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Observations &mdash; Ecole 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rewards" href="rewards.html" />
+    <link rel="prev" title="Environments" href="environments.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Ecole
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../customizing-environments.html">Customizing Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyscipopt.html">PyScipOpt Compatibility</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Observations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#no-observation">No Observation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#node-bipartite">Node Bipartite</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rewards.html">Rewards</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ecole</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Observations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/reference/observations.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="observations">
+<h1>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="no-observation">
+<h2>No Observation<a class="headerlink" href="#no-observation" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="ecole.observation.Nothing">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">Nothing</code><a class="headerlink" href="#ecole.observation.Nothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>No observation.</p>
+<p>This observation function does nothing and always returns <code class="docutils literal notranslate"><span class="pre">None</span></code> as an observation.
+Convenient for bandit algorithms, or when no learning is performed.</p>
+<dl class="py method">
+<dt id="ecole.observation.Nothing.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.core.observation.Nothing</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Nothing.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return None.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.Nothing.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.core.observation.Nothing</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Nothing.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="node-bipartite">
+<h2>Node Bipartite<a class="headerlink" href="#node-bipartite" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="ecole.observation.NodeBipartite">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">NodeBipartite</code><a class="headerlink" href="#ecole.observation.NodeBipartite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bipartite graph observation function on branch-and bound node.</p>
+<p>This observation function extract structured <a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartiteObs</span></code></a>.</p>
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartite.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.core.observation.NodeBipartite</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>ecole.core.observation.NodeBipartiteObs<span class="p">]</span><a class="headerlink" href="#ecole.observation.NodeBipartite.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract a new <a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartiteObs</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartite.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.core.observation.NodeBipartite</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.NodeBipartite.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cache some feature not expected to change during an episode.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="ecole.observation.NodeBipartiteObs">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">NodeBipartiteObs</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bipartite graph observation for branch-and-bound nodes.</p>
+<p>The optimization problem is represented as an heterogenous bipartite graph.
+On one side, a node is associated with one variable, on the other side a node is
+associated with one constraint.
+There exist an edge between a variable and a constraint if the variable exists in the
+constraint with a non-zero coefficient.</p>
+<p>Each variable and constraint node is associated with a vector of features.
+Each edge is associated with the coefficient of the variable in the constraint.</p>
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartiteObs.col_feat">
+<em class="property">property </em><code class="sig-name descname">col_feat</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.col_feat" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix where each row is represents a variable, and each column a feature of the variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartiteObs.matrix">
+<em class="property">property </em><code class="sig-name descname">matrix</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>The constraint matrix of the optimization problem, with rows for contraints and columns for variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartiteObs.row_feat">
+<em class="property">property </em><code class="sig-name descname">row_feat</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.row_feat" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix where each row is represents a constraint, and each column a feature of the constraints.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rewards.html" class="btn btn-neutral float-right" title="Rewards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="environments.html" class="btn btn-neutral float-left" title="Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Antoine Prouvost
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
