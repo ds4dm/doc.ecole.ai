@@ -238,12 +238,12 @@ Extract it using</p>
 </pre></div>
 </div>
 <p>Create a local conda package for SCIP using the recipe provided in this repository</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CONDA_BLD_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span><span class="s2">/conda-bld&quot;</span>
-<span class="nv">SCIP_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/scipoptsuite-7.0.0&quot;</span> conda build .circleci/recipe/scipoptsuite-7.0.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CONDA_BLD_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span><span class="s2">/conda-bld&quot;</span>
+<span class="nv">SCIP_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/scipoptsuite-7.0.0&quot;</span> conda build -c conda-forge .circleci/recipe/scipoptsuite-7.0.0
 </pre></div>
 </div>
 <p>Instal the SCIP package in the <code class="docutils literal notranslate"><span class="pre">ecole</span></code> environment</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install --channel <span class="s2">&quot;file://</span><span class="si">${</span><span class="nv">CONDA_BLD_PATH</span><span class="si">}</span><span class="s2">&quot;</span> scipoptsuite
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c <span class="s2">&quot;file://</span><span class="si">${</span><span class="nv">CONDA_BLD_PATH</span><span class="si">}</span><span class="s2">&quot;</span> -c conda-forge scipoptsuite
 </pre></div>
 </div>
 </div>
