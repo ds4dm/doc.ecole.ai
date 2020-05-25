@@ -85,12 +85,20 @@
             
               <p class="caption"><span class="caption-text">Getting started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-environments.html">Using Environments</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API Reference</span></p>
+<p class="caption"><span class="caption-text">Usage</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html#c">C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapting-environments.html">Adapting Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyscipopt.html">PyScipOpt Compatibility</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/rewards.html">Rewards</a></li>
 </ul>
 
             
@@ -161,33 +169,109 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#E"><strong>E</strong></a>
+ <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
  
 </div>
-<h2 id="E">E</h2>
+<h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    ecole.environment
-
-      <ul>
-        <li><a href="reference.html#module-ecole.environment">module</a>
+      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.col_feat">col_feat() (ecole.observation.NodeBipartiteObs property)</a>
 </li>
-      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.DictFunction">DictFunction (class in ecole.observation)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    module
+      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.matrix">matrix() (ecole.observation.NodeBipartiteObs property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.NodeBipartite">NodeBipartite (class in ecole.observation)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs">NodeBipartiteObs (class in ecole.observation)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Nothing">Nothing (class in ecole.observation)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.DictFunction.obtain_observation">obtain_observation() (ecole.observation.DictFunction method)</a>
 
       <ul>
-        <li><a href="reference.html#module-ecole.environment">ecole.environment</a>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartite.obtain_observation">(ecole.observation.NodeBipartite method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.Nothing.obtain_observation">(ecole.observation.Nothing method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.TupleFunction.obtain_observation">(ecole.observation.TupleFunction method)</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="using-environments.html#ecole.environment.EnvironmentComposer.reset">reset() (ecole.environment.EnvironmentComposer method)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.DictFunction.reset">(ecole.observation.DictFunction method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartite.reset">(ecole.observation.NodeBipartite method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.Nothing.reset">(ecole.observation.Nothing method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.TupleFunction.reset">(ecole.observation.TupleFunction method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.row_feat">row_feat() (ecole.observation.NodeBipartiteObs property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="using-environments.html#ecole.environment.EnvironmentComposer.seed">seed() (ecole.environment.EnvironmentComposer method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="using-environments.html#ecole.environment.EnvironmentComposer.step">step() (ecole.environment.EnvironmentComposer method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.TupleFunction">TupleFunction (class in ecole.observation)</a>
+</li>
   </ul></td>
 </tr></table>
 

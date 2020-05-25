@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using Environments &mdash; Ecole 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Adapting Environments" href="adapting-environments.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Ecole
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using Environments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-structure">General structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reseting-environments">Reseting environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transitioning">Transitioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seeding-environments">Seeding environments</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adapting-environments.html">Adapting Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyscipopt.html">PyScipOpt Compatibility</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/rewards.html">Rewards</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ecole</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Using Environments</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/using-environments.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-environments">
+<h1>Using Environments<a class="headerlink" href="#using-environments" title="Permalink to this headline">¶</a></h1>
+<p>Environments are a stateful classes representing a control task (or Markov Decision
+Process).
+After instantiation of an environment, a call to
+<a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> will bring the process to its
+initial state, then successive calls to
+<a class="reference internal" href="#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> will take an action from the
+user and transition to the next state.
+When the episode is finished, <em>i.e</em> when the combinatorial optimization algorithm
+terminates, a new one can be started with another call to
+<a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.</p>
+<p>For instance, using the <code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code> environment for branch-and-bound variable selection,
+always selecting the first fractional variable would look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
+
+<span class="n">environment</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">obs</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action_set</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>There are few things to note in this example, let us break it down below.</p>
+<div class="section" id="general-structure">
+<h2>General structure<a class="headerlink" href="#general-structure" title="Permalink to this headline">¶</a></h2>
+<p>The example is driven by two loops.
+The inner <code class="docutils literal notranslate"><span class="pre">while</span></code> loop transitions until a terminal state, signaled
+with the variable <code class="docutils literal notranslate"><span class="pre">done</span></code> in the example, is reached.
+This loop matches the following figure usually found in reinforcement learning
+presentations.
+In Ecole, this loop typically terminates at the same time as the combinatorial
+optimization algorithm used in the environment.
+A full execution of this loop is known as an <em>episode</em>.</p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/mdp.png"><img alt="Markov Decision Process interaction loop" src="_images/mdp.png" style="width: 60%;" /></a>
+<p class="caption"><span class="caption-text">The control loop of the markov Decision Process</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The outter <code class="docutils literal notranslate"><span class="pre">for</span></code> loop only repeats the inner one mutiple times.
+Few learning algorithms are able to learn in a single episode, so numerous ones are
+usually required.
+Usually, although not demonstrated here, one should not use a unique combinatorial problem
+instance for all episodes.
+This is because an there is no practical interest in solving again an instance already
+solved.
+One wants to find a policy able to genralize to new, unseen, instances.</p>
+</div>
+<div class="section" id="reseting-environments">
+<span id="id1"></span><h2>Reseting environments<a class="headerlink" href="#reseting-environments" title="Permalink to this headline">¶</a></h2>
+<p>The episode in the inner <code class="docutils literal notranslate"><span class="pre">while</span></code> starts with a call to
+<a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> to bring the environment to a new
+initial state.
+The problem instance is given to parametrize the episode: it is that combinatorial
+optimization problem that will be solved by the <a class="reference external" href="https://scip.zib.de/">SCIP</a> solver
+during the next episode.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">observation</span></code> is for the user to decide what the next action will be (typically
+using a machine learning algorithm).
+The boolean flag <code class="docutils literal notranslate"><span class="pre">done</span></code> indicates wether the state is terminal.
+This can hapen in <code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code> where the problem instance
+can be resolved though presolving only (never reaching branch-and-bound).
+Moreover an <code class="docutils literal notranslate"><span class="pre">action_set</span></code> is sometimes given to further reduce the set of candidate
+actions to deal with highly dynamic actions sets.
+It is valid for the next transition only.
+For instance in <code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code> the set of variable the algorithm
+can branch on changes at very node (<em>i.e.</em> state).
+Therefore the user needs to be constantly given the set of fractional variables.</p>
+<p>The exact documentation for the method is given below.</p>
+<dl class="py method">
+<dt id="ecole.environment.EnvironmentComposer.reset">
+<code class="sig-prename descclassname">EnvironmentComposer.</code><code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ecole/environment.html#EnvironmentComposer.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset environment to an initial state.</p>
+<p>This method brings the environment to a new initial state, <em>i.e.</em> starts a new
+episode.
+The method can be called at any point in time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> – The combinatorial optimization problem to tackle during the newly started
+episode.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>observation</em> – The observation of extracted from the initial state.
+Typically used to take the next action.</p></li>
+<li><p><em>action_set</em> – An optional subset of accepted action in the next transition.
+For some environment, this may change at every transition.</p></li>
+<li><p><em>done</em> – A boolean flag indicating wether the current state is terminal.
+If this is true, the episode is finished, and <a class="reference internal" href="#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> cannot be called.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="transitioning">
+<h2>Transitioning<a class="headerlink" href="#transitioning" title="Permalink to this headline">¶</a></h2>
+<p>The inner <code class="docutils literal notranslate"><span class="pre">while</span></code> loop transitions the environment from one state to the next by giving
+an action to <a class="reference internal" href="#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
+The nature of <code class="docutils literal notranslate"><span class="pre">observation</span></code>, <code class="docutils literal notranslate"><span class="pre">action_set</span></code>, and <code class="docutils literal notranslate"><span class="pre">done</span></code> is the same as in the previous
+setction <a class="reference internal" href="#reseting-environments"><span class="std std-ref">Reseting environments</span></a>.
+Furthermore a <code class="docutils literal notranslate"><span class="pre">reward</span></code> and <code class="docutils literal notranslate"><span class="pre">info</span></code> variables are given as additional information about
+the current transition.</p>
+<p>The exact documentation for the method is given below.</p>
+<dl class="py method">
+<dt id="ecole.environment.EnvironmentComposer.step">
+<code class="sig-prename descclassname">EnvironmentComposer.</code><code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">action</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ecole/environment.html#EnvironmentComposer.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transition from one state to another.</p>
+<p>This method takes a user action to transition from the current state to the
+next.
+The method <strong>cannot</strong> be called if the environment has not been reset since its
+instantiation or since a terminal state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>action</strong> – The action to take in as part of the Markov Decision Process.
+If an action set has been given in the latest call (inluding calls to
+<a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>), then the action <strong>must</strong> be in that set.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>observation</em> – The observation of extracted from the current state.
+Typically used to take the next action.</p></li>
+<li><p><em>action_set</em> – An optional subset of accepted action in the next transition.
+For some environment, this may change at every transition.</p></li>
+<li><p><em>reward</em> – A real number to use for reinforcement learning.</p></li>
+<li><p><em>done</em> – A boolean flag indicating wether the current state is terminal.
+If this is true, the episode is finished, and this method cannot be called
+until <a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> has been called.</p></li>
+<li><p><em>info</em> – A collection of environment specific information about the transition.
+This is not necessary for the control problem, but is useful to gain
+insights about the environment.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="seeding-environments">
+<h2>Seeding environments<a class="headerlink" href="#seeding-environments" title="Permalink to this headline">¶</a></h2>
+<p>The exact documention for the method is given below.</p>
+<dl class="py method">
+<dt id="ecole.environment.EnvironmentComposer.seed">
+<code class="sig-prename descclassname">EnvironmentComposer.</code><code class="sig-name descname">seed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ecole/environment.html#EnvironmentComposer.seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the random seed of the solver.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="adapting-environments.html" class="btn btn-neutral float-right" title="Adapting Environments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Antoine Prouvost
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
