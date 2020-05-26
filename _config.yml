@@ -3,3 +3,5 @@
 include:
   - "_static"
   - "_sources"
+  - "_images"
+	- "_modules"
