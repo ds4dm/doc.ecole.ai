@@ -89,16 +89,29 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using-environments.html">Using Environments</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Usage</span></p>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="adapting-environments.html">Adapting Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pyscipopt.html">PyScipOpt Compatibility</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/create-environments.html">Create New Environments</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/rewards.html">Rewards</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doc.ecole.ai">Seeding</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doc.ecole.ai">Ecole Theoretical Model</a></li>
 </ul>
 
             
@@ -167,19 +180,34 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>Ecole (pronounced [ekɔl]) stands for <em>Extensible Combinatorial Optimization Learning
-Environments</em>.
-It is a library to expose and define control tasks arising in combinatorial
-optimization solvers as Markov Decision Processes (<em>i.e.</em>, <a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Reinforcement Learning</a> environments).</p>
+<p>Ecole is a library of <em>Extensible Combinatorial Optimization Learning Environments</em>
+designed to facilitate the definition of machine learning environments problems inside
+combinatorial optimization solvers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span>
+    <span class="n">reward_function</span><span class="o">=-</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIterations</span><span class="p">(),</span>
+    <span class="n">observation_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+     <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+     <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+         <span class="n">obs</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action_set</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Combinatorial optimization solvers rely on a variety of hand crafted heuristic that fail
+to account for similarities in between problems.
+<a class="reference external" href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a> algorithms are
+a promising candidate to create a new kind of highly adaptive solvers that can adapt to
+the problem data.</p>
 <p>For instance, many combinatorial optimization problems can be modeled using <a class="reference external" href="https://en.wikipedia.org/wiki/Integer_programming">Mixed Integer
 Linear Programming</a> and solved using
 the <a class="reference external" href="https://en.wikipedia.org/wiki/Branch_and_bound">branch-and-bound</a> algorithm.
 This algorithm still requires many more decisions, such as picking the variable to branch
 on.
-Ecole let the user easily explore new policies to make these decisions using information
-extracted from the solver.
-Typically the goal for the user is to use <a class="reference external" href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a> to make automated decision based on
-the solver internal state.</p>
+Ecole let the user easily explore new policies to make these decisions using machine
+learning and information extracted from the solver.</p>
 <p>Ecole’s interface is inspired from <a class="reference external" href="https://gym.openai.com/">OpenAi Gym</a> and will look
 familiar to reinforcement learning praticionners.
 The state-of-the-art Mixed Integer Linear Programming solver that acts as a controllable
@@ -193,6 +221,12 @@ candidate to use for combinatorial optimization, as well as the methodology to d
 arXiv preprint arXiv:1811.06128 (2018).</p>
 </dd>
 </dl>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">

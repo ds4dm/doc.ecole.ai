@@ -88,16 +88,29 @@
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../using-environments.html">Using Environments</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Usage</span></p>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../adapting-environments.html">Adapting Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../pyscipopt.html">PyScipOpt Compatibility</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/create-environments.html">Create New Environments</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/rewards.html">Rewards</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doc.ecole.ai">Seeding</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doc.ecole.ai">Ecole Theoretical Model</a></li>
 </ul>
 
             
@@ -342,15 +355,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 
-<span class="k">class</span> <span class="nc">Branching</span><span class="p">(</span><span class="n">EnvironmentComposer</span><span class="p">):</span>
+<div class="viewcode-block" id="Branching"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Branching">[docs]</a><span class="k">class</span> <span class="nc">Branching</span><span class="p">(</span><span class="n">EnvironmentComposer</span><span class="p">):</span>
     <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">BranchingDynamics</span>
     <span class="n">__State__</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">State</span>
-    <span class="n">__DefaultObservationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span>
+    <span class="n">__DefaultObservationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span></div>
 
 
-<span class="k">class</span> <span class="nc">Configuring</span><span class="p">(</span><span class="n">EnvironmentComposer</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuring"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Configuring">[docs]</a><span class="k">class</span> <span class="nc">Configuring</span><span class="p">(</span><span class="n">EnvironmentComposer</span><span class="p">):</span>
     <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">ConfiguringDynamics</span>
-    <span class="n">__State__</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">State</span>
+    <span class="n">__State__</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">State</span></div>
 </pre></div>
 
            </div>

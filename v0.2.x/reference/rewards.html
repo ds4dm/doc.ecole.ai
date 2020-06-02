@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Differences with OpenAi Gym" href="../discussion/gym-differences.html" />
     <link rel="prev" title="Observations" href="observations.html" /> 
 </head>
 
@@ -89,16 +90,42 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Usage</span></p>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../adapting-environments.html">Adapting Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pyscipopt.html">PyScipOpt Compatibility</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="observations.html">Observations</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Rewards</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Rewards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#interface">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#is-done">Is Done</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lp-iterations">LP Iterations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constant">Constant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arithmetic">Arithmetic</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doc.ecole.ai">Seeding</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doc.ecole.ai">Ecole Theoretical Model</a></li>
 </ul>
 
             
@@ -167,6 +194,109 @@
             
   <div class="section" id="rewards">
 <h1>Rewards<a class="headerlink" href="#rewards" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="interface">
+<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="listing">
+<h2>Listing<a class="headerlink" href="#listing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="is-done">
+<h3>Is Done<a class="headerlink" href="#is-done" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.reward.IsDone">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.reward.</code><code class="sig-name descname">IsDone</code><a class="headerlink" href="#ecole.reward.IsDone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Single reward on terminal states.</p>
+<dl class="py method">
+<dt id="ecole.reward.IsDone.obtain_reward">
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.IsDone</em>, <em class="sig-param">state: ecole::environment::State</em>, <em class="sig-param">done: bool = False</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.IsDone.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 1 if the episode is on a terminal state, 0 otherwise.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.reward.IsDone.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.IsDone</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.IsDone.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="lp-iterations">
+<h3>LP Iterations<a class="headerlink" href="#lp-iterations" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.reward.LpIterations">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.reward.</code><code class="sig-name descname">LpIterations</code><a class="headerlink" href="#ecole.reward.LpIterations" title="Permalink to this definition">¶</a></dt>
+<dd><p>LP Iteration difference.</p>
+<p>The reward is defined as the number of iterations done solving the Linear Program
+associated with the problem since the previous state.</p>
+<dl class="py method">
+<dt id="ecole.reward.LpIterations.obtain_reward">
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.LpIterations</em>, <em class="sig-param">state: ecole::environment::State</em>, <em class="sig-param">done: bool = False</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.LpIterations.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the internal LP iteration count and return the difference.</p>
+<p>The difference in LP iteration is computed in between calls.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.reward.LpIterations.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.LpIterations</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.LpIterations.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the internal LP iterations count.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="utilities">
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="constant">
+<h3>Constant<a class="headerlink" href="#constant" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.reward.Constant">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.reward.</code><code class="sig-name descname">Constant</code><a class="headerlink" href="#ecole.reward.Constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constant Reward.</p>
+<p>Always return the value passed in constructor.</p>
+<dl class="py method">
+<dt id="ecole.reward.Constant.obtain_reward">
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.Constant</em>, <em class="sig-param">state: ecole::environment::State</em>, <em class="sig-param">done: bool = False</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.Constant.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the constant value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.reward.Constant.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.Constant</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.Constant.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="arithmetic">
+<h3>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.reward.Arithmetic">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.reward.</code><code class="sig-name descname">Arithmetic</code><a class="headerlink" href="#ecole.reward.Arithmetic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Proxy class for doing arithmetic on reward functions.</p>
+<p>An object of this class is returned by reward functions operators to forward calls
+to the reward functions parameters of the operator.</p>
+<dl class="py method">
+<dt id="ecole.reward.Arithmetic.obtain_reward">
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Arithmetic" title="ecole.reward.Arithmetic">ecole.reward.Arithmetic</a></span></em>, <em class="sig-param"><span class="n">state</span><span class="p">:</span> <span class="n">object</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.Arithmetic.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain the reward of result of the operator.</p>
+<p>Call <code class="docutils literal notranslate"><span class="pre">obtain_reward</span></code> on all reward functions parameters that were used to create
+this object and compute the operation on the results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.reward.Arithmetic.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Arithmetic" title="ecole.reward.Arithmetic">ecole.reward.Arithmetic</a></span></em>, <em class="sig-param"><span class="n">state</span><span class="p">:</span> <span class="n">object</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.Arithmetic.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the reward functions of the operator.</p>
+<p>Call <code class="docutils literal notranslate"><span class="pre">reset</span></code> on all reward functions parameters that were used to create this
+object.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
 </div>
 
 
@@ -176,6 +306,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../discussion/gym-differences.html" class="btn btn-neutral float-right" title="Differences with OpenAi Gym" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="observations.html" class="btn btn-neutral float-left" title="Observations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

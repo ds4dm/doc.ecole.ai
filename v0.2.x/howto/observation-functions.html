@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Adapting Environments &mdash; Ecole 0.1.0 documentation</title>
+  <title>Use Observation Functions &mdash; Ecole 0.1.0 documentation</title>
   
 
   
@@ -17,26 +17,26 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
-    <script type="text/javascript" src="_static/js/theme.js"></script>
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="PyScipOpt Compatibility" href="pyscipopt.html" />
-    <link rel="prev" title="Using Environments" href="using-environments.html" /> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Use Reward Functions" href="reward-functions.html" />
+    <link rel="prev" title="Using Environments" href="../using-environments.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Ecole
+            <a href="../index.html" class="icon icon-home"> Ecole
           
 
           
@@ -67,7 +67,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -86,29 +86,37 @@
             
               <p class="caption"><span class="caption-text">Getting started</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using-environments.html">Using Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Usage</span></p>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Adapting Environments</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#observation-functions">Observation Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#no-observation-function">No Observation Function</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#multiple-observation-functions">Multiple Observation Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Use Observation Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#no-observation-function">No Observation Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiple-observation-functions">Multiple Observation Functions</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#reward-functions">Reward Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#other-constructor-arguments">Other Constructor Arguments</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pyscipopt.html">PyScipOpt Compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-environments.html">Create New Environments</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="reference/environments.html">Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reference/observations.html">Observations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/rewards.html">Rewards</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doc.ecole.ai">Seeding</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doc.ecole.ai">Ecole Theoretical Model</a></li>
 </ul>
 
             
@@ -123,7 +131,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Ecole</a>
+          <a href="../index.html">Ecole</a>
         
       </nav>
 
@@ -152,16 +160,16 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Adapting Environments</li>
+      <li>Use Observation Functions</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/ds4dm/ecole/blob/master/docs/adapting-environments.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/howto/observation-functions.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -175,25 +183,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="adapting-environments">
-<h1>Adapting Environments<a class="headerlink" href="#adapting-environments" title="Permalink to this headline">¶</a></h1>
-<p>Contrarily to <a class="reference external" href="https://gym.openai.com/">OpenAI Gym</a> where learning tasks are predefined,
-Ecole gives the user the tools to easily extend and customize environments.
-This is because the objective with Ecole is not only to provide a collection of challenges
-for machine learning, but really to solve combinatorial optimization problems more
-efficiently.
-If different data or changing the tweaking the control task delivers better performances,
-it is an improvement!</p>
-<div class="section" id="observation-functions">
-<h2>Observation Functions<a class="headerlink" href="#observation-functions" title="Permalink to this headline">¶</a></h2>
-<p>Using any environment, the observation <a class="footnote-reference brackets" href="#observation" id="id1">1</a> recieved by the user to take the
-next action can be changing the <code class="docutils literal notranslate"><span class="pre">ObservationFunction</span></code> used by the solver.
+  <div class="section" id="use-observation-functions">
+<span id="id1"></span><h1>Use Observation Functions<a class="headerlink" href="#use-observation-functions" title="Permalink to this headline">¶</a></h1>
+<p>Using any environment, the observation <a class="footnote-reference brackets" href="#observation" id="id2">1</a> recieved by the user to take the
+next action can be customized changing the <code class="docutils literal notranslate"><span class="pre">ObservationFunction</span></code> used by the solver.
 The environment is not extracting data directly but delegates that responsibility to an
 <code class="docutils literal notranslate"><span class="pre">ObservationFunction</span></code> object.
 The object has complete access to the solver and extract the data it needs.</p>
 <p>Using a different observation function is as easy as passing it as a parameter when
 creating an environment.
-For instance with the <code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code> environment:</p>
+For instance with the <a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span><span class="p">())</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">observation_function</span>
 <span class="go">ecole.observation.Nothing()</span>
@@ -214,7 +213,7 @@ For instance with the <code class="xref py py-class docutils literal notranslate
 <p>See [TODO] for the list of available observation function, as well as [TODO] for
 explanation on how to create one.</p>
 <div class="section" id="no-observation-function">
-<h3>No Observation Function<a class="headerlink" href="#no-observation-function" title="Permalink to this headline">¶</a></h3>
+<h2>No Observation Function<a class="headerlink" href="#no-observation-function" title="Permalink to this headline">¶</a></h2>
 <p>To not use any observation function, for instance for a learning with a bandit algorithm,
 explicitly pass <code class="docutils literal notranslate"><span class="pre">None</span></code> to the environment constructor.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">branching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -227,7 +226,7 @@ explicitly pass <code class="docutils literal notranslate"><span class="pre">Non
 </div>
 </div>
 <div class="section" id="multiple-observation-functions">
-<h3>Multiple Observation Functions<a class="headerlink" href="#multiple-observation-functions" title="Permalink to this headline">¶</a></h3>
+<h2>Multiple Observation Functions<a class="headerlink" href="#multiple-observation-functions" title="Permalink to this headline">¶</a></h2>
 <p>To use multiple observation functions, wrap them in a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> or <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obs_func</span> <span class="o">=</span> <span class="p">(</span>
 <span class="gp">... </span>   <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span><span class="p">(),</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span><span class="p">()</span>
@@ -250,18 +249,11 @@ explicitly pass <code class="docutils literal notranslate"><span class="pre">Non
 </pre></div>
 </div>
 <dl class="footnote brackets">
-<dt class="label" id="observation"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="observation"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
 <dd><p>We chose to use <em>observation</em>, according to the Partially Observable
 Markov Decision Process, because the state is really the whole state of the solver.</p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="reward-functions">
-<h2>Reward Functions<a class="headerlink" href="#reward-functions" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="other-constructor-arguments">
-<h2>Other Constructor Arguments<a class="headerlink" href="#other-constructor-arguments" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -273,10 +265,10 @@ Markov Decision Process, because the state is really the whole state of the solv
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pyscipopt.html" class="btn btn-neutral float-right" title="PyScipOpt Compatibility" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="reward-functions.html" class="btn btn-neutral float-right" title="Use Reward Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="using-environments.html" class="btn btn-neutral float-left" title="Using Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../using-environments.html" class="btn btn-neutral float-left" title="Using Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

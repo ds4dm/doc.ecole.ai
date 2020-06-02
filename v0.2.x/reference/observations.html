@@ -90,22 +90,42 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Usage</span></p>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../adapting-environments.html">Adapting Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pyscipopt.html">PyScipOpt Compatibility</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Observations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#nothing">Nothing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tuple-of-observations">Tuple of Observations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dictionnary-of-observations">Dictionnary of Observations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#node-bipartite">Node Bipartite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interface">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#node-bipartite">Node Bipartite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nothing">Nothing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tuple-of-observations">Tuple of Observations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dictionnary-of-observations">Dictionnary of Observations</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rewards.html">Rewards</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doc.ecole.ai">Seeding</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doc.ecole.ai">Ecole Theoretical Model</a></li>
 </ul>
 
             
@@ -174,73 +194,13 @@
             
   <div class="section" id="observations">
 <h1>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="nothing">
-<h2>Nothing<a class="headerlink" href="#nothing" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="ecole.observation.Nothing">
-<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">Nothing</code><a class="headerlink" href="#ecole.observation.Nothing" title="Permalink to this definition">¶</a></dt>
-<dd><p>No observation.</p>
-<p>This observation function does nothing and always returns <code class="docutils literal notranslate"><span class="pre">None</span></code> as an observation.
-Convenient for bandit algorithms, or when no learning is performed.</p>
-<dl class="py method">
-<dt id="ecole.observation.Nothing.obtain_observation">
-<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.core.observation.Nothing</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Nothing.obtain_observation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return None.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="ecole.observation.Nothing.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.core.observation.Nothing</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Nothing.reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Do nothing.</p>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="interface">
+<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="tuple-of-observations">
-<h2>Tuple of Observations<a class="headerlink" href="#tuple-of-observations" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="ecole.observation.TupleFunction">
-<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">TupleFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">observation_functions</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pack observation functions together and return observations as tuples.</p>
-<dl class="py method">
-<dt id="ecole.observation.TupleFunction.obtain_observation">
-<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">state</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction.obtain_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return observation from all functions as a tuple.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="ecole.observation.TupleFunction.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">initial_state</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction.reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call reset on all observation functions.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="dictionnary-of-observations">
-<h2>Dictionnary of Observations<a class="headerlink" href="#dictionnary-of-observations" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="ecole.observation.DictFunction">
-<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">DictFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">observation_functions</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pack observation functions together and return observations as dicts.</p>
-<dl class="py method">
-<dt id="ecole.observation.DictFunction.obtain_observation">
-<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">state</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction.obtain_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return observation from all functions as a dict.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="ecole.observation.DictFunction.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">initial_state</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction.reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call reset on all observation functions.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
+<div class="section" id="listing">
+<h2>Listing<a class="headerlink" href="#listing" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="node-bipartite">
-<h2>Node Bipartite<a class="headerlink" href="#node-bipartite" title="Permalink to this headline">¶</a></h2>
+<h3>Node Bipartite<a class="headerlink" href="#node-bipartite" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="ecole.observation.NodeBipartite">
 <em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">NodeBipartite</code><a class="headerlink" href="#ecole.observation.NodeBipartite" title="Permalink to this definition">¶</a></dt>
@@ -248,13 +208,13 @@ Convenient for bandit algorithms, or when no learning is performed.</p>
 <p>This observation function extract structured <a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartiteObs</span></code></a>.</p>
 <dl class="py method">
 <dt id="ecole.observation.NodeBipartite.obtain_observation">
-<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.core.observation.NodeBipartite</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>ecole.core.observation.NodeBipartiteObs<span class="p">]</span><a class="headerlink" href="#ecole.observation.NodeBipartite.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.observation.NodeBipartite</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span><a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs">ecole.observation.NodeBipartiteObs</a><span class="p">]</span><a class="headerlink" href="#ecole.observation.NodeBipartite.obtain_observation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract a new <a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartiteObs</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ecole.observation.NodeBipartite.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.core.observation.NodeBipartite</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.NodeBipartite.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.observation.NodeBipartite</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.NodeBipartite.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cache some feature not expected to change during an episode.</p>
 </dd></dl>
 
@@ -291,6 +251,75 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 
 </dd></dl>
 
+</div>
+</div>
+<div class="section" id="utilities">
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nothing">
+<h3>Nothing<a class="headerlink" href="#nothing" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.Nothing">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">Nothing</code><a class="headerlink" href="#ecole.observation.Nothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>No observation.</p>
+<p>This observation function does nothing and always returns <code class="docutils literal notranslate"><span class="pre">None</span></code> as an observation.
+Convenient for bandit algorithms, or when no learning is performed.</p>
+<dl class="py method">
+<dt id="ecole.observation.Nothing.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.observation.Nothing</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Nothing.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return None.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.Nothing.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.observation.Nothing</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Nothing.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="tuple-of-observations">
+<h3>Tuple of Observations<a class="headerlink" href="#tuple-of-observations" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.TupleFunction">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">TupleFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">observation_functions</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pack observation functions together and return observations as tuples.</p>
+<dl class="py method">
+<dt id="ecole.observation.TupleFunction.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">state</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction.obtain_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return observation from all functions as a tuple.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.TupleFunction.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">initial_state</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call reset on all observation functions.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="dictionnary-of-observations">
+<h3>Dictionnary of Observations<a class="headerlink" href="#dictionnary-of-observations" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.DictFunction">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">DictFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">observation_functions</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pack observation functions together and return observations as dicts.</p>
+<dl class="py method">
+<dt id="ecole.observation.DictFunction.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">state</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction.obtain_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return observation from all functions as a dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.DictFunction.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">initial_state</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call reset on all observation functions.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 </div>
 
