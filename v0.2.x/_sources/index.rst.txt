@@ -81,13 +81,9 @@ candidate to use for combinatorial optimization, as well as the methodology to d
    reference/rewards.rst
 
 .. toctree::
-   :caption: Reference
-   :hidden:
-
-.. toctree::
    :caption: Discussion
    :hidden:
 
    discussion/gym-differences.rst
-   Seeding <https://doc.ecole.ai>
-   Ecole Theoretical Model <https://doc.ecole.ai>
+   discussion/seeding.rst
+   discussion/theory.rst
