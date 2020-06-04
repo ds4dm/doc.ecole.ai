@@ -31,7 +31,7 @@
     
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -50,9 +50,12 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Ecole
+            <a href="index.html">
           
 
+          
+            
+            <img src="_static/ecole-logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -221,7 +224,7 @@ Install everything in a development (named <code class="docutils literal notrans
 <p>For the following, the <code class="docutils literal notranslate"><span class="pre">ecole</span></code> environment always needs to be activated</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate ecole
 conda config --append channels conda-forge
-conda config --set channel_priority strict
+conda config --set channel_priority flexible
 </pre></div>
 </div>
 <p><em>Note: this environment contains tools to build ecole and scip, format code, test,
