@@ -187,17 +187,14 @@
         <span class="sd">&quot;&quot;&quot;Store positional observation functions.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">observation_functions</span> <span class="o">=</span> <span class="n">observation_functions</span>
 
-<div class="viewcode-block" id="TupleFunction.reset"><a class="viewcode-back" href="../../reference/observations.html#ecole.observation.TupleFunction.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">):</span>
+<div class="viewcode-block" id="TupleFunction.reset"><a class="viewcode-back" href="../../reference/observations.html#ecole.observation.TupleFunction.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call reset on all observation functions.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">obs_func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_functions</span><span class="p">:</span>
-            <span class="n">obs_func</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span></div>
+            <span class="n">obs_func</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">model</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="TupleFunction.obtain_observation"><a class="viewcode-back" href="../../reference/observations.html#ecole.observation.TupleFunction.obtain_observation">[docs]</a>    <span class="k">def</span> <span class="nf">obtain_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<div class="viewcode-block" id="TupleFunction.obtain_observation"><a class="viewcode-back" href="../../reference/observations.html#ecole.observation.TupleFunction.obtain_observation">[docs]</a>    <span class="k">def</span> <span class="nf">obtain_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return observation from all functions as a tuple.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span>
-            <span class="n">obs_func</span><span class="o">.</span><span class="n">obtain_observation</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">obs_func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_functions</span>
-        <span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">obs_func</span><span class="o">.</span><span class="n">obtain_observation</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="k">for</span> <span class="n">obs_func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_functions</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="DictFunction"><a class="viewcode-back" href="../../reference/observations.html#ecole.observation.DictFunction">[docs]</a><span class="k">class</span> <span class="nc">DictFunction</span><span class="p">:</span>
@@ -207,15 +204,15 @@
         <span class="sd">&quot;&quot;&quot;Store named observation functions.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">observation_functions</span> <span class="o">=</span> <span class="n">observation_functions</span>
 
-<div class="viewcode-block" id="DictFunction.reset"><a class="viewcode-back" href="../../reference/observations.html#ecole.observation.DictFunction.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">):</span>
+<div class="viewcode-block" id="DictFunction.reset"><a class="viewcode-back" href="../../reference/observations.html#ecole.observation.DictFunction.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call reset on all observation functions.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">obs_func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_functions</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="n">obs_func</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span></div>
+            <span class="n">obs_func</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">model</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DictFunction.obtain_observation"><a class="viewcode-back" href="../../reference/observations.html#ecole.observation.DictFunction.obtain_observation">[docs]</a>    <span class="k">def</span> <span class="nf">obtain_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<div class="viewcode-block" id="DictFunction.obtain_observation"><a class="viewcode-back" href="../../reference/observations.html#ecole.observation.DictFunction.obtain_observation">[docs]</a>    <span class="k">def</span> <span class="nf">obtain_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return observation from all functions as a dict.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="n">name</span><span class="p">:</span> <span class="n">obs_func</span><span class="o">.</span><span class="n">obtain_observation</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">obs_func</span><span class="o">.</span><span class="n">obtain_observation</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obs_func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_functions</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
         <span class="p">}</span></div></div>
 </pre></div>

@@ -210,13 +210,13 @@
 <dd><p>Single reward on terminal states.</p>
 <dl class="py method">
 <dt id="ecole.reward.IsDone.obtain_reward">
-<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.IsDone</em>, <em class="sig-param">state: ecole::environment::State</em>, <em class="sig-param">done: bool = False</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.IsDone.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.IsDone" title="ecole.reward.IsDone">ecole.reward.IsDone</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.IsDone.obtain_reward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return 1 if the episode is on a terminal state, 0 otherwise.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ecole.reward.IsDone.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.IsDone</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.IsDone.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.IsDone" title="ecole.reward.IsDone">ecole.reward.IsDone</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.IsDone.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do nothing.</p>
 </dd></dl>
 
@@ -233,14 +233,14 @@
 associated with the problem since the previous state.</p>
 <dl class="py method">
 <dt id="ecole.reward.LpIterations.obtain_reward">
-<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.LpIterations</em>, <em class="sig-param">state: ecole::environment::State</em>, <em class="sig-param">done: bool = False</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.LpIterations.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.LpIterations" title="ecole.reward.LpIterations">ecole.reward.LpIterations</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.LpIterations.obtain_reward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update the internal LP iteration count and return the difference.</p>
 <p>The difference in LP iteration is computed in between calls.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ecole.reward.LpIterations.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.LpIterations</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.LpIterations.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.LpIterations" title="ecole.reward.LpIterations">ecole.reward.LpIterations</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.LpIterations.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reset the internal LP iterations count.</p>
 </dd></dl>
 
@@ -259,13 +259,13 @@ associated with the problem since the previous state.</p>
 <p>Always return the value passed in constructor.</p>
 <dl class="py method">
 <dt id="ecole.reward.Constant.obtain_reward">
-<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.Constant</em>, <em class="sig-param">state: ecole::environment::State</em>, <em class="sig-param">done: bool = False</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.Constant.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Constant" title="ecole.reward.Constant">ecole.reward.Constant</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.Constant.obtain_reward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the constant value.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ecole.reward.Constant.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">self: ecole.reward.Constant</em>, <em class="sig-param">state: ecole::environment::State</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.Constant.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Constant" title="ecole.reward.Constant">ecole.reward.Constant</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.Constant.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do nothing.</p>
 </dd></dl>
 
@@ -282,7 +282,7 @@ associated with the problem since the previous state.</p>
 to the reward functions parameters of the operator.</p>
 <dl class="py method">
 <dt id="ecole.reward.Arithmetic.obtain_reward">
-<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Arithmetic" title="ecole.reward.Arithmetic">ecole.reward.Arithmetic</a></span></em>, <em class="sig-param"><span class="n">state</span><span class="p">:</span> <span class="n">object</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.Arithmetic.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Arithmetic" title="ecole.reward.Arithmetic">ecole.reward.Arithmetic</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">object</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.Arithmetic.obtain_reward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Obtain the reward of result of the operator.</p>
 <p>Call <code class="docutils literal notranslate"><span class="pre">obtain_reward</span></code> on all reward functions parameters that were used to create
 this object and compute the operation on the results.</p>
@@ -290,7 +290,7 @@ this object and compute the operation on the results.</p>
 
 <dl class="py method">
 <dt id="ecole.reward.Arithmetic.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Arithmetic" title="ecole.reward.Arithmetic">ecole.reward.Arithmetic</a></span></em>, <em class="sig-param"><span class="n">state</span><span class="p">:</span> <span class="n">object</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.Arithmetic.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Arithmetic" title="ecole.reward.Arithmetic">ecole.reward.Arithmetic</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">object</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.Arithmetic.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reset the reward functions of the operator.</p>
 <p>Call <code class="docutils literal notranslate"><span class="pre">reset</span></code> on all reward functions parameters that were used to create this
 object.</p>

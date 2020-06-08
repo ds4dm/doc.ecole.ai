@@ -201,8 +201,9 @@ user and transition to the next state.
 When the episode is finished, <em>i.e</em> when the combinatorial optimization algorithm
 terminates, a new one can be started with another call to
 <a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.</p>
-<p>For instance, using the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment for branch-and-bound variable selection,
-always selecting the first fractional variable would look like:</p>
+<p>For instance, using the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment for
+branch-and-bound variable selection, always selecting the first fractional variable would
+look like:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
 
 <span class="n">environment</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">()</span>
@@ -247,6 +248,29 @@ solved.
 For instance, the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> takes a <code class="docutils literal notranslate"><span class="pre">pseudo_candidates</span></code>
 boolean parameter to decide whether branching candidates are chosen among all non fixed
 inegral variables rather than being limited to fractional ones.</p>
+<p>The constructor can optionally take a dictionnary of default
+<a class="reference external" href="https://scip.zib.de/doc/html/PARAMETERS.php">SCIP parameters</a> that will be used to
+initialize the solver at every episode.
+For instance, to customize the clique inequalities generated, one could set:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span>
+    <span class="n">scip_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;separating/clique/freq&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;separating/clique/maxsepacuts&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Depending on the nature of the environment, some user given parameters can be overriden
+or ignored (<em>e.g.</em> branching parameters in the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a>
+environment).
+It is the responsability of the user to understand the envrionment they are using.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For out-out-the-box strategies on presolving, heurisitcs, and cutting planes, consider
+using the dedicated
+<a class="reference external" href="https://scip.zib.de/doc/html/group__ParameterMethods.php">SCIP methods</a>
+(<code class="docutils literal notranslate"><span class="pre">SCIPsetHeuristics</span></code> <em>etc.</em>).</p>
+</div>
 <p><a class="reference internal" href="howto/observation-functions.html#use-observation-functions"><span class="std std-ref">Observation functions</span></a> and
 <a class="reference internal" href="howto/observation-functions.html#use-observation-functions"><span class="std std-ref">reward functions</span></a> are more advanced environment
 parameters dicsussed later on.</p>
