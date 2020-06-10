@@ -1,18 +1,10 @@
-Adapting Environments
-=====================
-Contrarily to `OpenAI Gym <https://gym.openai.com/>`_ where learning tasks are predefined,
-Ecole gives the user the tools to easily extend and customize environments.
-This is because the objective with Ecole is not only to provide a collection of challenges
-for machine learning, but really to solve combinatorial optimization problems more
-efficiently.
-If different data or changing the tweaking the control task delivers better performances,
-it is an improvement!
+.. _use-observation-functions:
 
+Use Observation Functions
+=========================
 
-Observation Functions
----------------------
 Using any environment, the observation [#observation]_ recieved by the user to take the
-next action can be changing the ``ObservationFunction`` used by the solver.
+next action can be customized changing the ``ObservationFunction`` used by the solver.
 The environment is not extracting data directly but delegates that responsibility to an
 ``ObservationFunction`` object.
 The object has complete access to the solver and extract the data it needs.
@@ -52,7 +44,7 @@ explanation on how to create one.
 .. TODO Fill the missing references
 
 No Observation Function
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 To not use any observation function, for instance for a learning with a bandit algorithm,
 explicitly pass ``None`` to the environment constructor.
 
@@ -65,9 +57,8 @@ explicitly pass ``None`` to the environment constructor.
    >>> obs is None
    True
 
-
 Multiple Observation Functions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------
 To use multiple observation functions, wrap them in a ``tuple`` or ``dict``.
 
 .. code-block:: python
@@ -98,10 +89,3 @@ Similarily with a tuple
 
 .. [#observation] We chose to use *observation*, according to the Partially Observable
    Markov Decision Process, because the state is really the whole state of the solver.
-
-Reward Functions
-----------------
-
-
-Other Constructor Arguments
----------------------------

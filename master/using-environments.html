@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Adapting Environments" href="adapting-environments.html" />
+    <link rel="next" title="Use Observation Functions" href="howto/observation-functions.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
@@ -93,22 +93,36 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Using Environments</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#general-structure">General structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#environment-parameters">Environment parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reseting-environments">Reseting environments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transitioning">Transitioning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#seeding-environments">Seeding environments</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Usage</span></p>
+<p class="caption"><span class="caption-text">How to</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="adapting-environments.html">Adapting Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pyscipopt.html">PyScipOpt Compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/create-environments.html">Create New Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/rewards.html">Rewards</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discussion/seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
 
             
@@ -187,8 +201,9 @@ user and transition to the next state.
 When the episode is finished, <em>i.e</em> when the combinatorial optimization algorithm
 terminates, a new one can be started with another call to
 <a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.</p>
-<p>For instance, using the <code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code> environment for branch-and-bound variable selection,
-always selecting the first fractional variable would look like:</p>
+<p>For instance, using the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment for
+branch-and-bound variable selection, always selecting the first fractional variable would
+look like:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
 
 <span class="n">environment</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">()</span>
@@ -213,7 +228,7 @@ optimization algorithm used in the environment.
 A full execution of this loop is known as an <em>episode</em>.</p>
 <div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="_images/mdp.png"><img alt="Markov Decision Process interaction loop" src="_images/mdp.png" style="width: 60%;" /></a>
-<p class="caption"><span class="caption-text">The control loop of the markov Decision Process</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">The control loop of the Markov Decision Process</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>The outter <code class="docutils literal notranslate"><span class="pre">for</span></code> loop only repeats the inner one mutiple times.
 Few learning algorithms are able to learn in a single episode, so numerous ones are
@@ -223,6 +238,42 @@ instance for all episodes.
 This is because an there is no practical interest in solving again an instance already
 solved.
 One wants to find a policy able to genralize to new, unseen, instances.</p>
+</div>
+<div class="section" id="environment-parameters">
+<h2>Environment parameters<a class="headerlink" href="#environment-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Environment can be created with no constructor arguments, as in the previous examples.
+This will use all the defaults chosen for the environments.</p>
+<p>Each environment can have its own set of parameters to further customize the task being
+solved.
+For instance, the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> takes a <code class="docutils literal notranslate"><span class="pre">pseudo_candidates</span></code>
+boolean parameter to decide whether branching candidates are chosen among all non fixed
+inegral variables rather than being limited to fractional ones.</p>
+<p>The constructor can optionally take a dictionnary of default
+<a class="reference external" href="https://scip.zib.de/doc/html/PARAMETERS.php">SCIP parameters</a> that will be used to
+initialize the solver at every episode.
+For instance, to customize the clique inequalities generated, one could set:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span>
+    <span class="n">scip_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;separating/clique/freq&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;separating/clique/maxsepacuts&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Depending on the nature of the environment, some user given parameters can be overriden
+or ignored (<em>e.g.</em> branching parameters in the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a>
+environment).
+It is the responsability of the user to understand the envrionment they are using.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For out-out-the-box strategies on presolving, heurisitcs, and cutting planes, consider
+using the dedicated
+<a class="reference external" href="https://scip.zib.de/doc/html/group__ParameterMethods.php">SCIP methods</a>
+(<code class="docutils literal notranslate"><span class="pre">SCIPsetHeuristics</span></code> <em>etc.</em>).</p>
+</div>
+<p><a class="reference internal" href="howto/observation-functions.html#use-observation-functions"><span class="std std-ref">Observation functions</span></a> and
+<a class="reference internal" href="howto/observation-functions.html#use-observation-functions"><span class="std std-ref">reward functions</span></a> are more advanced environment
+parameters dicsussed later on.</p>
 </div>
 <div class="section" id="reseting-environments">
 <span id="id1"></span><h2>Reseting environments<a class="headerlink" href="#reseting-environments" title="Permalink to this headline">¶</a></h2>
@@ -235,12 +286,12 @@ during the next episode.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">observation</span></code> is for the user to decide what the next action will be (typically
 using a machine learning algorithm).
 The boolean flag <code class="docutils literal notranslate"><span class="pre">done</span></code> indicates wether the state is terminal.
-This can hapen in <code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code> where the problem instance
+This can hapen in <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> where the problem instance
 can be resolved though presolving only (never reaching branch-and-bound).
 Moreover an <code class="docutils literal notranslate"><span class="pre">action_set</span></code> is sometimes given to further reduce the set of candidate
 actions to deal with highly dynamic actions sets.
 It is valid for the next transition only.
-For instance in <code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code> the set of variable the algorithm
+For instance in <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> the set of variable the algorithm
 can branch on changes at very node (<em>i.e.</em> state).
 Therefore the user needs to be constantly given the set of fractional variables.</p>
 <p>The exact documentation for the method is given below.</p>
@@ -276,7 +327,7 @@ If this is true, the episode is finished, and <a class="reference internal" href
 <p>The inner <code class="docutils literal notranslate"><span class="pre">while</span></code> loop transitions the environment from one state to the next by giving
 an action to <a class="reference internal" href="#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
 The nature of <code class="docutils literal notranslate"><span class="pre">observation</span></code>, <code class="docutils literal notranslate"><span class="pre">action_set</span></code>, and <code class="docutils literal notranslate"><span class="pre">done</span></code> is the same as in the previous
-setction <a class="reference internal" href="#reseting-environments"><span class="std std-ref">Reseting environments</span></a>.
+section <a class="reference internal" href="#reseting-environments"><span class="std std-ref">Reseting environments</span></a>.
 Furthermore a <code class="docutils literal notranslate"><span class="pre">reward</span></code> and <code class="docutils literal notranslate"><span class="pre">info</span></code> variables are given as additional information about
 the current transition.</p>
 <p>The exact documentation for the method is given below.</p>
@@ -347,7 +398,7 @@ By default, the random engine is initialized by the
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="adapting-environments.html" class="btn btn-neutral float-right" title="Adapting Environments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="howto/observation-functions.html" class="btn btn-neutral float-right" title="Use Observation Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
