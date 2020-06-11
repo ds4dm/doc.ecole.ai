@@ -313,6 +313,11 @@ episode.</p>
 Typically used to take the next action.</p></li>
 <li><p><em>action_set</em> – An optional subset of accepted action in the next transition.
 For some environment, this may change at every transition.</p></li>
+<li><p><em>reward_offset</em> – An offset on the initial state.
+This reward is not used for learning (as no action has yet been taken) but is used in
+evaluation for the sum of rewards when one needs to account for computations that
+happened during <a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> (<em>e.g.</em> computation time, number of LP iteration in
+presolving…).</p></li>
 <li><p><em>done</em> – A boolean flag indicating wether the current state is terminal.
 If this is true, the episode is finished, and <a class="reference internal" href="#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> cannot be called.</p></li>
 </ul>
