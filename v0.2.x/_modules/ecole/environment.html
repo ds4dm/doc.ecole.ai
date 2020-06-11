@@ -184,7 +184,6 @@
 <span class="kn">import</span> <span class="nn">ecole.core</span> <span class="k">as</span> <span class="nn">core</span>
 <span class="kn">import</span> <span class="nn">ecole.observation</span>
 <span class="kn">import</span> <span class="nn">ecole.reward</span>
-<span class="kn">import</span> <span class="nn">ecole.termination</span>
 <span class="kn">from</span> <span class="nn">ecole.core.environment</span> <span class="kn">import</span> <span class="o">*</span>
 
 
@@ -193,42 +192,32 @@
     <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__DefaultObservationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span>
     <span class="n">__DefaultRewardFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">IsDone</span>
-    <span class="n">__DefaultTerminationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">termination</span><span class="o">.</span><span class="n">Constant</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">observation_function</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
         <span class="n">reward_function</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
-        <span class="n">termination_function</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
         <span class="n">scip_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">dynamics_kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__parse_observation_function</span><span class="p">(</span><span class="n">observation_function</span><span class="p">)</span>
-
-        <span class="c1">#  Set reward function</span>
-        <span class="k">if</span> <span class="n">reward_function</span> <span class="o">==</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__DefaultRewardFunction__</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="n">reward_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">Constant</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span> <span class="o">=</span> <span class="n">reward_function</span>
-
-        <span class="c1">#  Set termination function</span>
-        <span class="k">if</span> <span class="n">termination_function</span> <span class="o">==</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">termination_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__DefaultTerminationFunction__</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="n">termination_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">termination_function</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">termination</span><span class="o">.</span><span class="n">Constant</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">termination_function</span> <span class="o">=</span> <span class="n">termination_function</span>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__parse_reward_function</span><span class="p">(</span><span class="n">reward_function</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scip_params</span> <span class="o">=</span> <span class="n">scip_params</span> <span class="k">if</span> <span class="n">scip_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Dynamics__</span><span class="p">(</span><span class="o">**</span><span class="n">dynamics_kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span> <span class="o">=</span> <span class="n">RandomEngine</span><span class="p">(</span>
             <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">RandomEngine</span><span class="o">.</span><span class="n">min_seed</span><span class="p">,</span> <span class="n">RandomEngine</span><span class="o">.</span><span class="n">max_seed</span><span class="p">)</span>
         <span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__parse_reward_function</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">reward_function</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">reward_function</span> <span class="o">==</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__DefaultRewardFunction__</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">reward_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">Constant</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">reward_function</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">__parse_observation_function</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">observation_function</span><span class="p">):</span>
@@ -271,6 +260,12 @@
 <span class="sd">        action_set:</span>
 <span class="sd">            An optional subset of accepted action in the next transition.</span>
 <span class="sd">            For some environment, this may change at every transition.</span>
+<span class="sd">        reward_offset:</span>
+<span class="sd">            An offset on the initial state.</span>
+<span class="sd">            This reward is not used for learning (as no action has yet been taken) but is used in</span>
+<span class="sd">            evaluation for the sum of rewards when one needs to account for computations that</span>
+<span class="sd">            happened during :py:meth:`reset` (*e.g.* computation time, number of LP iteration in</span>
+<span class="sd">            presolving...).</span>
 <span class="sd">        done:</span>
 <span class="sd">            A boolean flag indicating wether the current state is terminal.</span>
 <span class="sd">            If this is true, the episode is finished, and :meth:`step` cannot be called.</span>
@@ -287,13 +282,12 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">set_dynamics_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="p">)</span>
 
             <span class="n">done</span><span class="p">,</span> <span class="n">action_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">reset_dynamics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">termination_function</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
 
-            <span class="n">done</span> <span class="o">=</span> <span class="n">done</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">termination_function</span><span class="o">.</span><span class="n">obtain_termination</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+            <span class="n">reward_offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">obtain_reward</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">obtain_observation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">done</span>
+            <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward_offset</span><span class="p">,</span> <span class="n">done</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">raise</span> <span class="n">e</span></div>
@@ -338,7 +332,6 @@
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">done</span><span class="p">,</span> <span class="n">action_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">step_dynamics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
-            <span class="n">done</span> <span class="o">=</span> <span class="n">done</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">termination_function</span><span class="o">.</span><span class="n">obtain_termination</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">obtain_reward</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
             <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">obtain_observation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="p">{}</span>
