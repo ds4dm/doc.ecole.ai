@@ -188,7 +188,7 @@
             
   <div class="section" id="create-new-functions">
 <h1>Create New Functions<a class="headerlink" href="#create-new-functions" title="Permalink to this headline">¶</a></h1>
-<p>:<a class="reference internal" href="observation-functions.html#use-observation-functions"><span class="std std-ref">Observation</span></a> and :<a class="reference internal" href="reward-functions.html#use-reward-functions"><span class="std std-ref">reward</span></a> functions
+<p><a class="reference internal" href="observation-functions.html#use-observation-functions"><span class="std std-ref">Observation</span></a> and <a class="reference internal" href="reward-functions.html#use-reward-functions"><span class="std std-ref">reward</span></a> functions
 can be adapted and created from Python.</p>
 <p>At the core of the environment, a SCIP <code class="docutils literal notranslate"><span class="pre">Model</span></code> (equivalent to a <code class="docutils literal notranslate"><span class="pre">pyscipopt.Model</span></code> or a
 <code class="docutils literal notranslate"><span class="pre">SCIP*</span></code> in <code class="docutils literal notranslate"><span class="pre">C</span></code>), describe the state of the environment.
@@ -274,10 +274,10 @@ This example shows how the scaling vector can be stored between states.</p>
 exponential moving average.
 We also inherited the <code class="docutils literal notranslate"><span class="pre">reset</span></code> method which does not return anything.
 This method is called at the begining of the episode by
-<a class="reference internal" href="../using-environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and is used to reintialize the class
+<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and is used to reintialize the class
 internal attribute on new episodes.
 The <code class="docutils literal notranslate"><span class="pre">obtain_observation</span></code> is also called during during
-<a class="reference internal" href="../using-environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, hence the <code class="docutils literal notranslate"><span class="pre">if</span></code> else <code class="docutils literal notranslate"><span class="pre">else</span></code> condition.
+<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, hence the <code class="docutils literal notranslate"><span class="pre">if</span></code> else <code class="docutils literal notranslate"><span class="pre">else</span></code> condition.
 Both these methods call the parent method to let it do its own initialization/reseting.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
