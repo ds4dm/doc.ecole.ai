@@ -109,6 +109,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Environments</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#interface">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#protocol">Protocol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#branching">Branching</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuring">Configuring</a></li>
@@ -194,6 +195,167 @@
 <h1>Environments<a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="interface">
 <h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="ecole.environment.EnvironmentComposer">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.environment.</code><code class="sig-name descname">EnvironmentComposer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">observation_function</span><span class="o">=</span><span class="default_value">'default'</span></em>, <em class="sig-param"><span class="n">reward_function</span><span class="o">=</span><span class="default_value">'default'</span></em>, <em class="sig-param"><span class="n">scip_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">dynamics_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/environment.html#EnvironmentComposer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="ecole.environment.EnvironmentComposer.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/environment.html#EnvironmentComposer.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start a new episode.</p>
+<p>This method brings the environment to a new initial state, <em>i.e.</em> starts a new
+episode.
+The method can be called at any point in time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> – The combinatorial optimization problem to tackle during the newly started
+episode.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>observation</em> – The observation of extracted from the initial state.
+Typically used to take the next action.</p></li>
+<li><p><em>action_set</em> – An optional subset of accepted action in the next transition.
+For some environment, this may change at every transition.</p></li>
+<li><p><em>reward_offset</em> – An offset on the initial state.
+This reward is not used for learning (as no action has yet been taken) but is used in
+evaluation for the sum of rewards when one needs to account for computations that
+happened during <a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> (<em>e.g.</em> computation time, number of LP iteration in
+presolving…).</p></li>
+<li><p><em>done</em> – A boolean flag indicating wether the current state is terminal.
+If this is true, the episode is finished, and <a class="reference internal" href="#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> cannot be called.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.environment.EnvironmentComposer.seed">
+<code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/environment.html#EnvironmentComposer.seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the random seed of the environment.</p>
+<p>The the random seed is used to seed the environment <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code>.
+At every call to <a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, the random engine is used to create new seeds
+for the solver.
+Setting the seed once will ensure determinism for the next trajectories.
+By default, the random engine is initialized by the
+<a class="reference external" href="https://docs.python.org/library/random.html">random</a> module.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.environment.EnvironmentComposer.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">action</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/environment.html#EnvironmentComposer.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transition from one state to another.</p>
+<p>This method takes a user action to transition from the current state to the
+next.
+The method <strong>cannot</strong> be called if the environment has not been reset since its
+instantiation or since a terminal state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>action</strong> – The action to take in as part of the Markov Decision Process.
+If an action set has been given in the latest call (inluding calls to
+<a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>), then the action <strong>must</strong> be in that set.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>observation</em> – The observation of extracted from the current state.
+Typically used to take the next action.</p></li>
+<li><p><em>action_set</em> – An optional subset of accepted action in the next transition.
+For some environment, this may change at every transition.</p></li>
+<li><p><em>reward</em> – A real number to use for reinforcement learning.</p></li>
+<li><p><em>done</em> – A boolean flag indicating wether the current state is terminal.
+If this is true, the episode is finished, and this method cannot be called
+until <a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> has been called.</p></li>
+<li><p><em>info</em> – A collection of environment specific information about the transition.
+This is not necessary for the control problem, but is useful to gain
+insights about the environment.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="protocol">
+<h2>Protocol<a class="headerlink" href="#protocol" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="ecole.typing.Dynamics">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.typing.</code><code class="sig-name descname">Dynamics</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/typing.html#Dynamics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.Dynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dynamics are raw environments.</p>
+<p>The class is a bare :py:class::<cite>ecole.environment.EnvironmentComposer</cite> without rewards,
+observations, and other utlilities.
+It defines the state transitions of a Markov Decision Process, that is the series of steps and
+possible actions of the environment.</p>
+<dl class="py method">
+<dt id="ecole.typing.Dynamics.reset_dynamics">
+<code class="sig-name descname">reset_dynamics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>bool<span class="p">, </span>ActionSet<span class="p">]</span><a class="reference internal" href="../_modules/ecole/typing.html#Dynamics.reset_dynamics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.Dynamics.reset_dynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start a new episode.</p>
+<p>This method brings the environment to a new initial state, <em>i.e.</em> starts a new
+episode.
+The method can be called at any point in time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The SCIP model that will be used through the episode.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>done</em> – A boolean flag indicating wether the current state is terminal.
+If this is true, the episode is finished, and <a class="reference internal" href="#ecole.typing.Dynamics.step_dynamics" title="ecole.typing.Dynamics.step_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step_dynamics()</span></code></a> cannot be called.</p></li>
+<li><p><em>action_set</em> – An optional subset of accepted action in the next transition.
+For some environment, this may change at every transition.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.typing.Dynamics.set_dynamics_random_state">
+<code class="sig-name descname">set_dynamics_random_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em>, <em class="sig-param"><span class="n">random_engine</span><span class="p">:</span> <span class="n">ecole.environment.RandomEngine</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/typing.html#Dynamics.set_dynamics_random_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.Dynamics.set_dynamics_random_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the random state of the episode.</p>
+<p>This method is called by :py:meth::<cite>~ecole.environment.EnvironmentComposer.reset</cite> to
+set all the random elements of the dynamics for the upcoming episode.
+The random engine is kept between episodes in order to sample different episodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The SCIP model that will be used through the episode.</p></li>
+<li><p><strong>random_engine</strong> – The random engine used by the environment from which random numbers can be extracted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.typing.Dynamics.step_dynamics">
+<code class="sig-name descname">step_dynamics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em>, <em class="sig-param"><span class="n">action</span><span class="p">:</span> <span class="n">Action</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>bool<span class="p">, </span>ActionSet<span class="p">]</span><a class="reference internal" href="../_modules/ecole/typing.html#Dynamics.step_dynamics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.Dynamics.step_dynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transition from one state to another.</p>
+<p>This method takes the user action to transition from the current state to the
+next.
+The method <strong>cannot</strong> be called if the dynamics has not been reset since its
+instantiation or is in a terminal state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>action</strong> – The action to take in as part of the Markov Decision Process.
+If an action set has been given in the latest call (inluding calls to
+<a class="reference internal" href="#ecole.typing.Dynamics.reset_dynamics" title="ecole.typing.Dynamics.reset_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset_dynamics()</span></code></a>), then the action <strong>must</strong> be in that set.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>done</em> – A boolean flag indicating wether the current state is terminal.
+If this is true, the episode is finished, and this method cannot be called
+until <a class="reference internal" href="#ecole.typing.Dynamics.reset_dynamics" title="ecole.typing.Dynamics.reset_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset_dynamics()</span></code></a> has been called.</p></li>
+<li><p><em>action_set</em> – An optional subset of accepted action in the next transition.
+For some environment, this may change at every transition.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="listing">
 <h2>Listing<a class="headerlink" href="#listing" title="Permalink to this headline">¶</a></h2>

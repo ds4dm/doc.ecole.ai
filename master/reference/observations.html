@@ -109,7 +109,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Observations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#interface">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#protocol">Protocol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#node-bipartite">Node Bipartite</a></li>
 </ul>
@@ -197,11 +197,53 @@
             
   <div class="section" id="observations">
 <h1>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="interface">
-<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="protocol">
+<h2>Protocol<a class="headerlink" href="#protocol" title="Permalink to this headline">¶</a></h2>
+<p>The protocol expected to define a valid observation function is given below.</p>
+<dl class="py class">
+<dt id="ecole.typing.ObservationFunction">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.typing.</code><code class="sig-name descname">ObservationFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.ObservationFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class repsonsible for extracting observations.</p>
+<p>Observation functions are objects given to the
+<a class="reference internal" href="environments.html#ecole.environment.EnvironmentComposer" title="ecole.environment.EnvironmentComposer"><code class="xref py py-class docutils literal notranslate"><span class="pre">EnvironmentComposer</span></code></a> to extract the observations used to take the
+next action.</p>
+<dl class="py method">
+<dt id="ecole.typing.ObservationFunction.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em><span class="sig-paren">)</span> &#x2192; Observation<a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction.obtain_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.ObservationFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract observation on a given state.</p>
+<p>The observation describe the state and is used for learning.
+This method will only be called <em>once per state</em> <em>i.e.</em>, this method is not a getter and
+can have side effects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The SCIP model defining the current state of the solver.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The return is passed to the user by the environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.typing.ObservationFunction.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.ObservationFunction.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset internal data at the start of episodes.</p>
+<p>The method is called on new episodes
+<a class="reference internal" href="environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> on the initial state.
+It can is usually used to reset the observation function internal data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The SCIP model defining the current state of the solver.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="listing">
 <h2>Listing<a class="headerlink" href="#listing" title="Permalink to this headline">¶</a></h2>
+<p>The list of observation functions relevant to users is given below.</p>
 <div class="section" id="node-bipartite">
 <h3>Node Bipartite<a class="headerlink" href="#node-bipartite" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
@@ -258,6 +300,7 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 </div>
 <div class="section" id="utilities">
 <h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
+<p>The following observation functions are used internally by Ecole.</p>
 <div class="section" id="nothing">
 <h3>Nothing<a class="headerlink" href="#nothing" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">

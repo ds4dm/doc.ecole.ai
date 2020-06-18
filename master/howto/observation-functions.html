@@ -199,7 +199,7 @@ For instance with the <a class="reference internal" href="../reference/environme
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span><span class="p">())</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">observation_function</span>
 <span class="go">ecole.observation.Nothing()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span>
 <span class="go">None</span>
 </pre></div>
@@ -208,7 +208,7 @@ For instance with the <a class="reference internal" href="../reference/environme
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">observation_function</span>
 <span class="go">ecole.observation.NodeBipartite()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span>
 <span class="go">NodeBipartiteObs(...)</span>
 </pre></div>
@@ -222,7 +222,7 @@ explicitly pass <code class="docutils literal notranslate"><span class="pre">Non
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">branching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">observation_function</span>
 <span class="go">ecole.observation.nothing()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span> <span class="ow">is</span> <span class="kc">None</span>
 <span class="go">True</span>
 </pre></div>
@@ -235,7 +235,7 @@ explicitly pass <code class="docutils literal notranslate"><span class="pre">Non
 <span class="gp">... </span>   <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span><span class="p">(),</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span><span class="p">()</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">branching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="n">obs_func</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span>
 <span class="go">(ecole.observation.NodeBipartiteObs(), None)</span>
 </pre></div>
@@ -246,7 +246,7 @@ explicitly pass <code class="docutils literal notranslate"><span class="pre">Non
 <span class="gp">... </span>   <span class="s2">&quot;other_name&quot;</span><span class="p">:</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span><span class="p">(),</span>
 <span class="gp">... </span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">branching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="n">obs_func</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span>
 <span class="go">{&#39;some_name&#39;: ecole.observation.NodeBipartiteObs(), &#39;other_name&#39;: None}</span>
 </pre></div>
