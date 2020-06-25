@@ -280,13 +280,13 @@ It can is usually used to reset the observation function internal data.</p>
 <dt id="ecole.reward.LpIterations">
 <em class="property">class </em><code class="sig-prename descclassname">ecole.reward.</code><code class="sig-name descname">LpIterations</code><a class="headerlink" href="#ecole.reward.LpIterations" title="Permalink to this definition">¶</a></dt>
 <dd><p>LP Iteration difference.</p>
-<p>The reward is defined as the number of iterations done solving the Linear Program
+<p>The reward is defined as the number of iterations spent in solving the Linear Programs
 associated with the problem since the previous state.</p>
 <dl class="py method">
 <dt id="ecole.reward.LpIterations.obtain_reward">
 <code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.LpIterations" title="ecole.reward.LpIterations">ecole.reward.LpIterations</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.LpIterations.obtain_reward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update the internal LP iteration count and return the difference.</p>
-<p>The difference in LP iteration is computed in between calls.</p>
+<p>The difference in LP iterations is computed in between calls.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -308,7 +308,7 @@ associated with the problem since the previous state.</p>
 <dt id="ecole.reward.Constant">
 <em class="property">class </em><code class="sig-prename descclassname">ecole.reward.</code><code class="sig-name descname">Constant</code><a class="headerlink" href="#ecole.reward.Constant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constant Reward.</p>
-<p>Always return the value passed in constructor.</p>
+<p>Always returns the value passed in constructor.</p>
 <dl class="py method">
 <dt id="ecole.reward.Constant.obtain_reward">
 <code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Constant" title="ecole.reward.Constant">ecole.reward.Constant</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.Constant.obtain_reward" title="Permalink to this definition">¶</a></dt>
@@ -330,13 +330,13 @@ associated with the problem since the previous state.</p>
 <dt id="ecole.reward.Arithmetic">
 <em class="property">class </em><code class="sig-prename descclassname">ecole.reward.</code><code class="sig-name descname">Arithmetic</code><a class="headerlink" href="#ecole.reward.Arithmetic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Proxy class for doing arithmetic on reward functions.</p>
-<p>An object of this class is returned by reward functions operators to forward calls
-to the reward functions parameters of the operator.</p>
+<p>An object of this class is returned by reward function operators to forward calls
+to the reward function parameters of the operator.</p>
 <dl class="py method">
 <dt id="ecole.reward.Arithmetic.obtain_reward">
 <code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Arithmetic" title="ecole.reward.Arithmetic">ecole.reward.Arithmetic</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">object</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.Arithmetic.obtain_reward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Obtain the reward of result of the operator.</p>
-<p>Call <code class="docutils literal notranslate"><span class="pre">obtain_reward</span></code> on all reward functions parameters that were used to create
+<p>Calls <code class="docutils literal notranslate"><span class="pre">obtain_reward</span></code> on all reward function parameters that were used to create
 this object and compute the operation on the results.</p>
 </dd></dl>
 
@@ -344,7 +344,7 @@ this object and compute the operation on the results.</p>
 <dt id="ecole.reward.Arithmetic.reset">
 <code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Arithmetic" title="ecole.reward.Arithmetic">ecole.reward.Arithmetic</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">object</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.Arithmetic.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reset the reward functions of the operator.</p>
-<p>Call <code class="docutils literal notranslate"><span class="pre">reset</span></code> on all reward functions parameters that were used to create this
+<p>Calls <code class="docutils literal notranslate"><span class="pre">reset</span></code> on all reward functions parameters that were used to create this
 object.</p>
 </dd></dl>
 
