@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Differences with OpenAi Gym" href="../discussion/gym-differences.html" />
+    <link rel="next" title="SCIP Interface" href="scip-interface.html" />
     <link rel="prev" title="Observations" href="observations.html" /> 
 </head>
 
@@ -123,6 +123,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="scip-interface.html">SCIP Interface</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
@@ -208,7 +209,7 @@
 to extract the reward used for learning.</p>
 <dl class="py method">
 <dt id="ecole.typing.RewardFunction.obtain_reward">
-<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span></em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="../_modules/ecole/typing.html#RewardFunction.obtain_reward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.RewardFunction.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span></em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="../_modules/ecole/typing.html#RewardFunction.obtain_reward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.RewardFunction.obtain_reward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract reward for arriving on given state.</p>
 <p>Extract the reward for arriving on the state given by <code class="docutils literal notranslate"><span class="pre">model</span></code>.
 A reward is typically computed by transitioning from a state <code class="docutils literal notranslate"><span class="pre">S1</span></code> to a state <code class="docutils literal notranslate"><span class="pre">S2</span></code>.
@@ -235,7 +236,7 @@ the <code class="docutils literal notranslate"><span class="pre">reward_offset</
 
 <dl class="py method">
 <dt id="ecole.typing.RewardFunction.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/typing.html#RewardFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.RewardFunction.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/typing.html#RewardFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.RewardFunction.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reset internal data at the start of episodes.</p>
 <p>The method is called on new episodes
 <a class="reference internal" href="environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> on the initial state.
@@ -261,13 +262,13 @@ It can is usually used to reset the observation function internal data.</p>
 <dd><p>Single reward on terminal states.</p>
 <dl class="py method">
 <dt id="ecole.reward.IsDone.obtain_reward">
-<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.IsDone" title="ecole.reward.IsDone">ecole.reward.IsDone</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.IsDone.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.IsDone" title="ecole.reward.IsDone">ecole.reward.IsDone</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.IsDone.obtain_reward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return 1 if the episode is on a terminal state, 0 otherwise.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ecole.reward.IsDone.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.IsDone" title="ecole.reward.IsDone">ecole.reward.IsDone</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.IsDone.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.IsDone" title="ecole.reward.IsDone">ecole.reward.IsDone</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.IsDone.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do nothing.</p>
 </dd></dl>
 
@@ -284,14 +285,14 @@ It can is usually used to reset the observation function internal data.</p>
 associated with the problem since the previous state.</p>
 <dl class="py method">
 <dt id="ecole.reward.LpIterations.obtain_reward">
-<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.LpIterations" title="ecole.reward.LpIterations">ecole.reward.LpIterations</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.LpIterations.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.LpIterations" title="ecole.reward.LpIterations">ecole.reward.LpIterations</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.LpIterations.obtain_reward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update the internal LP iteration count and return the difference.</p>
 <p>The difference in LP iterations is computed in between calls.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ecole.reward.LpIterations.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.LpIterations" title="ecole.reward.LpIterations">ecole.reward.LpIterations</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.LpIterations.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.LpIterations" title="ecole.reward.LpIterations">ecole.reward.LpIterations</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.LpIterations.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reset the internal LP iterations count.</p>
 </dd></dl>
 
@@ -311,13 +312,13 @@ associated with the problem since the previous state.</p>
 <p>Always returns the value passed in constructor.</p>
 <dl class="py method">
 <dt id="ecole.reward.Constant.obtain_reward">
-<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Constant" title="ecole.reward.Constant">ecole.reward.Constant</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.Constant.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Constant" title="ecole.reward.Constant">ecole.reward.Constant</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.Constant.obtain_reward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the constant value.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ecole.reward.Constant.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Constant" title="ecole.reward.Constant">ecole.reward.Constant</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">ecole.scip.Model</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.Constant.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.Constant" title="ecole.reward.Constant">ecole.reward.Constant</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.Constant.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do nothing.</p>
 </dd></dl>
 
@@ -362,7 +363,7 @@ object.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../discussion/gym-differences.html" class="btn btn-neutral float-right" title="Differences with OpenAi Gym" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="scip-interface.html" class="btn btn-neutral float-right" title="SCIP Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="observations.html" class="btn btn-neutral float-left" title="Observations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

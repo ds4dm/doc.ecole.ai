@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/scip-interface.html">SCIP Interface</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
@@ -196,7 +197,7 @@
 <div class="viewcode-block" id="Dynamics"><a class="viewcode-back" href="../../reference/environments.html#ecole.typing.Dynamics">[docs]</a><span class="k">class</span> <span class="nc">Dynamics</span><span class="p">(</span><span class="n">Protocol</span><span class="p">[</span><span class="n">Action</span><span class="p">,</span> <span class="n">ActionSet</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;Dynamics are raw environments.</span>
 
-<span class="sd">    The class is a bare :py:class::`ecole.environment.EnvironmentComposer` without rewards,</span>
+<span class="sd">    The class is a bare :py:class:`ecole.environment.EnvironmentComposer` without rewards,</span>
 <span class="sd">    observations, and other utlilities.</span>
 <span class="sd">    It defines the state transitions of a Markov Decision Process, that is the series of steps and</span>
 <span class="sd">    possible actions of the environment.</span>
@@ -207,7 +208,7 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Set the random state of the episode.</span>
 
-<span class="sd">        This method is called by :py:meth::`~ecole.environment.EnvironmentComposer.reset` to</span>
+<span class="sd">        This method is called by :py:meth:`~ecole.environment.EnvironmentComposer.reset` to</span>
 <span class="sd">        set all the random elements of the dynamics for the upcoming episode.</span>
 <span class="sd">        The random engine is kept between episodes in order to sample different episodes.</span>
 
