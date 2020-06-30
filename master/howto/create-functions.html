@@ -100,6 +100,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Create New Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#from-an-exsiting-one">From an Exsiting One</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#from-scratch">From Scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-pyscipopt">Using PyScipOpt</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="create-environments.html">Create New Environments</a></li>
@@ -114,6 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/scip-interface.html">SCIP Interface</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
@@ -187,13 +189,13 @@
            <div itemprop="articleBody">
             
   <div class="section" id="create-new-functions">
-<h1>Create New Functions<a class="headerlink" href="#create-new-functions" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference internal" href="observation-functions.html#use-observation-functions"><span class="std std-ref">Observation</span></a> and <a class="reference internal" href="reward-functions.html#use-reward-functions"><span class="std std-ref">reward</span></a> functions
+<span id="id1"></span><h1>Create New Functions<a class="headerlink" href="#create-new-functions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a> and <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> functions
 can be adapted and created from Python.</p>
-<p>At the core of the environment, a SCIP <code class="docutils literal notranslate"><span class="pre">Model</span></code> (equivalent to a <code class="docutils literal notranslate"><span class="pre">pyscipopt.Model</span></code> or a
-<code class="docutils literal notranslate"><span class="pre">SCIP*</span></code> in <code class="docutils literal notranslate"><span class="pre">C</span></code>), describe the state of the environment.
+<p>At the core of the environment, a SCIP <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> (equivalent abstraction to a
+<code class="docutils literal notranslate"><span class="pre">pyscipopt.Model</span></code> or a <code class="docutils literal notranslate"><span class="pre">SCIP*</span></code> in <code class="docutils literal notranslate"><span class="pre">C</span></code>), describe the state of the environment.
 The idea of observation and reward functions is to have a function that takes as input that
-<code class="docutils literal notranslate"><span class="pre">Model</span></code>, and return the desired value (an observation, or a reward).
+<a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>, and return the desired value (an observation, or a reward).
 The environment itself does nothing more than calling the function and forward its output to the
 user.</p>
 <p>Pratically speaking, it is more convenient to implement such functions as a class that a function,
@@ -203,7 +205,8 @@ as it makes it easier to keep information between states.</p>
 <p>To reuse a function, Python inheritance can be use.
 In the following, we will adapt <a class="reference internal" href="../reference/observations.html#ecole.observation.NodeBipartite" title="ecole.observation.NodeBipartite"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartite</span></code></a> to apply some scaling
 to the observation features.</p>
-<p>The method that will be called to return an observation is called <code class="docutils literal notranslate"><span class="pre">obtain_observation</span></code>.
+<p>The method that will be called to return an observation is called
+<a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.obtain_observation" title="ecole.typing.ObservationFunction.obtain_observation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">obtain_observation()</span></code></a>.
 Here is how we can create a new observation function that scale the features their maximum absolute
 value.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -272,11 +275,12 @@ This example shows how the scaling vector can be stored between states.</p>
 </div>
 <p>Here, you can notice how we used the constructor to be able to customize the coefficient of the
 exponential moving average.
-We also inherited the <code class="docutils literal notranslate"><span class="pre">reset</span></code> method which does not return anything.
+We also inherited the <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.reset" title="ecole.typing.ObservationFunction.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> method which does not
+return anything.
 This method is called at the begining of the episode by
 <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and is used to reintialize the class
 internal attribute on new episodes.
-The <code class="docutils literal notranslate"><span class="pre">obtain_observation</span></code> is also called during during
+The <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.obtain_observation" title="ecole.typing.ObservationFunction.obtain_observation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">obtain_observation()</span></code></a> is also called during during
 <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, hence the <code class="docutils literal notranslate"><span class="pre">if</span></code> else <code class="docutils literal notranslate"><span class="pre">else</span></code> condition.
 Both these methods call the parent method to let it do its own initialization/reseting.</p>
 <div class="admonition warning">
@@ -288,6 +292,55 @@ For proper scaling functions consider <a class="reference external" href="https:
 </div>
 <div class="section" id="from-scratch">
 <h2>From Scratch<a class="headerlink" href="#from-scratch" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a> and <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> do not
+anything more than what is explained in the previous section.
+This means that to create new function form Python, one can simply create a class with the previous
+methods.</p>
+<p>For instance, we can create a <code class="docutils literal notranslate"><span class="pre">StochasticReward</span></code> function that will wrap any given
+<a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> and with some probability return either the given reward or
+0.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+
+<span class="k">class</span> <span class="nc">StochasticReward</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reward_function</span><span class="p">,</span> <span class="n">probability</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span> <span class="o">=</span> <span class="n">reward_function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">probability</span> <span class="o">=</span> <span class="n">probability</span>
+
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">obtain_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">):</span>
+        <span class="c1"># Unconditionally getting reward as reward_funcition.obtain_reward may have side effects</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">obtain_reward</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">probability</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">reward</span>
+</pre></div>
+</div>
+<p>It can be used as such, for instance with <a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a> in a
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">stochastic_lpiterations</span> <span class="o">=</span> <span class="n">StochaticReward</span><span class="p">(</span><span class="o">-</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIteration</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span> <span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=</span><span class="n">stochastic_lpiterations</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-pyscipopt">
+<h2>Using PyScipOpt<a class="headerlink" href="#using-pyscipopt" title="Permalink to this headline">¶</a></h2>
+<p>When creating new function, it is common to need to extract information from the solver.
+<a class="reference external" href="https://github.com/SCIP-Interfaces/PySCIPOpt">PyScipOpt</a> is the official Python interface to
+SCIP.
+The <code class="docutils literal notranslate"><span class="pre">pyscipopt.Model</span></code> holds a stateful SCIP problem instance and solver.
+For a number of reasons (such as avaibility in C++) Ecole defines its own
+<a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> class that represent a very similar concept.
+It does not aim to be a replacement to PyScipOpt, rather it is possible to convert back and forth
+without any copy.</p>
+<p>Using <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model.as_pyscipopt" title="ecole.scip.Model.as_pyscipopt"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ecole.scip.Model.as_pyscipopt()</span></code></a>, one can get a <code class="docutils literal notranslate"><span class="pre">pyscipopt.Model</span></code> that shares its
+internal data with <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a>.</p>
+<p>Conversely, given a <code class="docutils literal notranslate"><span class="pre">pyscipopt.Model</span></code>, it is possible to to create a <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a>
+using the static method <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model.from_pyscipopt" title="ecole.scip.Model.from_pyscipopt"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ecole.scip.Model.from_pyscipopt()</span></code></a>.</p>
 </div>
 </div>
 

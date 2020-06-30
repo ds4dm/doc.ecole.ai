@@ -117,6 +117,7 @@
 <li class="toctree-l1"><a class="reference internal" href="reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/scip-interface.html">SCIP Interface</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
@@ -226,9 +227,9 @@ presentations.
 In Ecole, this loop typically terminates at the same time as the combinatorial
 optimization algorithm used in the environment.
 A full execution of this loop is known as an <em>episode</em>.</p>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="_images/mdp.png"><img alt="Markov Decision Process interaction loop" src="_images/mdp.png" style="width: 60%;" /></a>
-<p class="caption"><span class="caption-text">The control loop of the Markov Decision Process</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">The control loop of the Markov Decision Process</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>The outter <code class="docutils literal notranslate"><span class="pre">for</span></code> loop only repeats the inner one mutiple times.
 Few learning algorithms are able to learn in a single episode, so numerous ones are
@@ -240,7 +241,7 @@ solved.
 One wants to find a policy able to genralize to new, unseen, instances.</p>
 </div>
 <div class="section" id="environment-parameters">
-<h2>Environment parameters<a class="headerlink" href="#environment-parameters" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Environment parameters<a class="headerlink" href="#environment-parameters" title="Permalink to this headline">¶</a></h2>
 <p>Environment can be created with no constructor arguments, as in the previous examples.
 This will use all the defaults chosen for the environments.</p>
 <p>Each environment can have its own set of parameters to further customize the task being
@@ -276,7 +277,7 @@ using the dedicated
 parameters dicsussed later on.</p>
 </div>
 <div class="section" id="reseting-environments">
-<span id="id1"></span><h2>Reseting environments<a class="headerlink" href="#reseting-environments" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Reseting environments<a class="headerlink" href="#reseting-environments" title="Permalink to this headline">¶</a></h2>
 <p>The episode in the inner <code class="docutils literal notranslate"><span class="pre">while</span></code> starts with a call to
 <a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> to bring the environment to a new
 initial state.
