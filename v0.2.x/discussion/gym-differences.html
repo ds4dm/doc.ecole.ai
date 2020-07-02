@@ -114,7 +114,14 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Differences with OpenAi Gym</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#changing-reward-and-observations">Changing reward and observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameter-to-reset">Parameter to reset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#done-on-reset">Done on reset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#action-set">Action set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reward-offset">Reward offset</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="theory.html">Ecole Theoretical Model</a></li>
 </ul>
@@ -185,13 +192,70 @@
             
   <div class="section" id="differences-with-openai-gym">
 <h1>Differences with OpenAi Gym<a class="headerlink" href="#differences-with-openai-gym" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="changing-reward-and-observations">
+<h2>Changing reward and observations<a class="headerlink" href="#changing-reward-and-observations" title="Permalink to this headline">¶</a></h2>
 <p>Contrarily to <a class="reference external" href="https://gym.openai.com/">OpenAI Gym</a> where learning tasks are predefined,
 Ecole gives the user the tools to easily extend and customize environments.
 This is because the objective with Ecole is not only to provide a collection of challenges
 for machine learning, but really to solve combinatorial optimization problems more
 efficiently.
-If different data or changing the tweaking the control task delivers better performances,
-it is an improvement!</p>
+If different data or tweaking the control task delivers better performances, it is an improvement!
+This is why Ecole let users change the environment reward and observation using
+<a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> and <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a>.</p>
+</div>
+<div class="section" id="parameter-to-reset">
+<h2>Parameter to reset<a class="headerlink" href="#parameter-to-reset" title="Permalink to this headline">¶</a></h2>
+<p>In OpenAI Gym, <code class="docutils literal notranslate"><span class="pre">reset</span></code> does not take parameters whereas is Ecole
+<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> takes a problem instance as a mandatory
+input.
+This is because when doing machine learning for optimization, there is no practical interest in
+solving the same problem over and over again.
+What is important is that the machine learning model is able to generalize to unseen problems.
+This is typically done by training on mutliple problem instances.</p>
+<p>This setting is similar to multi-task reinforcement learning, where each problem instance is a task
+and one aims to generalize to unseen tasks.
+An alternative way to implement this is found in <a class="reference external" href="https://meta-world.github.io/">MetaWorld</a>,
+where instead of passing the task as a parameter to <code class="docutils literal notranslate"><span class="pre">reset</span></code>, an supplementary <code class="docutils literal notranslate"><span class="pre">set_task</span></code> method
+is defined in the environment.</p>
+</div>
+<div class="section" id="done-on-reset">
+<h2>Done on reset<a class="headerlink" href="#done-on-reset" title="Permalink to this headline">¶</a></h2>
+<p>In Ecole, <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> returns the same <code class="docutils literal notranslate"><span class="pre">done</span></code> flag as
+in <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
+This is because nothing prevent an initial state from also being a terminal one.
+It is not only a theoretical consideration.
+For instance, in <a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a>, the initial state would typically be on
+the root node, prior to making the first branching decision.
+However, modern solvers have powerful presolvers, and it is not uncommon that the solution to the
+problem is found without needing to branch on any variable.</p>
+</div>
+<div class="section" id="action-set">
+<h2>Action set<a class="headerlink" href="#action-set" title="Permalink to this headline">¶</a></h2>
+<p>Ecole defines an action set at every transition of the environment, while OpenAI Gym defines an
+<code class="docutils literal notranslate"><span class="pre">action_space</span></code> as a static variable of the environment.
+Ecole environments are more complex.
+For instance in <a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> the set of valid actions changes, not only
+with every episode, but also with every transition!
+The <code class="docutils literal notranslate"><span class="pre">action_set</span></code> is required to make the next call to
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code>.
+We chose to add it as a return type to <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> and
+<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> to emphasize this difference.</p>
+</div>
+<div class="section" id="reward-offset">
+<h2>Reward offset<a class="headerlink" href="#reward-offset" title="Permalink to this headline">¶</a></h2>
+<p>In <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> a <code class="docutils literal notranslate"><span class="pre">reward_offset</span></code> is returned.
+This is not only a difference with OpenAI Gym, but also not part of the MDP formulation.
+It has not purpose for learning algorithms, rather it is meant for evaluating the complete solving
+procedure.
+<a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> are often designed so that their cumulative sum match a
+metric on the terminal state, such as solving time or number of LP iterations.
+This is because final metrics are often all that matter.
+However, for learning, a single reward on the terminal state is hard to learn from.
+It is then divided over all intermediate transitions in the episode.</p>
+<p>Rather than providing a different mean of evaluating such metrics, we chose to reuse the
+environments to compute the cummulative sum, and therfore need the <code class="docutils literal notranslate"><span class="pre">reward_offset</span></code> for exactly
+matching the metric.</p>
+</div>
 </div>
 
 
