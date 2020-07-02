@@ -115,7 +115,12 @@
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="gym-differences.html">Differences with OpenAi Gym</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Seeding</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Seeding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reproducible-program">Reproducible program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reproducible-environments">Reproducible environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reproducible-episode">Reproducible episode</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="theory.html">Ecole Theoretical Model</a></li>
 </ul>
 
@@ -185,6 +190,75 @@
             
   <div class="section" id="seeding">
 <span id="seeding-discussion"></span><h1>Seeding<a class="headerlink" href="#seeding" title="Permalink to this headline">¶</a></h1>
+<p>Ecole empowers researchers to learn reliable machine learning models, and that means not overfitting
+on insignificant behaviours of the solver.
+One such aspect is the solver randomness, which is controlled by its random seed.</p>
+<p>This means that, by default, Ecole environment will generate different episodes (and in
+particular different initial states) after each new call to
+<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.
+To do so, the environment keeps a <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomeEngine</span></code> (random state)
+between episodes, and start a new episode by calling
+<a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics.set_dynamics_random_state" title="ecole.typing.Dynamics.set_dynamics_random_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_dynamics_random_state()</span></code></a> on the underlying
+<a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.
+The latter set random elements of the state including, but not necessary limited to, the
+<a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> random seed, by consuming random numbers from the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">RandomeEngine</span></code>.
+That way, the <code class="xref py py-class docutils literal notranslate"><span class="pre">EnvironmentComposer</span></code> can avoid generating identical
+episodes while letting <a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a> decide what random parameters need to
+be set.</p>
+<p>The <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.seed" title="ecole.environment.EnvironmentComposer.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seed()</span></code></a> method is really one of the environment,
+because it seeds the <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomeEngine</span></code>., not direclty the episode for
+the <a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.
+Upon creation <code class="xref py py-class docutils literal notranslate"><span class="pre">EnvironmentComposer</span></code> seed themslef from Python’s
+<a class="reference external" href="https://docs.python.org/3/library/random.html">random module</a>.</p>
+<p>In short we provide the following snippets.</p>
+<div class="section" id="reproducible-program">
+<h2>Reproducible program<a class="headerlink" href="#reproducible-program" title="Permalink to this headline">¶</a></h2>
+<p>Running this program again will give the same outcome.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">ecole</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">754</span><span class="p">)</span>
+
+<span class="n">environment</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward_offset</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">obs</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action_set</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reproducible-environments">
+<h2>Reproducible environments<a class="headerlink" href="#reproducible-environments" title="Permalink to this headline">¶</a></h2>
+<p>Creating this envionment with same seed anywhere else will give the same outcome.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">()</span>
+<span class="n">env</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">8462</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward_offset</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">obs</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action_set</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reproducible-episode">
+<h2>Reproducible episode<a class="headerlink" href="#reproducible-episode" title="Permalink to this headline">¶</a></h2>
+<p>All episodes run in this snippet are identical.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">81</span><span class="p">)</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward_offset</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">obs</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action_set</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
