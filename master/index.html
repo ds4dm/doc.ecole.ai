@@ -187,8 +187,11 @@
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>Ecole is a library of <em>Extensible Combinatorial Optimization Learning Environments</em>
-designed to facilitate the definition of machine learning environments problems inside
-combinatorial optimization solvers.</p>
+designed to ease the development of machine learning approaches for
+combinatorial optimization. More precisely, the goal of Ecole is to allow for a fast
+and safe prototyping of any ML for CO approach that can be formulated as a control
+problem (i.e., a Markov Decision Problem), as well as providing reproducible benchmarking protocols
+for comparison to existing approaches.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
 
 <span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span>
@@ -202,23 +205,23 @@ combinatorial optimization solvers.</p>
          <span class="n">obs</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action_set</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>Combinatorial optimization solvers rely on a variety of hand crafted heuristic that fail
-to account for similarities in between problems.
-<a class="reference external" href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a> algorithms are
-a promising candidate to create a new kind of highly adaptive solvers that can adapt to
-the problem data.</p>
+<p>Combinatorial optimization solvers typically rely on a plethora of handcrafted expert heuristics,
+which can fail to exploit subtle statistical similarities between problem intances.
+<a class="reference external" href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a> algorithms offer
+a promising candidate for replacing those heuristics, by learning data-driven policies that automatically
+account for such statistical relationships, and thereby creating a new kind of highly adaptive solvers [Bengio2018,]_.</p>
 <p>For instance, many combinatorial optimization problems can be modeled using <a class="reference external" href="https://en.wikipedia.org/wiki/Integer_programming">Mixed Integer
 Linear Programming</a> and solved using
 the <a class="reference external" href="https://en.wikipedia.org/wiki/Branch_and_bound">branch-and-bound</a> algorithm.
-This algorithm still requires many more decisions, such as picking the variable to branch
-on.
-Ecole let the user easily explore new policies to make these decisions using machine
-learning and information extracted from the solver.</p>
+Despite its simplicity, the algorithm requires many non-trivial decisions, such as iteratively
+picking the next variable to branch on. Ecole aims at exposing these algorithmic control problems with a
+standard reinforcement learning API (agent / environment loop), in order to ease the exploration
+of new machine learning models and algorithms for learning data-driven policies.</p>
 <p>Ecole’s interface is inspired from <a class="reference external" href="https://gym.openai.com/">OpenAi Gym</a> and will look
 familiar to reinforcement learning praticionners.
 The state-of-the-art Mixed Integer Linear Programming solver that acts as a controllable
 algorithm inside Ecole is <a class="reference external" href="https://scip.zib.de/">SCIP</a>.</p>
-<p>The reader is referred to <a class="reference internal" href="#bengio2018" id="id1"><span>[Bengio2018]</span></a> for motiation on why machine learning is a promising
+<p>The reader is referred to <a class="reference internal" href="#bengio2018" id="id1"><span>[Bengio2018]</span></a> for motivation on why machine learning is a promising
 candidate to use for combinatorial optimization, as well as the methodology to do so.</p>
 <dl class="citation">
 <dt class="label" id="bengio2018"><span class="brackets"><a class="fn-backref" href="#id1">Bengio2018</a></span></dt>
