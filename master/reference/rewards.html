@@ -116,6 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#is-done">Is Done</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#lp-iterations">LP Iterations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nnodes">NNodes</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a><ul>
@@ -296,6 +297,29 @@ associated with the problem since the previous state.</p>
 <dt id="ecole.reward.LpIterations.reset">
 <code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.LpIterations" title="ecole.reward.LpIterations">ecole.reward.LpIterations</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.LpIterations.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reset the internal LP iterations count.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="nnodes">
+<h3>NNodes<a class="headerlink" href="#nnodes" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.reward.NNodes">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.reward.</code><code class="sig-name descname">NNodes</code><a class="headerlink" href="#ecole.reward.NNodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of nodes difference.</p>
+<p>The reward is defined as the total number of nodes processed since the previous state.</p>
+<dl class="py method">
+<dt id="ecole.reward.NNodes.obtain_reward">
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.NNodes" title="ecole.reward.NNodes">ecole.reward.NNodes</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.NNodes.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the internal node count and return the difference.</p>
+<p>The difference in number of nodes is computed in between calls.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.reward.NNodes.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.NNodes" title="ecole.reward.NNodes">ecole.reward.NNodes</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.NNodes.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the internal node count.</p>
 </dd></dl>
 
 </dd></dl>
