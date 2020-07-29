@@ -114,6 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#protocol">Protocol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#node-bipartite">Node Bipartite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pseudocosts">Pseudocosts</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a><ul>
@@ -295,6 +296,36 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 <dt id="ecole.observation.NodeBipartiteObs.row_features">
 <em class="property">property </em><code class="sig-name descname">row_features</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.row_features" title="Permalink to this definition">¶</a></dt>
 <dd><p>A matrix where each row is represents a constraint, and each column a feature of the constraints.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pseudocosts">
+<h3>Pseudocosts<a class="headerlink" href="#pseudocosts" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.Pseudocosts">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">Pseudocosts</code><a class="headerlink" href="#ecole.observation.Pseudocosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pseudocosts observation function on branch-and bound node.</p>
+<p>This observation obtains pseudocosts for all LP fractional candidate variables at a
+branch-and-bound node.  The pseudocost is a cheap approximation to the strong branching
+score and measures the quality of branching for each variable.  This observation can be used
+as a practical branching strategy by always branching on the variable with the highest
+pseudocost, although in practice is it not as efficient as SCIP’s default strategy, reliability
+pseudocost branching (also known as hybrid branching).</p>
+<p>This observation function extracts an array containing the pseudocost for
+each variable in the problem which can be indexed by the action set.  Variables for which
+a pseudocost is not applicable are filled with NaN.</p>
+<dl class="py method">
+<dt id="ecole.observation.Pseudocosts.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts">ecole.observation.Pseudocosts</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; Optional[xt::xtensor]<a class="headerlink" href="#ecole.observation.Pseudocosts.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract an array containing pseudocosts.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.Pseudocosts.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts">ecole.observation.Pseudocosts</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Pseudocosts.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
 </dd></dl>
 
 </dd></dl>
