@@ -1,0 +1,455 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Observations &mdash; Ecole 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rewards" href="rewards.html" />
+    <link rel="prev" title="Environments" href="environments.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ecole-logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Observations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#protocol">Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#node-bipartite">Node Bipartite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pseudocosts">Pseudocosts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nothing">Nothing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tuple-of-observations">Tuple of Observations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dictionnary-of-observations">Dictionnary of Observations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scip-interface.html">SCIP Interface</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ecole</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Observations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/reference/observations.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="observations">
+<h1>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="protocol">
+<h2>Protocol<a class="headerlink" href="#protocol" title="Permalink to this headline">¶</a></h2>
+<p>The protocol expected to define a valid observation function is given below.</p>
+<dl class="py class">
+<dt id="ecole.typing.ObservationFunction">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.typing.</code><code class="sig-name descname">ObservationFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.ObservationFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class repsonsible for extracting observations.</p>
+<p>Observation functions are objects given to the
+<a class="reference internal" href="environments.html#ecole.environment.EnvironmentComposer" title="ecole.environment.EnvironmentComposer"><code class="xref py py-class docutils literal notranslate"><span class="pre">EnvironmentComposer</span></code></a> to extract the observations used to take the
+next action.</p>
+<dl class="py method">
+<dt id="ecole.typing.ObservationFunction.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; Observation<a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction.obtain_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.ObservationFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract observation on a given state.</p>
+<p>The observation describe the state and is used for learning.
+This method will only be called <em>once per state</em> <em>i.e.</em>, this method is not a getter and
+can have side effects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The SCIP model defining the current state of the solver.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The return is passed to the user by the environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.typing.ObservationFunction.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.ObservationFunction.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset internal data at the start of episodes.</p>
+<p>The method is called on new episodes
+<a class="reference internal" href="environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> on the initial state.
+It can is usually used to reset the observation function internal data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The SCIP model defining the current state of the solver.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="listing">
+<h2>Listing<a class="headerlink" href="#listing" title="Permalink to this headline">¶</a></h2>
+<p>The list of observation functions relevant to users is given below.</p>
+<div class="section" id="node-bipartite">
+<h3>Node Bipartite<a class="headerlink" href="#node-bipartite" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.NodeBipartite">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">NodeBipartite</code><a class="headerlink" href="#ecole.observation.NodeBipartite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bipartite graph observation function on branch-and bound node.</p>
+<p>This observation function extract structured <a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartiteObs</span></code></a>.</p>
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartite.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartite" title="ecole.observation.NodeBipartite">ecole.observation.NodeBipartite</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span><a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs">ecole.observation.NodeBipartiteObs</a><span class="p">]</span><a class="headerlink" href="#ecole.observation.NodeBipartite.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract a new <a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartiteObs</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartite.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartite" title="ecole.observation.NodeBipartite">ecole.observation.NodeBipartite</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.NodeBipartite.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cache some feature not expected to change during an episode.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="ecole.observation.NodeBipartiteObs">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">NodeBipartiteObs</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bipartite graph observation for branch-and-bound nodes.</p>
+<p>The optimization problem is represented as an heterogenous bipartite graph.
+On one side, a node is associated with one variable, on the other side a node is
+associated with one constraint.
+There exist an edge between a variable and a constraint if the variable exists in the
+constraint with a non-zero coefficient.</p>
+<p>Each variable and constraint node is associated with a vector of features.
+Each edge is associated with the coefficient of the variable in the constraint.</p>
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartiteObs.column_features">
+<em class="property">property </em><code class="sig-name descname">column_features</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.column_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix where each row is represents a variable, and each column a feature of the variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartiteObs.edge_features">
+<em class="property">property </em><code class="sig-name descname">edge_features</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.edge_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>The constraint matrix of the optimization problem, with rows for contraints and columns for variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartiteObs.row_features">
+<em class="property">property </em><code class="sig-name descname">row_features</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.row_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix where each row is represents a constraint, and each column a feature of the constraints.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pseudocosts">
+<h3>Pseudocosts<a class="headerlink" href="#pseudocosts" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.Pseudocosts">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">Pseudocosts</code><a class="headerlink" href="#ecole.observation.Pseudocosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pseudocosts observation function on branch-and bound node.</p>
+<p>This observation obtains pseudocosts for all LP fractional candidate variables at a
+branch-and-bound node.  The pseudocost is a cheap approximation to the strong branching
+score and measures the quality of branching for each variable.  This observation can be used
+as a practical branching strategy by always branching on the variable with the highest
+pseudocost, although in practice is it not as efficient as SCIP’s default strategy, reliability
+pseudocost branching (also known as hybrid branching).</p>
+<p>This observation function extracts an array containing the pseudocost for
+each variable in the problem which can be indexed by the action set.  Variables for which
+a pseudocost is not applicable are filled with NaN.</p>
+<dl class="py method">
+<dt id="ecole.observation.Pseudocosts.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts">ecole.observation.Pseudocosts</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; Optional[xt::xtensor]<a class="headerlink" href="#ecole.observation.Pseudocosts.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract an array containing pseudocosts.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.Pseudocosts.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts">ecole.observation.Pseudocosts</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Pseudocosts.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="utilities">
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
+<p>The following observation functions are used internally by Ecole.</p>
+<div class="section" id="nothing">
+<h3>Nothing<a class="headerlink" href="#nothing" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.Nothing">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">Nothing</code><a class="headerlink" href="#ecole.observation.Nothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>No observation.</p>
+<p>This observation function does nothing and always returns <code class="docutils literal notranslate"><span class="pre">None</span></code> as an observation.
+Convenient for bandit algorithms, or when no learning is performed.</p>
+<dl class="py method">
+<dt id="ecole.observation.Nothing.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Nothing" title="ecole.observation.Nothing">ecole.observation.Nothing</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Nothing.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return None.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.Nothing.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Nothing" title="ecole.observation.Nothing">ecole.observation.Nothing</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Nothing.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="tuple-of-observations">
+<h3>Tuple of Observations<a class="headerlink" href="#tuple-of-observations" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.TupleFunction">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">TupleFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">observation_functions</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pack observation functions together and return observations as tuples.</p>
+<dl class="py method">
+<dt id="ecole.observation.TupleFunction.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction.obtain_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return observation from all functions as a tuple.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.TupleFunction.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call reset on all observation functions.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="dictionnary-of-observations">
+<h3>Dictionnary of Observations<a class="headerlink" href="#dictionnary-of-observations" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.DictFunction">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">DictFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">observation_functions</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pack observation functions together and return observations as dicts.</p>
+<dl class="py method">
+<dt id="ecole.observation.DictFunction.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction.obtain_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return observation from all functions as a dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.DictFunction.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call reset on all observation functions.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rewards.html" class="btn btn-neutral float-right" title="Rewards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="environments.html" class="btn btn-neutral float-left" title="Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Antoine Prouvost
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
