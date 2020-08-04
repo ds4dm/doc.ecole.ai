@@ -1,15 +1,18 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Rewards &mdash; Ecole 0.1.0 documentation</title>
+  <title>Rewards &mdash; Ecole 0.2.0 documentation</title>
   
+
+  
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
   
@@ -19,7 +22,9 @@
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -27,14 +32,11 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="SCIP Interface" href="scip-interface.html" />
@@ -57,7 +59,7 @@
 
           
             
-            <img src="../_static/ecole-logo.png" class="logo" alt="Logo"/>
+            <img src="../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -65,7 +67,7 @@
             
             
               <div class="version">
-                0.1
+                0.2
               </div>
             
           
@@ -82,6 +84,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -116,6 +119,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#is-done">Is Done</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#lp-iterations">LP Iterations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nnodes">NNodes</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a><ul>
@@ -137,6 +141,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -175,7 +180,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Rewards</li>
     
@@ -205,7 +210,7 @@
 <p>The protocol expected to define a valid reward function is given below.</p>
 <dl class="py class">
 <dt id="ecole.typing.RewardFunction">
-<em class="property">class </em><code class="sig-prename descclassname">ecole.typing.</code><code class="sig-name descname">RewardFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/typing.html#RewardFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.RewardFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">ecole.typing.</code><code class="sig-name descname">RewardFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/typing.html#RewardFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.RewardFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class repsonsible for extracting rewards.</p>
 <p>Reward functions are objects given to the <a class="reference internal" href="environments.html#ecole.environment.EnvironmentComposer" title="ecole.environment.EnvironmentComposer"><code class="xref py py-class docutils literal notranslate"><span class="pre">EnvironmentComposer</span></code></a>
 to extract the reward used for learning.</p>
@@ -301,6 +306,29 @@ associated with the problem since the previous state.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="nnodes">
+<h3>NNodes<a class="headerlink" href="#nnodes" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.reward.NNodes">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.reward.</code><code class="sig-name descname">NNodes</code><a class="headerlink" href="#ecole.reward.NNodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of nodes difference.</p>
+<p>The reward is defined as the total number of nodes processed since the previous state.</p>
+<dl class="py method">
+<dt id="ecole.reward.NNodes.obtain_reward">
+<code class="sig-name descname">obtain_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.NNodes" title="ecole.reward.NNodes">ecole.reward.NNodes</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ecole.reward.NNodes.obtain_reward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the internal node count and return the difference.</p>
+<p>The difference in number of nodes is computed in between calls.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.reward.NNodes.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.reward.NNodes" title="ecole.reward.NNodes">ecole.reward.NNodes</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.reward.NNodes.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the internal node count.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="utilities">
 <h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
@@ -377,11 +405,19 @@ object.</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright Antoine Prouvost
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -392,7 +428,6 @@ object.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
