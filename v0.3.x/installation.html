@@ -1,15 +1,18 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; Ecole 0.1.0 documentation</title>
+  <title>Installation &mdash; Ecole 0.2.0 documentation</title>
   
+
+  
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
 
   
   
@@ -19,7 +22,9 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -27,14 +32,11 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Using Environments" href="using-environments.html" />
@@ -57,7 +59,7 @@
 
           
             
-            <img src="_static/ecole-logo.png" class="logo" alt="Logo"/>
+            <img src="_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -65,7 +67,7 @@
             
             
               <div class="version">
-                0.1
+                0.2
               </div>
             
           
@@ -82,6 +84,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -93,11 +96,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pypi">PyPI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conda">Conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pip">Pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#from-source">From Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#build-dependencies">Build dependencies</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#conda">Conda</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Conda</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cmake">CMake</a></li>
 </ul>
 </li>
@@ -141,6 +144,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -179,7 +183,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Installation</li>
     
@@ -204,20 +208,28 @@
             
   <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="pypi">
-<h2>PyPI<a class="headerlink" href="#pypi" title="Permalink to this headline">¶</a></h2>
-<p>We plan to deploy builds on PyPI.</p>
+<div class="section" id="conda">
+<h2>Conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c scipopt -c conda-forge ecole
+</pre></div>
 </div>
-<div class="section" id="anaconda">
-<h2>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this headline">¶</a></h2>
-<p>We plan to deploy builds on Anaconda.</p>
+<p><a class="reference external" href="https://github.com/SCIP-Interfaces/PySCIPOpt">PyScipOpt</a> is not required but is the main SCIP
+interface to develop new Ecole components from Python</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c scipopt -c conda-forge ecole pyscipopt
+</pre></div>
+</div>
+<p>Currenlty, conda packages are only available for Linux and MacOS.</p>
+</div>
+<div class="section" id="pip">
+<h2>Pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>
+<p>We plan to deploy builds on PyPI.</p>
 </div>
 <div class="section" id="from-source">
 <h2>From Source<a class="headerlink" href="#from-source" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="build-dependencies">
 <h3>Build dependencies<a class="headerlink" href="#build-dependencies" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="conda">
-<h4>Conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id1">
+<h4>Conda<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>All dependencies required for building Ecole can be resolved using a
 <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> environment.
 Install everything in a development (named <code class="docutils literal notranslate"><span class="pre">ecole</span></code>) environment using</p>
@@ -247,22 +259,8 @@ CMake is made available in the <code class="docutils literal notranslate"><span 
 </div>
 <div class="section" id="scip-runtime-dependency">
 <h3>SCIP runtime dependency<a class="headerlink" href="#scip-runtime-dependency" title="Permalink to this headline">¶</a></h3>
-<p>Head to the <a class="reference external" href="https://scip.zib.de/index.php#download">download page</a>, select version
-7.0.0 and download the <code class="docutils literal notranslate"><span class="pre">scipoptsuite-7.0.0.tgz</span></code> file.
-Extract it using</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar -xz -f scipoptsuite-7.0.0.tgz
-</pre></div>
-</div>
-<p>Create a local conda package for SCIP using the recipe provided in this repository.</p>
-<p><em>Note: “/path/to/scipoptsuite-7.0.0” has to be an absolute path here.</em></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CONDA_BLD_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span><span class="s2">/conda-bld&quot;</span>
-<span class="nv">SCIP_DIR</span><span class="o">=</span><span class="s2">&quot;/path/to/scipoptsuite-7.0.0&quot;</span> conda build -c conda-forge .circleci/recipe/scipoptsuite-7.0.0
-</pre></div>
-</div>
-<p>Install the SCIP package in the <code class="docutils literal notranslate"><span class="pre">ecole</span></code> environment</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c <span class="s2">&quot;file://</span><span class="si">${</span><span class="nv">CONDA_BLD_PATH</span><span class="si">}</span><span class="s2">&quot;</span> -c conda-forge scipoptsuite
-</pre></div>
-</div>
+<p>Scip dependency is resolved from <cite>conda</cite> inside <cite>conda-dev.yaml</cite>.
+No other action are necessary :)</p>
 </div>
 <div class="section" id="building">
 <h3>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h3>
@@ -321,11 +319,19 @@ you can use the ones from ananconda.</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright Antoine Prouvost
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -336,7 +342,6 @@ you can use the ones from ananconda.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
