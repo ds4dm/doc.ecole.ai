@@ -251,7 +251,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">observation_function</span>
 
-<div class="viewcode-block" id="EnvironmentComposer.reset"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.EnvironmentComposer.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="EnvironmentComposer.reset"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.EnvironmentComposer.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Start a new episode.</span>
 
 <span class="sd">        This method brings the environment to a new initial state, *i.e.* starts a new</span>
@@ -263,6 +263,10 @@
 <span class="sd">        instance:</span>
 <span class="sd">            The combinatorial optimization problem to tackle during the newly started</span>
 <span class="sd">            episode.</span>
+<span class="sd">        dynamics_args:</span>
+<span class="sd">            Extra arguments are forwarded as is to the underlying :py:class:`~ecole.typing.Dynamics`.</span>
+<span class="sd">        dynamics_kwargs:</span>
+<span class="sd">            Extra arguments are forwarded as is to the underlying :py:class:`~ecole.typing.Dynamics`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -293,7 +297,9 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">set_dynamics_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="p">)</span>
 
-            <span class="n">done</span><span class="p">,</span> <span class="n">action_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">reset_dynamics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">done</span><span class="p">,</span> <span class="n">action_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">reset_dynamics</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span>
+            <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
 
@@ -304,7 +310,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">raise</span> <span class="n">e</span></div>
 
-<div class="viewcode-block" id="EnvironmentComposer.step"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.EnvironmentComposer.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+<div class="viewcode-block" id="EnvironmentComposer.step"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.EnvironmentComposer.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Transition from one state to another.</span>
 
 <span class="sd">        This method takes a user action to transition from the current state to the</span>
@@ -318,6 +324,10 @@
 <span class="sd">            The action to take in as part of the Markov Decision Process.</span>
 <span class="sd">            If an action set has been given in the latest call (inluding calls to</span>
 <span class="sd">            :meth:`reset`), then the action **must** be in that set.</span>
+<span class="sd">        dynamics_args:</span>
+<span class="sd">            Extra arguments are forwarded as is to the underlying :py:class:`~ecole.typing.Dynamics`.</span>
+<span class="sd">        dynamics_kwargs:</span>
+<span class="sd">            Extra arguments are forwarded as is to the underlying :py:class:`~ecole.typing.Dynamics`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -343,7 +353,9 @@
             <span class="k">raise</span> <span class="n">core</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Exception</span><span class="p">(</span><span class="s2">&quot;Environment need to be reset.&quot;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">done</span><span class="p">,</span> <span class="n">action_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">step_dynamics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+            <span class="n">done</span><span class="p">,</span> <span class="n">action_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">step_dynamics</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span>
+            <span class="p">)</span>
             <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">obtain_reward</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
             <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">obtain_observation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="p">{}</span>
