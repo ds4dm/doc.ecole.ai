@@ -40,7 +40,12 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Observations" href="observations.html" />
-    <link rel="prev" title="Create New Environments" href="../howto/create-environments.html" /> 
+    <link rel="prev" title="Create New Environments" href="../howto/create-environments.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -218,8 +223,8 @@ The method can be called at any point in time.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>instance</strong> – The combinatorial optimization problem to tackle during the newly started
 episode.</p></li>
-<li><p><strong>dynamics_args</strong> – Extra arguments are forwarded as is to the underlying Dynamics.</p></li>
-<li><p><strong>dynamics_kwargs</strong> – Extra arguments are forwarded as is to the underlying Dynamics.</p></li>
+<li><p><strong>dynamics_args</strong> – Extra arguments are forwarded as is to the underlying <a class="reference internal" href="#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p></li>
+<li><p><strong>dynamics_kwargs</strong> – Extra arguments are forwarded as is to the underlying <a class="reference internal" href="#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -267,8 +272,8 @@ instantiation or since a terminal state.</p>
 <li><p><strong>action</strong> – The action to take in as part of the Markov Decision Process.
 If an action set has been given in the latest call (inluding calls to
 <a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>), then the action <strong>must</strong> be in that set.</p></li>
-<li><p><strong>dynamics_args</strong> – Extra arguments are forwarded as is to the underlying Dynamics.</p></li>
-<li><p><strong>dynamics_kwargs</strong> – Extra arguments are forwarded as is to the underlying Dynamics.</p></li>
+<li><p><strong>dynamics_args</strong> – Extra arguments are forwarded as is to the underlying <a class="reference internal" href="#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p></li>
+<li><p><strong>dynamics_kwargs</strong> – Extra arguments are forwarded as is to the underlying <a class="reference internal" href="#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

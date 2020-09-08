@@ -40,7 +40,12 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Rewards" href="rewards.html" />
-    <link rel="prev" title="Environments" href="environments.html" /> 
+    <link rel="prev" title="Environments" href="environments.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -117,6 +122,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#protocol">Protocol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#node-bipartite">Node Bipartite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#strong-branching-scores">Strong Branching Scores</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pseudocosts">Pseudocosts</a></li>
 </ul>
 </li>
@@ -204,7 +210,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="observations">
-<h1>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h1>
+<span id="observation-reference"></span><h1>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="protocol">
 <h2>Protocol<a class="headerlink" href="#protocol" title="Permalink to this headline">¶</a></h2>
 <p>The protocol expected to define a valid observation function is given below.</p>
@@ -300,6 +306,34 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 <dt id="ecole.observation.NodeBipartiteObs.row_features">
 <em class="property">property </em><code class="sig-name descname">row_features</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.row_features" title="Permalink to this definition">¶</a></dt>
 <dd><p>A matrix where each row is represents a constraint, and each column a feature of the constraints.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="strong-branching-scores">
+<h3>Strong Branching Scores<a class="headerlink" href="#strong-branching-scores" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.StrongBranchingScores">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">StrongBranchingScores</code><a class="headerlink" href="#ecole.observation.StrongBranchingScores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Strong branching score observation function on branch-and bound node.</p>
+<p>This observation obtains scores for all LP or pseudo candidate variables at a
+branch-and-bound node.  The strong branching score measures the quality of branching
+for each variable.  This observation can be used as an expert for imitation
+learning algorithms.</p>
+<p>This observation function extracts an array containing the strong branching score for
+each variable in the problem which can be indexed by the action set.  Variables for which
+a strong branching score is not applicable are filled with NaN.</p>
+<dl class="py method">
+<dt id="ecole.observation.StrongBranchingScores.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.StrongBranchingScores" title="ecole.observation.StrongBranchingScores">ecole.observation.StrongBranchingScores</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; Optional[xt::xtensor]<a class="headerlink" href="#ecole.observation.StrongBranchingScores.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract an array containing strong branching scores.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.StrongBranchingScores.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.StrongBranchingScores" title="ecole.observation.StrongBranchingScores">ecole.observation.StrongBranchingScores</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.StrongBranchingScores.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
 </dd></dl>
 
 </dd></dl>
