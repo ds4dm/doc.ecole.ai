@@ -105,7 +105,11 @@
 <li class="toctree-l1"><a class="reference internal" href="create-functions.html">Create New Functions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Create New Environments</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#environment-structure">Environment Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#creating-dynamics">Creating Dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-dynamics">Creating Dynamics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reset-and-step">Reset and Step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#passing-parameters">Passing parameters</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -220,6 +224,8 @@ Given that this is not an easy topic, it is discussed in <a class="reference int
 </div>
 <div class="section" id="creating-dynamics">
 <h2>Creating Dynamics<a class="headerlink" href="#creating-dynamics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reset-and-step">
+<h3>Reset and Step<a class="headerlink" href="#reset-and-step" title="Permalink to this headline">¶</a></h3>
 <p>Creating dynamics is very similar to
 <a class="reference internal" href="create-functions.html#create-new-functions"><span class="std std-ref">creating reward and observation functions</span></a>.
 It can be done from scratch or by inheriting an existing one.
@@ -264,6 +270,38 @@ Now, to use it as a full environent that can manage observations and rewards, we
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">SimpleBranching</span></code> is a fully featured environment as any other in Ecole.</p>
+</div>
+<div class="section" id="passing-parameters">
+<h3>Passing parameters<a class="headerlink" href="#passing-parameters" title="Permalink to this headline">¶</a></h3>
+<p>We can make the previous example more flexible by deciding what we want to disable.
+To do so, we will take parameters in the constructor</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleBranchingDynamics</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">BranchinDynamics</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disable_presolve</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_cuts</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disable_presolve</span> <span class="o">=</span> <span class="n">disable_presolve</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disable_cuts</span> <span class="o">=</span> <span class="n">disable_cuts</span>
+
+    <span class="k">def</span> <span class="nf">reset_dynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="c1"># Share memory with Ecole model</span>
+        <span class="n">pyscipopt_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable_presolve</span><span class="p">:</span>
+            <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setPresolve</span><span class="p">(</span><span class="n">PY_SCIP_PARAMSETTING</span><span class="o">.</span><span class="n">OFF</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable_cuts</span><span class="p">:</span>
+            <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setSeparating</span><span class="p">(</span><span class="n">PY_SCIP_PARAMSETTING</span><span class="o">.</span><span class="n">OFF</span><span class="p">)</span>
+
+        <span class="c1"># Let the parent class get the model to the root node and return</span>
+        <span class="c1"># the done flag / action_set</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reset_dynamics</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The constructor arguments are forwarded from the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> constructor:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">SimpleBranching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">disable_cuts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similarily, extra arguments given to the environemnt <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and
+<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> are forwarded to the associated dynamics methods.</p>
+</div>
 </div>
 </div>
 
