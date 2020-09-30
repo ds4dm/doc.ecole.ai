@@ -40,7 +40,12 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Use Reward Functions" href="reward-functions.html" />
-    <link rel="prev" title="Using Environments" href="../using-environments.html" /> 
+    <link rel="prev" title="Using Environments" href="../using-environments.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -196,9 +201,9 @@
   <div class="section" id="use-observation-functions">
 <span id="id1"></span><h1>Use Observation Functions<a class="headerlink" href="#use-observation-functions" title="Permalink to this headline">¶</a></h1>
 <p>Using any environment, the observation <a class="footnote-reference brackets" href="#observation" id="id2">1</a> recieved by the user to take the
-next action can be customized changing the <code class="docutils literal notranslate"><span class="pre">ObservationFunction</span></code> used by the solver.
+next action can be customized changing the <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a> used by the solver.
 The environment is not extracting data directly but delegates that responsibility to an
-<code class="docutils literal notranslate"><span class="pre">ObservationFunction</span></code> object.
+<a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a> object.
 The object has complete access to the solver and extract the data it needs.</p>
 <p>Using a different observation function is as easy as passing it as a parameter when
 creating an environment.
@@ -220,8 +225,8 @@ For instance with the <a class="reference internal" href="../reference/environme
 <span class="go">NodeBipartiteObs(...)</span>
 </pre></div>
 </div>
-<p>See [TODO] for the list of available observation function, as well as [TODO] for
-explanation on how to create one.</p>
+<p>See <a class="reference internal" href="../reference/observations.html#observation-reference"><span class="std std-ref">the reference</span></a> for the list of available observation function,
+as well as <a class="reference internal" href="create-functions.html#create-new-functions"><span class="std std-ref">the documention</span></a> for explanation on how to create one.</p>
 <div class="section" id="no-observation-function">
 <h2>No Observation Function<a class="headerlink" href="#no-observation-function" title="Permalink to this headline">¶</a></h2>
 <p>To not use any observation function, for instance for a learning with a bandit algorithm,

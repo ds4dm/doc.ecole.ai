@@ -40,7 +40,12 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Create New Functions" href="create-functions.html" />
-    <link rel="prev" title="Use Observation Functions" href="observation-functions.html" /> 
+    <link rel="prev" title="Use Observation Functions" href="observation-functions.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -195,12 +200,12 @@
   <div class="section" id="use-reward-functions">
 <span id="id1"></span><h1>Use Reward Functions<a class="headerlink" href="#use-reward-functions" title="Permalink to this headline">¶</a></h1>
 <p>Similarily to <a class="reference internal" href="observation-functions.html#use-observation-functions"><span class="std std-ref">observation functions</span></a> the reward recieved by
-the user for learning can be customized by changing the <code class="docutils literal notranslate"><span class="pre">RewardFunction</span></code> used by the
+the user for learning can be customized by changing the <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> used by the
 solver.
 In fact the mechanism of reward functions is very similar to that of observation
 functions.
 Likewise environment is not computing the reward directly but delegates that
-responsibility to a <code class="docutils literal notranslate"><span class="pre">RewardFunction</span></code> object.
+responsibility to a <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> object.
 The object has complete access to the solver and extract the data it needs.</p>
 <p>Using a different reward function is done with another parameter to the environment.
 For instance with the <a class="reference internal" href="../reference/environments.html#ecole.environment.Configuring" title="ecole.environment.Configuring"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuring</span></code></a> environment:</p>
@@ -218,8 +223,8 @@ For instance with the <a class="reference internal" href="../reference/environme
 <span class="go">ecole.reward.IsDone()</span>
 </pre></div>
 </div>
-<p>See [TODO] for the list of available reward functions, as well as [TODO] for explanation
-on how to create one.</p>
+<p>See <a class="reference internal" href="../reference/rewards.html#reward-reference"><span class="std std-ref">the reference</span></a> for the list of available reward function,
+as well as <a class="reference internal" href="create-functions.html#create-new-functions"><span class="std std-ref">the documention</span></a> for explanation on how to create one.</p>
 <div class="section" id="arithmetic-on-reward-functions">
 <h2>Arithmetic on Reward Functions<a class="headerlink" href="#arithmetic-on-reward-functions" title="Permalink to this headline">¶</a></h2>
 <p>Finding a good reward function that will keep the learning process stable and efficient is

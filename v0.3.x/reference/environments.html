@@ -40,7 +40,12 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Observations" href="observations.html" />
-    <link rel="prev" title="Create New Environments" href="../howto/create-environments.html" /> 
+    <link rel="prev" title="Create New Environments" href="../howto/create-environments.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
 </head>
 
 <body class="wy-body-for-nav">
@@ -208,15 +213,19 @@
 <em class="property">class </em><code class="sig-prename descclassname">ecole.environment.</code><code class="sig-name descname">EnvironmentComposer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">observation_function</span><span class="o">=</span><span class="default_value">'default'</span></em>, <em class="sig-param"><span class="n">reward_function</span><span class="o">=</span><span class="default_value">'default'</span></em>, <em class="sig-param"><span class="n">scip_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">dynamics_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/environment.html#EnvironmentComposer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
 <dt id="ecole.environment.EnvironmentComposer.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/environment.html#EnvironmentComposer.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer.reset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">dynamics_args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">dynamics_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/environment.html#EnvironmentComposer.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start a new episode.</p>
 <p>This method brings the environment to a new initial state, <em>i.e.</em> starts a new
 episode.
 The method can be called at any point in time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>instance</strong> – The combinatorial optimization problem to tackle during the newly started
-episode.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> – The combinatorial optimization problem to tackle during the newly started
+episode.</p></li>
+<li><p><strong>dynamics_args</strong> – Extra arguments are forwarded as is to the underlying <a class="reference internal" href="#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p></li>
+<li><p><strong>dynamics_kwargs</strong> – Extra arguments are forwarded as is to the underlying <a class="reference internal" href="#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
@@ -251,7 +260,7 @@ By default, the random engine is initialized by the
 
 <dl class="py method">
 <dt id="ecole.environment.EnvironmentComposer.step">
-<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">action</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/environment.html#EnvironmentComposer.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer.step" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">action</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">dynamics_args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">dynamics_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/environment.html#EnvironmentComposer.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer.step" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transition from one state to another.</p>
 <p>This method takes a user action to transition from the current state to the
 next.
@@ -259,9 +268,13 @@ The method <strong>cannot</strong> be called if the environment has not been res
 instantiation or since a terminal state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>action</strong> – The action to take in as part of the Markov Decision Process.
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action</strong> – The action to take in as part of the Markov Decision Process.
 If an action set has been given in the latest call (inluding calls to
-<a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>), then the action <strong>must</strong> be in that set.</p>
+<a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>), then the action <strong>must</strong> be in that set.</p></li>
+<li><p><strong>dynamics_args</strong> – Extra arguments are forwarded as is to the underlying <a class="reference internal" href="#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p></li>
+<li><p><strong>dynamics_kwargs</strong> – Extra arguments are forwarded as is to the underlying <a class="reference internal" href="#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
