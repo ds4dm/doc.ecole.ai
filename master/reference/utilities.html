@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; Ecole 0.2.0 documentation</title>
+  <title>Utilities &mdash; Ecole 0.2.0 documentation</title>
   
 
   
@@ -39,6 +39,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Differences with OpenAi Gym" href="../discussion/gym-differences.html" />
+    <link rel="prev" title="SCIP Interface" href="scip-interface.html" />
 <script>
 	window.goatcounter = { path: function(p) { return location.host + p } }
 </script>
@@ -114,12 +116,15 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reference/rewards.html">Rewards</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reference/scip-interface.html">SCIP Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reference/utilities.html">Utilities</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#random">Random</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
@@ -172,10 +177,16 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Overview: module code</li>
+      <li>Utilities</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/reference/utilities.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
         
       </li>
     
@@ -187,21 +198,67 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="ecole/core.html">ecole.core</a></li>
-<ul><li><a href="ecole/core/environment.html">ecole.core.environment</a></li>
-<li><a href="ecole/core/observation.html">ecole.core.observation</a></li>
-<li><a href="ecole/core/reward.html">ecole.core.reward</a></li>
-<li><a href="ecole/core/scip.html">ecole.core.scip</a></li>
-</ul><li><a href="ecole/environment.html">ecole.environment</a></li>
-<li><a href="ecole/observation.html">ecole.observation</a></li>
-<li><a href="ecole/typing.html">ecole.typing</a></li>
-</ul>
+  <div class="section" id="utilities">
+<h1>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="random">
+<h2>Random<a class="headerlink" href="#random" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="ecole.RandomEngine">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.</code><code class="sig-name descname">RandomEngine</code><a class="headerlink" href="#ecole.RandomEngine" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="ecole.RandomEngine.discard">
+<code class="sig-name descname">discard</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a></span></em>, <em class="sig-param"><span class="n">n</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.RandomEngine.discard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Advance the internal state by n times.</p>
+<p>Equivalent to calling operator() n times and discarding the result.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.RandomEngine.max_seed">
+<code class="sig-name descname">max_seed</code><em class="property"> = 18446744073709551615</em><a class="headerlink" href="#ecole.RandomEngine.max_seed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.RandomEngine.min_seed">
+<code class="sig-name descname">min_seed</code><em class="property"> = 0</em><a class="headerlink" href="#ecole.RandomEngine.min_seed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ecole.RandomEngine.seed">
+<code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">5489</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.RandomEngine.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reinitialize the internal state of the random-number engine using new seed value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="ecole.seed">
+<code class="sig-prename descclassname">ecole.</code><code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seed the main source of randomness in Ecole.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="ecole.spawn_random_engine">
+<code class="sig-prename descclassname">ecole.</code><code class="sig-name descname">spawn_random_engine</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a><a class="headerlink" href="#ecole.spawn_random_engine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new random engine deriving from main source of randomness</p>
+</dd></dl>
+
+</div>
+</div>
+
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../discussion/gym-differences.html" class="btn btn-neutral float-right" title="Differences with OpenAi Gym" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scip-interface.html" class="btn btn-neutral float-left" title="SCIP Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
