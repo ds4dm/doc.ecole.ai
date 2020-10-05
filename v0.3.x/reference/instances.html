@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Instance Generators &mdash; Ecole 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Utilities" href="utilities.html" />
+    <link rel="prev" title="SCIP Interface" href="scip-interface.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Instance Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-cover">Set Cover</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combinatorial-auction">Combinatorial Auction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#capacitated-facility-location">Capacitated Facility Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#independent-set">Independent Set</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ecole</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Instance Generators</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/reference/instances.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="instance-generators">
+<h1>Instance Generators<a class="headerlink" href="#instance-generators" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="listing">
+<h2>Listing<a class="headerlink" href="#listing" title="Permalink to this headline">¶</a></h2>
+<p>The list of instance generators is given below.</p>
+<div class="section" id="set-cover">
+<h3>Set Cover<a class="headerlink" href="#set-cover" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.instance.SetCoverGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.instance.</code><code class="sig-name descname">SetCoverGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_rows</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">500</span></em>, <em class="sig-param"><span class="n">n_cols</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">density</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">max_coef</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">100</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/_set_cover_generator.html#SetCoverGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.instance.SetCoverGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="ecole.instance.SetCoverGenerator.seed">
+<code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/_set_cover_generator.html#SetCoverGenerator.seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.instance.SetCoverGenerator.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seeds SetCoverGenerator.</p>
+<p>This method sets the random seed of the SetCoverGenerator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seed</strong> – The seed in which to set the random number generator with.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="combinatorial-auction">
+<h3>Combinatorial Auction<a class="headerlink" href="#combinatorial-auction" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.instance.CombinatorialAuctionGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.instance.</code><code class="sig-name descname">CombinatorialAuctionGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_items</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">100</span></em>, <em class="sig-param"><span class="n">n_bids</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">500</span></em>, <em class="sig-param"><span class="n">min_value</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">max_value</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">100</span></em>, <em class="sig-param"><span class="n">value_deviation</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">add_item_prob</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.9</span></em>, <em class="sig-param"><span class="n">max_n_sub_bids</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">5</span></em>, <em class="sig-param"><span class="n">additivity</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.2</span></em>, <em class="sig-param"><span class="n">budget_factor</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">1.5</span></em>, <em class="sig-param"><span class="n">resale_factor</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">integers</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/_combinatorial_auction_generator.html#CombinatorialAuctionGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="ecole.instance.CombinatorialAuctionGenerator.seed">
+<code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/_combinatorial_auction_generator.html#CombinatorialAuctionGenerator.seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seeds SetCoverGenerator.</p>
+<p>This method sets the random seed of the SetCoverGenerator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seed</strong> – The seed in which to set the random number generator with.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="capacitated-facility-location">
+<h3>Capacitated Facility Location<a class="headerlink" href="#capacitated-facility-location" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.instance.CapacitatedFacilityLocationGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.instance.</code><code class="sig-name descname">CapacitatedFacilityLocationGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_customers</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">100</span></em>, <em class="sig-param"><span class="n">n_facilities</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">100</span></em>, <em class="sig-param"><span class="n">ratio</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">5.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/_capacitated_facility_location_generator.html#CapacitatedFacilityLocationGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="ecole.instance.CapacitatedFacilityLocationGenerator.seed">
+<code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/_capacitated_facility_location_generator.html#CapacitatedFacilityLocationGenerator.seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seeds CapacitatedFacilityLocationGenerator.</p>
+<p>This method sets the random seed of the CapacitatedFacilityLocationGenerator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seed</strong> – The seed in which to set the random number generator with.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="independent-set">
+<h3>Independent Set<a class="headerlink" href="#independent-set" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.instance.IndependentSetGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.instance.</code><code class="sig-name descname">IndependentSetGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_nodes</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">100</span></em>, <em class="sig-param"><span class="n">edge_probability</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.25</span></em>, <em class="sig-param"><span class="n">affinity</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">5</span></em>, <em class="sig-param"><span class="n">graph_type</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'barabasi_albert'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/_independent_set_generator.html#IndependentSetGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.instance.IndependentSetGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="ecole.instance.IndependentSetGenerator.seed">
+<code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/_independent_set_generator.html#IndependentSetGenerator.seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seeds IndependentSetGenerator.</p>
+<p>This method sets the random seed of the IndependentSetGenerator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seed</strong> – The seed in which to set the random number generator with.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="utilities.html" class="btn btn-neutral float-right" title="Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scip-interface.html" class="btn btn-neutral float-left" title="SCIP Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

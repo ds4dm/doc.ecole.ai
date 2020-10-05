@@ -125,12 +125,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#configuring">Configuring</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rewards.html">Rewards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instances.html">Instance Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
@@ -250,7 +251,7 @@ If this is true, the episode is finished, and <a class="reference internal" href
 <dt id="ecole.environment.EnvironmentComposer.seed">
 <code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/environment.html#EnvironmentComposer.seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.environment.EnvironmentComposer.seed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the random seed of the environment.</p>
-<p>The the random seed is used to seed the environment <a class="reference internal" href="#ecole.environment.RandomEngine" title="ecole.environment.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a>.
+<p>The the random seed is used to seed the environment <a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a>.
 At every call to <a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, the random engine is used to create new seeds
 for the solver.
 Setting the seed once will ensure determinism for the next trajectories.
@@ -333,7 +334,7 @@ For some environment, this may change at every transition.</p></li>
 
 <dl class="py method">
 <dt id="ecole.typing.Dynamics.set_dynamics_random_state">
-<code class="sig-name descname">set_dynamics_random_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">random_engine</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.environment.RandomEngine" title="ecole.environment.RandomEngine">ecole.environment.RandomEngine</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/typing.html#Dynamics.set_dynamics_random_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.Dynamics.set_dynamics_random_state" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_dynamics_random_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">random_engine</span><span class="p">:</span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/typing.html#Dynamics.set_dynamics_random_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.Dynamics.set_dynamics_random_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the random state of the episode.</p>
 <p>This method is called by <a class="reference internal" href="#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> to
 set all the random elements of the dynamics for the upcoming episode.
@@ -397,7 +398,7 @@ For some environment, this may change at every transition.</p></li>
 
 <dl class="py method">
 <dt id="ecole.environment.BranchingDynamics.set_dynamics_random_state">
-<code class="sig-name descname">set_dynamics_random_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.environment.BranchingDynamics" title="ecole.environment.BranchingDynamics">ecole.environment.BranchingDynamics</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">random_engine</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.environment.RandomEngine" title="ecole.environment.RandomEngine">ecole.environment.RandomEngine</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.environment.BranchingDynamics.set_dynamics_random_state" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_dynamics_random_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.environment.BranchingDynamics" title="ecole.environment.BranchingDynamics">ecole.environment.BranchingDynamics</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">random_engine</span><span class="p">:</span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.environment.BranchingDynamics.set_dynamics_random_state" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -425,7 +426,7 @@ For some environment, this may change at every transition.</p></li>
 
 <dl class="py method">
 <dt id="ecole.environment.ConfiguringDynamics.set_dynamics_random_state">
-<code class="sig-name descname">set_dynamics_random_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.environment.ConfiguringDynamics" title="ecole.environment.ConfiguringDynamics">ecole.environment.ConfiguringDynamics</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">random_engine</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.environment.RandomEngine" title="ecole.environment.RandomEngine">ecole.environment.RandomEngine</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.environment.ConfiguringDynamics.set_dynamics_random_state" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_dynamics_random_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.environment.ConfiguringDynamics" title="ecole.environment.ConfiguringDynamics">ecole.environment.ConfiguringDynamics</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">random_engine</span><span class="p">:</span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.environment.ConfiguringDynamics.set_dynamics_random_state" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -436,30 +437,6 @@ For some environment, this may change at every transition.</p></li>
 </dd></dl>
 
 </div>
-</div>
-<div class="section" id="utilities">
-<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="ecole.environment.RandomEngine">
-<em class="property">class </em><code class="sig-prename descclassname">ecole.environment.</code><code class="sig-name descname">RandomEngine</code><a class="headerlink" href="#ecole.environment.RandomEngine" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py attribute">
-<dt id="ecole.environment.RandomEngine.max_seed">
-<code class="sig-name descname">max_seed</code><em class="property"> = 18446744073709551615</em><a class="headerlink" href="#ecole.environment.RandomEngine.max_seed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="ecole.environment.RandomEngine.min_seed">
-<code class="sig-name descname">min_seed</code><em class="property"> = 0</em><a class="headerlink" href="#ecole.environment.RandomEngine.min_seed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="ecole.environment.RandomEngine.seed">
-<code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.environment.RandomEngine" title="ecole.environment.RandomEngine">ecole.environment.RandomEngine</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">5489</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.environment.RandomEngine.seed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reinitialize the internal state of the random-number engine using new seed value.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 
