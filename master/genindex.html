@@ -119,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/rewards.html">Rewards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/instances.html">Instance Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/utilities.html">Utilities</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
@@ -243,12 +244,16 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator">CapacitatedFacilityLocationGenerator (class in ecole.instance)</a>
+</li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.column_features">column_features() (ecole.observation.NodeBipartiteObs property)</a>
 </li>
-      <li><a href="reference/environments.html#ecole.environment.Configuring">Configuring (class in ecole.environment)</a>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator">CombinatorialAuctionGenerator (class in ecole.instance)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/environments.html#ecole.environment.Configuring">Configuring (class in ecole.environment)</a>
+</li>
       <li><a href="reference/environments.html#ecole.environment.ConfiguringDynamics">ConfiguringDynamics (class in ecole.environment)</a>
 </li>
       <li><a href="reference/rewards.html#ecole.reward.Constant">Constant (class in ecole.reward)</a>
@@ -315,10 +320,12 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/scip-interface.html#ecole.scip.Model.is_solved">is_solved() (ecole.scip.Model method)</a>
+      <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator">IndependentSetGenerator (class in ecole.instance)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.is_solved">is_solved() (ecole.scip.Model method)</a>
+</li>
       <li><a href="reference/rewards.html#ecole.reward.IsDone">IsDone (class in ecole.reward)</a>
 </li>
   </ul></td>
@@ -472,6 +479,14 @@
       <li><a href="reference/environments.html#ecole.environment.EnvironmentComposer.seed">seed() (ecole.environment.EnvironmentComposer method)</a>
 
       <ul>
+        <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.seed">(ecole.instance.CapacitatedFacilityLocationGenerator method)</a>
+</li>
+        <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.seed">(ecole.instance.CombinatorialAuctionGenerator method)</a>
+</li>
+        <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.seed">(ecole.instance.IndependentSetGenerator method)</a>
+</li>
+        <li><a href="reference/instances.html#ecole.instance.SetCoverGenerator.seed">(ecole.instance.SetCoverGenerator method)</a>
+</li>
         <li><a href="reference/utilities.html#ecole.RandomEngine.seed">(ecole.RandomEngine method)</a>
 </li>
         <li><a href="reference/utilities.html#ecole.seed">(in module ecole)</a>
@@ -485,11 +500,13 @@
         <li><a href="reference/environments.html#ecole.typing.Dynamics.set_dynamics_random_state">(ecole.typing.Dynamics method)</a>
 </li>
       </ul></li>
-      <li><a href="reference/scip-interface.html#ecole.scip.Model.set_param">set_param() (ecole.scip.Model method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.set_param">set_param() (ecole.scip.Model method)</a>
+</li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.set_params">set_params() (ecole.scip.Model method)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.SetCoverGenerator">SetCoverGenerator (class in ecole.instance)</a>
 </li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.solve">solve() (ecole.scip.Model method)</a>
 </li>
@@ -539,7 +556,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright Antoine Prouvost
+        &copy; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle
 
     </p>
   </div>
