@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/create-functions.html">Create New Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/instances.html">Generate Problem Instances</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -122,6 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="rewards.html">Rewards</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scip-interface.html">SCIP Interface</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Instance Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#protocol">Protocol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#set-cover">Set Cover</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#combinatorial-auction">Combinatorial Auction</a></li>
@@ -207,6 +209,32 @@
             
   <div class="section" id="instance-generators">
 <h1>Instance Generators<a class="headerlink" href="#instance-generators" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="protocol">
+<h2>Protocol<a class="headerlink" href="#protocol" title="Permalink to this headline">¶</a></h2>
+<p>The protocol of instance generators in Ecole.
+There are no constraints for user defined gnerators.
+The protocol is given for users to know what they can expect from Ecole generators.</p>
+<dl class="py class">
+<dt id="ecole.typing.InstanceGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.typing.</code><code class="sig-name descname">InstanceGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/typing.html#InstanceGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.InstanceGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class to generate generate and iteratate over random problem instance.</p>
+<p>The class combines a <a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a> with the static function <a class="reference internal" href="#ecole.typing.InstanceGenerator.generate_instance" title="ecole.typing.InstanceGenerator.generate_instance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_instance()</span></code></a>
+to provide iterating capabilities.</p>
+<dl class="py method">
+<dt id="ecole.typing.InstanceGenerator.generate_instance">
+<em class="property">static </em><code class="sig-name descname">generate_instance</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="n">random_engine</span><span class="p">:</span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a><a class="reference internal" href="../_modules/ecole/typing.html#InstanceGenerator.generate_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.InstanceGenerator.generate_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a problem instance using the random engine for any source of randomness.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.typing.InstanceGenerator.seed">
+<code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/typing.html#InstanceGenerator.seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.InstanceGenerator.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seed the random engine of the class.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="listing">
 <h2>Listing<a class="headerlink" href="#listing" title="Permalink to this headline">¶</a></h2>
 <p>The list of instance generators is given below.</p>
