@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/create-functions.html">Create New Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/instances.html">Generate Problem Instances</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -223,8 +224,10 @@ be set.</p>
 because it seeds the <a class="reference internal" href="../reference/utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a>., not direclty the episode for
 the <a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p>
 <p>When not explicitly seeded, environment use a <a class="reference internal" href="../reference/utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a> derived from Ecole’s global source of
-randomness.
+randomness by invoking <a class="reference internal" href="../reference/utilities.html#ecole.spawn_random_engine" title="ecole.spawn_random_engine"><code class="xref py py-func docutils literal notranslate"><span class="pre">ecole.spawn_random_engine()</span></code></a>.
 By default this source is truly random, but it can be controlled with <a class="reference internal" href="../reference/utilities.html#ecole.seed" title="ecole.seed"><code class="xref py py-func docutils literal notranslate"><span class="pre">ecole.seed()</span></code></a>.</p>
+<p>Similarily, an <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> default random engine derived from Ecole global source of
+randomness.</p>
 <p>In short we provide the following snippets.</p>
 <div class="section" id="reproducible-program">
 <h2>Reproducible program<a class="headerlink" href="#reproducible-program" title="Permalink to this headline">¶</a></h2>

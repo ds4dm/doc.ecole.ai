@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/create-functions.html">Create New Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/instances.html">Generate Problem Instances</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -234,13 +235,14 @@
 <dl class="py function">
 <dt id="ecole.seed">
 <code class="sig-prename descclassname">ecole.</code><code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.seed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Seed the main source of randomness in Ecole.</p>
+<dd><p>Seed the global source of randomness in Ecole.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="ecole.spawn_random_engine">
 <code class="sig-prename descclassname">ecole.</code><code class="sig-name descname">spawn_random_engine</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a><a class="headerlink" href="#ecole.spawn_random_engine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create new random engine deriving from main source of randomness</p>
+<dd><p>Create new random engine deriving from global source of randomness.</p>
+<p>The global source of randomness is advance so two random engien created successively have different states.</p>
 </dd></dl>
 
 </div>
