@@ -206,9 +206,18 @@
             
   <div class="section" id="using-environments">
 <h1>Using Environments<a class="headerlink" href="#using-environments" title="Permalink to this headline">¶</a></h1>
-<p>The goal of Ecole is to provide Markov decision process abstractions of common sequential decision making tasks that appear when solving combinatorial optimization problems using a solver. These control tasks are represented by stateful classes called environments.</p>
-<p>In this formulation, each solving of an instance is an episode. The environment class must first be instantiated, and then a specific instance must be loaded by a call to <a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, which will bring the process to its initial state. Afterwards, successive calls to <a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> will take an action from the user and transition to the next state. Finally, when the episode is finished, that is when the instance has been fully solved, a new solving episode can be started with another call to <a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.</p>
-<p>For instance, using the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment for branch-and-bound variable selection, solving a specific instance once by always selecting the first fractional variable would look as follows.</p>
+<p>The goal of Ecole is to provide Markov decision process abstractions of common sequential decision making tasks that
+appear when solving combinatorial optimization problems using a solver.
+These control tasks are represented by stateful classes called environments.</p>
+<p>In this formulation, each solving of an instance is an episode.
+The environment class must first be instantiated, and then a specific instance must be loaded by a call to
+<a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, which will bring the process to its initial state.
+Afterwards, successive calls to <a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> will take an action from the
+user and transition to the next state.
+Finally, when the episode is finished, that is when the instance has been fully solved, a new solving episode can be
+started with another call to <a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.</p>
+<p>For instance, using the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment for branch-and-bound variable selection,
+solving a specific instance once by always selecting the first fractional variable would look as follows.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
 
 <span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">()</span>
@@ -217,7 +226,7 @@
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward_offset</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/instance&quot;</span><span class="p">)</span>
     <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
-        <span class="n">obs</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action_set</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action_set</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Let us analyze this example in more detail.</p>
@@ -226,9 +235,11 @@
 <p>The example is driven by two loops.
 The inner <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, the so-called <em>control loop</em>, transitions from an initial state until a
 terminal state is reached, which is signaled with the boolean flag <code class="docutils literal notranslate"><span class="pre">done</span> <span class="pre">==</span> <span class="pre">True</span></code>.
-In Ecole, the termination of the environment coincides with the termination of the underlying combinatorial optimization algorithm.
+In Ecole, the termination of the environment coincides with the termination of the underlying combinatorial
+optimization algorithm.
 A full execution of this loop is known as an <em>episode</em>.
-The control loop matches a Markov decision process formulation, as used in control theory, dynamic programming and reinforcement learning.</p>
+The control loop matches a Markov decision process formulation, as used in control theory, dynamic programming and
+reinforcement learning.</p>
 <div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="_images/mdp.png"><img alt="Markov Decision Process interaction loop." src="_images/mdp.png" style="width: 60%;" /></a>
 <p class="caption"><span class="caption-text">The control loop of a Markov decision process.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
@@ -241,17 +252,25 @@ this detail here for simplicity.</p>
 </div>
 <p>The outer <code class="docutils literal notranslate"><span class="pre">for</span></code> loop in the example simply repeats the control loop several times, and is in
 charge of generating the initial state of each episode.
-In order to obtain a sufficient statistical signal for learning the control policy, numerous episodes are usually required for learning.
+In order to obtain a sufficient statistical signal for learning the control policy, numerous episodes are usually
+required for learning.
 Also, although not showcased here, there is usually little practical interest in using the same combinatorial problem
-instance for generating each episode. Indeed, it is usually desirable to learn policies that will generalize to new, unseen instances, which is very unlikely if the learning policy is tailored to solve a single specific instance. Ideally, one would like to sample training episodes from a family of similar instances, in order to solve new, similar instances in the future.</p>
+instance for generating each episode.
+Indeed, it is usually desirable to learn policies that will generalize to new, unseen instances, which is very unlikely
+if the learning policy is tailored to solve a single specific instance.
+Ideally, one would like to sample training episodes from a family of similar instances, in order to solve new, similar
+instances in the future.
+For more details, see the <a class="reference internal" href="discussion/theory.html#theory"><span class="std std-ref">Ecole theortical model</span></a> in the discussion.</p>
 </div>
 <div class="section" id="environment-parameters">
 <span id="id1"></span><h2>Environment parameters<a class="headerlink" href="#environment-parameters" title="Permalink to this headline">¶</a></h2>
 <p>Each environment can be given a set of parameters at construction, in order to further customize the task being
 solved.
 For instance, the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment takes a <code class="docutils literal notranslate"><span class="pre">pseudo_candidates</span></code>
-boolean parameter, to decide whether branching candidates should include all non fixed integral variables, or only the fractional ones.
-Environments can be instantiated with no constructor arguments, as in the previous example, in which case a set of default parameters will be used.</p>
+boolean parameter, to decide whether branching candidates should include all non fixed integral variables, or only the
+fractional ones.
+Environments can be instantiated with no constructor arguments, as in the previous example, in which case a set of
+default parameters will be used.</p>
 <p>Every environment can optionally take a dictionary of
 <a class="reference external" href="https://scip.zib.de/doc/html/PARAMETERS.php">SCIP parameters</a> that will be used to
 initialize the solver at every episode.
@@ -284,20 +303,25 @@ parameters, which we will discuss later on.</p>
 <p>Each episode in the inner <code class="docutils literal notranslate"><span class="pre">while</span></code> starts with a call to
 <a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> in order to bring the environment into a new
 initial state.
-The method is parameterized with a problem instance file: the combinatorial
-optimization problem that will be loaded and solved by the <a class="reference external" href="https://scip.zib.de/">SCIP</a> solver
-during the episode.</p>
+The method is parameterized with a problem instance: the combinatorial optimization problem that will be loaded and
+solved by the <a class="reference external" href="https://scip.zib.de/">SCIP</a> solver during the episode.
+In the most simple case this is the path to a problem file.
+For problems instances that are generated programatically
+(for instance using <a class="reference external" href="https://github.com/SCIP-Interfaces/PySCIPOpt">PyScipOpt</a> or using
+<a class="reference internal" href="howto/instances.html#generate-instances"><span class="std std-ref">instance generators</span></a>) a <a class="reference internal" href="reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a> is also accepted.</p>
 <ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">observation</span></code> consists of information about the state of the solver that should be used to select the next action
-to perform (for example, using a machine learning algorithm.)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">observation</span></code> consists of information about the state of the solver that should be used to select the next
+action to perform (for example, using a machine learning algorithm.)</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">action_set</span></code>, when not <code class="docutils literal notranslate"><span class="pre">None</span></code>, describes the set of candidate actions which are valid for the next transition.
 This is necessary for environments where the action set varies from state to state.
 For instance, in the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment the set of candidate variables
 for branching depends on the value of the current LP solution, which changes at every iteration of the algorithm.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">reward_offset</span></code> is an offset to the reward function that accounts for any computation happening in
 <a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> when generating the initial state.
-For example, if clock time is selected as a reward function in a <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment, this would account for
-time spent in the preprocessing phase before any branching is performed. This offset is thus important for benchmarking, but has no effect
+For example, if clock time is selected as a reward function in a <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment,
+this would account for
+time spent in the preprocessing phase before any branching is performed.
+This offset is thus important for benchmarking, but has no effect
 on the control problem, and can be ignored when training a machine learning agent.</p></li>
 <li><p>The boolean flag <code class="docutils literal notranslate"><span class="pre">done</span></code> indicates whether the initial state is also a terminal state.
 This can happen in some environments, such as <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a>, where the problem instance
