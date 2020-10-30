@@ -222,7 +222,7 @@
 <em class="property">class </em><code class="sig-prename descclassname">ecole.typing.</code><code class="sig-name descname">ObservationFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.ObservationFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class repsonsible for extracting observations.</p>
 <p>Observation functions are objects given to the
-<a class="reference internal" href="environments.html#ecole.environment.EnvironmentComposer" title="ecole.environment.EnvironmentComposer"><code class="xref py py-class docutils literal notranslate"><span class="pre">EnvironmentComposer</span></code></a> to extract the observations used to take the
+<a class="reference internal" href="environments.html#ecole.environment.Environment" title="ecole.environment.Environment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Environment</span></code></a> to extract the observations used to take the
 next action.</p>
 <dl class="py method">
 <dt id="ecole.typing.ObservationFunction.obtain_observation">
@@ -246,7 +246,7 @@ can have side effects.</p>
 <code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.ObservationFunction.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reset internal data at the start of episodes.</p>
 <p>The method is called on new episodes
-<a class="reference internal" href="environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> on the initial state.
+<a class="reference internal" href="environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> on the initial state.
 It can is usually used to reset the observation function internal data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

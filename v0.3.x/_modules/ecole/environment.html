@@ -197,10 +197,10 @@
 <span class="kn">import</span> <span class="nn">ecole.core</span> <span class="k">as</span> <span class="nn">core</span>
 <span class="kn">import</span> <span class="nn">ecole.observation</span>
 <span class="kn">import</span> <span class="nn">ecole.reward</span>
-<span class="kn">from</span> <span class="nn">ecole.core.environment</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">ecole.core.dynamics</span> <span class="kn">import</span> <span class="o">*</span>
 
 
-<div class="viewcode-block" id="EnvironmentComposer"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.EnvironmentComposer">[docs]</a><span class="k">class</span> <span class="nc">EnvironmentComposer</span><span class="p">:</span>
+<div class="viewcode-block" id="Environment"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment">[docs]</a><span class="k">class</span> <span class="nc">Environment</span><span class="p">:</span>
 
     <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__DefaultObservationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span>
@@ -250,7 +250,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">observation_function</span>
 
-<div class="viewcode-block" id="EnvironmentComposer.reset"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.EnvironmentComposer.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Environment.reset"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Start a new episode.</span>
 
 <span class="sd">        This method brings the environment to a new initial state, *i.e.* starts a new</span>
@@ -309,7 +309,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">raise</span> <span class="n">e</span></div>
 
-<div class="viewcode-block" id="EnvironmentComposer.step"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.EnvironmentComposer.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Environment.step"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Transition from one state to another.</span>
 
 <span class="sd">        This method takes a user action to transition from the current state to the</span>
@@ -362,7 +362,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">raise</span> <span class="n">e</span></div>
 
-<div class="viewcode-block" id="EnvironmentComposer.seed"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.EnvironmentComposer.seed">[docs]</a>    <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Environment.seed"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment.seed">[docs]</a>    <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Set the random seed of the environment.</span>
 
 <span class="sd">        The the random seed is used to seed the environment :py:class:`~ecole.RandomEngine`.</span>
@@ -375,13 +375,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Branching"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Branching">[docs]</a><span class="k">class</span> <span class="nc">Branching</span><span class="p">(</span><span class="n">EnvironmentComposer</span><span class="p">):</span>
-    <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">BranchingDynamics</span>
+<div class="viewcode-block" id="Branching"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Branching">[docs]</a><span class="k">class</span> <span class="nc">Branching</span><span class="p">(</span><span class="n">Environment</span><span class="p">):</span>
+    <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">BranchingDynamics</span>
     <span class="n">__DefaultObservationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span></div>
 
 
-<div class="viewcode-block" id="Configuring"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Configuring">[docs]</a><span class="k">class</span> <span class="nc">Configuring</span><span class="p">(</span><span class="n">EnvironmentComposer</span><span class="p">):</span>
-    <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">ConfiguringDynamics</span></div>
+<div class="viewcode-block" id="Configuring"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Configuring">[docs]</a><span class="k">class</span> <span class="nc">Configuring</span><span class="p">(</span><span class="n">Environment</span><span class="p">):</span>
+    <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">ConfiguringDynamics</span></div>
 </pre></div>
 
            </div>

@@ -211,11 +211,11 @@ appear when solving combinatorial optimization problems using a solver.
 These control tasks are represented by stateful classes called environments.</p>
 <p>In this formulation, each solving of an instance is an episode.
 The environment class must first be instantiated, and then a specific instance must be loaded by a call to
-<a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, which will bring the process to its initial state.
-Afterwards, successive calls to <a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> will take an action from the
+<a class="reference internal" href="reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, which will bring the process to its initial state.
+Afterwards, successive calls to <a class="reference internal" href="reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> will take an action from the
 user and transition to the next state.
 Finally, when the episode is finished, that is when the instance has been fully solved, a new solving episode can be
-started with another call to <a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.</p>
+started with another call to <a class="reference internal" href="reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.</p>
 <p>For instance, using the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment for branch-and-bound variable selection,
 solving a specific instance once by always selecting the first fractional variable would look as follows.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
@@ -301,7 +301,7 @@ parameters, which we will discuss later on.</p>
 <div class="section" id="resetting-environments">
 <span id="id2"></span><h2>Resetting environments<a class="headerlink" href="#resetting-environments" title="Permalink to this headline">¶</a></h2>
 <p>Each episode in the inner <code class="docutils literal notranslate"><span class="pre">while</span></code> starts with a call to
-<a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> in order to bring the environment into a new
+<a class="reference internal" href="reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> in order to bring the environment into a new
 initial state.
 The method is parameterized with a problem instance: the combinatorial optimization problem that will be loaded and
 solved by the <a class="reference external" href="https://scip.zib.de/">SCIP</a> solver during the episode.
@@ -317,10 +317,9 @@ This is necessary for environments where the action set varies from state to sta
 For instance, in the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment the set of candidate variables
 for branching depends on the value of the current LP solution, which changes at every iteration of the algorithm.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">reward_offset</span></code> is an offset to the reward function that accounts for any computation happening in
-<a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> when generating the initial state.
+<a class="reference internal" href="reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> when generating the initial state.
 For example, if clock time is selected as a reward function in a <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment,
-this would account for
-time spent in the preprocessing phase before any branching is performed.
+this would account for time spent in the preprocessing phase before any branching is performed.
 This offset is thus important for benchmarking, but has no effect
 on the control problem, and can be ignored when training a machine learning agent.</p></li>
 <li><p>The boolean flag <code class="docutils literal notranslate"><span class="pre">done</span></code> indicates whether the initial state is also a terminal state.
@@ -328,30 +327,30 @@ This can happen in some environments, such as <a class="reference internal" href
 could be solved though presolving only (never actually getting to branching).</p></li>
 </ul>
 <p>See the reference section for the exact documentation of
-<a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.</p>
+<a class="reference internal" href="reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.</p>
 </div>
 <div class="section" id="transitioning">
 <h2>Transitioning<a class="headerlink" href="#transitioning" title="Permalink to this headline">¶</a></h2>
 <p>The inner <code class="docutils literal notranslate"><span class="pre">while</span></code> loop transitions the environment from one state to the next by giving
-an action to <a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
+an action to <a class="reference internal" href="reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
 The nature of <code class="docutils literal notranslate"><span class="pre">observation</span></code>, <code class="docutils literal notranslate"><span class="pre">action_set</span></code>, and <code class="docutils literal notranslate"><span class="pre">done</span></code> is the same as in the previous
 section <a class="reference internal" href="#resetting-environments"><span class="std std-ref">Resetting environments</span></a>.
 The <code class="docutils literal notranslate"><span class="pre">reward</span></code> and <code class="docutils literal notranslate"><span class="pre">info</span></code> variables provide additional information about
 the current transition.</p>
 <p>See the reference section for the exact documentation of
-<a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.</p>
+<a class="reference internal" href="reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.</p>
 </div>
 <div class="section" id="seeding-environments">
 <h2>Seeding environments<a class="headerlink" href="#seeding-environments" title="Permalink to this headline">¶</a></h2>
 <p>Environments can be seeded by using the
-<a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.seed" title="ecole.environment.EnvironmentComposer.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seed()</span></code></a> method.
+<a class="reference internal" href="reference/environments.html#ecole.environment.Environment.seed" title="ecole.environment.Environment.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seed()</span></code></a> method.
 The seed is used by the environment (and in particular the solver) for all the
 subsequent episode trajectories.
 The solver is given a new seed at the beginning of every new trajectory (call to
-<a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>), in a way that preserves
+<a class="reference internal" href="reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>), in a way that preserves
 determinism, without re-using the same seed repeatedly.</p>
 <p>See the reference section for the exact documentation of
-<a class="reference internal" href="reference/environments.html#ecole.environment.EnvironmentComposer.seed" title="ecole.environment.EnvironmentComposer.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seed()</span></code></a>.</p>
+<a class="reference internal" href="reference/environments.html#ecole.environment.Environment.seed" title="ecole.environment.Environment.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seed()</span></code></a>.</p>
 </div>
 </div>
 
