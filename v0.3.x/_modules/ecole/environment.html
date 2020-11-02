@@ -237,11 +237,11 @@
         <span class="k">elif</span> <span class="n">observation_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span><span class="p">()</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">observation_function</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">TupleFunction</span><span class="p">(</span>
+            <span class="k">return</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">VectorFunction</span><span class="p">(</span>
                 <span class="o">*</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">__parse_observation_function</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span> <span class="k">for</span> <span class="n">fun</span> <span class="ow">in</span> <span class="n">observation_function</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">observation_function</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">DictFunction</span><span class="p">(</span>
+            <span class="k">return</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">MapFunction</span><span class="p">(</span>
                 <span class="o">**</span><span class="p">{</span>
                     <span class="n">name</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__parse_observation_function</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
                     <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">observation_function</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>

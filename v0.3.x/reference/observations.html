@@ -129,7 +129,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nothing">Nothing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tuple-of-observations">Tuple of Observations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-of-observations">List of Observations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dictionnary-of-observations">Dictionnary of Observations</a></li>
 </ul>
 </li>
@@ -399,21 +399,21 @@ Convenient for bandit algorithms, or when no learning is performed.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="tuple-of-observations">
-<h3>Tuple of Observations<a class="headerlink" href="#tuple-of-observations" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="list-of-observations">
+<h3>List of Observations<a class="headerlink" href="#list-of-observations" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="ecole.observation.TupleFunction">
-<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">TupleFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">observation_functions</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pack observation functions together and return observations as tuples.</p>
+<dt id="ecole.observation.VectorFunction">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">VectorFunction</code><a class="headerlink" href="#ecole.observation.VectorFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pack observation functions together and return observations as list.</p>
 <dl class="py method">
-<dt id="ecole.observation.TupleFunction.obtain_observation">
-<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction.obtain_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dt id="ecole.observation.VectorFunction.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.VectorFunction" title="ecole.observation.VectorFunction">ecole.observation.VectorFunction</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>object<span class="p">]</span><a class="headerlink" href="#ecole.observation.VectorFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return observation from all functions as a tuple.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ecole.observation.TupleFunction.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#TupleFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.TupleFunction.reset" title="Permalink to this definition">¶</a></dt>
+<dt id="ecole.observation.VectorFunction.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.VectorFunction" title="ecole.observation.VectorFunction">ecole.observation.VectorFunction</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.VectorFunction.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call reset on all observation functions.</p>
 </dd></dl>
 
@@ -423,18 +423,18 @@ Convenient for bandit algorithms, or when no learning is performed.</p>
 <div class="section" id="dictionnary-of-observations">
 <h3>Dictionnary of Observations<a class="headerlink" href="#dictionnary-of-observations" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
-<dt id="ecole.observation.DictFunction">
-<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">DictFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">observation_functions</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pack observation functions together and return observations as dicts.</p>
+<dt id="ecole.observation.MapFunction">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">MapFunction</code><a class="headerlink" href="#ecole.observation.MapFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pack observation functions together and return observations as a dict.</p>
 <dl class="py method">
-<dt id="ecole.observation.DictFunction.obtain_observation">
-<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction.obtain_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
+<dt id="ecole.observation.MapFunction.obtain_observation">
+<code class="sig-name descname">obtain_observation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.MapFunction" title="ecole.observation.MapFunction">ecole.observation.MapFunction</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>str<span class="p">, </span>object<span class="p">]</span><a class="headerlink" href="#ecole.observation.MapFunction.obtain_observation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return observation from all functions as a dict.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="ecole.observation.DictFunction.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/observation.html#DictFunction.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.observation.DictFunction.reset" title="Permalink to this definition">¶</a></dt>
+<dt id="ecole.observation.MapFunction.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.MapFunction" title="ecole.observation.MapFunction">ecole.observation.MapFunction</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.MapFunction.reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call reset on all observation functions.</p>
 </dd></dl>
 
