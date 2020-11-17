@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Generate Problem Instances &mdash; Ecole 0.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Environments" href="../reference/environments.html" />
+    <link rel="prev" title="Create New Environments" href="create-environments.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-environments.html">Create New Environments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generate Problem Instances</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#generators-random-states">Generators Random States</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#with-an-environment">With an Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adapt-instance-generators">Adapt Instance Generators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#combine-multiple-generators">Combine Multiple Generators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generator-random-parameters">Generator Random Parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/instances.html">Instance Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/utilities.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ecole</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Generate Problem Instances</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/howto/instances.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="generate-problem-instances">
+<span id="generate-instances"></span><h1>Generate Problem Instances<a class="headerlink" href="#generate-problem-instances" title="Permalink to this headline">¶</a></h1>
+<p>Ecole contains a number of problem <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> in the <code class="docutils literal notranslate"><span class="pre">ecole.instance</span></code> module.
+They generate instances as <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a>.
+To generate instances, first instantiate a generator.
+All generators are constructed with different parameters depending on the problem type.
+An <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> is infinite <a class="reference external" href="https://wiki.python.org/moin/Iterator">Python iterators</a> so
+we can iterate over them using any of Python iterating mechnisms.</p>
+<p>For instance, to generate <a class="reference external" href="https://en.wikipedia.org/wiki/Set_cover_problem">set covering problems</a>, one would use
+<a class="reference internal" href="../reference/instances.html#ecole.instance.SetCoverGenerator" title="ecole.instance.SetCoverGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetCoverGenerator</span></code></a> in the following fashion:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ecole.instance</span> <span class="kn">import</span> <span class="n">SetCoverGenerator</span>
+
+
+<span class="n">generator</span> <span class="o">=</span> <span class="n">SetCoverGenerator</span><span class="p">(</span><span class="n">n_rows</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_cols</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">generator</span><span class="p">)</span>
+
+    <span class="c1"># Do anything with the ecole.scip.Model</span>
+    <span class="n">instance</span><span class="o">.</span><span class="n">write_problem</span><span class="p">(</span><span class="s2">&quot;some-folder/set-cover-</span><span class="si">{i:04}</span><span class="s2">.lp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note how we are iterating over a <code class="docutils literal notranslate"><span class="pre">range(50)</span></code> and calling <code class="docutils literal notranslate"><span class="pre">next</span></code> on the generator.
+This is because iterating directly over the iterator would produce an infinte loop.
+For users more comfortable with iterators, other possibilities exists, such as
+<a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.islice">islice</a>.</p>
+<div class="section" id="generators-random-states">
+<h2>Generators Random States<a class="headerlink" href="#generators-random-states" title="Permalink to this headline">¶</a></h2>
+<p>An <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> holds a random state to generate instance.
+This can be better understood when using the <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.seed" title="ecole.typing.InstanceGenerator.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seed()</span></code></a> method of the generator.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">generator_a</span> <span class="o">=</span> <span class="n">SetCoverGenerator</span><span class="p">(</span><span class="n">n_rows</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_cols</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">generator_b</span> <span class="o">=</span> <span class="n">SetCoverGenerator</span><span class="p">(</span><span class="n">n_rows</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_cols</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># These are not the same instance</span>
+<span class="n">instance_a</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">generator_a</span><span class="p">)</span>
+<span class="n">instance_b</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">generator_b</span><span class="p">)</span>
+
+<span class="n">generator_a</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">809</span><span class="p">)</span>
+<span class="n">generator_b</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">809</span><span class="p">)</span>
+
+<span class="c1"># These are exactly the same instances</span>
+<span class="n">instance_a</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">generator_a</span><span class="p">)</span>
+<span class="n">instance_b</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">generator_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="with-an-environment">
+<h2>With an Environment<a class="headerlink" href="#with-an-environment" title="Permalink to this headline">¶</a></h2>
+<p>The environment <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> accepts problem instance as
+<a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a>, so there is no need to write generated instances to file.</p>
+<p>A typical example training voer 1000 instances/episodes would look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
+
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">()</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">instances</span><span class="o">.</span><span class="n">SetCoverGenerator</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward_offset</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">))</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action_set</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While it is possible to modify the instance before passing it to
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code>, it is not considered a good practice, as it obscure what
+what task is being learned (which is not be self contained by the environment class anymore).
+A better alternative is to <a class="reference internal" href="create-environments.html#create-new-environment"><span class="std std-ref">create a new environment</span></a> to perfom such changes.</p>
+</div>
+</div>
+<div class="section" id="adapt-instance-generators">
+<h2>Adapt Instance Generators<a class="headerlink" href="#adapt-instance-generators" title="Permalink to this headline">¶</a></h2>
+<p>An <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> only create instances for users to consume.
+Therefore, there is no constraints on how iterating over instance should be done, it is entirely up to the user.
+Using different data structure, such as lists, dictionaries, <em>etc.</em> is completely valid because environments never
+“<em>see</em>” generators, only the instances.
+Here we illustrate some possibilities to adapt Ecole instance generators.
+Python’s <code class="docutils literal notranslate"><span class="pre">yield</span></code> keyword can make it very compact to create iterators.</p>
+<div class="section" id="combine-multiple-generators">
+<h3>Combine Multiple Generators<a class="headerlink" href="#combine-multiple-generators" title="Permalink to this headline">¶</a></h3>
+<p>To learn over multiple problem types, one could build a generator that, for every instance to generate, chooses a
+a problem type at random, and returns it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+
+<span class="k">def</span> <span class="nf">CombineGenerators</span><span class="p">(</span><span class="o">*</span><span class="n">generators</span><span class="p">):</span>
+    <span class="c1"># A random state for choice</span>
+    <span class="n">random_engine</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Randomly pick a generator</span>
+        <span class="n">gen</span> <span class="o">=</span> <span class="n">random_engine</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">generators</span><span class="p">)</span>
+        <span class="c1"># And yield the instance it generates</span>
+        <span class="k">yield</span> <span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This generator does not have a <code class="docutils literal notranslate"><span class="pre">seed</span></code> method.
+If we want to implement it, we have to write the same generator as the equilvalent class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CombineGenerators</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">generators</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generators</span> <span class="o">=</span> <span class="n">generators</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generators</span><span class="p">))</span>
+
+   <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+       <span class="k">return</span> <span class="bp">self</span>
+
+   <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+       <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">generators</span><span class="p">:</span>
+           <span class="n">gen</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generator-random-parameters">
+<h3>Generator Random Parameters<a class="headerlink" href="#generator-random-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Another useful case it to generate instances of a same problem type but with different parameters.
+If there are few different set of parameter to choose from, then we could use the same technique as above.
+However, with more set of parameters (or even infinite), this becomes wasteful (or impossible).</p>
+<p>To do this, we can use the generators <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.generate_instance" title="ecole.typing.InstanceGenerator.generate_instance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_instance()</span></code></a> static function
+and manually pass a <a class="reference internal" href="../reference/utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a>.
+For instance, to randomly choose the <code class="docutils literal notranslate"><span class="pre">n_cols</span></code> and <code class="docutils literal notranslate"><span class="pre">n_rows</span></code> parameters from
+<a class="reference internal" href="../reference/instances.html#ecole.instance.SetCoverGenerator" title="ecole.instance.SetCoverGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetCoverGenerator</span></code></a>, one could use</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">ecole</span>
+
+
+<span class="k">class</span> <span class="nc">VariableSizeSetCoverGenerator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span> <span class="n">n_cols_range</span><span class="p">,</span> <span class="n">n_rows_range</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_cols_range</span> <span class="o">=</span> <span class="n">n_cols_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_rows_range</span> <span class="o">=</span> <span class="n">n_rows_range</span>
+        <span class="c1"># A Python radnom state for randint</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">py_random_engine</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>
+        <span class="c1"># An Ecole random state to pass to generating functions.</span>
+        <span class="c1"># This function returns a random state whose seed depends on Ecole global random state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ecole_random_engine</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">spawn_random_engine</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ecole</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">SetCoverGenerator</span><span class="p">(</span>
+            <span class="n">n_cols</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">py_random_engine</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n_cols_range</span><span class="p">),</span>
+            <span class="n">n_rows</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">py_random_engine</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n_rows_range</span><span class="p">),</span>
+            <span class="n">random_engine</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ecole_random_engine</span><span class="p">,</span>
+        <span class="p">)</span>
+
+   <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+       <span class="k">return</span> <span class="bp">self</span>
+
+   <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">py_random_engine</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">ecole_random_engine</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../discussion/seeding.html#seeding-discussion"><span class="std std-ref">the discussion on seeding</span></a> for an explanation of <a class="reference internal" href="../reference/utilities.html#ecole.spawn_random_engine" title="ecole.spawn_random_engine"><code class="xref py py-func docutils literal notranslate"><span class="pre">ecole.spawn_random_engine()</span></code></a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../reference/environments.html" class="btn btn-neutral float-right" title="Environments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="create-environments.html" class="btn btn-neutral float-left" title="Create New Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
