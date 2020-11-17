@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Differences with OpenAi Gym &mdash; Ecole 0.2.0 documentation</title>
+  <title>Differences with OpenAi Gym &mdash; Ecole 0.3.0 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.2
+                0.3
               </div>
             
           
@@ -221,7 +221,7 @@ This is why Ecole let users change the environment reward and observation using
 <div class="section" id="parameter-to-reset">
 <h2>Parameter to reset<a class="headerlink" href="#parameter-to-reset" title="Permalink to this headline">¶</a></h2>
 <p>In OpenAI Gym, <code class="docutils literal notranslate"><span class="pre">reset</span></code> does not take parameters whereas is Ecole
-<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> takes a problem instance as a mandatory
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> takes a problem instance as a mandatory
 input.
 This is because when doing machine learning for optimization, there is no practical interest in
 solving the same problem over and over again.
@@ -235,8 +235,8 @@ is defined in the environment.</p>
 </div>
 <div class="section" id="done-on-reset">
 <h2>Done on reset<a class="headerlink" href="#done-on-reset" title="Permalink to this headline">¶</a></h2>
-<p>In Ecole, <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> returns the same <code class="docutils literal notranslate"><span class="pre">done</span></code> flag as
-in <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
+<p>In Ecole, <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> returns the same <code class="docutils literal notranslate"><span class="pre">done</span></code> flag as
+in <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
 This is because nothing prevent an initial state from also being a terminal one.
 It is not only a theoretical consideration.
 For instance, in <a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a>, the initial state would typically be on
@@ -252,13 +252,13 @@ Ecole environments are more complex.
 For instance in <a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> the set of valid actions changes, not only
 with every episode, but also with every transition!
 The <code class="docutils literal notranslate"><span class="pre">action_set</span></code> is required to make the next call to
-<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
-We chose to add it as a return type to <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> and
-<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> to emphasize this difference.</p>
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
+We chose to add it as a return type to <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> and
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> to emphasize this difference.</p>
 </div>
 <div class="section" id="reward-offset">
 <h2>Reward offset<a class="headerlink" href="#reward-offset" title="Permalink to this headline">¶</a></h2>
-<p>In <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> a <code class="docutils literal notranslate"><span class="pre">reward_offset</span></code> is returned.
+<p>In <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> a <code class="docutils literal notranslate"><span class="pre">reward_offset</span></code> is returned.
 This is not only a difference with OpenAI Gym, but also not part of the MDP formulation.
 It has not purpose for learning algorithms, rather it is meant for evaluating the complete solving
 procedure.
@@ -274,7 +274,7 @@ matching the metric.</p>
 <div class="section" id="no-observation-on-terminal-states">
 <h2>No observation on terminal states<a class="headerlink" href="#no-observation-on-terminal-states" title="Permalink to this headline">¶</a></h2>
 <p>On terminal states, in OpenAI Gym as in Ecole, no further action can be taken and the environment
-need to be <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.
+need to be <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.
 Most of the time, a terminal state in Ecole is a solved problem.
 This means that some complex observations cannot be extracted because they required information that
 simply do not exist.

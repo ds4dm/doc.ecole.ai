@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Create New Environments &mdash; Ecole 0.2.0 documentation</title>
+  <title>Create New Environments &mdash; Ecole 0.3.0 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.2
+                0.3
               </div>
             
           
@@ -248,9 +248,9 @@ deactivate cutting plane and presolve.</p>
 by calling <code class="docutils literal notranslate"><span class="pre">SCIPsetPresolving</span></code> and <code class="docutils literal notranslate"><span class="pre">SCIPsetSeparating</span></code> through PyScipOpt
 (<a class="reference external" href="https://www.scipopt.org/doc/html/group__ParameterMethods.php">SCIP doc</a>).</p>
 <p>We will do so by overriding <a class="reference internal" href="../reference/environments.html#ecole.environment.BranchingDynamics.reset_dynamics" title="ecole.environment.BranchingDynamics.reset_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset_dynamics()</span></code></a>, which
-get called by <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.
+get called by <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.
 The similar method <a class="reference internal" href="../reference/environments.html#ecole.environment.BranchingDynamics.step_dynamics" title="ecole.environment.BranchingDynamics.step_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step_dynamics()</span></code></a>, which is called
-by <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> does not need to be changed in this
+by <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> does not need to be changed in this
 example so we do not override it.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
 <span class="kn">from</span> <span class="nn">pyscipopt.scip</span> <span class="kn">import</span> <span class="n">PY_SCIP_PARAMSETTING</span>
@@ -272,8 +272,8 @@ example so we do not override it.</p>
 </div>
 <p>With the <code class="docutils literal notranslate"><span class="pre">SimpleBranchingDynamics</span></code>, we have defined what we want the solver to do.
 Now, to use it as a full environent that can manage observations and rewards, we wrap it with the
-<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer" title="ecole.environment.EnvironmentComposer"><code class="xref py py-class docutils literal notranslate"><span class="pre">EnvironmentComposer</span></code></a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleBranching</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">EnvironmentComposer</span><span class="p">):</span>
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment" title="ecole.environment.Environment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Environment</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleBranching</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Environment</span><span class="p">):</span>
     <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">SimpleBranchingDynamics</span>
 </pre></div>
 </div>
@@ -307,8 +307,8 @@ To do so, we will take parameters in the constructor</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">SimpleBranching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">disable_cuts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Similarily, extra arguments given to the environemnt <a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and
-<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.step" title="ecole.environment.EnvironmentComposer.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> are forwarded to the associated
+<p>Similarily, extra arguments given to the environemnt <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> and
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code> are forwarded to the associated
 <a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a> methods.</p>
 </div>
 </div>

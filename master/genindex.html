@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Ecole 0.2.0 documentation</title>
+  <title>Index &mdash; Ecole 0.3.0 documentation</title>
   
 
   
@@ -70,7 +70,7 @@
             
             
               <div class="version">
-                0.2
+                0.3
               </div>
             
           
@@ -214,7 +214,7 @@
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
- | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
@@ -267,14 +267,12 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/observations.html#ecole.observation.DictFunction">DictFunction (class in ecole.observation)</a>
-</li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.disable_cuts">disable_cuts() (ecole.scip.Model method)</a>
+</li>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.disable_presolve">disable_presolve() (ecole.scip.Model method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/scip-interface.html#ecole.scip.Model.disable_presolve">disable_presolve() (ecole.scip.Model method)</a>
-</li>
       <li><a href="reference/utilities.html#ecole.RandomEngine.discard">discard() (ecole.RandomEngine method)</a>
 </li>
       <li><a href="reference/environments.html#ecole.typing.Dynamics">Dynamics (class in ecole.typing)</a>
@@ -289,7 +287,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/environments.html#ecole.environment.EnvironmentComposer">EnvironmentComposer (class in ecole.environment)</a>
+      <li><a href="reference/environments.html#ecole.environment.Environment">Environment (class in ecole.environment)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -347,6 +345,8 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.MapFunction">MapFunction (class in ecole.observation)</a>
+</li>
       <li><a href="reference/utilities.html#ecole.RandomEngine.max_seed">max_seed (ecole.RandomEngine attribute)</a>
 </li>
   </ul></td>
@@ -379,7 +379,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.typing.ObservationFunction">ObservationFunction (class in ecole.typing)</a>
 </li>
-      <li><a href="reference/observations.html#ecole.observation.DictFunction.obtain_observation">obtain_observation() (ecole.observation.DictFunction method)</a>
+      <li><a href="reference/observations.html#ecole.observation.MapFunction.obtain_observation">obtain_observation() (ecole.observation.MapFunction method)</a>
 
       <ul>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartite.obtain_observation">(ecole.observation.NodeBipartite method)</a>
@@ -390,7 +390,7 @@
 </li>
         <li><a href="reference/observations.html#ecole.observation.StrongBranchingScores.obtain_observation">(ecole.observation.StrongBranchingScores method)</a>
 </li>
-        <li><a href="reference/observations.html#ecole.observation.TupleFunction.obtain_observation">(ecole.observation.TupleFunction method)</a>
+        <li><a href="reference/observations.html#ecole.observation.VectorFunction.obtain_observation">(ecole.observation.VectorFunction method)</a>
 </li>
         <li><a href="reference/observations.html#ecole.typing.ObservationFunction.obtain_observation">(ecole.typing.ObservationFunction method)</a>
 </li>
@@ -431,10 +431,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/utilities.html#ecole.RandomEngine">RandomEngine (class in ecole)</a>
 </li>
-      <li><a href="reference/environments.html#ecole.environment.EnvironmentComposer.reset">reset() (ecole.environment.EnvironmentComposer method)</a>
+      <li><a href="reference/environments.html#ecole.environment.Environment.reset">reset() (ecole.environment.Environment method)</a>
 
       <ul>
-        <li><a href="reference/observations.html#ecole.observation.DictFunction.reset">(ecole.observation.DictFunction method)</a>
+        <li><a href="reference/observations.html#ecole.observation.MapFunction.reset">(ecole.observation.MapFunction method)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartite.reset">(ecole.observation.NodeBipartite method)</a>
 </li>
@@ -444,7 +444,7 @@
 </li>
         <li><a href="reference/observations.html#ecole.observation.StrongBranchingScores.reset">(ecole.observation.StrongBranchingScores method)</a>
 </li>
-        <li><a href="reference/observations.html#ecole.observation.TupleFunction.reset">(ecole.observation.TupleFunction method)</a>
+        <li><a href="reference/observations.html#ecole.observation.VectorFunction.reset">(ecole.observation.VectorFunction method)</a>
 </li>
         <li><a href="reference/rewards.html#ecole.reward.Arithmetic.reset">(ecole.reward.Arithmetic method)</a>
 </li>
@@ -481,7 +481,7 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/environments.html#ecole.environment.EnvironmentComposer.seed">seed() (ecole.environment.EnvironmentComposer method)</a>
+      <li><a href="reference/environments.html#ecole.environment.Environment.seed">seed() (ecole.environment.Environment method)</a>
 
       <ul>
         <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.seed">(ecole.instance.CapacitatedFacilityLocationGenerator method)</a>
@@ -519,7 +519,7 @@
 </li>
       <li><a href="reference/utilities.html#ecole.spawn_random_engine">spawn_random_engine() (in module ecole)</a>
 </li>
-      <li><a href="reference/environments.html#ecole.environment.EnvironmentComposer.step">step() (ecole.environment.EnvironmentComposer method)</a>
+      <li><a href="reference/environments.html#ecole.environment.Environment.step">step() (ecole.environment.Environment method)</a>
 </li>
       <li><a href="reference/environments.html#ecole.environment.BranchingDynamics.step_dynamics">step_dynamics() (ecole.environment.BranchingDynamics method)</a>
 
@@ -534,10 +534,10 @@
   </ul></td>
 </tr></table>
 
-<h2 id="T">T</h2>
+<h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/observations.html#ecole.observation.TupleFunction">TupleFunction (class in ecole.observation)</a>
+      <li><a href="reference/observations.html#ecole.observation.VectorFunction">VectorFunction (class in ecole.observation)</a>
 </li>
   </ul></td>
 </tr></table>

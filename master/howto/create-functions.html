@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Create New Functions &mdash; Ecole 0.2.0 documentation</title>
+  <title>Create New Functions &mdash; Ecole 0.3.0 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.2
+                0.3
               </div>
             
           
@@ -292,10 +292,10 @@ exponential moving average.
 We also inherited the <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.reset" title="ecole.typing.ObservationFunction.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> method which does not
 return anything.
 This method is called at the begining of the episode by
-<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and is used to reintialize the class
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and is used to reintialize the class
 internal attribute on new episodes.
 The <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.obtain_observation" title="ecole.typing.ObservationFunction.obtain_observation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">obtain_observation()</span></code></a> is also called during during
-<a class="reference internal" href="../reference/environments.html#ecole.environment.EnvironmentComposer.reset" title="ecole.environment.EnvironmentComposer.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, hence the <code class="docutils literal notranslate"><span class="pre">if</span></code> else <code class="docutils literal notranslate"><span class="pre">else</span></code> condition.
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, hence the <code class="docutils literal notranslate"><span class="pre">if</span></code> else <code class="docutils literal notranslate"><span class="pre">else</span></code> condition.
 Both these methods call the parent method to let it do its own initialization/reseting.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
