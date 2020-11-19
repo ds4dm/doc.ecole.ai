@@ -23,7 +23,7 @@ In the following, we will adapt :py:class:`~ecole.observation.NodeBipartite` to 
 to the observation features.
 
 The method that will be called to return an observation is called
-:py:meth:`~ecole.typing.ObservationFunction.obtain_observation`.
+:py:meth:`~ecole.typing.ObservationFunction.extract`.
 Here is how we can create a new observation function that scale the features their maximum absolute
 value.
 
@@ -35,9 +35,9 @@ value.
 
    class ScaledNodeBipartite(NodeBipartite):
 
-       def obtain_observation(self, model):
+       def extract(self, model, done):
            # Call parent method to get the original observation
-           obs = super().obtain_observation(model)
+           obs = super().extract(model)
            # Apply scaling
            column_max_abs = np.abs(obs.column_features).max(0)
            obs.column_features[:] /= column_max_abs
@@ -68,14 +68,14 @@ This example shows how the scaling vector can be stored between states.
            super().__init__(*args, **kwargs)
            self.alpha = alpha
 
-       def reset(self, model):
-           super().reset(model)
+       def before_reset(self, model):
+           super().before_reset(model)
            # Reset exponential moving average (ema) on new episode
            self.column_ema = None
            self.row_ema = None
 
-       def obtain_observation(self, model):
-           obs = super().obtain_observation(model)
+       def extract(self, model, done):
+           obs = super().extract(model, done)
 
            # Compute max absolute vector for current observation
            column_max_abs = np.abs(obs.column_features).max(0)
@@ -97,12 +97,12 @@ This example shows how the scaling vector can be stored between states.
 
 Here, you can notice how we used the constructor to be able to customize the coefficient of the
 exponential moving average.
-We also inherited the :py:meth:`~ecole.typing.ObservationFunction.reset` method which does not
+We also inherited the :py:meth:`~ecole.typing.ObservationFunction.before_reset` method which does not
 return anything.
 This method is called at the begining of the episode by
 :py:meth:`~ecole.environment.Environment.reset` and is used to reintialize the class
 internal attribute on new episodes.
-The :py:meth:`~ecole.typing.ObservationFunction.obtain_observation` is also called during during
+The :py:meth:`~ecole.typing.ObservationFunction.extract` is also called during during
 :py:meth:`~ecole.environment.Environment.reset`, hence the ``if`` else ``else`` condition.
 Both these methods call the parent method to let it do its own initialization/reseting.
 
@@ -136,12 +136,12 @@ For instance, we can create a ``StochasticReward`` function that will wrap any g
            self.reward_function = reward_function
            self.probability = probability
 
-       def reset(self, model):
-           self.reward_function.reset(model)
+       def before_reset(self, model):
+           self.reward_function.before_reset(model)
 
-       def obtain_reward(self, model, done):
-           # Unconditionally getting reward as reward_funcition.obtain_reward may have side effects
-           reward = self.reward_function.obtain_reward(model, done)
+       def extract(self, model, done):
+           # Unconditionally getting reward as reward_funcition.extract may have side effects
+           reward = self.reward_function.extract(model, done)
            if random.random() < probability:
                return 0.
            else:

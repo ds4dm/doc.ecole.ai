@@ -301,7 +301,7 @@
 <span class="sd">    to extract the reward used for learning.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RewardFunction.reset"><a class="viewcode-back" href="../../reference/rewards.html#ecole.typing.RewardFunction.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="RewardFunction.before_reset"><a class="viewcode-back" href="../../reference/rewards.html#ecole.typing.RewardFunction.before_reset">[docs]</a>    <span class="k">def</span> <span class="nf">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Reset internal data at the start of episodes.</span>
 
 <span class="sd">        The method is called on new episodes</span>
@@ -316,7 +316,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="RewardFunction.obtain_reward"><a class="viewcode-back" href="../../reference/rewards.html#ecole.typing.RewardFunction.obtain_reward">[docs]</a>    <span class="k">def</span> <span class="nf">obtain_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">done</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="viewcode-block" id="RewardFunction.extract"><a class="viewcode-back" href="../../reference/rewards.html#ecole.typing.RewardFunction.extract">[docs]</a>    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">done</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Extract reward for arriving on given state.</span>
 
 <span class="sd">        Extract the reward for arriving on the state given by ``model``.</span>
@@ -358,7 +358,7 @@
 <span class="sd">    next action.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ObservationFunction.reset"><a class="viewcode-back" href="../../reference/observations.html#ecole.typing.ObservationFunction.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ObservationFunction.before_reset"><a class="viewcode-back" href="../../reference/observations.html#ecole.typing.ObservationFunction.before_reset">[docs]</a>    <span class="k">def</span> <span class="nf">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Reset internal data at the start of episodes.</span>
 
 <span class="sd">        The method is called on new episodes</span>
@@ -373,7 +373,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="ObservationFunction.obtain_observation"><a class="viewcode-back" href="../../reference/observations.html#ecole.typing.ObservationFunction.obtain_observation">[docs]</a>    <span class="k">def</span> <span class="nf">obtain_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Observation</span><span class="p">:</span>
+<div class="viewcode-block" id="ObservationFunction.extract"><a class="viewcode-back" href="../../reference/observations.html#ecole.typing.ObservationFunction.extract">[docs]</a>    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">done</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Observation</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Extract observation on a given state.</span>
 
 <span class="sd">        The observation describe the state and is used for learning.</span>
