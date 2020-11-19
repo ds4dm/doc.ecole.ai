@@ -213,7 +213,7 @@
         <span class="n">resale_factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">integers</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Constructor for the set cover generator.</span>
+        <span class="sd">&quot;&quot;&quot;Constructor for the CombinatorialAuctionGenerator generator.</span>
 
 <span class="sd">        The parameters passed in this constructor will be used when a user calls next() or iterates</span>
 <span class="sd">        over the object.</span>
@@ -276,7 +276,7 @@
 <span class="sd">            an ecole model of a combinatorial auction instance.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">generate_instance</span><span class="p">(</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_instance</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n_items</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n_bids</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">min_value</span><span class="p">,</span>
@@ -293,9 +293,9 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="CombinatorialAuctionGenerator.seed"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.seed">[docs]</a>    <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Seeds SetCoverGenerator.</span>
+        <span class="sd">&quot;&quot;&quot;Seeds CombinatorialAuctionGenerator.</span>
 
-<span class="sd">        This method sets the random seed of the SetCoverGenerator.</span>
+<span class="sd">        This method sets the random seed of the CombinatorialAuctionGenerator.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -303,212 +303,217 @@
 <span class="sd">            The seed in which to set the random number generator with.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="CombinatorialAuctionGenerator.generate_instance"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.generate_instance">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">generate_instance</span><span class="p">(</span>
+        <span class="n">n_items</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">n_bids</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">min_value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">max_value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">value_deviation</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">add_item_prob</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">max_n_sub_bids</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">additivity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">budget_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">resale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">integers</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">logger</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">,</span>
+        <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate an instance of a combinatorial auction problem.</span>
 
-<span class="k">def</span> <span class="nf">generate_instance</span><span class="p">(</span>
-    <span class="n">n_items</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">n_bids</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">min_value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">max_value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">value_deviation</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="n">add_item_prob</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="n">max_n_sub_bids</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">additivity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="n">budget_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="n">resale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="n">integers</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
-    <span class="n">logger</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">,</span>
-    <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">,</span>
-<span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates an instance of a combinatorial auction problem.</span>
+<span class="sd">        This method generates an instance of a combinatorial auction problem based on the</span>
+<span class="sd">        specified parameters and returns it as an ecole model.</span>
 
-<span class="sd">    This method generates an instance of a combinatorial auction problem based on the</span>
-<span class="sd">    specified parameters and returns it as an ecole model.</span>
-
-<span class="sd">    Algorithm described in:</span>
+<span class="sd">        Algorithm described in</span>
 <span class="sd">        Kevin Leyton-Brown, Mark Pearson, and Yoav Shoham. (2000).</span>
 <span class="sd">        Towards a universal test suite for combinatorial auction algorithms.</span>
 <span class="sd">        Proceedings of ACM Conference on Electronic Commerce (EC-00) 66-76.</span>
-<span class="sd">    section 4.3., the &#39;arbitrary&#39; scheme.</span>
+<span class="sd">        section 4.3., the &#39;arbitrary&#39; scheme.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    n_items:</span>
-<span class="sd">        The number of items.</span>
-<span class="sd">    n_bids:</span>
-<span class="sd">        The number of bids.</span>
-<span class="sd">    min_value:</span>
-<span class="sd">        The minimum resale value for an item.</span>
-<span class="sd">    max_value:</span>
-<span class="sd">        The maximum resale value for an item.</span>
-<span class="sd">    value_deviation:</span>
-<span class="sd">        The deviation allowed for each bidder&#39;s private value of an item, relative from max_value.</span>
-<span class="sd">    add_item_prob:</span>
-<span class="sd">        The probability of adding a new item to an existing bundle.</span>
-<span class="sd">        This parameters must be in the range [0,1].</span>
-<span class="sd">    max_n_sub_bids:</span>
-<span class="sd">        The maximum number of substitutable bids per bidder (+1 gives the maximum number of bids per bidder).</span>
-<span class="sd">    additivity:</span>
-<span class="sd">        Additivity parameter for bundle prices. Note that additivity &lt; 0 gives sub-additive bids, while additivity &gt; 0 gives super-additive bids.</span>
-<span class="sd">    budget_factor:</span>
-<span class="sd">        The budget factor for each bidder, relative to their initial bid&#39;s price.</span>
-<span class="sd">    resale_factor:</span>
-<span class="sd">        The resale factor for each bidder, relative to their initial bid&#39;s resale value.</span>
-<span class="sd">    integers:</span>
-<span class="sd">        Determines if the bid prices should be integral.</span>
-<span class="sd">    rng:</span>
-<span class="sd">        A random</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_items:</span>
+<span class="sd">            The number of items.</span>
+<span class="sd">        n_bids:</span>
+<span class="sd">            The number of bids.</span>
+<span class="sd">        min_value:</span>
+<span class="sd">            The minimum resale value for an item.</span>
+<span class="sd">        max_value:</span>
+<span class="sd">            The maximum resale value for an item.</span>
+<span class="sd">        value_deviation:</span>
+<span class="sd">            The deviation allowed for each bidder&#39;s private value of an item, relative from max_value.</span>
+<span class="sd">        add_item_prob:</span>
+<span class="sd">            The probability of adding a new item to an existing bundle.</span>
+<span class="sd">            This parameters must be in the range [0,1].</span>
+<span class="sd">        max_n_sub_bids:</span>
+<span class="sd">            The maximum number of substitutable bids per bidder (+1 gives the maximum number of bids per bidder).</span>
+<span class="sd">        additivity:</span>
+<span class="sd">            Additivity parameter for bundle prices. Note that additivity &lt; 0 gives sub-additive bids, while additivity</span>
+<span class="sd">            &gt; 0 gives super-additive bids.</span>
+<span class="sd">        budget_factor:</span>
+<span class="sd">            The budget factor for each bidder, relative to their initial bid&#39;s price.</span>
+<span class="sd">        resale_factor:</span>
+<span class="sd">            The resale factor for each bidder, relative to their initial bid&#39;s resale value.</span>
+<span class="sd">        integers:</span>
+<span class="sd">            Determines if the bid prices should be integral.</span>
+<span class="sd">        rng:</span>
+<span class="sd">            A random state used to sample random numbers.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    model:</span>
-<span class="sd">        an ecole model of a combinatorial auction instance.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        model:</span>
+<span class="sd">            An ecole model of a combinatorial auction instance.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">assert</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&gt;=</span> <span class="n">min_value</span>
-    <span class="k">assert</span> <span class="n">add_item_prob</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">add_item_prob</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&gt;=</span> <span class="n">min_value</span>
+        <span class="k">assert</span> <span class="n">add_item_prob</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">add_item_prob</span> <span class="o">&lt;=</span> <span class="mi">1</span>
 
-    <span class="k">def</span> <span class="nf">choose_next_item</span><span class="p">(</span><span class="n">bundle_mask</span><span class="p">,</span> <span class="n">interests</span><span class="p">,</span> <span class="n">compats</span><span class="p">,</span> <span class="n">add_item_prob</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
-        <span class="n">n_items</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">interests</span><span class="p">)</span>
-        <span class="n">prob</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">bundle_mask</span><span class="p">)</span> <span class="o">*</span> <span class="n">interests</span> <span class="o">*</span> <span class="n">compats</span><span class="p">[</span><span class="n">bundle_mask</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">prob</span> <span class="o">/=</span> <span class="n">prob</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_items</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">prob</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">choose_next_item</span><span class="p">(</span><span class="n">bundle_mask</span><span class="p">,</span> <span class="n">interests</span><span class="p">,</span> <span class="n">compats</span><span class="p">,</span> <span class="n">add_item_prob</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+            <span class="n">n_items</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">interests</span><span class="p">)</span>
+            <span class="n">prob</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">bundle_mask</span><span class="p">)</span> <span class="o">*</span> <span class="n">interests</span> <span class="o">*</span> <span class="n">compats</span><span class="p">[</span><span class="n">bundle_mask</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">prob</span> <span class="o">/=</span> <span class="n">prob</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_items</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">prob</span><span class="p">)</span>
 
-    <span class="c1"># common item values (resale price)</span>
-    <span class="n">values</span> <span class="o">=</span> <span class="n">min_value</span> <span class="o">+</span> <span class="p">(</span><span class="n">max_value</span> <span class="o">-</span> <span class="n">min_value</span><span class="p">)</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_items</span><span class="p">)</span>
+        <span class="c1"># common item values (resale price)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">min_value</span> <span class="o">+</span> <span class="p">(</span><span class="n">max_value</span> <span class="o">-</span> <span class="n">min_value</span><span class="p">)</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_items</span><span class="p">)</span>
 
-    <span class="c1"># item compatibilities</span>
-    <span class="n">compats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_items</span><span class="p">,</span> <span class="n">n_items</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">compats</span> <span class="o">=</span> <span class="n">compats</span> <span class="o">+</span> <span class="n">compats</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
-    <span class="n">compats</span> <span class="o">=</span> <span class="n">compats</span> <span class="o">/</span> <span class="n">compats</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># item compatibilities</span>
+        <span class="n">compats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_items</span><span class="p">,</span> <span class="n">n_items</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">compats</span> <span class="o">=</span> <span class="n">compats</span> <span class="o">+</span> <span class="n">compats</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+        <span class="n">compats</span> <span class="o">=</span> <span class="n">compats</span> <span class="o">/</span> <span class="n">compats</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="n">bids</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">n_dummy_items</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">bids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">n_dummy_items</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="c1"># create bids, one bidder at a time</span>
-    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">bids</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n_bids</span><span class="p">:</span>
+        <span class="c1"># create bids, one bidder at a time</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">bids</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n_bids</span><span class="p">:</span>
 
-        <span class="c1"># bidder item values (buy price) and interests</span>
-        <span class="n">private_interests</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_items</span><span class="p">)</span>
-        <span class="n">private_values</span> <span class="o">=</span> <span class="n">values</span> <span class="o">+</span> <span class="n">max_value</span> <span class="o">*</span> <span class="n">value_deviation</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">private_interests</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># bidder item values (buy price) and interests</span>
+            <span class="n">private_interests</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_items</span><span class="p">)</span>
+            <span class="n">private_values</span> <span class="o">=</span> <span class="n">values</span> <span class="o">+</span> <span class="n">max_value</span> <span class="o">*</span> <span class="n">value_deviation</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">private_interests</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
-        <span class="c1"># substitutable bids of this bidder</span>
-        <span class="n">bidder_bids</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="c1"># substitutable bids of this bidder</span>
+            <span class="n">bidder_bids</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="c1"># generate initial bundle, choose first item according to bidder interests</span>
-        <span class="n">prob</span> <span class="o">=</span> <span class="n">private_interests</span> <span class="o">/</span> <span class="n">private_interests</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-        <span class="n">item</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_items</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">prob</span><span class="p">)</span>
-        <span class="n">bundle_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n_items</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">bundle_mask</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-
-        <span class="c1"># add additional items, according to bidder interests and item compatibilities</span>
-        <span class="k">while</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">add_item_prob</span><span class="p">:</span>
-            <span class="c1"># stop when bundle full (no item left)</span>
-            <span class="k">if</span> <span class="n">bundle_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="n">n_items</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="n">item</span> <span class="o">=</span> <span class="n">choose_next_item</span><span class="p">(</span><span class="n">bundle_mask</span><span class="p">,</span> <span class="n">private_interests</span><span class="p">,</span> <span class="n">compats</span><span class="p">,</span> <span class="n">add_item_prob</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
-            <span class="n">bundle_mask</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-
-        <span class="n">bundle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">bundle_mask</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-
-        <span class="c1"># compute bundle price with value additivity</span>
-        <span class="n">price</span> <span class="o">=</span> <span class="n">private_values</span><span class="p">[</span><span class="n">bundle</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bundle</span><span class="p">),</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">additivity</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">integers</span><span class="p">:</span>
-            <span class="n">price</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">price</span><span class="p">)</span>
-
-        <span class="c1"># drop negativaly priced bundles</span>
-        <span class="k">if</span> <span class="n">price</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Negatively priced bundle avoided&quot;</span><span class="p">)</span>
-            <span class="k">continue</span>
-
-        <span class="c1"># bid on initial bundle</span>
-        <span class="n">bidder_bids</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">bundle</span><span class="p">)]</span> <span class="o">=</span> <span class="n">price</span>
-
-        <span class="c1"># generate candidates substitutable bundles</span>
-        <span class="n">sub_candidates</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">bundle</span><span class="p">:</span>
-
-            <span class="c1"># at least one item must be shared with initial bundle</span>
+            <span class="c1"># generate initial bundle, choose first item according to bidder interests</span>
+            <span class="n">prob</span> <span class="o">=</span> <span class="n">private_interests</span> <span class="o">/</span> <span class="n">private_interests</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_items</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">prob</span><span class="p">)</span>
             <span class="n">bundle_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n_items</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">bundle_mask</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
             <span class="c1"># add additional items, according to bidder interests and item compatibilities</span>
-            <span class="k">while</span> <span class="n">bundle_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">bundle</span><span class="p">):</span>
+            <span class="k">while</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">add_item_prob</span><span class="p">:</span>
+                <span class="c1"># stop when bundle full (no item left)</span>
+                <span class="k">if</span> <span class="n">bundle_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="n">n_items</span><span class="p">:</span>
+                    <span class="k">break</span>
                 <span class="n">item</span> <span class="o">=</span> <span class="n">choose_next_item</span><span class="p">(</span><span class="n">bundle_mask</span><span class="p">,</span> <span class="n">private_interests</span><span class="p">,</span> <span class="n">compats</span><span class="p">,</span> <span class="n">add_item_prob</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
                 <span class="n">bundle_mask</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-            <span class="n">sub_bundle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">bundle_mask</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">bundle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">bundle_mask</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
             <span class="c1"># compute bundle price with value additivity</span>
-            <span class="n">sub_price</span> <span class="o">=</span> <span class="n">private_values</span><span class="p">[</span><span class="n">sub_bundle</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sub_bundle</span><span class="p">),</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">additivity</span><span class="p">)</span>
+            <span class="n">price</span> <span class="o">=</span> <span class="n">private_values</span><span class="p">[</span><span class="n">bundle</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bundle</span><span class="p">),</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">additivity</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">integers</span><span class="p">:</span>
-                <span class="n">sub_price</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sub_price</span><span class="p">)</span>
+                <span class="n">price</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">price</span><span class="p">)</span>
 
-            <span class="n">sub_candidates</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sub_bundle</span><span class="p">,</span> <span class="n">sub_price</span><span class="p">))</span>
-
-        <span class="c1"># filter valid candidates, higher priced candidates first</span>
-        <span class="n">budget</span> <span class="o">=</span> <span class="n">budget_factor</span> <span class="o">*</span> <span class="n">price</span>
-        <span class="n">min_resale_value</span> <span class="o">=</span> <span class="n">resale_factor</span> <span class="o">*</span> <span class="n">values</span><span class="p">[</span><span class="n">bundle</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">bundle</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="p">[</span>
-            <span class="n">sub_candidates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">([</span><span class="o">-</span><span class="n">price</span> <span class="k">for</span> <span class="n">bundle</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">sub_candidates</span><span class="p">])</span>
-        <span class="p">]:</span>
-
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bidder_bids</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_n_sub_bids</span> <span class="o">+</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">bids</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">bidder_bids</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">n_bids</span><span class="p">:</span>
-                <span class="k">break</span>
-
+            <span class="c1"># drop negativaly priced bundles</span>
             <span class="k">if</span> <span class="n">price</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Negatively priced substitutable bundle avoided&quot;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Negatively priced bundle avoided&quot;</span><span class="p">)</span>
                 <span class="k">continue</span>
 
-            <span class="k">if</span> <span class="n">price</span> <span class="o">&gt;</span> <span class="n">budget</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Over priced substitutable bundle avoided&quot;</span><span class="p">)</span>
-                <span class="k">continue</span>
-
-            <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="n">bundle</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">min_resale_value</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Substitutable bundle below min resale value avoided&quot;</span><span class="p">)</span>
-                <span class="k">continue</span>
-
-            <span class="k">if</span> <span class="nb">frozenset</span><span class="p">(</span><span class="n">bundle</span><span class="p">)</span> <span class="ow">in</span> <span class="n">bidder_bids</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Duplicated substitutable bundle avoided&quot;</span><span class="p">)</span>
-                <span class="k">continue</span>
-
+            <span class="c1"># bid on initial bundle</span>
             <span class="n">bidder_bids</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">bundle</span><span class="p">)]</span> <span class="o">=</span> <span class="n">price</span>
 
-        <span class="c1"># add XOR constraint if needed (dummy item)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bidder_bids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">dummy_item</span> <span class="o">=</span> <span class="p">[</span><span class="n">n_items</span> <span class="o">+</span> <span class="n">n_dummy_items</span><span class="p">]</span>
-            <span class="n">n_dummy_items</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">dummy_item</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># generate candidates substitutable bundles</span>
+            <span class="n">sub_candidates</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">bundle</span><span class="p">:</span>
 
-        <span class="c1"># place bids</span>
-        <span class="k">for</span> <span class="n">bundle</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">bidder_bids</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">bids</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">list</span><span class="p">(</span><span class="n">bundle</span><span class="p">)</span> <span class="o">+</span> <span class="n">dummy_item</span><span class="p">,</span> <span class="n">price</span><span class="p">))</span>
+                <span class="c1"># at least one item must be shared with initial bundle</span>
+                <span class="n">bundle_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n_items</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">bundle_mask</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-    <span class="n">model</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">prob_basic</span><span class="p">()</span>
-    <span class="n">pyscipopt_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span>
-    <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setMaximize</span><span class="p">()</span>
+                <span class="c1"># add additional items, according to bidder interests and item compatibilities</span>
+                <span class="k">while</span> <span class="n">bundle_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">bundle</span><span class="p">):</span>
+                    <span class="n">item</span> <span class="o">=</span> <span class="n">choose_next_item</span><span class="p">(</span>
+                        <span class="n">bundle_mask</span><span class="p">,</span> <span class="n">private_interests</span><span class="p">,</span> <span class="n">compats</span><span class="p">,</span> <span class="n">add_item_prob</span><span class="p">,</span> <span class="n">rng</span>
+                    <span class="p">)</span>
+                    <span class="n">bundle_mask</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-    <span class="n">bids_per_item</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_items</span> <span class="o">+</span> <span class="n">n_dummy_items</span><span class="p">)]</span>
+                <span class="n">sub_bundle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">bundle_mask</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="c1"># add variables</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bids</span><span class="p">):</span>
-        <span class="n">bundle</span><span class="p">,</span> <span class="n">price</span> <span class="o">=</span> <span class="n">bid</span>
-        <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;x</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">price</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">bundle</span><span class="p">:</span>
-            <span class="n">bids_per_item</span><span class="p">[</span><span class="n">item</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="c1"># compute bundle price with value additivity</span>
+                <span class="n">sub_price</span> <span class="o">=</span> <span class="n">private_values</span><span class="p">[</span><span class="n">sub_bundle</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span>
+                    <span class="nb">len</span><span class="p">(</span><span class="n">sub_bundle</span><span class="p">),</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">additivity</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">integers</span><span class="p">:</span>
+                    <span class="n">sub_price</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sub_price</span><span class="p">)</span>
 
-    <span class="c1"># add constraints</span>
-    <span class="n">pyscipopt_model_vars</span> <span class="o">=</span> <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">getVars</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">item_bids</span> <span class="ow">in</span> <span class="n">bids_per_item</span><span class="p">:</span>
-        <span class="n">cons_lhs</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">if</span> <span class="n">item_bids</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">item_bids</span><span class="p">:</span>
-                <span class="n">cons_lhs</span> <span class="o">+=</span> <span class="n">pyscipopt_model_vars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addCons</span><span class="p">(</span><span class="n">cons_lhs</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">sub_candidates</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sub_bundle</span><span class="p">,</span> <span class="n">sub_price</span><span class="p">))</span>
 
-    <span class="k">return</span> <span class="n">model</span>
+            <span class="c1"># filter valid candidates, higher priced candidates first</span>
+            <span class="n">budget</span> <span class="o">=</span> <span class="n">budget_factor</span> <span class="o">*</span> <span class="n">price</span>
+            <span class="n">min_resale_value</span> <span class="o">=</span> <span class="n">resale_factor</span> <span class="o">*</span> <span class="n">values</span><span class="p">[</span><span class="n">bundle</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">bundle</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="n">sub_candidates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">([</span><span class="o">-</span><span class="n">price</span> <span class="k">for</span> <span class="n">bundle</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">sub_candidates</span><span class="p">])</span>
+            <span class="p">]:</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bidder_bids</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_n_sub_bids</span> <span class="o">+</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">bids</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">bidder_bids</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">n_bids</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+                <span class="k">if</span> <span class="n">price</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Negatively priced substitutable bundle avoided&quot;</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="k">if</span> <span class="n">price</span> <span class="o">&gt;</span> <span class="n">budget</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Over priced substitutable bundle avoided&quot;</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="n">bundle</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">min_resale_value</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Substitutable bundle below min resale value avoided&quot;</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="k">if</span> <span class="nb">frozenset</span><span class="p">(</span><span class="n">bundle</span><span class="p">)</span> <span class="ow">in</span> <span class="n">bidder_bids</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Duplicated substitutable bundle avoided&quot;</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="n">bidder_bids</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">bundle</span><span class="p">)]</span> <span class="o">=</span> <span class="n">price</span>
+
+            <span class="c1"># add XOR constraint if needed (dummy item)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bidder_bids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">dummy_item</span> <span class="o">=</span> <span class="p">[</span><span class="n">n_items</span> <span class="o">+</span> <span class="n">n_dummy_items</span><span class="p">]</span>
+                <span class="n">n_dummy_items</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dummy_item</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c1"># place bids</span>
+            <span class="k">for</span> <span class="n">bundle</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">bidder_bids</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">bids</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">list</span><span class="p">(</span><span class="n">bundle</span><span class="p">)</span> <span class="o">+</span> <span class="n">dummy_item</span><span class="p">,</span> <span class="n">price</span><span class="p">))</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">prob_basic</span><span class="p">()</span>
+        <span class="n">pyscipopt_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span>
+        <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setMaximize</span><span class="p">()</span>
+
+        <span class="n">bids_per_item</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_items</span> <span class="o">+</span> <span class="n">n_dummy_items</span><span class="p">)]</span>
+
+        <span class="c1"># add variables</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bids</span><span class="p">):</span>
+            <span class="n">bundle</span><span class="p">,</span> <span class="n">price</span> <span class="o">=</span> <span class="n">bid</span>
+            <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;x</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">price</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">bundle</span><span class="p">:</span>
+                <span class="n">bids_per_item</span><span class="p">[</span><span class="n">item</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+        <span class="c1"># add constraints</span>
+        <span class="n">pyscipopt_model_vars</span> <span class="o">=</span> <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">getVars</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">item_bids</span> <span class="ow">in</span> <span class="n">bids_per_item</span><span class="p">:</span>
+            <span class="n">cons_lhs</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">item_bids</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">item_bids</span><span class="p">:</span>
+                    <span class="n">cons_lhs</span> <span class="o">+=</span> <span class="n">pyscipopt_model_vars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addCons</span><span class="p">(</span><span class="n">cons_lhs</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">model</span></div></div>
 </pre></div>
 
            </div>
