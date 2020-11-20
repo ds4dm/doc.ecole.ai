@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Create New Functions &mdash; Ecole 0.3.0 documentation</title>
+  <title>Create New Functions &mdash; Ecole 0.4.0 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.3
+                0.4
               </div>
             
           
@@ -126,6 +126,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/information.html">Informations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/scip-interface.html">SCIP Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/instances.html">Instance Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/utilities.html">Utilities</a></li>
@@ -231,7 +232,7 @@ value.</p>
 
     <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">):</span>
         <span class="c1"># Call parent method to get the original observation</span>
-        <span class="n">obs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
         <span class="c1"># Apply scaling</span>
         <span class="n">column_max_abs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">column_features</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">obs</span><span class="o">.</span><span class="n">column_features</span><span class="p">[:]</span> <span class="o">/=</span> <span class="n">column_max_abs</span>
