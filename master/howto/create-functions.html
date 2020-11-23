@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Create New Functions &mdash; Ecole 0.3.0 documentation</title>
+  <title>Create New Functions &mdash; Ecole 0.4.0 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.3
+                0.4
               </div>
             
           
@@ -126,6 +126,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/information.html">Informations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/scip-interface.html">SCIP Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/instances.html">Instance Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/utilities.html">Utilities</a></li>
@@ -220,18 +221,18 @@ as it makes it easier to keep information between states.</p>
 In the following, we will adapt <a class="reference internal" href="../reference/observations.html#ecole.observation.NodeBipartite" title="ecole.observation.NodeBipartite"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartite</span></code></a> to apply some scaling
 to the observation features.</p>
 <p>The method that will be called to return an observation is called
-<a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.obtain_observation" title="ecole.typing.ObservationFunction.obtain_observation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">obtain_observation()</span></code></a>.
+<a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.extract" title="ecole.typing.ObservationFunction.extract"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extract()</span></code></a>.
 Here is how we can create a new observation function that scale the features their maximum absolute
 value.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">ecole.observation</span> <span class="kn">import</span> <span class="n">NodeBipartite</span>
 
 
 <span class="k">class</span> <span class="nc">ScaledNodeBipartite</span><span class="p">(</span><span class="n">NodeBipartite</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">obtain_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">):</span>
         <span class="c1"># Call parent method to get the original observation</span>
-        <span class="n">obs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">obtain_observation</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
         <span class="c1"># Apply scaling</span>
         <span class="n">column_max_abs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">column_features</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">obs</span><span class="o">.</span><span class="n">column_features</span><span class="p">[:]</span> <span class="o">/=</span> <span class="n">column_max_abs</span>
@@ -252,21 +253,21 @@ with coefficient α to the scaling vector.
 We will apply the moving average on states from the same episode, and reset it at every new
 episode.
 This example shows how the scaling vector can be stored between states.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MovingScaledNodeBipartite</span><span class="p">(</span><span class="n">NodeBipartite</span><span class="p">):</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MovingScaledNodeBipartite</span><span class="p">(</span><span class="n">NodeBipartite</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># Construct parent class with other parameters</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
 
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">before_reset</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="c1"># Reset exponential moving average (ema) on new episode</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">column_ema</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_ema</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">obtain_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
-        <span class="n">obs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">obtain_observation</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">):</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
 
         <span class="c1"># Compute max absolute vector for current observation</span>
         <span class="n">column_max_abs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">column_features</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -289,12 +290,12 @@ This example shows how the scaling vector can be stored between states.</p>
 </div>
 <p>Here, you can notice how we used the constructor to be able to customize the coefficient of the
 exponential moving average.
-We also inherited the <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.reset" title="ecole.typing.ObservationFunction.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> method which does not
+We also inherited the <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.before_reset" title="ecole.typing.ObservationFunction.before_reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">before_reset()</span></code></a> method which does not
 return anything.
 This method is called at the begining of the episode by
 <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and is used to reintialize the class
 internal attribute on new episodes.
-The <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.obtain_observation" title="ecole.typing.ObservationFunction.obtain_observation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">obtain_observation()</span></code></a> is also called during during
+The <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.extract" title="ecole.typing.ObservationFunction.extract"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extract()</span></code></a> is also called during during
 <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, hence the <code class="docutils literal notranslate"><span class="pre">if</span></code> else <code class="docutils literal notranslate"><span class="pre">else</span></code> condition.
 Both these methods call the parent method to let it do its own initialization/reseting.</p>
 <div class="admonition warning">
@@ -313,7 +314,7 @@ methods.</p>
 <p>For instance, we can create a <code class="docutils literal notranslate"><span class="pre">StochasticReward</span></code> function that will wrap any given
 <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> and with some probability return either the given reward or
 0.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 
 
 <span class="k">class</span> <span class="nc">StochasticReward</span><span class="p">:</span>
@@ -322,12 +323,12 @@ methods.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span> <span class="o">=</span> <span class="n">reward_function</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">probability</span> <span class="o">=</span> <span class="n">probability</span>
 
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">before_reset</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">obtain_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">):</span>
-        <span class="c1"># Unconditionally getting reward as reward_funcition.obtain_reward may have side effects</span>
-        <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">obtain_reward</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">):</span>
+        <span class="c1"># Unconditionally getting reward as reward_funcition.extract may have side effects</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">probability</span><span class="p">:</span>
             <span class="k">return</span> <span class="mf">0.</span>
         <span class="k">else</span><span class="p">:</span>
@@ -336,8 +337,8 @@ methods.</p>
 </div>
 <p>It can be used as such, for instance with <a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a> in a
 <a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">stochastic_lpiterations</span> <span class="o">=</span> <span class="n">StochaticReward</span><span class="p">(</span><span class="o">-</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIteration</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="o">&gt;&gt;</span> <span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=</span><span class="n">stochastic_lpiterations</span><span class="p">)</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt; stochastic_lpiterations = StochaticReward(-ecole.reward.LpIteration, probability=0.1)</span>
+<span class="go">&gt;&gt; env = ecole.environment.Branching(reward_function=stochastic_lpiterations)</span>
 </pre></div>
 </div>
 </div>

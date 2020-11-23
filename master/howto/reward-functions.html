@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Use Reward Functions &mdash; Ecole 0.3.0 documentation</title>
+  <title>Use Reward Functions &mdash; Ecole 0.4.0 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.3
+                0.4
               </div>
             
           
@@ -124,6 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/information.html">Informations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/scip-interface.html">SCIP Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/instances.html">Instance Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/utilities.html">Utilities</a></li>
@@ -212,17 +213,18 @@ responsibility to a <a class="reference internal" href="../reference/rewards.htm
 The object has complete access to the solver and extract the data it needs.</p>
 <p>Using a different reward function is done with another parameter to the environment.
 For instance with the <a class="reference internal" href="../reference/environments.html#ecole.environment.Configuring" title="ecole.environment.Configuring"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuring</span></code></a> environment:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIiterations</span><span class="p">())</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reward_function</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIterations</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reward_function</span>  
 <span class="go">ecole.reward.LpIterations()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">({})</span>
-<span class="go">4560.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>  
+<span class="go">(..., ..., 0.0, ..., ...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">({})</span>  
+<span class="go">(..., ..., 45.0, ..., ...)</span>
 </pre></div>
 </div>
 <p>Environments also have a default reward function.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reward_function</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reward_function</span>  
 <span class="go">ecole.reward.IsDone()</span>
 </pre></div>
 </div>
@@ -239,51 +241,57 @@ To create and combine rewards, python arithmetic operations can be used.</p>
 <a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a>.
 To achieve this, one would typically use the opposite of the reward.
 Such a reward function can be created by negating the reward function.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=-</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIiterations</span><span class="p">())</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">({})</span>
-<span class="go">-4560.0</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=-</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIterations</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>  
+<span class="go">(..., ..., -0.0, ..., ...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">({})</span>  
+<span class="go">(..., ..., -45.0, ..., ...)</span>
 </pre></div>
 </div>
 <p>Any operation, such as</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">3.5</span> <span class="o">*</span> <span class="n">LpIiterations</span><span class="p">()</span> <span class="o">**</span> <span class="mf">2.1</span> <span class="o">+</span> <span class="mf">4.4</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ecole.reward</span> <span class="kn">import</span> <span class="n">LpIterations</span>
+
+<span class="o">-</span><span class="mf">3.5</span> <span class="o">*</span> <span class="n">LpIterations</span><span class="p">()</span> <span class="o">**</span> <span class="mf">2.1</span> <span class="o">+</span> <span class="mf">4.4</span>
 </pre></div>
 </div>
 <p>are valid.</p>
 <p>Note that this is a full reward <em>function</em> object that can be given to an environment.
 it is similar to doing the following</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIiterations</span><span class="p">())</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIterations</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>  
+<span class="go">(..., ..., ..., ..., ...)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">lp_iter_reward</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">({})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">reward</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.5</span> <span class="o">*</span> <span class="n">lp_iter_reward</span> <span class="o">**</span> <span class="mf">2.1</span> <span class="o">+</span> <span class="mf">4.4</span>
 </pre></div>
 </div>
 <p>Arithmetic operations on reward functions become exremely powerful when combining mutiple
 rewards functions, such as in</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">LpIterations</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">IsDone</span><span class="p">()</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ecole.reward</span> <span class="kn">import</span> <span class="n">LpIterations</span><span class="p">,</span> <span class="n">IsDone</span>
+
+<span class="mf">4.0</span> <span class="o">*</span> <span class="n">LpIterations</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">IsDone</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>because in this case it would <em>not</em> be possible to pass both
 <a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a> and <a class="reference internal" href="../reference/rewards.html#ecole.reward.IsDone" title="ecole.reward.IsDone"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsDone</span></code></a> to the
 environment.</p>
 <p>All operations that are valid between scalars are valid with reward functions</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">IsDone</span><span class="p">()</span> <span class="o">**</span> <span class="nb">abs</span><span class="p">(</span><span class="n">LpIteration</span><span class="p">()</span> <span class="o">//</span> <span class="mi">4</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">IsDone</span><span class="p">()</span> <span class="o">**</span> <span class="nb">abs</span><span class="p">(</span><span class="n">LpIterations</span><span class="p">()</span> <span class="o">//</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Not all mathematical operations have a dedicated Python operator.
 Ecole implements a number of other operations are as methods to reward functions.
 For instance, to get the exponential of <a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a>, one can
 use</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LpIterations</span><span class="p">()</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">LpIterations</span><span class="p">()</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This also works with rewards functions created from any expression</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">LpIterations</span><span class="p">())</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">LpIterations</span><span class="p">())</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>In last resort, reward functions have an <code class="docutils literal notranslate"><span class="pre">apply</span></code> method to compose rewards with any
 function</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LpIterations</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">reward</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">reward</span><span class="p">)))</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">LpIterations</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">reward</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">reward</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>

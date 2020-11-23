@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Ecole 0.3.0 documentation</title>
+  <title>Index &mdash; Ecole 0.4.0 documentation</title>
   
 
   
@@ -70,7 +70,7 @@
             
             
               <div class="version">
-                0.3
+                0.4
               </div>
             
           
@@ -119,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/information.html">Informations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/scip-interface.html">SCIP Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/instances.html">Instance Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/utilities.html">Utilities</a></li>
@@ -214,7 +215,6 @@
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
- | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
@@ -233,10 +233,38 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/environments.html#ecole.environment.Branching">Branching (class in ecole.environment)</a>
+      <li><a href="reference/information.html#ecole.information.Nothing.before_reset">before_reset() (ecole.information.Nothing method)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartite.before_reset">(ecole.observation.NodeBipartite method)</a>
 </li>
+        <li><a href="reference/observations.html#ecole.observation.Pseudocosts.before_reset">(ecole.observation.Pseudocosts method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.StrongBranchingScores.before_reset">(ecole.observation.StrongBranchingScores method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.Arithmetic.before_reset">(ecole.reward.Arithmetic method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.Constant.before_reset">(ecole.reward.Constant method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.IsDone.before_reset">(ecole.reward.IsDone method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.LpIterations.before_reset">(ecole.reward.LpIterations method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.NNodes.before_reset">(ecole.reward.NNodes method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.SolvingTime.before_reset">(ecole.reward.SolvingTime method)</a>
+</li>
+        <li><a href="reference/information.html#ecole.typing.InformationFunction.before_reset">(ecole.typing.InformationFunction method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.typing.ObservationFunction.before_reset">(ecole.typing.ObservationFunction method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.typing.RewardFunction.before_reset">(ecole.typing.RewardFunction method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/environments.html#ecole.environment.Branching">Branching (class in ecole.environment)</a>
+</li>
       <li><a href="reference/environments.html#ecole.environment.BranchingDynamics">BranchingDynamics (class in ecole.environment)</a>
 </li>
   </ul></td>
@@ -285,10 +313,36 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.edge_features">edge_features() (ecole.observation.NodeBipartiteObs property)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/environments.html#ecole.environment.Environment">Environment (class in ecole.environment)</a>
 </li>
+      <li><a href="reference/information.html#ecole.information.Nothing.extract">extract() (ecole.information.Nothing method)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartite.extract">(ecole.observation.NodeBipartite method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.Pseudocosts.extract">(ecole.observation.Pseudocosts method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.StrongBranchingScores.extract">(ecole.observation.StrongBranchingScores method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.Arithmetic.extract">(ecole.reward.Arithmetic method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.Constant.extract">(ecole.reward.Constant method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.IsDone.extract">(ecole.reward.IsDone method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.LpIterations.extract">(ecole.reward.LpIterations method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.NNodes.extract">(ecole.reward.NNodes method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.SolvingTime.extract">(ecole.reward.SolvingTime method)</a>
+</li>
+        <li><a href="reference/information.html#ecole.typing.InformationFunction.extract">(ecole.typing.InformationFunction method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.typing.ObservationFunction.extract">(ecole.typing.ObservationFunction method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.typing.RewardFunction.extract">(ecole.typing.RewardFunction method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -307,8 +361,18 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/instances.html#ecole.typing.InstanceGenerator.generate_instance">generate_instance() (ecole.typing.InstanceGenerator static method)</a>
+      <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.generate_instance">generate_instance() (ecole.instance.CapacitatedFacilityLocationGenerator static method)</a>
+
+      <ul>
+        <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.generate_instance">(ecole.instance.CombinatorialAuctionGenerator static method)</a>
 </li>
+        <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.generate_instance">(ecole.instance.IndependentSetGenerator static method)</a>
+</li>
+        <li><a href="reference/instances.html#ecole.instance.SetCoverGenerator.generate_instance">(ecole.instance.SetCoverGenerator static method)</a>
+</li>
+        <li><a href="reference/instances.html#ecole.typing.InstanceGenerator.generate_instance">(ecole.typing.InstanceGenerator static method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.get_param">get_param() (ecole.scip.Model method)</a>
@@ -323,10 +387,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator">IndependentSetGenerator (class in ecole.instance)</a>
 </li>
-      <li><a href="reference/instances.html#ecole.typing.InstanceGenerator">InstanceGenerator (class in ecole.typing)</a>
+      <li><a href="reference/information.html#ecole.typing.InformationFunction">InformationFunction (class in ecole.typing)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/instances.html#ecole.typing.InstanceGenerator">InstanceGenerator (class in ecole.typing)</a>
+</li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.is_solved">is_solved() (ecole.scip.Model method)</a>
 </li>
       <li><a href="reference/rewards.html#ecole.reward.IsDone">IsDone (class in ecole.reward)</a>
@@ -345,8 +411,6 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/observations.html#ecole.observation.MapFunction">MapFunction (class in ecole.observation)</a>
-</li>
       <li><a href="reference/utilities.html#ecole.RandomEngine.max_seed">max_seed (ecole.RandomEngine attribute)</a>
 </li>
   </ul></td>
@@ -369,8 +433,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs">NodeBipartiteObs (class in ecole.observation)</a>
 </li>
-      <li><a href="reference/observations.html#ecole.observation.Nothing">Nothing (class in ecole.observation)</a>
+      <li><a href="reference/information.html#ecole.information.Nothing">Nothing (class in ecole.information)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.Nothing">(in module ecole.observation)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -379,38 +447,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.typing.ObservationFunction">ObservationFunction (class in ecole.typing)</a>
 </li>
-      <li><a href="reference/observations.html#ecole.observation.MapFunction.obtain_observation">obtain_observation() (ecole.observation.MapFunction method)</a>
-
-      <ul>
-        <li><a href="reference/observations.html#ecole.observation.NodeBipartite.obtain_observation">(ecole.observation.NodeBipartite method)</a>
-</li>
-        <li><a href="reference/observations.html#ecole.observation.Nothing.obtain_observation">(ecole.observation.Nothing method)</a>
-</li>
-        <li><a href="reference/observations.html#ecole.observation.Pseudocosts.obtain_observation">(ecole.observation.Pseudocosts method)</a>
-</li>
-        <li><a href="reference/observations.html#ecole.observation.StrongBranchingScores.obtain_observation">(ecole.observation.StrongBranchingScores method)</a>
-</li>
-        <li><a href="reference/observations.html#ecole.observation.VectorFunction.obtain_observation">(ecole.observation.VectorFunction method)</a>
-</li>
-        <li><a href="reference/observations.html#ecole.typing.ObservationFunction.obtain_observation">(ecole.typing.ObservationFunction method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/rewards.html#ecole.reward.Arithmetic.obtain_reward">obtain_reward() (ecole.reward.Arithmetic method)</a>
-
-      <ul>
-        <li><a href="reference/rewards.html#ecole.reward.Constant.obtain_reward">(ecole.reward.Constant method)</a>
-</li>
-        <li><a href="reference/rewards.html#ecole.reward.IsDone.obtain_reward">(ecole.reward.IsDone method)</a>
-</li>
-        <li><a href="reference/rewards.html#ecole.reward.LpIterations.obtain_reward">(ecole.reward.LpIterations method)</a>
-</li>
-        <li><a href="reference/rewards.html#ecole.reward.NNodes.obtain_reward">(ecole.reward.NNodes method)</a>
-</li>
-        <li><a href="reference/rewards.html#ecole.typing.RewardFunction.obtain_reward">(ecole.typing.RewardFunction method)</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -432,37 +468,7 @@
       <li><a href="reference/utilities.html#ecole.RandomEngine">RandomEngine (class in ecole)</a>
 </li>
       <li><a href="reference/environments.html#ecole.environment.Environment.reset">reset() (ecole.environment.Environment method)</a>
-
-      <ul>
-        <li><a href="reference/observations.html#ecole.observation.MapFunction.reset">(ecole.observation.MapFunction method)</a>
 </li>
-        <li><a href="reference/observations.html#ecole.observation.NodeBipartite.reset">(ecole.observation.NodeBipartite method)</a>
-</li>
-        <li><a href="reference/observations.html#ecole.observation.Nothing.reset">(ecole.observation.Nothing method)</a>
-</li>
-        <li><a href="reference/observations.html#ecole.observation.Pseudocosts.reset">(ecole.observation.Pseudocosts method)</a>
-</li>
-        <li><a href="reference/observations.html#ecole.observation.StrongBranchingScores.reset">(ecole.observation.StrongBranchingScores method)</a>
-</li>
-        <li><a href="reference/observations.html#ecole.observation.VectorFunction.reset">(ecole.observation.VectorFunction method)</a>
-</li>
-        <li><a href="reference/rewards.html#ecole.reward.Arithmetic.reset">(ecole.reward.Arithmetic method)</a>
-</li>
-        <li><a href="reference/rewards.html#ecole.reward.Constant.reset">(ecole.reward.Constant method)</a>
-</li>
-        <li><a href="reference/rewards.html#ecole.reward.IsDone.reset">(ecole.reward.IsDone method)</a>
-</li>
-        <li><a href="reference/rewards.html#ecole.reward.LpIterations.reset">(ecole.reward.LpIterations method)</a>
-</li>
-        <li><a href="reference/rewards.html#ecole.reward.NNodes.reset">(ecole.reward.NNodes method)</a>
-</li>
-        <li><a href="reference/observations.html#ecole.typing.ObservationFunction.reset">(ecole.typing.ObservationFunction method)</a>
-</li>
-        <li><a href="reference/rewards.html#ecole.typing.RewardFunction.reset">(ecole.typing.RewardFunction method)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/environments.html#ecole.environment.BranchingDynamics.reset_dynamics">reset_dynamics() (ecole.environment.BranchingDynamics method)</a>
 
       <ul>
@@ -471,6 +477,8 @@
         <li><a href="reference/environments.html#ecole.typing.Dynamics.reset_dynamics">(ecole.typing.Dynamics method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/rewards.html#ecole.typing.RewardFunction">RewardFunction (class in ecole.typing)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.row_features">row_features() (ecole.observation.NodeBipartiteObs property)</a>
@@ -517,6 +525,8 @@
 </li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.solve">solve() (ecole.scip.Model method)</a>
 </li>
+      <li><a href="reference/rewards.html#ecole.reward.SolvingTime">SolvingTime (class in ecole.reward)</a>
+</li>
       <li><a href="reference/utilities.html#ecole.spawn_random_engine">spawn_random_engine() (in module ecole)</a>
 </li>
       <li><a href="reference/environments.html#ecole.environment.Environment.step">step() (ecole.environment.Environment method)</a>
@@ -530,14 +540,6 @@
 </li>
       </ul></li>
       <li><a href="reference/observations.html#ecole.observation.StrongBranchingScores">StrongBranchingScores (class in ecole.observation)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="V">V</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/observations.html#ecole.observation.VectorFunction">VectorFunction (class in ecole.observation)</a>
 </li>
   </ul></td>
 </tr></table>

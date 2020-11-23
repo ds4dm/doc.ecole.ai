@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ecole._set_cover_generator &mdash; Ecole 0.3.0 documentation</title>
+  <title>ecole._set_cover_generator &mdash; Ecole 0.4.0 documentation</title>
   
 
   
@@ -70,7 +70,7 @@
             
             
               <div class="version">
-                0.3
+                0.4
               </div>
             
           
@@ -119,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/observations.html">Observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/information.html">Informations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/scip-interface.html">SCIP Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/instances.html">Instance Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/utilities.html">Utilities</a></li>
@@ -242,7 +243,9 @@
 <span class="sd">            an ecole model of a set cover instance.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">generate_instance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_rows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">density</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_coef</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_instance</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_rows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">density</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_coef</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span>
+        <span class="p">)</span>
 
 <div class="viewcode-block" id="SetCoverGenerator.seed"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.SetCoverGenerator.seed">[docs]</a>    <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Seeds SetCoverGenerator.</span>
@@ -255,116 +258,122 @@
 <span class="sd">            The seed in which to set the random number generator with.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="SetCoverGenerator.generate_instance"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.SetCoverGenerator.generate_instance">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">generate_instance</span><span class="p">(</span>
+        <span class="n">n_rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n_cols</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">density</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">max_coef</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generates an instance of a combinatorial auction problem.</span>
 
-<span class="k">def</span> <span class="nf">generate_instance</span><span class="p">(</span>
-    <span class="n">n_rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n_cols</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">density</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">max_coef</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span>
-<span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates an instance of a combinatorial auction problem.</span>
+<span class="sd">        This method generates an instance of a combinatorial auction problem based on the</span>
+<span class="sd">        specified parameters and returns it as an ecole model.</span>
 
-<span class="sd">    This method generates an instance of a combinatorial auction problem based on the</span>
-<span class="sd">    specified parameters and returns it as an ecole model.</span>
+<span class="sd">        Algorithm described in:</span>
+<span class="sd">            E.Balas and A.Ho, Set covering algorithms using cutting planes, heuristics,</span>
+<span class="sd">            and subgradient optimization: A computational study, Mathematical</span>
+<span class="sd">            Programming, 12 (1980), 37-60.</span>
 
-<span class="sd">    Algorithm described in:</span>
-<span class="sd">        E.Balas and A.Ho, Set covering algorithms using cutting planes, heuristics,</span>
-<span class="sd">        and subgradient optimization: A computational study, Mathematical</span>
-<span class="sd">        Programming, 12 (1980), 37-60.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_rows:</span>
+<span class="sd">            The number of rows.</span>
+<span class="sd">        n_cols:</span>
+<span class="sd">            The number of columns.</span>
+<span class="sd">        density:</span>
+<span class="sd">            The density of the constraint matrix.</span>
+<span class="sd">            The value must be in the range (0,1].</span>
+<span class="sd">        max_coef:</span>
+<span class="sd">            Maximum objective coefficient.</span>
+<span class="sd">            The value must be in &gt;= 1.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    n_rows:</span>
-<span class="sd">        The number of rows.</span>
-<span class="sd">    n_cols:</span>
-<span class="sd">        The number of columns.</span>
-<span class="sd">    density:</span>
-<span class="sd">        The density of the constraint matrix.</span>
-<span class="sd">        The value must be in the range (0,1].</span>
-<span class="sd">    max_coef:</span>
-<span class="sd">        Maximum objective coefficient.</span>
-<span class="sd">        The value must be in &gt;= 1.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        model:</span>
+<span class="sd">            an ecole model of a set cover instance.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    model:</span>
-<span class="sd">        an ecole model of a set cover instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nnzrs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_rows</span> <span class="o">*</span> <span class="n">n_cols</span> <span class="o">*</span> <span class="n">density</span><span class="p">)</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">nnzrs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_rows</span> <span class="o">*</span> <span class="n">n_cols</span> <span class="o">*</span> <span class="n">density</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">nnzrs</span> <span class="o">&gt;=</span> <span class="n">n_rows</span>  <span class="c1"># at least 1 col per row</span>
+        <span class="k">assert</span> <span class="n">nnzrs</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_cols</span>  <span class="c1"># at leats 2 rows per col</span>
 
-    <span class="k">assert</span> <span class="n">nnzrs</span> <span class="o">&gt;=</span> <span class="n">n_rows</span>  <span class="c1"># at least 1 col per row</span>
-    <span class="k">assert</span> <span class="n">nnzrs</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_cols</span>  <span class="c1"># at leats 2 rows per col</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nnzrs</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 
-    <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nnzrs</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="c1"># sample column indices</span>
+        <span class="n">indices</span><span class="p">[:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_cols</span><span class="p">)</span> <span class="o">%</span> <span class="n">n_cols</span>  <span class="c1"># force at leats 2 rows per col</span>
+        <span class="n">indices</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_cols</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_cols</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_rows</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">nnzrs</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_cols</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">%</span> <span class="n">n_cols</span>
+        <span class="p">)</span>  <span class="c1"># remaining column indexes are random</span>
 
-    <span class="c1"># sample column indices</span>
-    <span class="n">indices</span><span class="p">[:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_cols</span><span class="p">)</span> <span class="o">%</span> <span class="n">n_cols</span>  <span class="c1"># force at leats 2 rows per col</span>
-    <span class="n">indices</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_cols</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_cols</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_rows</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">nnzrs</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_cols</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">%</span> <span class="n">n_cols</span>
-    <span class="p">)</span>  <span class="c1"># remaining column indexes are random</span>
+        <span class="c1"># count the resulting number of rows, for each column</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">col_n_rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="c1"># count the resulting number of rows, for each column</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">col_n_rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># for each column, sample row indices</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">indptr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">indices</span><span class="p">[:</span><span class="n">n_rows</span><span class="p">]</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">n_rows</span><span class="p">)</span>  <span class="c1"># pre-fill to force at least 1 column per row</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">col_n_rows</span><span class="p">:</span>
 
-    <span class="c1"># for each column, sample row indices</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">indptr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">indices</span><span class="p">[:</span><span class="n">n_rows</span><span class="p">]</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">n_rows</span><span class="p">)</span>  <span class="c1"># pre-fill to force at least 1 column per row</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">col_n_rows</span><span class="p">:</span>
+            <span class="c1"># column is already filled, nothing to do</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">n_rows</span><span class="p">:</span>
+                <span class="k">pass</span>
 
-        <span class="c1"># column is already filled, nothing to do</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">n_rows</span><span class="p">:</span>
-            <span class="k">pass</span>
+            <span class="c1"># column is empty, fill with random rows</span>
+            <span class="k">elif</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">n_rows</span><span class="p">:</span>
+                <span class="n">indices</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-        <span class="c1"># column is empty, fill with random rows</span>
-        <span class="k">elif</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">n_rows</span><span class="p">:</span>
-            <span class="n">indices</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="c1"># column is partially filled, complete with random rows among remaining ones</span>
+            <span class="k">elif</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">n_rows</span><span class="p">:</span>
+                <span class="n">remaining_rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_rows</span><span class="p">),</span> <span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">n_rows</span><span class="p">],</span> <span class="n">assume_unique</span><span class="o">=</span><span class="kc">True</span>
+                <span class="p">)</span>
+                <span class="n">indices</span><span class="p">[</span><span class="n">n_rows</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+                    <span class="n">remaining_rows</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span> <span class="o">-</span> <span class="n">n_rows</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span>
+                <span class="p">)</span>
 
-        <span class="c1"># column is partially filled, complete with random rows among remaining ones</span>
-        <span class="k">elif</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">n_rows</span><span class="p">:</span>
-            <span class="n">remaining_rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_rows</span><span class="p">),</span> <span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">n_rows</span><span class="p">],</span> <span class="n">assume_unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">indices</span><span class="p">[</span><span class="n">n_rows</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">remaining_rows</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span> <span class="o">-</span> <span class="n">n_rows</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="n">n</span>
+            <span class="n">indptr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
-        <span class="n">i</span> <span class="o">+=</span> <span class="n">n</span>
-        <span class="n">indptr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="c1"># sample objective coefficients</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">max_coef</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_cols</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 
-    <span class="c1"># sample objective coefficients</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">max_coef</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_cols</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="c1"># convert csc indices/indptr to csr indices/indptr</span>
+        <span class="n">indptr_csr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_rows</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">indptr_counter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_rows</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">indices_csr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 
-    <span class="c1"># convert csc indices/indptr to csr indices/indptr</span>
-    <span class="n">indptr_csr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_rows</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-    <span class="n">indptr_counter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_rows</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-    <span class="n">indices_csr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="c1"># compute indptr for csr</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)):</span>
+            <span class="n">indptr_csr</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">indptr_csr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">indptr_csr</span><span class="p">)</span>
 
-    <span class="c1"># compute indptr for csr</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)):</span>
-        <span class="n">indptr_csr</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">indptr_csr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">indptr_csr</span><span class="p">)</span>
+        <span class="c1"># compute indices for csr</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cols</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">[</span><span class="n">indptr</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="p">:</span> <span class="n">indptr</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]:</span>
+                <span class="n">indices_csr</span><span class="p">[</span><span class="n">indptr_csr</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">+</span> <span class="n">indptr_counter</span><span class="p">[</span><span class="n">row</span><span class="p">]]</span> <span class="o">=</span> <span class="n">col</span>
+                <span class="n">indptr_counter</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="c1"># compute indices for csr</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cols</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">[</span><span class="n">indptr</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="p">:</span> <span class="n">indptr</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]:</span>
-            <span class="n">indices_csr</span><span class="p">[</span><span class="n">indptr_csr</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">+</span> <span class="n">indptr_counter</span><span class="p">[</span><span class="n">row</span><span class="p">]]</span> <span class="o">=</span> <span class="n">col</span>
-            <span class="n">indptr_counter</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">prob_basic</span><span class="p">()</span>
+        <span class="n">pyscipopt_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span>
+        <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setMinimize</span><span class="p">()</span>
 
-    <span class="n">model</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">prob_basic</span><span class="p">()</span>
-    <span class="n">pyscipopt_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span>
-    <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setMinimize</span><span class="p">()</span>
+        <span class="c1"># add variables</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cols</span><span class="p">):</span>
+            <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;x</span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
 
-    <span class="c1"># add variables</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cols</span><span class="p">):</span>
-        <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;x</span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="c1"># add constraints</span>
+        <span class="n">pyscipopt_model_vars</span> <span class="o">=</span> <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">getVars</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rows</span><span class="p">):</span>
+            <span class="n">cons_lhs</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">consvars</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">pyscipopt_model_vars</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">indices_csr</span><span class="p">[</span><span class="n">indptr_csr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">:</span> <span class="n">indptr_csr</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span>
+            <span class="p">]</span>
+            <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">consvars</span><span class="p">:</span>
+                <span class="n">cons_lhs</span> <span class="o">+=</span> <span class="n">var</span>
+            <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addCons</span><span class="p">(</span><span class="n">cons_lhs</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
 
-    <span class="c1"># add constraints</span>
-    <span class="n">pyscipopt_model_vars</span> <span class="o">=</span> <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">getVars</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rows</span><span class="p">):</span>
-        <span class="n">cons_lhs</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">consvars</span> <span class="o">=</span> <span class="p">[</span><span class="n">pyscipopt_model_vars</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">indices_csr</span><span class="p">[</span><span class="n">indptr_csr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">:</span> <span class="n">indptr_csr</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]]</span>
-        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">consvars</span><span class="p">:</span>
-            <span class="n">cons_lhs</span> <span class="o">+=</span> <span class="n">var</span>
-        <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addCons</span><span class="p">(</span><span class="n">cons_lhs</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">model</span>
+        <span class="k">return</span> <span class="n">model</span></div></div>
 </pre></div>
 
            </div>
