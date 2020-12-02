@@ -230,6 +230,12 @@ It is exists to support Python type hints.</p>
 </dl>
 </div>
 <dl class="py method">
+<dt id="ecole.typing.ObservationFunction.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.typing.ObservationFunction.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="ecole.typing.ObservationFunction.before_reset">
 <code class="sig-name descname">before_reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction.before_reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ecole.typing.ObservationFunction.before_reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reset internal data at the start of episodes.</p>
@@ -288,6 +294,11 @@ this method is not a getter and can have side effects.</p>
 <dd><p>Bipartite graph observation function on branch-and bound node.</p>
 <p>This observation function extract structured <a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartiteObs</span></code></a>.</p>
 <dl class="py method">
+<dt id="ecole.observation.NodeBipartite.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartite" title="ecole.observation.NodeBipartite">ecole.observation.NodeBipartite</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.NodeBipartite.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="ecole.observation.NodeBipartite.before_reset">
 <code class="sig-name descname">before_reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartite" title="ecole.observation.NodeBipartite">ecole.observation.NodeBipartite</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.NodeBipartite.before_reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cache some feature not expected to change during an episode.</p>
@@ -312,6 +323,12 @@ There exist an edge between a variable and a constraint if the variable exists i
 constraint with a non-zero coefficient.</p>
 <p>Each variable and constraint node is associated with a vector of features.
 Each edge is associated with the coefficient of the variable in the constraint.</p>
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartiteObs.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt id="ecole.observation.NodeBipartiteObs.column_features">
 <em class="property">property </em><code class="sig-name descname">column_features</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.column_features" title="Permalink to this definition">¶</a></dt>
@@ -347,6 +364,19 @@ learning algorithms.</p>
 each variable in the problem which can be indexed by the action set.  Variables for which
 a strong branching score is not applicable are filled with NaN.</p>
 <dl class="py method">
+<dt id="ecole.observation.StrongBranchingScores.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.StrongBranchingScores" title="ecole.observation.StrongBranchingScores">ecole.observation.StrongBranchingScores</a></span></em>, <em class="sig-param"><span class="n">pseudo_candidates</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.StrongBranchingScores.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for StrongBranchingScores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pseudo_candidates</strong> – The parameter determines if strong branching scores are computed for
+psuedo-candidate variables if true or LP canidate variables if false.
+By default psuedo-candidates will be computed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="ecole.observation.StrongBranchingScores.before_reset">
 <code class="sig-name descname">before_reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.StrongBranchingScores" title="ecole.observation.StrongBranchingScores">ecole.observation.StrongBranchingScores</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.StrongBranchingScores.before_reset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do nothing.</p>
@@ -376,6 +406,11 @@ pseudocost branching (also known as hybrid branching).</p>
 <p>This observation function extracts an array containing the pseudocost for
 each variable in the problem which can be indexed by the action set.  Variables for which
 a pseudocost is not applicable are filled with NaN.</p>
+<dl class="py method">
+<dt id="ecole.observation.Pseudocosts.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts">ecole.observation.Pseudocosts</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Pseudocosts.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt id="ecole.observation.Pseudocosts.before_reset">
 <code class="sig-name descname">before_reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts">ecole.observation.Pseudocosts</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Pseudocosts.before_reset" title="Permalink to this definition">¶</a></dt>
