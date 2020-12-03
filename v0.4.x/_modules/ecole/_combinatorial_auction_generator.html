@@ -421,7 +421,7 @@
 
             <span class="c1"># drop negativaly priced bundles</span>
             <span class="k">if</span> <span class="n">price</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Negatively priced bundle avoided&quot;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Negatively priced bundle avoided&quot;</span><span class="p">)</span>
                 <span class="k">continue</span>
 
             <span class="c1"># bid on initial bundle</span>
@@ -464,19 +464,19 @@
                     <span class="k">break</span>
 
                 <span class="k">if</span> <span class="n">price</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Negatively priced substitutable bundle avoided&quot;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Negatively priced substitutable bundle avoided&quot;</span><span class="p">)</span>
                     <span class="k">continue</span>
 
                 <span class="k">if</span> <span class="n">price</span> <span class="o">&gt;</span> <span class="n">budget</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Over priced substitutable bundle avoided&quot;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Over priced substitutable bundle avoided&quot;</span><span class="p">)</span>
                     <span class="k">continue</span>
 
                 <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="n">bundle</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">min_resale_value</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Substitutable bundle below min resale value avoided&quot;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Substitutable bundle below min resale value avoided&quot;</span><span class="p">)</span>
                     <span class="k">continue</span>
 
                 <span class="k">if</span> <span class="nb">frozenset</span><span class="p">(</span><span class="n">bundle</span><span class="p">)</span> <span class="ow">in</span> <span class="n">bidder_bids</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Duplicated substitutable bundle avoided&quot;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Duplicated substitutable bundle avoided&quot;</span><span class="p">)</span>
                     <span class="k">continue</span>
 
                 <span class="n">bidder_bids</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">bundle</span><span class="p">)]</span> <span class="o">=</span> <span class="n">price</span>
