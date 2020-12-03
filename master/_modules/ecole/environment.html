@@ -200,13 +200,18 @@
 
 
 <div class="viewcode-block" id="Environment"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment">[docs]</a><span class="k">class</span> <span class="nc">Environment</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Ecole Partially Observable Markov Decision Process (POMDP).</span>
+
+<span class="sd">    Similar to OpenAI Gym, environments represent the environment that an agent is supposed to solved.</span>
+<span class="sd">    For maximum customizability, different components are composed/orchestrated in this class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__DefaultObservationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span>
     <span class="n">__DefaultRewardFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">IsDone</span>
     <span class="n">__DefaultInformationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">Nothing</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="viewcode-block" id="Environment.__init__"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">observation_function</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
         <span class="n">reward_function</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
@@ -214,6 +219,26 @@
         <span class="n">scip_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">dynamics_kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a new environment object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        observation_function:</span>
+<span class="sd">            An object of type :py:class:`~ecole.observation.ObservationFunction` used to custotize what</span>
+<span class="sd">            observation are returned in :meth:`reset` and :meth:`step`.</span>
+<span class="sd">        reward_function:</span>
+<span class="sd">            An object of type :py:class:`~ecole.reward.RewardFunction` used to customize what reward</span>
+<span class="sd">            are returned in :meth:`reset` and :meth:`step`.</span>
+<span class="sd">        information_function:</span>
+<span class="sd">            An object of type :py:class:`~ecole.information.InformationFunction` used to customize what</span>
+<span class="sd">            additional information are returned in :meth:`reset` and :meth:`step`.</span>
+<span class="sd">        scip_params:</span>
+<span class="sd">            Parameters set on the underlying :py:class:`~ecole.scip.Model` on every episode.</span>
+<span class="sd">        **dynamics_kwargs:</span>
+<span class="sd">            Other arguments are passed to the constructor of the :py:class:`~ecole.typing.Dynamics`.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
             <span class="n">observation_function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__DefaultObservationFunction__</span><span class="p">()</span>
         <span class="p">)</span>
@@ -225,7 +250,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Dynamics__</span><span class="p">(</span><span class="o">**</span><span class="n">dynamics_kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">spawn_random_engine</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">spawn_random_engine</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Environment.reset"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Start a new episode.</span>
@@ -237,8 +262,10 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        instance:</span>
-<span class="sd">            The combinatorial optimization problem to tackle during the newly started</span>
+<span class="sd">            The combinatorial optimization problem to tackle during the newly startedre</span>
 <span class="sd">            episode.</span>
+<span class="sd">            Either a file path to an instance that can be read by SCIP, or a `Model` whose problem</span>
+<span class="sd">            definition data will be copied.</span>
 <span class="sd">        dynamics_args:</span>
 <span class="sd">            Extra arguments are forwarded as is to the underlying :py:class:`~ecole.typing.Dynamics`.</span>
 <span class="sd">        dynamics_kwargs:</span>
@@ -270,7 +297,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">ecole</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">instance</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">copy_orig</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scip_params</span><span class="p">)</span>
