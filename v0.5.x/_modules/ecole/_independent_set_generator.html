@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ecole._independent_set_generator &mdash; Ecole 0.4.3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/create-environments.html">Create New Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/instances.html">Generate Problem Instances</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/information.html">Informations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/instances.html">Instance Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/utilities.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../discussion/seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../discussion/theory.html">Ecole Theoretical Model</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ecole</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>ecole._independent_set_generator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for ecole._independent_set_generator</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">ecole.scip</span>
+
+
+<div class="viewcode-block" id="IndependentSetGenerator"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.IndependentSetGenerator">[docs]</a><span class="k">class</span> <span class="nc">IndependentSetGenerator</span><span class="p">:</span>
+<div class="viewcode-block" id="IndependentSetGenerator.__init__"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.IndependentSetGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_nodes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="n">edge_probability</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span>
+        <span class="n">affinity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">graph_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;barabasi_albert&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor for the independent set generator.</span>
+
+<span class="sd">        The parameters passed in this constructor will be used when a user calls next() or iterates</span>
+<span class="sd">        over the object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_nodes:</span>
+<span class="sd">            The number of nodes in the graph.</span>
+<span class="sd">        edge_probability:</span>
+<span class="sd">            The probability of generating each edge.</span>
+<span class="sd">            This parameter must be in the range [0, 1].</span>
+<span class="sd">            This parameter will only be used if graph_type = &quot;erdos_renyi&quot;</span>
+<span class="sd">        affinity:</span>
+<span class="sd">            The number of nodes each new node will be attached to, in the sampling scheme.</span>
+<span class="sd">            This parameter must be an integer &gt;= 1.</span>
+<span class="sd">            This parameter will only be used if graph_type = &quot;barabasi_albert&quot;.</span>
+<span class="sd">        graph_type:</span>
+<span class="sd">            The method used in which to generate graphs.  One of &quot;barabasi_albert&quot; or &quot;erdos_renyi&quot;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_nodes</span> <span class="o">=</span> <span class="n">n_nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_probability</span> <span class="o">=</span> <span class="n">edge_probability</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">affinity</span> <span class="o">=</span> <span class="n">affinity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_type</span> <span class="o">=</span> <span class="n">graph_type</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the next instances of a independent set problem.</span>
+
+<span class="sd">        This method calls generate_instance() with the parameters passed in</span>
+<span class="sd">        the constructor and returns the ecole.scip.Model.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        model:</span>
+<span class="sd">            an ecole model of a independent set instance.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_instance</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_nodes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_probability</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">affinity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="IndependentSetGenerator.seed"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.IndependentSetGenerator.seed">[docs]</a>    <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Seeds IndependentSetGenerator.</span>
+
+<span class="sd">        This method sets the random seed of the IndependentSetGenerator.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        seed:</span>
+<span class="sd">            The seed in which to set the random number generator with.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="IndependentSetGenerator.generate_instance"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.IndependentSetGenerator.generate_instance">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">generate_instance</span><span class="p">(</span>
+        <span class="n">n_nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">edge_probability</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">affinity</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">graph_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate an instance of an independent set problem.</span>
+
+<span class="sd">        This method generates an instance of the independent set problem based on the</span>
+<span class="sd">        specified parameters and returns it as an ecole model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_nodes:</span>
+<span class="sd">            The number of nodes in the graph.</span>
+<span class="sd">        edge_probability:</span>
+<span class="sd">            The probability of generating each edge.</span>
+<span class="sd">            This parameter must be in the range [0, 1].</span>
+<span class="sd">            This parameter will only be used if graph_type = &quot;erdos_renyi&quot;.</span>
+<span class="sd">        affinity:</span>
+<span class="sd">            The number of nodes each new node will be attached to, in the sampling scheme.</span>
+<span class="sd">            This parameter must be an integer &gt;= 1.</span>
+<span class="sd">            This parameter will only be used if graph_type = &quot;barabasi_albert&quot;.</span>
+<span class="sd">        graph_type:</span>
+<span class="sd">            The method used in which to generate graphs.</span>
+<span class="sd">            This parameter must be one of &quot;barabasi_albert&quot; or &quot;erdos_renyi&quot;.</span>
+<span class="sd">        rng:</span>
+<span class="sd">            A random number generator.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        model:</span>
+<span class="sd">            An ecole model of a independent set instance.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># generate graph</span>
+        <span class="k">if</span> <span class="n">graph_type</span> <span class="o">==</span> <span class="s2">&quot;barabasi_albert&quot;</span><span class="p">:</span>
+            <span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="o">.</span><span class="n">barabasi_albert</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">affinity</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">graph_type</span> <span class="o">==</span> <span class="s2">&quot;erdos_renyi&quot;</span><span class="p">:</span>
+            <span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="o">.</span><span class="n">erdos_renyi</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">edge_probability</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;graph_type must be one of &#39;barabasi_albert&#39; or &#39;erdos_renyi&#39;&quot;</span><span class="p">)</span>
+
+        <span class="n">cliques</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">greedy_clique_partition</span><span class="p">()</span>
+        <span class="n">inequalities</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">clique</span> <span class="ow">in</span> <span class="n">cliques</span><span class="p">:</span>
+            <span class="n">clique</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">clique</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">clique</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+                <span class="n">inequalities</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">clique</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">inequalities</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">clique</span><span class="p">)</span>
+
+        <span class="c1"># Put trivial inequalities for nodes that didn&#39;t appear</span>
+        <span class="c1"># in the constraints, otherwise SCIP will complain</span>
+        <span class="n">used_nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">inequalities</span><span class="p">:</span>
+            <span class="n">used_nodes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">used_nodes</span><span class="p">:</span>
+                <span class="n">inequalities</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">node</span><span class="p">,))</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">prob_basic</span><span class="p">()</span>
+        <span class="n">pyscipopt_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span>
+        <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setMaximize</span><span class="p">()</span>
+
+        <span class="n">var_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># add variable for each node</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)):</span>
+            <span class="n">var_dict</span><span class="p">[</span><span class="n">node</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;x_</span><span class="si">{</span><span class="n">node</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+        <span class="c1"># add constraints such that no connect nodes both set to 1</span>
+        <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">inequalities</span><span class="p">):</span>
+            <span class="n">vars_to_sum</span> <span class="o">=</span> <span class="p">[</span><span class="n">var_dict</span><span class="p">[</span><span class="n">node</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">group</span><span class="p">)]</span>
+            <span class="n">cons_lhs</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">vars_to_sum</span><span class="p">:</span>
+                <span class="n">cons_lhs</span> <span class="o">+=</span> <span class="n">var</span>
+            <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addCons</span><span class="p">(</span><span class="n">cons_lhs</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">model</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">Graph</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">edges</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+        <span class="n">degrees</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">neighbors</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor for the Graph container.</span>
+
+<span class="sd">        The parameters passed are identify a graph.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_nodes:</span>
+<span class="sd">            The number of nodes in the graph.</span>
+<span class="sd">        edges:</span>
+<span class="sd">            A set containing the edges in the graph.</span>
+<span class="sd">        degrees:</span>
+<span class="sd">            An array containing the degreee of each node, where</span>
+<span class="sd">            degrees[node] gives the degree of the node.</span>
+<span class="sd">        neighbors:</span>
+<span class="sd">            A dict containing the neighbors of each node, where</span>
+<span class="sd">            neighbors[node] gives a set of the neighbors.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_nodes</span> <span class="o">=</span> <span class="n">n_nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">edges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">degrees</span> <span class="o">=</span> <span class="n">degrees</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span> <span class="o">=</span> <span class="n">neighbors</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the number of nodes in the graph.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        The number of nodes in the graph.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_nodes</span>
+
+    <span class="k">def</span> <span class="nf">greedy_clique_partition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Partition the graph into cliques using a greedy algorithm.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        cliques:</span>
+<span class="sd">            The a list of sets containing the cliques found by the algorithm.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cliques</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">leftover_nodes</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">degrees</span><span class="p">)</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="k">while</span> <span class="n">leftover_nodes</span><span class="p">:</span>
+            <span class="n">clique_center</span><span class="p">,</span> <span class="n">leftover_nodes</span> <span class="o">=</span> <span class="n">leftover_nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">leftover_nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="n">clique</span> <span class="o">=</span> <span class="p">{</span><span class="n">clique_center</span><span class="p">}</span>
+            <span class="n">neighbors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span><span class="p">[</span><span class="n">clique_center</span><span class="p">]</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">leftover_nodes</span><span class="p">)</span>
+            <span class="n">densest_neighbors</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">degrees</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">densest_neighbors</span><span class="p">:</span>
+                <span class="c1"># Can you add it to the clique, and maintain cliqueness?</span>
+                <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="n">neighbor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span><span class="p">[</span><span class="n">clique_node</span><span class="p">]</span> <span class="k">for</span> <span class="n">clique_node</span> <span class="ow">in</span> <span class="n">clique</span><span class="p">]):</span>
+                    <span class="n">clique</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+            <span class="n">cliques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clique</span><span class="p">)</span>
+            <span class="n">leftover_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">leftover_nodes</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">clique</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">cliques</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">erdos_renyi</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">edge_probability</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate an Erdös-Rényi random graph.</span>
+
+<span class="sd">        This method is used to generate an Erdös-Rényi graph by randomly adding edges with</span>
+<span class="sd">        the specified probability.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_nodes:</span>
+<span class="sd">            The number of nodes in the graph.</span>
+<span class="sd">        edge_probability:</span>
+<span class="sd">            The probability of generating each edge.</span>
+<span class="sd">            This value must be bound in the range [0,1].</span>
+<span class="sd">        rng:</span>
+<span class="sd">            A random number generator.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Graph:</span>
+<span class="sd">            The generated graph.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">degrees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">neighbors</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="nb">set</span><span class="p">()</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">)}</span>
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">edge_probability</span><span class="p">:</span>
+                <span class="n">edges</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+                <span class="n">degrees</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">degrees</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">neighbors</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">neighbors</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">degrees</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">graph</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">barabasi_albert</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">affinity</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate a Barabási-Albert random graph.</span>
+
+<span class="sd">        This method is used to generate a Barabási-Albert graph based on the specified affinity.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_nodes:</span>
+<span class="sd">            The number of nodes in the graph.</span>
+<span class="sd">        affinity:</span>
+<span class="sd">            The number of nodes each new node will be attached to, in the sampling scheme.</span>
+<span class="sd">            This parameter must be an integer &gt;= 1.</span>
+<span class="sd">        rng:</span>
+<span class="sd">            A random number generator.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Graph:</span>
+<span class="sd">            The generated graph.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">affinity</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">affinity</span> <span class="o">&lt;</span> <span class="n">n_nodes</span>
+
+        <span class="n">edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">degrees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">neighbors</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="nb">set</span><span class="p">()</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">)}</span>
+        <span class="k">for</span> <span class="n">new_node</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">affinity</span><span class="p">,</span> <span class="n">n_nodes</span><span class="p">):</span>
+            <span class="c1"># first node is connected to all previous ones (star-shape)</span>
+            <span class="k">if</span> <span class="n">new_node</span> <span class="o">==</span> <span class="n">affinity</span><span class="p">:</span>
+                <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">new_node</span><span class="p">)</span>
+            <span class="c1"># remaining nodes are picked stochastically</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">neighbor_prob</span> <span class="o">=</span> <span class="n">degrees</span><span class="p">[:</span><span class="n">new_node</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">edges</span><span class="p">))</span>
+                <span class="n">neighborhood</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">new_node</span><span class="p">,</span> <span class="n">affinity</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">neighbor_prob</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">neighborhood</span><span class="p">:</span>
+                <span class="n">edges</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">node</span><span class="p">,</span> <span class="n">new_node</span><span class="p">))</span>
+                <span class="n">degrees</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">degrees</span><span class="p">[</span><span class="n">new_node</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">neighbors</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_node</span><span class="p">)</span>
+                <span class="n">neighbors</span><span class="p">[</span><span class="n">new_node</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+        <span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">degrees</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">graph</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

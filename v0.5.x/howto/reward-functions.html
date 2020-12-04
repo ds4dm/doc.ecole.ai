@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Use Reward Functions &mdash; Ecole 0.4.3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Create New Functions" href="create-functions.html" />
+    <link rel="prev" title="Use Observation Functions" href="observation-functions.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Use Reward Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#arithmetic-on-reward-functions">Arithmetic on Reward Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-environments.html">Create New Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instances.html">Generate Problem Instances</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/information.html">Informations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/instances.html">Instance Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/utilities.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ecole</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Use Reward Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/howto/reward-functions.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="use-reward-functions">
+<span id="id1"></span><h1>Use Reward Functions<a class="headerlink" href="#use-reward-functions" title="Permalink to this headline">¶</a></h1>
+<p>Similarily to <a class="reference internal" href="observation-functions.html#use-observation-functions"><span class="std std-ref">observation functions</span></a> the reward recieved by
+the user for learning can be customized by changing the <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> used by the
+solver.
+In fact the mechanism of reward functions is very similar to that of observation
+functions.
+Likewise environment is not computing the reward directly but delegates that
+responsibility to a <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> object.
+The object has complete access to the solver and extract the data it needs.</p>
+<p>Using a different reward function is done with another parameter to the environment.
+For instance with the <a class="reference internal" href="../reference/environments.html#ecole.environment.Configuring" title="ecole.environment.Configuring"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuring</span></code></a> environment:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIterations</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reward_function</span>  
+<span class="go">ecole.reward.LpIterations()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>  
+<span class="go">(..., ..., 0.0, ..., ...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">({})</span>  
+<span class="go">(..., ..., 45.0, ..., ...)</span>
+</pre></div>
+</div>
+<p>Environments also have a default reward function.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reward_function</span>  
+<span class="go">ecole.reward.IsDone()</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../reference/rewards.html#reward-reference"><span class="std std-ref">the reference</span></a> for the list of available reward function,
+as well as <a class="reference internal" href="create-functions.html#create-new-functions"><span class="std std-ref">the documention</span></a> for explanation on how to create one.</p>
+<div class="section" id="arithmetic-on-reward-functions">
+<h2>Arithmetic on Reward Functions<a class="headerlink" href="#arithmetic-on-reward-functions" title="Permalink to this headline">¶</a></h2>
+<p>Finding a good reward function that will keep the learning process stable and efficient is
+a complex and active area of research.
+When dealing with new types of data, as is the case with Ecole, it is even more important
+to explore differents rewards.
+To create and combine rewards, python arithmetic operations can be used.</p>
+<p>For instance, one typically want to minimize the number of
+<a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a>.
+To achieve this, one would typically use the opposite of the reward.
+Such a reward function can be created by negating the reward function.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=-</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIterations</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>  
+<span class="go">(..., ..., -0.0, ..., ...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">({})</span>  
+<span class="go">(..., ..., -45.0, ..., ...)</span>
+</pre></div>
+</div>
+<p>Any operation, such as</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ecole.reward</span> <span class="kn">import</span> <span class="n">LpIterations</span>
+
+<span class="o">-</span><span class="mf">3.5</span> <span class="o">*</span> <span class="n">LpIterations</span><span class="p">()</span> <span class="o">**</span> <span class="mf">2.1</span> <span class="o">+</span> <span class="mf">4.4</span>
+</pre></div>
+</div>
+<p>are valid.</p>
+<p>Note that this is a full reward <em>function</em> object that can be given to an environment.
+it is similar to doing the following</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIterations</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>  
+<span class="go">(..., ..., ..., ..., ...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">lp_iter_reward</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">({})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reward</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.5</span> <span class="o">*</span> <span class="n">lp_iter_reward</span> <span class="o">**</span> <span class="mf">2.1</span> <span class="o">+</span> <span class="mf">4.4</span>
+</pre></div>
+</div>
+<p>Arithmetic operations on reward functions become exremely powerful when combining mutiple
+rewards functions, such as in</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ecole.reward</span> <span class="kn">import</span> <span class="n">LpIterations</span><span class="p">,</span> <span class="n">IsDone</span>
+
+<span class="mf">4.0</span> <span class="o">*</span> <span class="n">LpIterations</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">IsDone</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>because in this case it would <em>not</em> be possible to pass both
+<a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a> and <a class="reference internal" href="../reference/rewards.html#ecole.reward.IsDone" title="ecole.reward.IsDone"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsDone</span></code></a> to the
+environment.</p>
+<p>All operations that are valid between scalars are valid with reward functions</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">IsDone</span><span class="p">()</span> <span class="o">**</span> <span class="nb">abs</span><span class="p">(</span><span class="n">LpIterations</span><span class="p">()</span> <span class="o">//</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Not all mathematical operations have a dedicated Python operator.
+Ecole implements a number of other operations are as methods to reward functions.
+For instance, to get the exponential of <a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a>, one can
+use</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">LpIterations</span><span class="p">()</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This also works with rewards functions created from any expression</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">LpIterations</span><span class="p">())</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In last resort, reward functions have an <code class="docutils literal notranslate"><span class="pre">apply</span></code> method to compose rewards with any
+function</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">LpIterations</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">reward</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">reward</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="create-functions.html" class="btn btn-neutral float-right" title="Create New Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="observation-functions.html" class="btn btn-neutral float-left" title="Use Observation Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
