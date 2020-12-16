@@ -103,19 +103,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#conda">Conda</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pip">Pip</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#from-source">From Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#build-dependencies">Build dependencies</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Conda</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#cmake">CMake</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#scip-runtime-dependency">SCIP runtime dependency</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#building">Building</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#compiler-issues">Compiler issues</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#from-source">From Source</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using-environments.html">Using Environments</a></li>
@@ -128,7 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="howto/create-environments.html">Create New Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="howto/instances.html">Generate Problem Instances</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Tutorials</span></p>
+<p class="caption"><span class="caption-text">Practical Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
@@ -148,6 +136,10 @@
 <li class="toctree-l1"><a class="reference internal" href="discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="discussion/theory.html">Ecole Theoretical Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Zone</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guidelines</a></li>
 </ul>
 
             
@@ -231,79 +223,22 @@ interface to develop new Ecole components from Python</p>
 </div>
 <div class="section" id="pip">
 <h2>Pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>
-<p>We plan to deploy builds on PyPI.</p>
+<p>Currently unavailable.</p>
 </div>
 <div class="section" id="from-source">
 <h2>From Source<a class="headerlink" href="#from-source" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="build-dependencies">
-<h3>Build dependencies<a class="headerlink" href="#build-dependencies" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id1">
-<h4>Conda<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
-<p>All dependencies required for building Ecole can be resolved using a
-<a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> environment.
-Install everything in a development (named <code class="docutils literal notranslate"><span class="pre">ecole</span></code>) environment using</p>
+<p>Source builds currently require <code class="docutils literal notranslate"><span class="pre">conda</span></code> to fetch the dependencies.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -n ecole -f dev/conda.yaml
+conda activate ecole
+cmake -B build/
+cmake --build build/ --parallel
+python -m pip install build/python
 </pre></div>
 </div>
-<p>For the following, the <code class="docutils literal notranslate"><span class="pre">ecole</span></code> environment always needs to be activated.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate ecole
-conda config --append channels conda-forge
-conda config --set channel_priority flexible
-</pre></div>
-</div>
-<p><em>Note: this environment contains tools to build ecole and scip, format code, test,
-generate documentation etc. These are more than the dependencies to only use Ecole.</em></p>
-</div>
-<div class="section" id="cmake">
-<h4>CMake<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h4>
-<p><a class="reference external" href="https://cmake.org">CMake</a> is a meta-build tool, used for configuring other build tools
-(<em>e.g.</em> Make) or IDE’s.
-The whole build of Ecole can be done with CMake.
-A one-time configuration is necessary for CMake to find dependencies, detect system
-information, <em>etc</em>.
-Using <code class="docutils literal notranslate"><span class="pre">cmake</span></code>, we recommend building out of source using <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-B</span> <span class="pre">build/</span></code> to
-configure, and <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--build</span> <span class="pre">build/</span></code> to compile.
-CMake is made available in the <code class="docutils literal notranslate"><span class="pre">ecole</span></code> environment created earlier.</p>
-</div>
-</div>
-<div class="section" id="scip-runtime-dependency">
-<h3>SCIP runtime dependency<a class="headerlink" href="#scip-runtime-dependency" title="Permalink to this headline">¶</a></h3>
-<p>Scip dependency is resolved from <cite>conda</cite> inside <cite>dev/conda.yaml</cite>.
-No other action are necessary :)</p>
-</div>
-<div class="section" id="building">
-<h3>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h3>
-<p>In the Ecole source repository, configure using</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake -B build/ -D <span class="nv">ECOLE_DEVELOPER</span><span class="o">=</span>ON
-</pre></div>
-</div>
-<p><em>Note: this is the time to pass optional build options, such as the build type and compiler
-choice. For instance ``-D CMAKE_BUILD_TYPE=Debug`` can be added to compile with debug
-information.</em></p>
-<p>The definition <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">ECOLE_DEVELOPER=ON</span></code> changes the default settings (such as the build
-type, static analysis, <em>etc.</em>) for added convenience and to ensure high quality
-contributions.
-Only the default settings are changed, this mode does not override any explicit setting.</p>
-<p>Then, build Ecole with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake --build build/
-</pre></div>
-</div>
-<p>The Python package can finally be installed from the build directory</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pip install -I build/python
-</pre></div>
-</div>
-<div class="section" id="compiler-issues">
-<h4>Compiler issues<a class="headerlink" href="#compiler-issues" title="Permalink to this headline">¶</a></h4>
-<p>If you encounter problem with your compiler (because it is too old for instance),
-you can use the ones from ananconda.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install gxx_linux-64  <span class="c1"># Linux</span>
-</pre></div>
-</div>
-<p>And start again the configuring of Ecole.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -r build/ <span class="o">&amp;&amp;</span> cmake -B build/ -D <span class="nv">ECOLE_DEVELOPER</span><span class="o">=</span>ON
-</pre></div>
-</div>
-</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This mode of installation is not mature.
+In particular, the scip library may not be found when installed outside of the <code class="docutils literal notranslate"><span class="pre">ecole</span></code> environemnt.</p>
 </div>
 </div>
 </div>
