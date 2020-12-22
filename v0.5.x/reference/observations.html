@@ -126,6 +126,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#node-bipartite">Node Bipartite</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#strong-branching-scores">Strong Branching Scores</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pseudocosts">Pseudocosts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#khalil-et-al-2016">Khalil et al. 2016</a></li>
 </ul>
 </li>
 </ul>
@@ -597,6 +598,42 @@ a pseudocost is not applicable are filled with NaN.</p>
 <dt id="ecole.observation.Pseudocosts.extract">
 <code class="sig-name descname">extract</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts">ecole.observation.Pseudocosts</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span></em><span class="sig-paren">)</span> &#x2192; Optional[xt::xtensor]<a class="headerlink" href="#ecole.observation.Pseudocosts.extract" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract an array containing pseudocosts.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="khalil-et-al-2016">
+<h3>Khalil et al. 2016<a class="headerlink" href="#khalil-et-al-2016" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.Khalil2016">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">Khalil2016</code><a class="headerlink" href="#ecole.observation.Khalil2016" title="Permalink to this definition">¶</a></dt>
+<dd><p>Branching candidates features from Khalil et al. (2016).</p>
+<p>The observation is a matrix where rows represent pseudo branching cnadidates and columns
+represent features related to these variables.
+See <a class="reference internal" href="#khalil2016" id="id1"><span>[Khalil2016]</span></a> for a complete reference on this objservation function.</p>
+<dl class="citation">
+<dt class="label" id="khalil2016"><span class="brackets"><a class="fn-backref" href="#id1">Khalil2016</a></span></dt>
+<dd><p>Khalil, Elias Boutros, Pierre Le Bodic, Le Song, George Nemhauser, and Bistra Dilkina.
+“<a class="reference external" href="https://www.cc.gatech.edu/~lsong/papers/KhaLebSonNemDil16.pdf">Learning to branch in mixed integer programming.</a>”
+<em>Thirtieth AAAI Conference on Artificial Intelligence</em>. 2016.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="ecole.observation.Khalil2016.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016" title="ecole.observation.Khalil2016">ecole.observation.Khalil2016</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Khalil2016.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.Khalil2016.before_reset">
+<code class="sig-name descname">before_reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016" title="ecole.observation.Khalil2016">ecole.observation.Khalil2016</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Khalil2016.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Precompute static features for all varaible columns.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.Khalil2016.extract">
+<code class="sig-name descname">extract</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016" title="ecole.observation.Khalil2016">ecole.observation.Khalil2016</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span></em><span class="sig-paren">)</span> &#x2192; Optional[xt::xtensor]<a class="headerlink" href="#ecole.observation.Khalil2016.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the observation matrix.</p>
 </dd></dl>
 
 </dd></dl>
