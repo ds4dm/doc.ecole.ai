@@ -126,6 +126,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#node-bipartite">Node Bipartite</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#strong-branching-scores">Strong Branching Scores</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pseudocosts">Pseudocosts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#khalil-et-al-2016">Khalil et al. 2016</a></li>
 </ul>
 </li>
 </ul>
@@ -327,6 +328,182 @@ There exist an edge between a variable and a constraint if the variable exists i
 constraint with a non-zero coefficient.</p>
 <p>Each variable and constraint node is associated with a vector of features.
 Each edge is associated with the coefficient of the variable in the constraint.</p>
+<dl class="py class">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures">
+<em class="property">class </em><code class="sig-name descname">ColumnFeatures</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>has_lower_bound</p>
+<p>has_upper_bound</p>
+<p>normed_reduced_cost</p>
+<p>objective</p>
+<p>solution_value</p>
+<p>solution_frac</p>
+<p>is_solution_at_lower_bound</p>
+<p>is_solution_at_upper_bound</p>
+<p>scaled_age</p>
+<p>is_basis_lower</p>
+<p>is_basis_basic</p>
+<p>is_basis_upper</p>
+<p>is_basis_zero</p>
+<p>incumbent_value</p>
+<p>average_incumbent_value</p>
+<p>is_type_binary</p>
+<p>is_type_integer</p>
+<p>is_type_implicit_integer</p>
+<p>is_type_continuous</p>
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures" title="ecole.observation.NodeBipartiteObs.ColumnFeatures">ecole.observation.NodeBipartiteObs.ColumnFeatures</a></span></em>, <em class="sig-param"><span class="n">arg0</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.average_incumbent_value">
+<code class="sig-name descname">average_incumbent_value</code><em class="property"> = &lt;ColumnFeatures.average_incumbent_value: 14&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.average_incumbent_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.has_lower_bound">
+<code class="sig-name descname">has_lower_bound</code><em class="property"> = &lt;ColumnFeatures.has_lower_bound: 0&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_lower_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.has_upper_bound">
+<code class="sig-name descname">has_upper_bound</code><em class="property"> = &lt;ColumnFeatures.has_upper_bound: 1&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_upper_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.incumbent_value">
+<code class="sig-name descname">incumbent_value</code><em class="property"> = &lt;ColumnFeatures.incumbent_value: 13&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.incumbent_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_basic">
+<code class="sig-name descname">is_basis_basic</code><em class="property"> = &lt;ColumnFeatures.is_basis_basic: 10&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_basic" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_lower">
+<code class="sig-name descname">is_basis_lower</code><em class="property"> = &lt;ColumnFeatures.is_basis_lower: 9&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_lower" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_upper">
+<code class="sig-name descname">is_basis_upper</code><em class="property"> = &lt;ColumnFeatures.is_basis_upper: 11&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_upper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_zero">
+<code class="sig-name descname">is_basis_zero</code><em class="property"> = &lt;ColumnFeatures.is_basis_zero: 12&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_zero" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_lower_bound">
+<code class="sig-name descname">is_solution_at_lower_bound</code><em class="property"> = &lt;ColumnFeatures.is_solution_at_lower_bound: 6&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_lower_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_upper_bound">
+<code class="sig-name descname">is_solution_at_upper_bound</code><em class="property"> = &lt;ColumnFeatures.is_solution_at_upper_bound: 7&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_upper_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_binary">
+<code class="sig-name descname">is_type_binary</code><em class="property"> = &lt;ColumnFeatures.is_type_binary: 15&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_binary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_continuous">
+<code class="sig-name descname">is_type_continuous</code><em class="property"> = &lt;ColumnFeatures.is_type_continuous: 18&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_continuous" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_implicit_integer">
+<code class="sig-name descname">is_type_implicit_integer</code><em class="property"> = &lt;ColumnFeatures.is_type_implicit_integer: 17&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_implicit_integer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_integer">
+<code class="sig-name descname">is_type_integer</code><em class="property"> = &lt;ColumnFeatures.is_type_integer: 16&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_integer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.normed_reduced_cost">
+<code class="sig-name descname">normed_reduced_cost</code><em class="property"> = &lt;ColumnFeatures.normed_reduced_cost: 2&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.normed_reduced_cost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.objective">
+<code class="sig-name descname">objective</code><em class="property"> = &lt;ColumnFeatures.objective: 3&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.objective" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.scaled_age">
+<code class="sig-name descname">scaled_age</code><em class="property"> = &lt;ColumnFeatures.scaled_age: 8&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.scaled_age" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_frac">
+<code class="sig-name descname">solution_frac</code><em class="property"> = &lt;ColumnFeatures.solution_frac: 5&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_frac" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_value">
+<code class="sig-name descname">solution_value</code><em class="property"> = &lt;ColumnFeatures.solution_value: 4&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="ecole.observation.NodeBipartiteObs.RowFeatures">
+<em class="property">class </em><code class="sig-name descname">RowFeatures</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>bias</p>
+<p>is_tight</p>
+<p>scaled_age</p>
+<p>objective_cosine_similarity</p>
+<p>dual_solution_value</p>
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartiteObs.RowFeatures.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartiteObs.RowFeatures" title="ecole.observation.NodeBipartiteObs.RowFeatures">ecole.observation.NodeBipartiteObs.RowFeatures</a></span></em>, <em class="sig-param"><span class="n">arg0</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.RowFeatures.bias">
+<code class="sig-name descname">bias</code><em class="property"> = &lt;RowFeatures.bias: 0&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.bias" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.RowFeatures.dual_solution_value">
+<code class="sig-name descname">dual_solution_value</code><em class="property"> = &lt;RowFeatures.dual_solution_value: 4&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.dual_solution_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.RowFeatures.is_tight">
+<code class="sig-name descname">is_tight</code><em class="property"> = &lt;RowFeatures.is_tight: 1&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.is_tight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.NodeBipartiteObs.RowFeatures.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.RowFeatures.objective_cosine_similarity">
+<code class="sig-name descname">objective_cosine_similarity</code><em class="property"> = &lt;RowFeatures.objective_cosine_similarity: 3&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.objective_cosine_similarity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.NodeBipartiteObs.RowFeatures.scaled_age">
+<code class="sig-name descname">scaled_age</code><em class="property"> = &lt;RowFeatures.scaled_age: 2&gt;</em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.scaled_age" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py method">
 <dt id="ecole.observation.NodeBipartiteObs.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.__init__" title="Permalink to this definition">¶</a></dt>
@@ -425,6 +602,42 @@ a pseudocost is not applicable are filled with NaN.</p>
 <dt id="ecole.observation.Pseudocosts.extract">
 <code class="sig-name descname">extract</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts">ecole.observation.Pseudocosts</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span></em><span class="sig-paren">)</span> &#x2192; Optional[xt::xtensor]<a class="headerlink" href="#ecole.observation.Pseudocosts.extract" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract an array containing pseudocosts.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="khalil-et-al-2016">
+<h3>Khalil et al. 2016<a class="headerlink" href="#khalil-et-al-2016" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.Khalil2016">
+<em class="property">class </em><code class="sig-prename descclassname">ecole.observation.</code><code class="sig-name descname">Khalil2016</code><a class="headerlink" href="#ecole.observation.Khalil2016" title="Permalink to this definition">¶</a></dt>
+<dd><p>Branching candidates features from Khalil et al. (2016).</p>
+<p>The observation is a matrix where rows represent pseudo branching cnadidates and columns
+represent features related to these variables.
+See <a class="reference internal" href="#khalil2016" id="id1"><span>[Khalil2016]</span></a> for a complete reference on this objservation function.</p>
+<dl class="citation">
+<dt class="label" id="khalil2016"><span class="brackets"><a class="fn-backref" href="#id1">Khalil2016</a></span></dt>
+<dd><p>Khalil, Elias Boutros, Pierre Le Bodic, Le Song, George Nemhauser, and Bistra Dilkina.
+“<a class="reference external" href="https://www.cc.gatech.edu/~lsong/papers/KhaLebSonNemDil16.pdf">Learning to branch in mixed integer programming.</a>”
+<em>Thirtieth AAAI Conference on Artificial Intelligence</em>. 2016.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="ecole.observation.Khalil2016.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016" title="ecole.observation.Khalil2016">ecole.observation.Khalil2016</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Khalil2016.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.Khalil2016.before_reset">
+<code class="sig-name descname">before_reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016" title="ecole.observation.Khalil2016">ecole.observation.Khalil2016</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.observation.Khalil2016.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Precompute static features for all varaible columns.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.Khalil2016.extract">
+<code class="sig-name descname">extract</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016" title="ecole.observation.Khalil2016">ecole.observation.Khalil2016</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model">ecole.scip.Model</a></span></em>, <em class="sig-param"><span class="n">done</span><span class="p">:</span> <span class="n">bool</span></em><span class="sig-paren">)</span> &#x2192; Optional[xt::xtensor]<a class="headerlink" href="#ecole.observation.Khalil2016.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the observation matrix.</p>
 </dd></dl>
 
 </dd></dl>
