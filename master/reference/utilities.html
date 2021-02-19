@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Utilities &mdash; Ecole 0.4.5 documentation</title>
+  <title>Utilities &mdash; Ecole 0.5.0 documentation</title>
   
 
   
@@ -34,7 +34,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -74,7 +73,7 @@
             
             
               <div class="version">
-                0.4
+                0.5
               </div>
             
           
@@ -215,33 +214,33 @@
 <h2>Random<a class="headerlink" href="#random" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="ecole.RandomEngine">
-<em class="property">class </em><code class="sig-prename descclassname">ecole.</code><code class="sig-name descname">RandomEngine</code><a class="headerlink" href="#ecole.RandomEngine" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ecole.</span></code><code class="sig-name descname"><span class="pre">RandomEngine</span></code><a class="headerlink" href="#ecole.RandomEngine" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
 <dt id="ecole.RandomEngine.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">5489</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.RandomEngine.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5489</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.RandomEngine.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct the pseudo-random number engine.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="ecole.RandomEngine.discard">
-<code class="sig-name descname">discard</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a></span></em>, <em class="sig-param"><span class="n">n</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.RandomEngine.discard" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">discard</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.RandomEngine.discard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Advance the internal state by n times.</p>
 <p>Equivalent to calling operator() n times and discarding the result.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="ecole.RandomEngine.max_seed">
-<code class="sig-name descname">max_seed</code><em class="property"> = 18446744073709551615</em><a class="headerlink" href="#ecole.RandomEngine.max_seed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">max_seed</span></code><em class="property"> <span class="pre">=</span> <span class="pre">18446744073709551615</span></em><a class="headerlink" href="#ecole.RandomEngine.max_seed" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="ecole.RandomEngine.min_seed">
-<code class="sig-name descname">min_seed</code><em class="property"> = 0</em><a class="headerlink" href="#ecole.RandomEngine.min_seed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">min_seed</span></code><em class="property"> <span class="pre">=</span> <span class="pre">0</span></em><a class="headerlink" href="#ecole.RandomEngine.min_seed" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="ecole.RandomEngine.seed">
-<code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">5489</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.RandomEngine.seed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">seed</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5489</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.RandomEngine.seed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reinitialize the internal state of the random-number engine using new seed value.</p>
 </dd></dl>
 
@@ -249,13 +248,13 @@
 
 <dl class="py function">
 <dt id="ecole.seed">
-<code class="sig-prename descclassname">ecole.</code><code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ecole.seed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">ecole.</span></code><code class="sig-name descname"><span class="pre">seed</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.seed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Seed the global source of randomness in Ecole.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="ecole.spawn_random_engine">
-<code class="sig-prename descclassname">ecole.</code><code class="sig-name descname">spawn_random_engine</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine">ecole.RandomEngine</a><a class="headerlink" href="#ecole.spawn_random_engine" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">ecole.</span></code><code class="sig-name descname"><span class="pre">spawn_random_engine</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a><a class="headerlink" href="#ecole.spawn_random_engine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create new random engine deriving from global source of randomness.</p>
 <p>The global source of randomness is advance so two random engien created successively have different states.</p>
 </dd></dl>

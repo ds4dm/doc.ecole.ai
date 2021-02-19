@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Index &mdash; Ecole 0.4.5 documentation</title>
+  <title>Index &mdash; Ecole 0.5.0 documentation</title>
   
 
   
@@ -34,7 +34,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -72,7 +71,7 @@
             
             
               <div class="version">
-                0.4
+                0.5
               </div>
             
           
@@ -226,6 +225,8 @@
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
@@ -246,6 +247,8 @@
         <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.__init__">(ecole.instance.CombinatorialAuctionGenerator method)</a>
 </li>
         <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.__init__">(ecole.instance.IndependentSetGenerator method)</a>
+</li>
+        <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.GraphType.__init__">(ecole.instance.IndependentSetGenerator.GraphType method)</a>
 </li>
         <li><a href="reference/instances.html#ecole.instance.SetCoverGenerator.__init__">(ecole.instance.SetCoverGenerator method)</a>
 </li>
@@ -296,10 +299,16 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/rewards.html#ecole.reward.Arithmetic">Arithmetic (class in ecole.reward)</a>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.add_item_prob">add_item_prob() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.additivity">additivity() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.affinity">affinity() (ecole.instance.IndependentSetGenerator property)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/rewards.html#ecole.reward.Arithmetic">Arithmetic (class in ecole.reward)</a>
+</li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.as_pyscipopt">as_pyscipopt() (ecole.scip.Model method)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.average_incumbent_value">average_incumbent_value (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
@@ -310,6 +319,12 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.barabasi_albert">barabasi_albert (ecole.instance.IndependentSetGenerator attribute)</a>
+
+      <ul>
+        <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.GraphType.barabasi_albert">(ecole.instance.IndependentSetGenerator.GraphType attribute)</a>
+</li>
+      </ul></li>
       <li><a href="reference/information.html#ecole.information.Nothing.before_reset">before_reset() (ecole.information.Nothing method)</a>
 
       <ul>
@@ -348,6 +363,8 @@
 </li>
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics">BranchingDynamics (class in ecole.dynamics)</a>
 </li>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.budget_factor">budget_factor() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -355,6 +372,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator">CapacitatedFacilityLocationGenerator (class in ecole.instance)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.capacity_interval">capacity_interval() (ecole.instance.CapacitatedFacilityLocationGenerator property)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.column_features">column_features() (ecole.observation.NodeBipartiteObs property)</a>
 </li>
@@ -368,6 +387,8 @@
 </li>
       <li><a href="reference/rewards.html#ecole.reward.Constant">Constant (class in ecole.reward)</a>
 </li>
+      <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.continuous_assignment">continuous_assignment() (ecole.instance.CapacitatedFacilityLocationGenerator property)</a>
+</li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.copy_orig">copy_orig() (ecole.scip.Model method)</a>
 </li>
   </ul></td>
@@ -376,12 +397,16 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/scip-interface.html#ecole.scip.Model.disable_cuts">disable_cuts() (ecole.scip.Model method)</a>
+      <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.demand_interval">demand_interval() (ecole.instance.CapacitatedFacilityLocationGenerator property)</a>
 </li>
-      <li><a href="reference/scip-interface.html#ecole.scip.Model.disable_presolve">disable_presolve() (ecole.scip.Model method)</a>
+      <li><a href="reference/instances.html#ecole.instance.SetCoverGenerator.density">density() (ecole.instance.SetCoverGenerator property)</a>
+</li>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.disable_cuts">disable_cuts() (ecole.scip.Model method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.disable_presolve">disable_presolve() (ecole.scip.Model method)</a>
+</li>
       <li><a href="reference/utilities.html#ecole.RandomEngine.discard">discard() (ecole.RandomEngine method)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.dual_solution_value">dual_solution_value (ecole.observation.NodeBipartiteObs.RowFeatures attribute)</a>
@@ -396,8 +421,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.edge_features">edge_features() (ecole.observation.NodeBipartiteObs property)</a>
 </li>
+      <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.edge_probability">edge_probability() (ecole.instance.IndependentSetGenerator property)</a>
+</li>
       <li><a href="reference/environments.html#ecole.environment.Environment">Environment (class in ecole.environment)</a>
 </li>
+      <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.erdos_renyi">erdos_renyi (ecole.instance.IndependentSetGenerator attribute)</a>
+
+      <ul>
+        <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.GraphType.erdos_renyi">(ecole.instance.IndependentSetGenerator.GraphType attribute)</a>
+</li>
+      </ul></li>
       <li><a href="reference/information.html#ecole.information.Nothing.extract">extract() (ecole.information.Nothing method)</a>
 
       <ul>
@@ -434,10 +467,14 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/scip-interface.html#ecole.scip.Model.from_file">from_file() (ecole.scip.Model static method)</a>
+      <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.fixed_cost_cste_interval">fixed_cost_cste_interval() (ecole.instance.CapacitatedFacilityLocationGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.fixed_cost_scale_interval">fixed_cost_scale_interval() (ecole.instance.CapacitatedFacilityLocationGenerator property)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.from_file">from_file() (ecole.scip.Model static method)</a>
+</li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.from_pyscipopt">from_pyscipopt() (ecole.scip.Model static method)</a>
 </li>
   </ul></td>
@@ -464,6 +501,8 @@
 </li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.get_params">get_params() (ecole.scip.Model method)</a>
 </li>
+      <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.graph_type">graph_type() (ecole.instance.IndependentSetGenerator property)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -486,9 +525,13 @@
 </li>
       <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator">IndependentSetGenerator (class in ecole.instance)</a>
 </li>
+      <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.GraphType">IndependentSetGenerator.GraphType (class in ecole.instance)</a>
+</li>
       <li><a href="reference/information.html#ecole.typing.InformationFunction">InformationFunction (class in ecole.typing)</a>
 </li>
       <li><a href="reference/instances.html#ecole.typing.InstanceGenerator">InstanceGenerator (class in ecole.typing)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.integers">integers() (ecole.instance.CombinatorialAuctionGenerator property)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_basic">is_basis_basic (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
@@ -496,10 +539,10 @@
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_upper">is_basis_upper (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
-      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_zero">is_basis_zero (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_zero">is_basis_zero (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
+</li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_lower_bound">is_solution_at_lower_bound (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_upper_bound">is_solution_at_upper_bound (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
@@ -540,11 +583,19 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/instances.html#ecole.instance.SetCoverGenerator.max_coef">max_coef() (ecole.instance.SetCoverGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.max_n_sub_bids">max_n_sub_bids() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
       <li><a href="reference/utilities.html#ecole.RandomEngine.max_seed">max_seed (ecole.RandomEngine attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.max_value">max_value() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
       <li><a href="reference/utilities.html#ecole.RandomEngine.min_seed">min_seed (ecole.RandomEngine attribute)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.min_value">min_value() (ecole.instance.CombinatorialAuctionGenerator property)</a>
 </li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model">Model (class in ecole.scip)</a>
 </li>
@@ -554,20 +605,36 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.name">name() (ecole.observation.NodeBipartiteObs.ColumnFeatures property)</a>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.n_bids">n_bids() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.SetCoverGenerator.n_cols">n_cols() (ecole.instance.SetCoverGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.n_customers">n_customers() (ecole.instance.CapacitatedFacilityLocationGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.n_facilities">n_facilities() (ecole.instance.CapacitatedFacilityLocationGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.n_items">n_items() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.n_nodes">n_nodes() (ecole.instance.IndependentSetGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.SetCoverGenerator.n_rows">n_rows() (ecole.instance.SetCoverGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.GraphType.name">name() (ecole.instance.IndependentSetGenerator.GraphType property)</a>
 
       <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.name">(ecole.observation.NodeBipartiteObs.ColumnFeatures property)</a>
+</li>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.name">(ecole.observation.NodeBipartiteObs.RowFeatures property)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/rewards.html#ecole.reward.NNodes">NNodes (class in ecole.reward)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartite">NodeBipartite (class in ecole.observation)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs">NodeBipartiteObs (class in ecole.observation)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures">NodeBipartiteObs.ColumnFeatures (class in ecole.observation)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures">NodeBipartiteObs.RowFeatures (class in ecole.observation)</a>
@@ -600,10 +667,12 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/scip-interface.html#ecole.scip.Model.prob_basic">prob_basic() (ecole.scip.Model static method)</a>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.presolve">presolve() (ecole.scip.Model method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.prob_basic">prob_basic() (ecole.scip.Model static method)</a>
+</li>
       <li><a href="reference/observations.html#ecole.observation.Pseudocosts">Pseudocosts (class in ecole.observation)</a>
 </li>
   </ul></td>
@@ -614,8 +683,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/utilities.html#ecole.RandomEngine">RandomEngine (class in ecole)</a>
 </li>
+      <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.ratio">ratio() (ecole.instance.CapacitatedFacilityLocationGenerator property)</a>
+</li>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.resale_factor">resale_factor() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
       <li><a href="reference/environments.html#ecole.environment.Environment.reset">reset() (ecole.environment.Environment method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics.reset_dynamics">reset_dynamics() (ecole.dynamics.BranchingDynamics method)</a>
 
       <ul>
@@ -624,8 +699,6 @@
         <li><a href="reference/environments.html#ecole.typing.Dynamics.reset_dynamics">(ecole.typing.Dynamics method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/rewards.html#ecole.typing.RewardFunction">RewardFunction (class in ecole.typing)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.row_features">row_features() (ecole.observation.NodeBipartiteObs property)</a>
@@ -701,8 +774,38 @@
   </ul></td>
 </tr></table>
 
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.transform_prob">transform_prob() (ecole.scip.Model method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.GraphType.value">value() (ecole.instance.IndependentSetGenerator.GraphType property)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.value">(ecole.observation.NodeBipartiteObs.ColumnFeatures property)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.value">(ecole.observation.NodeBipartiteObs.RowFeatures property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.value_deviation">value_deviation() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.warnings">warnings() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.write_problem">write_problem() (ecole.scip.Model method)</a>
 </li>

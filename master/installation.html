@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Installation &mdash; Ecole 0.4.5 documentation</title>
+  <title>Installation &mdash; Ecole 0.5.0 documentation</title>
   
 
   
@@ -34,7 +34,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -74,7 +73,7 @@
             
             
               <div class="version">
-                0.4
+                0.5
               </div>
             
           
@@ -231,18 +230,24 @@ interface to develop new Ecole components from Python</p>
 </div>
 <div class="section" id="from-source">
 <h2>From Source<a class="headerlink" href="#from-source" title="Permalink to this headline">¶</a></h2>
-<p>Source builds currently require <code class="docutils literal notranslate"><span class="pre">conda</span></code> to fetch the dependencies.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -n ecole -f dev/conda.yaml
-conda activate ecole
-cmake -B build/
+<dl class="simple">
+<dt>Building from source requires:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://cmake.org/">CMake</a> &gt;= 3.15,</p></li>
+<li><p>A <a class="reference external" href="https://en.cppreference.com/w/cpp/compiler_support">C++17 compiler</a>,</p></li>
+<li><p><a class="reference external" href="https://www.python.org/">Python</a> and <a class="reference external" href="https://numpy.org/">NumPy</a> for the Python package,</p></li>
+<li><p>A <a class="reference external" href="https://www.scipopt.org/">SCIP</a> installation.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake -B build/
 cmake --build build/ --parallel
 python -m pip install build/python
 </pre></div>
 </div>
+<p>Both the <code class="docutils literal notranslate"><span class="pre">build/</span></code> folder and <code class="docutils literal notranslate"><span class="pre">ecole</span></code> folder can safely be removed aftwerwards.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This mode of installation is not mature.
-In particular, the scip library may not be found when installed outside of the <code class="docutils literal notranslate"><span class="pre">ecole</span></code> environemnt.</p>
+<p>SCIP is linked dynamically so it must remained installed when using Ecole.</p>
 </div>
 </div>
 </div>
