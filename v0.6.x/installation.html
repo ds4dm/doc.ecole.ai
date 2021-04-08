@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Installation &mdash; Ecole 0.5.0 documentation</title>
+  <title>Installation &mdash; Ecole 0.5.1 documentation</title>
   
 
   
@@ -141,6 +141,7 @@
 <p class="caption"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers/example-observation.html">Example Contribute Observation Function</a></li>
 </ul>
 
             
@@ -214,12 +215,14 @@
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="conda">
 <h2>Conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c scipopt -c conda-forge ecole
+<img alt="Conda-Forge version" src="https://img.shields.io/conda/vn/conda-forge/ecole?label=version&amp;logo=conda-forge" />
+<img alt="Conda-Forge platforms" src="https://img.shields.io/conda/pn/conda-forge/ecole?logo=conda-forge" />
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge ecole
 </pre></div>
 </div>
 <p><a class="reference external" href="https://github.com/SCIP-Interfaces/PySCIPOpt">PyScipOpt</a> is not required but is the main SCIP
 interface to develop new Ecole components from Python</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c scipopt -c conda-forge ecole pyscipopt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge ecole pyscipopt
 </pre></div>
 </div>
 <p>Currenlty, conda packages are only available for Linux and MacOS.</p>
