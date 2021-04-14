@@ -227,6 +227,7 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
@@ -254,6 +255,14 @@
         <li><a href="reference/instances.html#ecole.instance.SetCoverGenerator.__init__">(ecole.instance.SetCoverGenerator method)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.Khalil2016.__init__">(ecole.observation.Khalil2016 method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.MilpBipartite.__init__">(ecole.observation.MilpBipartite method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.__init__">(ecole.observation.MilpBipartiteObs method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.ConstraintFeatures.__init__">(ecole.observation.MilpBipartiteObs.ConstraintFeatures method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.__init__">(ecole.observation.MilpBipartiteObs.VariableFeatures method)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartite.__init__">(ecole.observation.NodeBipartite method)</a>
 </li>
@@ -331,6 +340,8 @@
       <ul>
         <li><a href="reference/observations.html#ecole.observation.Khalil2016.before_reset">(ecole.observation.Khalil2016 method)</a>
 </li>
+        <li><a href="reference/observations.html#ecole.observation.MilpBipartite.before_reset">(ecole.observation.MilpBipartite method)</a>
+</li>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartite.before_reset">(ecole.observation.NodeBipartite method)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.Pseudocosts.before_reset">(ecole.observation.Pseudocosts method)</a>
@@ -358,8 +369,12 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.bias">bias (ecole.observation.NodeBipartiteObs.RowFeatures attribute)</a>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.ConstraintFeatures.bias">bias (ecole.observation.MilpBipartiteObs.ConstraintFeatures attribute)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.bias">(ecole.observation.NodeBipartiteObs.RowFeatures attribute)</a>
 </li>
+      </ul></li>
       <li><a href="reference/environments.html#ecole.environment.Branching">Branching (class in ecole.environment)</a>
 </li>
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics">BranchingDynamics (class in ecole.dynamics)</a>
@@ -380,13 +395,15 @@
 </li>
       <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator">CombinatorialAuctionGenerator (class in ecole.instance)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/environments.html#ecole.environment.Configuring">Configuring (class in ecole.environment)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/environments.html#ecole.dynamics.ConfiguringDynamics">ConfiguringDynamics (class in ecole.dynamics)</a>
 </li>
       <li><a href="reference/rewards.html#ecole.reward.Constant">Constant (class in ecole.reward)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.constraint_features">constraint_features() (ecole.observation.MilpBipartiteObs property)</a>
 </li>
       <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.continuous_assignment">continuous_assignment() (ecole.instance.CapacitatedFacilityLocationGenerator property)</a>
 </li>
@@ -420,8 +437,12 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.edge_features">edge_features() (ecole.observation.NodeBipartiteObs property)</a>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.edge_features">edge_features() (ecole.observation.MilpBipartiteObs property)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.edge_features">(ecole.observation.NodeBipartiteObs property)</a>
 </li>
+      </ul></li>
       <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.edge_probability">edge_probability() (ecole.instance.IndependentSetGenerator property)</a>
 </li>
       <li><a href="reference/environments.html#ecole.environment.Environment">Environment (class in ecole.environment)</a>
@@ -436,6 +457,8 @@
 
       <ul>
         <li><a href="reference/observations.html#ecole.observation.Khalil2016.extract">(ecole.observation.Khalil2016 method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.MilpBipartite.extract">(ecole.observation.MilpBipartite method)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartite.extract">(ecole.observation.NodeBipartite method)</a>
 </li>
@@ -510,12 +533,20 @@
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_lower_bound">has_lower_bound (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.has_lower_bound">has_lower_bound (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_lower_bound">(ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_upper_bound">has_upper_bound (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.has_upper_bound">has_upper_bound (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_upper_bound">(ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -540,26 +571,42 @@
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_upper">is_basis_upper (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_zero">is_basis_zero (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_lower_bound">is_solution_at_lower_bound (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_upper_bound">is_solution_at_upper_bound (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.is_solved">is_solved() (ecole.scip.Model method)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.is_tight">is_tight (ecole.observation.NodeBipartiteObs.RowFeatures attribute)</a>
 </li>
-      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_binary">is_type_binary (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_binary">is_type_binary (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_binary">(ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
-      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_continuous">is_type_continuous (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
+      </ul></li>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_continuous">is_type_continuous (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_continuous">(ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
-      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_implicit_integer">is_type_implicit_integer (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
+      </ul></li>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_implicit_integer">is_type_implicit_integer (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_implicit_integer">(ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
-      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_integer">is_type_integer (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
+      </ul></li>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_integer">is_type_integer (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_integer">(ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
+      </ul></li>
       <li><a href="reference/rewards.html#ecole.reward.IsDone">IsDone (class in ecole.reward)</a>
 </li>
   </ul></td>
@@ -576,6 +623,10 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.lower_bound">lower_bound (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/rewards.html#ecole.reward.LpIterations">LpIterations (class in ecole.reward)</a>
 </li>
   </ul></td>
@@ -590,9 +641,17 @@
 </li>
       <li><a href="reference/utilities.html#ecole.RandomEngine.max_seed">max_seed (ecole.RandomEngine attribute)</a>
 </li>
+      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.max_value">max_value() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartite">MilpBipartite (class in ecole.observation)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.max_value">max_value() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs">MilpBipartiteObs (class in ecole.observation)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.ConstraintFeatures">MilpBipartiteObs.ConstraintFeatures (class in ecole.observation)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures">MilpBipartiteObs.VariableFeatures (class in ecole.observation)</a>
 </li>
       <li><a href="reference/utilities.html#ecole.RandomEngine.min_seed">min_seed (ecole.RandomEngine attribute)</a>
 </li>
@@ -623,6 +682,10 @@
       <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.GraphType.name">name() (ecole.instance.IndependentSetGenerator.GraphType property)</a>
 
       <ul>
+        <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.ConstraintFeatures.name">(ecole.observation.MilpBipartiteObs.ConstraintFeatures property)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.name">(ecole.observation.MilpBipartiteObs.VariableFeatures property)</a>
+</li>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.name">(ecole.observation.NodeBipartiteObs.ColumnFeatures property)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.name">(ecole.observation.NodeBipartiteObs.RowFeatures property)</a>
@@ -654,8 +717,12 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.objective">objective (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.objective">objective (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.objective">(ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.objective_cosine_similarity">objective_cosine_similarity (ecole.observation.NodeBipartiteObs.RowFeatures attribute)</a>
@@ -783,12 +850,24 @@
   </ul></td>
 </tr></table>
 
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.upper_bound">upper_bound (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.GraphType.value">value() (ecole.instance.IndependentSetGenerator.GraphType property)</a>
 
       <ul>
+        <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.ConstraintFeatures.value">(ecole.observation.MilpBipartiteObs.ConstraintFeatures property)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.value">(ecole.observation.MilpBipartiteObs.VariableFeatures property)</a>
+</li>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.value">(ecole.observation.NodeBipartiteObs.ColumnFeatures property)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.value">(ecole.observation.NodeBipartiteObs.RowFeatures property)</a>
@@ -797,6 +876,8 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.value_deviation">value_deviation() (ecole.instance.CombinatorialAuctionGenerator property)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.variable_features">variable_features() (ecole.observation.MilpBipartiteObs property)</a>
 </li>
   </ul></td>
 </tr></table>
