@@ -125,6 +125,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nothing">Nothing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#node-bipartite">Node Bipartite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#milp-bipartite">Milp Bipartite</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#strong-branching-scores">Strong Branching Scores</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pseudocosts">Pseudocosts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#khalil-et-al-2016">Khalil et al. 2016</a></li>
@@ -305,7 +306,7 @@ this method is not a getter and can have side effects.</p>
 <dl class="py method">
 <dt id="ecole.observation.NodeBipartite.__init__">
 <code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartite" title="ecole.observation.NodeBipartite"><span class="pre">ecole.observation.NodeBipartite</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.NodeBipartite.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize the logger.</p>
+<dd><p>Constructor for NodeBipartite.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>cache</strong> – Whether or not to cache static features within an episode.
@@ -547,6 +548,179 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 <dt id="ecole.observation.NodeBipartiteObs.row_features">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">row_features</span></code><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.row_features" title="Permalink to this definition">¶</a></dt>
 <dd><p>A matrix where each row is represents a constraint, and each column a feature of the constraints.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="milp-bipartite">
+<h3>Milp Bipartite<a class="headerlink" href="#milp-bipartite" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt id="ecole.observation.MilpBipartite">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ecole.observation.</span></code><code class="sig-name descname"><span class="pre">MilpBipartite</span></code><a class="headerlink" href="#ecole.observation.MilpBipartite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bipartite graph observation function for the sub-MILP at the latest branch-and-bound node.</p>
+<p>This observation function extract structured <a class="reference internal" href="#ecole.observation.MilpBipartiteObs" title="ecole.observation.MilpBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">MilpBipartiteObs</span></code></a>.</p>
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartite.__init__">
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.MilpBipartite" title="ecole.observation.MilpBipartite"><span class="pre">ecole.observation.MilpBipartite</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.MilpBipartite.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for MilpBipartite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>use_normalization</strong> – Should the features be normalized?
+This is recommended for some application such as deep learning models.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartite.before_reset">
+<code class="sig-name descname"><span class="pre">before_reset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.MilpBipartite" title="ecole.observation.MilpBipartite"><span class="pre">ecole.observation.MilpBipartite</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.MilpBipartite.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartite.extract">
+<code class="sig-name descname"><span class="pre">extract</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.MilpBipartite" title="ecole.observation.MilpBipartite"><span class="pre">ecole.observation.MilpBipartite</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ecole.observation.MilpBipartiteObs" title="ecole.observation.MilpBipartiteObs"><span class="pre">ecole.observation.MilpBipartiteObs</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.observation.MilpBipartite.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract a new <a class="reference internal" href="#ecole.observation.MilpBipartiteObs" title="ecole.observation.MilpBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">MilpBipartiteObs</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="ecole.observation.MilpBipartiteObs">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ecole.observation.</span></code><code class="sig-name descname"><span class="pre">MilpBipartiteObs</span></code><a class="headerlink" href="#ecole.observation.MilpBipartiteObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bipartite graph observation that represents the most recent MILP during presolving.</p>
+<p>The optimization problem is represented as an heterogenous bipartite graph.
+On one side, a node is associated with one variable, on the other side a node is
+associated with one constraint.
+There exist an edge between a variable and a constraint if the variable exists in the
+constraint with a non-zero coefficient.</p>
+<p>Each variable and constraint node is associated with a vector of features.
+Each edge is associated with the coefficient of the variable in the constraint.</p>
+<dl class="py class">
+<dt id="ecole.observation.MilpBipartiteObs.ConstraintFeatures">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">ConstraintFeatures</span></code><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>bias</p>
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartiteObs.ConstraintFeatures.__init__">
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures" title="ecole.observation.MilpBipartiteObs.ConstraintFeatures"><span class="pre">ecole.observation.MilpBipartiteObs.ConstraintFeatures</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.MilpBipartiteObs.ConstraintFeatures.bias">
+<code class="sig-name descname"><span class="pre">bias</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ConstraintFeatures.bias:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures.bias" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartiteObs.ConstraintFeatures.name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartiteObs.ConstraintFeatures.value">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">value</span></code><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">VariableFeatures</span></code><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>objective</p>
+<p>is_type_binary</p>
+<p>is_type_integer</p>
+<p>is_type_implicit_integer</p>
+<p>is_type_continuous</p>
+<p>has_lower_bound</p>
+<p>has_upper_bound</p>
+<p>lower_bound</p>
+<p>upper_bound</p>
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.__init__">
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.MilpBipartiteObs.VariableFeatures" title="ecole.observation.MilpBipartiteObs.VariableFeatures"><span class="pre">ecole.observation.MilpBipartiteObs.VariableFeatures</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.has_lower_bound">
+<code class="sig-name descname"><span class="pre">has_lower_bound</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.has_lower_bound:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.has_lower_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.has_upper_bound">
+<code class="sig-name descname"><span class="pre">has_upper_bound</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.has_upper_bound:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.has_upper_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_binary">
+<code class="sig-name descname"><span class="pre">is_type_binary</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_binary:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_binary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_continuous">
+<code class="sig-name descname"><span class="pre">is_type_continuous</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_continuous:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_continuous" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_implicit_integer">
+<code class="sig-name descname"><span class="pre">is_type_implicit_integer</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_implicit_integer:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_implicit_integer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_integer">
+<code class="sig-name descname"><span class="pre">is_type_integer</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_integer:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_integer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.lower_bound">
+<code class="sig-name descname"><span class="pre">lower_bound</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.lower_bound:</span> <span class="pre">7&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.lower_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.objective">
+<code class="sig-name descname"><span class="pre">objective</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.objective:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.objective" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.upper_bound">
+<code class="sig-name descname"><span class="pre">upper_bound</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.upper_bound:</span> <span class="pre">8&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.upper_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartiteObs.VariableFeatures.value">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">value</span></code><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartiteObs.__init__">
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartiteObs.constraint_features">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">constraint_features</span></code><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.constraint_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix where each row is represents a constraint, and each column a feature of the constraints.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartiteObs.edge_features">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">edge_features</span></code><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.edge_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>The constraint matrix of the optimization problem, with rows for contraints and columns for variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ecole.observation.MilpBipartiteObs.variable_features">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">variable_features</span></code><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.variable_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix where each row represents a variable, and each column a feature of the variables.</p>
 </dd></dl>
 
 </dd></dl>
