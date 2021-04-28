@@ -230,8 +230,8 @@ In the following, we will adapt <a class="reference internal" href="../reference
 to the observation features.</p>
 <p>The method that will be called to return an observation is called
 <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction.extract" title="ecole.typing.ObservationFunction.extract"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extract()</span></code></a>.
-Here is how we can create a new observation function that scale the features their maximum absolute
-value.</p>
+Here is how we can create a new observation function that scale the features by their maximum
+absolute value.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">ecole.observation</span> <span class="kn">import</span> <span class="n">NodeBipartite</span>
 
@@ -352,7 +352,7 @@ methods.</p>
 </div>
 <div class="section" id="using-pyscipopt">
 <h2>Using PyScipOpt<a class="headerlink" href="#using-pyscipopt" title="Permalink to this headline">¶</a></h2>
-<p>When creating new function, it is common to need to extract information from the solver.
+<p>When creating a new function, it is common to need to extract information from the solver.
 <a class="reference external" href="https://github.com/SCIP-Interfaces/PySCIPOpt">PyScipOpt</a> is the official Python interface to
 SCIP.
 The <code class="docutils literal notranslate"><span class="pre">pyscipopt.Model</span></code> holds a stateful SCIP problem instance and solver.

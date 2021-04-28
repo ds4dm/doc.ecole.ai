@@ -234,7 +234,7 @@
 <p>Thank you for your interest in contributing to Ecole! 🌟
 Contributions are more diverse than contributing new features.
 Improving the documentation, reporting and reproducing bugs, discussing the direction of Ecole in
-the discussions, helping other use Ecole.</p>
+the discussions, helping others use Ecole.</p>
 <div class="section" id="contribution-acceptance">
 <h2>Contribution acceptance<a class="headerlink" href="#contribution-acceptance" title="Permalink to this headline">¶</a></h2>
 <p>Not all code contributions are relevant for Ecole.
@@ -256,7 +256,7 @@ Ecole is mostly written in C++ so this is where you will find most features, rew
 Ecole uses <a class="reference external" href="https://pybind11.readthedocs.io/">PyBind</a> to create the binding, these are all the C++ files
 in this directory.
 Sometimes, you may find Python code as well.
-Either this is because a feature is more natuarally in Python, or because we have accepted an early contribution
+This is either because a feature is more naturally implemented in Python, or because we have accepted an early contribution
 that is not yet ported to C++.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">docs</span></code> is the <a class="reference external" href="https://www.sphinx-doc.org">Sphinx</a> documentation written in reStructuredText.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">examples</span></code> are practical examples showcasing how to use Ecole for certain tasks.</p></li>
@@ -266,7 +266,7 @@ that is not yet ported to C++.</p></li>
 <h2>Dependencies with Conda<a class="headerlink" href="#dependencies-with-conda" title="Permalink to this headline">¶</a></h2>
 <p>All dependencies required for building Ecole (including SCIP) can be resolved using a
 <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> environment.
-Install everything in a development (named <code class="docutils literal notranslate"><span class="pre">ecole</span></code>) environment using</p>
+Install everything in a development environment (named <code class="docutils literal notranslate"><span class="pre">ecole</span></code>) using</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -n ecole -f dev/conda.yaml
 </pre></div>
 </div>
@@ -315,17 +315,17 @@ Only the default settings are changed, this mode does not override any explicit 
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Be sure to eliminate all warnings, as warnings. They will be considered as errors in the PR.</p>
+<p>Be sure to eliminate all warnings. They will be considered as errors in the PR.</p>
 </div>
 </div>
 <div class="section" id="compiler-issues">
 <h3>Compiler issues<a class="headerlink" href="#compiler-issues" title="Permalink to this headline">¶</a></h3>
-<p>If you encounter problem with your compiler (because it is too old for instance),
+<p>If you encounter problems with your compiler (because it is too old for instance),
 you can use the ones from ananconda.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install cxx-compiler
 </pre></div>
 </div>
-<p>And start again the configuring of Ecole.</p>
+<p>And start again the configuration of Ecole.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -r build/ <span class="o">&amp;&amp;</span> cmake -B build/ -D <span class="nv">ECOLE_DEVELOPER</span><span class="o">=</span>ON
 </pre></div>
 </div>
@@ -380,14 +380,14 @@ to format the layout of the code and fix some C++ error-prone patterns.</p>
 This is a file called <code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code> that is created automatically by CMake when using
 <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">ECOLE_DEVELOPER=ON</span></code>.
 The file needs to be accessible at the root directory of the project, so you should symlink it like
-so (assuming you set CMake to configure in the directory named <code class="docutils literal notranslate"><span class="pre">build</span></code> as shown before).</p>
+so (assuming you have configured CMake in the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory as shown before).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s build/compile_commands.json
 </pre></div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>This file is also read by <a class="reference external" href="https://clangd.llvm.org">clangd</a>, a C++ language server (already
-installed the conda environment).
+installed in the conda environment).
 To get code completion, compile errors, go-to-definition and more, you can install a language
 server protocol plugin for your editor.</p>
 </div>

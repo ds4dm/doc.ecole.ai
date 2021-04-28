@@ -265,7 +265,7 @@ This can be better understood when using the <a class="reference internal" href=
 <h2>With an Environment<a class="headerlink" href="#with-an-environment" title="Permalink to this headline">¶</a></h2>
 <p>The environment <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> accepts problem instance as
 <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a>, so there is no need to write generated instances to file.</p>
-<p>A typical example training voer 1000 instances/episodes would look like:</p>
+<p>A typical example training over 1000 instances/episodes would look like:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
 
 
@@ -282,7 +282,7 @@ This can be better understood when using the <a class="reference internal" href=
 <p class="admonition-title">Note</p>
 <p>While it is possible to modify the instance before passing it to
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code>, it is not considered a good practice, as it obscure what
-what task is being learned (which is not be self contained by the environment class anymore).
+what task is being learned (which is not self contained by the environment class anymore).
 A better alternative is to <a class="reference internal" href="create-environments.html#create-new-environment"><span class="std std-ref">create a new environment</span></a> to perfom such changes.</p>
 </div>
 </div>
@@ -336,7 +336,7 @@ If we want to implement it, we have to write the same generator as the equilvale
 <p>Another useful case it to generate instances of a same problem type but with different parameters.
 If there are few different set of parameter to choose from, then we could use the same technique as above.
 However, with more set of parameters (or even infinite), this becomes wasteful (or impossible).</p>
-<p>To do this, we can use the generators <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.generate_instance" title="ecole.typing.InstanceGenerator.generate_instance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_instance()</span></code></a> static function
+<p>To do this, we can use the generator’s <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.generate_instance" title="ecole.typing.InstanceGenerator.generate_instance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_instance()</span></code></a> static function
 and manually pass a <a class="reference internal" href="../reference/utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a>.
 For instance, to randomly choose the <code class="docutils literal notranslate"><span class="pre">n_cols</span></code> and <code class="docutils literal notranslate"><span class="pre">n_rows</span></code> parameters from
 <a class="reference internal" href="../reference/instances.html#ecole.instance.SetCoverGenerator" title="ecole.instance.SetCoverGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetCoverGenerator</span></code></a>, one could use</p>
