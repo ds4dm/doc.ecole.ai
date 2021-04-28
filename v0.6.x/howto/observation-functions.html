@@ -255,16 +255,6 @@ explicitly pass <code class="docutils literal notranslate"><span class="pre">Non
 <div class="section" id="multiple-observation-functions">
 <h2>Multiple Observation Functions<a class="headerlink" href="#multiple-observation-functions" title="Permalink to this headline">¶</a></h2>
 <p>To use multiple observation functions, wrap them in a <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obs_func</span> <span class="o">=</span> <span class="p">(</span>
-<span class="gp">... </span>   <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span><span class="p">(),</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span><span class="p">()</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="n">obs_func</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span>  
-<span class="go">[ecole.observation.NodeBipartiteObs(), None]</span>
-</pre></div>
-</div>
-<p>Similarily with a tuple</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obs_func</span> <span class="o">=</span> <span class="p">{</span>
 <span class="gp">... </span>   <span class="s2">&quot;some_name&quot;</span><span class="p">:</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span><span class="p">(),</span>
 <span class="gp">... </span>   <span class="s2">&quot;other_name&quot;</span><span class="p">:</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span><span class="p">(),</span>
@@ -273,6 +263,16 @@ explicitly pass <code class="docutils literal notranslate"><span class="pre">Non
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span>  
 <span class="go">{&#39;some_name&#39;: ecole.observation.NodeBipartiteObs(), &#39;other_name&#39;: None}</span>
+</pre></div>
+</div>
+<p>Similarily with a tuple</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obs_func</span> <span class="o">=</span> <span class="p">(</span>
+<span class="gp">... </span>   <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span><span class="p">(),</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span><span class="p">()</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="n">obs_func</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span>  
+<span class="go">[ecole.observation.NodeBipartiteObs(), None]</span>
 </pre></div>
 </div>
 <dl class="footnote brackets">

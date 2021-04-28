@@ -272,7 +272,7 @@ it is similar to doing the following</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">reward</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.5</span> <span class="o">*</span> <span class="n">lp_iter_reward</span> <span class="o">**</span> <span class="mf">2.1</span> <span class="o">+</span> <span class="mf">4.4</span>
 </pre></div>
 </div>
-<p>Arithmetic operations on reward functions become exremely powerful when combining mutiple
+<p>Arithmetic operations on reward functions become extremely powerful when combining mutiple
 rewards functions, such as in</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ecole.reward</span> <span class="kn">import</span> <span class="n">LpIterations</span><span class="p">,</span> <span class="n">IsDone</span>
 
@@ -287,7 +287,7 @@ environment.</p>
 </pre></div>
 </div>
 <p>Not all mathematical operations have a dedicated Python operator.
-Ecole implements a number of other operations are as methods to reward functions.
+Ecole implements a number of other operations as methods of reward functions.
 For instance, to get the exponential of <a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a>, one can
 use</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">LpIterations</span><span class="p">()</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
