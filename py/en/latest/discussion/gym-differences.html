@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Differences with OpenAi Gym &mdash; Ecole 0.6.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Seeding" href="seeding.html" />
+    <link rel="prev" title="Utilities" href="../reference/utilities.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/instances.html">Generate Problem Instances</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Practical Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/information.html">Informations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/instances.html">Instance Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/utilities.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Differences with OpenAi Gym</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#changing-reward-and-observations">Changing reward and observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameter-to-reset">Parameter to reset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#done-on-reset">Done on reset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#action-set">Action set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reward-offset">Reward offset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#no-observation-on-terminal-states">No observation on terminal states</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Ecole Theoretical Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Zone</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example Contribute Observation Function</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ecole</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Differences with OpenAi Gym</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/discussion/gym-differences.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="differences-with-openai-gym">
+<h1>Differences with OpenAi Gym<a class="headerlink" href="#differences-with-openai-gym" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="changing-reward-and-observations">
+<h2>Changing reward and observations<a class="headerlink" href="#changing-reward-and-observations" title="Permalink to this headline">¶</a></h2>
+<p>Contrarily to <a class="reference external" href="https://gym.openai.com/">OpenAI Gym</a> where learning tasks are predefined,
+Ecole gives the user the tools to easily extend and customize environments.
+This is because the objective with Ecole is not only to provide a collection of challenges
+for machine learning, but really to solve combinatorial optimization problems more
+efficiently.
+If different data or tweaking the control task delivers better performances, it is an improvement!
+This is why Ecole let users change the environment reward and observation using
+<a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> and <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a>.</p>
+</div>
+<div class="section" id="parameter-to-reset">
+<h2>Parameter to reset<a class="headerlink" href="#parameter-to-reset" title="Permalink to this headline">¶</a></h2>
+<p>In OpenAI Gym, <code class="docutils literal notranslate"><span class="pre">reset</span></code> does not take parameters whereas is Ecole
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> takes a problem instance as a mandatory
+input.
+This is because when doing machine learning for optimization, there is no practical interest in
+solving the same problem over and over again.
+What is important is that the machine learning model is able to generalize to unseen problems.
+This is typically done by training on mutliple problem instances.</p>
+<p>This setting is similar to multi-task reinforcement learning, where each problem instance is a task
+and one aims to generalize to unseen tasks.
+An alternative way to implement this is found in <a class="reference external" href="https://meta-world.github.io/">MetaWorld</a>,
+where instead of passing the task as a parameter to <code class="docutils literal notranslate"><span class="pre">reset</span></code>, an supplementary <code class="docutils literal notranslate"><span class="pre">set_task</span></code> method
+is defined in the environment.</p>
+</div>
+<div class="section" id="done-on-reset">
+<h2>Done on reset<a class="headerlink" href="#done-on-reset" title="Permalink to this headline">¶</a></h2>
+<p>In Ecole, <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> returns the same <code class="docutils literal notranslate"><span class="pre">done</span></code> flag as
+in <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
+This is because nothing prevent an initial state from also being a terminal one.
+It is not only a theoretical consideration.
+For instance, in <a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a>, the initial state would typically be on
+the root node, prior to making the first branching decision.
+However, modern solvers have powerful presolvers, and it is not uncommon that the solution to the
+problem is found without needing to branch on any variable.</p>
+</div>
+<div class="section" id="action-set">
+<h2>Action set<a class="headerlink" href="#action-set" title="Permalink to this headline">¶</a></h2>
+<p>Ecole defines an action set at every transition of the environment, while OpenAI Gym defines an
+<code class="docutils literal notranslate"><span class="pre">action_space</span></code> as a static variable of the environment.
+Ecole environments are more complex.
+For instance in <a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> the set of valid actions changes, not only
+with every episode, but also with every transition!
+The <code class="docutils literal notranslate"><span class="pre">action_set</span></code> is required to make the next call to
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
+We chose to add it as a return type to <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> and
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> to emphasize this difference.</p>
+</div>
+<div class="section" id="reward-offset">
+<h2>Reward offset<a class="headerlink" href="#reward-offset" title="Permalink to this headline">¶</a></h2>
+<p>In <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> a <code class="docutils literal notranslate"><span class="pre">reward_offset</span></code> is returned.
+This is not only a difference with OpenAI Gym, but also not part of the MDP formulation.
+It has not purpose for learning algorithms, rather it is meant for evaluating the complete solving
+procedure.
+<a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> are often designed so that their cumulative sum match a
+metric on the terminal state, such as solving time or number of LP iterations.
+This is because final metrics are often all that matter.
+However, for learning, a single reward on the terminal state is hard to learn from.
+It is then divided over all intermediate transitions in the episode.</p>
+<p>Rather than providing a different mean of evaluating such metrics, we chose to reuse the
+environments to compute the cummulative sum, and therfore need the <code class="docutils literal notranslate"><span class="pre">reward_offset</span></code> for exactly
+matching the metric.</p>
+</div>
+<div class="section" id="no-observation-on-terminal-states">
+<h2>No observation on terminal states<a class="headerlink" href="#no-observation-on-terminal-states" title="Permalink to this headline">¶</a></h2>
+<p>On terminal states, in OpenAI Gym as in Ecole, no further action can be taken and the environment
+need to be <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.
+Most of the time, a terminal state in Ecole is a solved problem.
+This means that some complex observations cannot be extracted because they required information that
+simply do not exist.
+For instance <a class="reference internal" href="../reference/observations.html#ecole.observation.NodeBipartite" title="ecole.observation.NodeBipartite"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartite</span></code></a> extract some information about the LP
+solution of the current branch-and-bound node.
+When the problem is solved, for example on a terminal state of the
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment, there is not a current node where this
+information could be extracted.
+For these reasons, one would find a <code class="docutils literal notranslate"><span class="pre">None</span></code> instead of an observation on terminal states.</p>
+<p>In machine learning, the observation of a terminal state is actually never used.
+It is not given to a policy to take the next action (because there are not any), and hence never
+used for learning either.
+In OpenAI Gym, one can often get an observation on terminal states anyhow because the
+environment can easily extrapolate it.
+This can make the code easier to write, but is not required.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="seeding.html" class="btn btn-neutral float-right" title="Seeding" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../reference/utilities.html" class="btn btn-neutral float-left" title="Utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
