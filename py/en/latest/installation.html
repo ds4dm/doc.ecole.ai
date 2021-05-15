@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Installation &mdash; Ecole 0.6.0 documentation</title>
+  <title>Installation &mdash; Ecole 0.6.1 documentation</title>
   
 
   
@@ -250,7 +250,7 @@ interface to develop new Ecole components from Python</p>
 </pre></div>
 </div>
 <p>To specify the where to find SCIP (or any CMake parameters):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CMAKE_ARGS</span><span class="o">=</span><span class="s2">&quot;-DSCIP_DIR=path/to/lib/cmake/scip&quot;</span> pip install ecole
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CMAKE_ARGS</span><span class="o">=</span><span class="s2">&quot;-DSCIP_DIR=path/to/lib/cmake/scip -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON&quot;</span> pip install ecole
 </pre></div>
 </div>
 <p>For the latest Github version:</p>
