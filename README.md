@@ -5,3 +5,6 @@ The documentation is generated automatically.
 Do not commit changes to the documentation in this repository as it will be erased by
 the next commit in the main [Ecole repository](https://github.com/ds4dm/ecole).
 Make changes to the documetnation by changing the source files there.
+
+The top level version folders for the documentations are deprecated, use the ones in
+[`py/en`](py/en) instead.
