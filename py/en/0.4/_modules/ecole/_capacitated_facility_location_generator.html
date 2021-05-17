@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ecole._capacitated_facility_location_generator &mdash; Ecole 0.4.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/create-environments.html">Create New Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/instances.html">Generate Problem Instances</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/information.html">Informations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/instances.html">Instance Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/utilities.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../discussion/seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../discussion/theory.html">Ecole Theoretical Model</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ecole</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>ecole._capacitated_facility_location_generator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for ecole._capacitated_facility_location_generator</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">ecole.scip</span>
+
+
+<div class="viewcode-block" id="CapacitatedFacilityLocationGenerator"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator">[docs]</a><span class="k">class</span> <span class="nc">CapacitatedFacilityLocationGenerator</span><span class="p">:</span>
+<div class="viewcode-block" id="CapacitatedFacilityLocationGenerator.__init__"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_customers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n_facilities</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor for the capacitated facility location generator.</span>
+
+<span class="sd">        The parameters passed in this constructor will be used when a user calls next() or iterates</span>
+<span class="sd">        over the object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_customers</span>
+<span class="sd">            The number of customers.</span>
+<span class="sd">        n_facilities</span>
+<span class="sd">            The number of facilities.</span>
+<span class="sd">        ratio:</span>
+<span class="sd">            The ratio of capacity/demand.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_customers</span> <span class="o">=</span> <span class="n">n_customers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_facilities</span> <span class="o">=</span> <span class="n">n_facilities</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ratio</span> <span class="o">=</span> <span class="n">ratio</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the next instances of a capacitated facility location problem.</span>
+
+<span class="sd">        This method calls generate_instance() with the parameters passed in</span>
+<span class="sd">        the constructor and returns the ecole.scip.Model.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        model:</span>
+<span class="sd">            an ecole model of a capacitated facility location instance.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_instance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_customers</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_facilities</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratio</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CapacitatedFacilityLocationGenerator.seed"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.seed">[docs]</a>    <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Seeds CapacitatedFacilityLocationGenerator.</span>
+
+<span class="sd">        This method sets the random seed of the CapacitatedFacilityLocationGenerator.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        seed:</span>
+<span class="sd">            The seed in which to set the random number generator with.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CapacitatedFacilityLocationGenerator.generate_instance"><a class="viewcode-back" href="../../reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.generate_instance">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">generate_instance</span><span class="p">(</span>
+        <span class="n">n_customers</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n_facilities</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ratio</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generates an instance of a capacitated facility location problem.</span>
+
+<span class="sd">        This method generates an instance of the capacitated facility location problem based on the</span>
+<span class="sd">        specified parameters and returns it as an ecole model.</span>
+
+<span class="sd">        The problem is generated following:</span>
+<span class="sd">            Cornuejols G, Sridharan R, Thizy J-M (1991)</span>
+<span class="sd">            A Comparison of Heuristics and Relaxations for the Capacitated Plant Location Problem.</span>
+<span class="sd">            European Journal of Operations Research 50:280-297.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_customers:</span>
+<span class="sd">            The number of customers.</span>
+<span class="sd">        n_facilities:</span>
+<span class="sd">            The number of facilities.</span>
+<span class="sd">        ratio:</span>
+<span class="sd">            The ratio of capacity/demand.</span>
+<span class="sd">        rng:</span>
+<span class="sd">            A random number generator.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        model:</span>
+<span class="sd">            an ecole model of a independent set instance.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">c_x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_customers</span><span class="p">)</span>
+        <span class="n">c_y</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_customers</span><span class="p">)</span>
+
+        <span class="n">f_x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_facilities</span><span class="p">)</span>
+        <span class="n">f_y</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_facilities</span><span class="p">)</span>
+
+        <span class="n">demands</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">35</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_customers</span><span class="p">)</span>
+        <span class="n">capacities</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">160</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_facilities</span><span class="p">)</span>
+        <span class="n">fixed_costs</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">110</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_facilities</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+            <span class="n">capacities</span>
+        <span class="p">)</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">90</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_facilities</span><span class="p">)</span>
+        <span class="n">fixed_costs</span> <span class="o">=</span> <span class="n">fixed_costs</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+        <span class="n">total_demand</span> <span class="o">=</span> <span class="n">demands</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">total_capacity</span> <span class="o">=</span> <span class="n">capacities</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+        <span class="c1"># adjust capacities according to ratio</span>
+        <span class="n">capacities</span> <span class="o">=</span> <span class="n">capacities</span> <span class="o">*</span> <span class="n">ratio</span> <span class="o">*</span> <span class="n">total_demand</span> <span class="o">/</span> <span class="n">total_capacity</span>
+        <span class="n">capacities</span> <span class="o">=</span> <span class="n">capacities</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">total_capacity</span> <span class="o">=</span> <span class="n">capacities</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+        <span class="c1"># transportation costs</span>
+        <span class="n">trans_costs</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">c_x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="n">f_x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)))</span> <span class="o">**</span> <span class="mi">2</span>
+                <span class="o">+</span> <span class="p">(</span><span class="n">c_y</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="n">f_y</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)))</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="p">)</span>
+            <span class="o">*</span> <span class="mi">10</span>
+            <span class="o">*</span> <span class="n">demands</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="p">)</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">prob_basic</span><span class="p">()</span>
+        <span class="n">pyscipopt_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span>
+        <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setMinimize</span><span class="p">()</span>
+
+        <span class="c1"># add variables</span>
+        <span class="n">var_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">var_dict</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># transport costs from facility to locations</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_customers</span><span class="p">):</span>
+            <span class="n">var_dict</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_facilities</span><span class="p">):</span>
+                <span class="n">var_dict</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;x_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">trans_costs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">lb</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="p">)</span>
+
+        <span class="c1"># fixed costs for opening facilities</span>
+        <span class="n">var_dict</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_facilities</span><span class="p">):</span>
+            <span class="n">var_dict</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;y_</span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">fixed_costs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="p">)</span>
+
+        <span class="c1"># add constraints</span>
+        <span class="c1"># constraint for each customer to have demand</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_customers</span><span class="p">):</span>
+            <span class="n">vars_to_sum</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">var_dict</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_facilities</span><span class="p">)]</span>
+            <span class="n">cons_lhs</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">vars_to_sum</span><span class="p">:</span>
+                <span class="n">cons_lhs</span> <span class="o">+=</span> <span class="n">var</span>
+            <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addCons</span><span class="p">(</span><span class="n">cons_lhs</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;demand_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># constraint that the demand at each location does not exceed capacity</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_facilities</span><span class="p">):</span>
+            <span class="n">vars_to_sum</span> <span class="o">=</span> <span class="p">[</span><span class="n">demands</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">var_dict</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_customers</span><span class="p">)]</span>
+            <span class="n">vars_to_sum</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">capacities</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">var_dict</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">cons_lhs</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">vars_to_sum</span><span class="p">:</span>
+                <span class="n">cons_lhs</span> <span class="o">+=</span> <span class="n">var</span>
+            <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addCons</span><span class="p">(</span><span class="n">cons_lhs</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;capacity_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># constraint to for LP relaxation tightening</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_customers</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_facilities</span><span class="p">):</span>
+                <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">addCons</span><span class="p">(</span>
+                    <span class="n">var_dict</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">][</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">var_dict</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;tightening_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">model</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
