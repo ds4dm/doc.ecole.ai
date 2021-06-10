@@ -130,6 +130,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Instance Generators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#protocol">Protocol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#local-files">Local Files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#set-cover">Set Cover</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#combinatorial-auction">Combinatorial Auction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#capacitated-facility-location">Capacitated Facility Location</a></li>
@@ -256,6 +257,114 @@ to provide iterating capabilities.</p>
 <div class="section" id="listing">
 <h2>Listing<a class="headerlink" href="#listing" title="Permalink to this headline">¶</a></h2>
 <p>The list of instance generators is given below.</p>
+<div class="section" id="local-files">
+<h3>Local Files<a class="headerlink" href="#local-files" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.instance.</span></span><span class="sig-name descname"><span class="pre">FileGenerator</span></span><a class="headerlink" href="#ecole.instance.FileGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">SamplingMode</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>A generator to iterate over files in a directory and load them into :py:class:&lt;ecole.scip.Model&gt;.</p>
+</div></blockquote>
+<p>Members:</p>
+<blockquote>
+<div><p>replace</p>
+<p>remove</p>
+<p>remove_and_repeat</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>__init__(self: ecole.core.instance.FileGenerator.SamplingMode, value: int) -&gt; None</p></li>
+<li><p>__init__(self: ecole.core.instance.FileGenerator.SamplingMode, arg0: str) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;SamplingMode.remove:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.remove_and_repeat">
+<span class="sig-name descname"><span class="pre">remove_and_repeat</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;SamplingMode.remove_and_repeat:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.remove_and_repeat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.replace">
+<span class="sig-name descname"><span class="pre">replace</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;SamplingMode.replace:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.replace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">ecole.instance.FileGenerator</span></em>, <em class="sig-param"><span class="pre">directory:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'instances'</span></em>, <em class="sig-param"><span class="pre">recursive:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em>, <em class="sig-param"><span class="pre">sampling_mode:</span> <span class="pre">ecole.instance.FileGenerator.SamplingMode</span> <span class="pre">=</span> <span class="pre">&lt;SamplingMode.remove_and_repeat:</span> <span class="pre">2&gt;</span></em>, <em class="sig-param"><span class="pre">random_engine:</span> <span class="pre">ecole.RandomEngine</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.FileGenerator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a generator to iterate over local problem files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> – The path of the directory in which to look for files.</p></li>
+<li><p><strong>recursive</strong> – Wether sub-directories are searched as well.</p></li>
+<li><p><strong>sampling_mode</strong> – <dl class="simple">
+<dt>Method to iterate over files</dt><dd><ul>
+<li><p>”replace”: Replace every file in the sampling pool right after it is sampled;</p></li>
+<li><dl class="simple">
+<dt>”remove”: Remove every file from the sampling pool right after it is sampled and finish</dt><dd><p>iteration when all files are sampled once;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>”remove_and_repeat”: Remove every file from the sampling pool right after it is sampled</dt><dd><p>but repeat the procedure (with different order) after all files have been sampled.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.directory">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">directory</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.recursive">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">recursive</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.recursive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.sampling_mode">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">sampling_mode</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.sampling_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.seed">
+<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.instance.FileGenerator" title="ecole.instance.FileGenerator"><span class="pre">ecole.instance.FileGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.FileGenerator.seed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="set-cover">
 <h3>Set Cover<a class="headerlink" href="#set-cover" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
