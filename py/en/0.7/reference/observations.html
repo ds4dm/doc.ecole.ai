@@ -1,0 +1,1653 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Observations &mdash; Ecole 0.7.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rewards" href="rewards.html" />
+    <link rel="prev" title="Environments" href="environments.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/instances.html">Generate Problem Instances</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Practical Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Observations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#interface">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nothing">Nothing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#node-bipartite">Node Bipartite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#milp-bipartite">Milp Bipartite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#strong-branching-scores">Strong Branching Scores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pseudocosts">Pseudocosts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#khalil-et-al-2016">Khalil et al. 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hutter-et-al-2011">Hutter et al. 2011</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="information.html">Informations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instances.html">Instance Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Zone</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example Contribute Observation Function</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ecole</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Observations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/reference/observations.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="observations">
+<span id="observation-reference"></span><h1>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="interface">
+<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.typing.ObservationFunction">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.typing.</span></span><span class="sig-name descname"><span class="pre">ObservationFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.ObservationFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class repsonsible for extracting observations.</p>
+<p>Observation functions are objects given to the <a class="reference internal" href="environments.html#ecole.environment.Environment" title="ecole.environment.Environment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Environment</span></code></a> to
+extract the observations used to take the next action.</p>
+<p>This class presents the interface expected to define a valid observation function.
+It is not necessary to inherit from this class, as observation functions are defined by
+<a class="reference external" href="https://mypy.readthedocs.io/en/stable/protocols.html">structural subtyping</a>.
+It is exists to support Python type hints.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFunction</span></code></dt><dd><p>Observation function are equivalent to the generic data function, that is a function to extact an arbitrary type of data.</p>
+</dd>
+</dl>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.typing.ObservationFunction.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.typing.ObservationFunction.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.typing.ObservationFunction.before_reset">
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction.before_reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.ObservationFunction.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset internal data at the start of episodes.</p>
+<p>The method is called on new episodes <a class="reference internal" href="environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> right before
+the MDP is actually reset, that is right before the environment calls
+<a class="reference internal" href="environments.html#ecole.typing.Dynamics.reset_dynamics" title="ecole.typing.Dynamics.reset_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset_dynamics()</span></code></a>.</p>
+<p>It is usually used to reset the internal data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>, model defining the current state of the solver.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.typing.ObservationFunction.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">ecole.typing.Observation</span><a class="reference internal" href="../_modules/ecole/typing.html#ObservationFunction.extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.ObservationFunction.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the observation on the given state.</p>
+<p>Extract the observation  after transitionning on the new state given by <code class="docutils literal notranslate"><span class="pre">model</span></code>.
+The function is reponsible for keeping track of relevant information from previous states.
+This can safely be done in this method as it will only be called <em>once per state</em> <em>i.e.</em>,
+this method is not a getter and can have side effects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>, model defining the current state of the solver.</p></li>
+<li><p><strong>done</strong> – A flag indicating wether the state is terminal (as decided by the environment).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The return is passed to the user by the environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="listing">
+<h2>Listing<a class="headerlink" href="#listing" title="Permalink to this headline">¶</a></h2>
+<p>The list of observation functions relevant to users is given below.</p>
+<div class="section" id="nothing">
+<h3>Nothing<a class="headerlink" href="#nothing" title="Permalink to this headline">¶</a></h3>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Nothing">
+<span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">Nothing</span></span><a class="headerlink" href="#ecole.observation.Nothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.core.data.NoneFunction</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="node-bipartite">
+<h3>Node Bipartite<a class="headerlink" href="#node-bipartite" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartite">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">NodeBipartite</span></span><a class="headerlink" href="#ecole.observation.NodeBipartite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bipartite graph observation function on branch-and bound node.</p>
+<p>This observation function extract structured <a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartiteObs</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartite.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartite" title="ecole.observation.NodeBipartite"><span class="pre">ecole.observation.NodeBipartite</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.NodeBipartite.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for NodeBipartite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cache</strong> – Whether or not to cache static features within an episode.
+Currently, this is only safe if cutting planes are disabled.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartite.before_reset">
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartite" title="ecole.observation.NodeBipartite"><span class="pre">ecole.observation.NodeBipartite</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.NodeBipartite.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cache some feature not expected to change during an episode.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartite.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartite" title="ecole.observation.NodeBipartite"><span class="pre">ecole.observation.NodeBipartite</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs"><span class="pre">ecole.observation.NodeBipartiteObs</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.observation.NodeBipartite.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract a new <a class="reference internal" href="#ecole.observation.NodeBipartiteObs" title="ecole.observation.NodeBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeBipartiteObs</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">NodeBipartiteObs</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bipartite graph observation for branch-and-bound nodes.</p>
+<p>The optimization problem is represented as an heterogenous bipartite graph.
+On one side, a node is associated with one variable, on the other side a node is
+associated with one constraint.
+There exist an edge between a variable and a constraint if the variable exists in the
+constraint with a non-zero coefficient.</p>
+<p>Each variable and constraint node is associated with a vector of features.
+Each edge is associated with the coefficient of the variable in the constraint.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">ColumnFeatures</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>objective</p>
+<p>is_type_binary</p>
+<p>is_type_integer</p>
+<p>is_type_implicit_integer</p>
+<p>is_type_continuous</p>
+<p>has_lower_bound</p>
+<p>has_upper_bound</p>
+<p>normed_reduced_cost</p>
+<p>solution_value</p>
+<p>solution_frac</p>
+<p>is_solution_at_lower_bound</p>
+<p>is_solution_at_upper_bound</p>
+<p>scaled_age</p>
+<p>incumbent_value</p>
+<p>average_incumbent_value</p>
+<p>is_basis_lower</p>
+<p>is_basis_basic</p>
+<p>is_basis_upper</p>
+<p>is_basis_zero</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures" title="ecole.observation.NodeBipartiteObs.ColumnFeatures"><span class="pre">ecole.observation.NodeBipartiteObs.ColumnFeatures</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.average_incumbent_value">
+<span class="sig-name descname"><span class="pre">average_incumbent_value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.average_incumbent_value:</span> <span class="pre">14&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.average_incumbent_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.has_lower_bound">
+<span class="sig-name descname"><span class="pre">has_lower_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.has_lower_bound:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_lower_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.has_upper_bound">
+<span class="sig-name descname"><span class="pre">has_upper_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.has_upper_bound:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_upper_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.incumbent_value">
+<span class="sig-name descname"><span class="pre">incumbent_value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.incumbent_value:</span> <span class="pre">13&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.incumbent_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_basic">
+<span class="sig-name descname"><span class="pre">is_basis_basic</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_basis_basic:</span> <span class="pre">16&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_basic" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_lower">
+<span class="sig-name descname"><span class="pre">is_basis_lower</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_basis_lower:</span> <span class="pre">15&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_lower" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_upper">
+<span class="sig-name descname"><span class="pre">is_basis_upper</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_basis_upper:</span> <span class="pre">17&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_upper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_zero">
+<span class="sig-name descname"><span class="pre">is_basis_zero</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_basis_zero:</span> <span class="pre">18&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_zero" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_lower_bound">
+<span class="sig-name descname"><span class="pre">is_solution_at_lower_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_solution_at_lower_bound:</span> <span class="pre">10&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_lower_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_upper_bound">
+<span class="sig-name descname"><span class="pre">is_solution_at_upper_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_solution_at_upper_bound:</span> <span class="pre">11&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_upper_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_binary">
+<span class="sig-name descname"><span class="pre">is_type_binary</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_type_binary:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_binary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_continuous">
+<span class="sig-name descname"><span class="pre">is_type_continuous</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_type_continuous:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_continuous" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_implicit_integer">
+<span class="sig-name descname"><span class="pre">is_type_implicit_integer</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_type_implicit_integer:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_implicit_integer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_integer">
+<span class="sig-name descname"><span class="pre">is_type_integer</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_type_integer:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_integer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.normed_reduced_cost">
+<span class="sig-name descname"><span class="pre">normed_reduced_cost</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.normed_reduced_cost:</span> <span class="pre">7&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.normed_reduced_cost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.objective">
+<span class="sig-name descname"><span class="pre">objective</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.objective:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.objective" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.scaled_age">
+<span class="sig-name descname"><span class="pre">scaled_age</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.scaled_age:</span> <span class="pre">12&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.scaled_age" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_frac">
+<span class="sig-name descname"><span class="pre">solution_frac</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.solution_frac:</span> <span class="pre">9&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_frac" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_value">
+<span class="sig-name descname"><span class="pre">solution_value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.solution_value:</span> <span class="pre">8&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.RowFeatures">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">RowFeatures</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>bias</p>
+<p>objective_cosine_similarity</p>
+<p>is_tight</p>
+<p>dual_solution_value</p>
+<p>scaled_age</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.RowFeatures.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartiteObs.RowFeatures" title="ecole.observation.NodeBipartiteObs.RowFeatures"><span class="pre">ecole.observation.NodeBipartiteObs.RowFeatures</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.RowFeatures.bias">
+<span class="sig-name descname"><span class="pre">bias</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;RowFeatures.bias:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.bias" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.RowFeatures.dual_solution_value">
+<span class="sig-name descname"><span class="pre">dual_solution_value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;RowFeatures.dual_solution_value:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.dual_solution_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.RowFeatures.is_tight">
+<span class="sig-name descname"><span class="pre">is_tight</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;RowFeatures.is_tight:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.is_tight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.RowFeatures.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.RowFeatures.objective_cosine_similarity">
+<span class="sig-name descname"><span class="pre">objective_cosine_similarity</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;RowFeatures.objective_cosine_similarity:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.objective_cosine_similarity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.RowFeatures.scaled_age">
+<span class="sig-name descname"><span class="pre">scaled_age</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;RowFeatures.scaled_age:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.scaled_age" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.RowFeatures.value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.column_features">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">column_features</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.column_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix where each row is represents a variable, and each column a feature of the variables.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.edge_features">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">edge_features</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.edge_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>The constraint matrix of the optimization problem, with rows for contraints and columns for variables.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.row_features">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">row_features</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.row_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix where each row is represents a constraint, and each column a feature of the constraints.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="milp-bipartite">
+<h3>Milp Bipartite<a class="headerlink" href="#milp-bipartite" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartite">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">MilpBipartite</span></span><a class="headerlink" href="#ecole.observation.MilpBipartite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bipartite graph observation function for the sub-MILP at the latest branch-and-bound node.</p>
+<p>This observation function extract structured <a class="reference internal" href="#ecole.observation.MilpBipartiteObs" title="ecole.observation.MilpBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">MilpBipartiteObs</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartite.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.MilpBipartite" title="ecole.observation.MilpBipartite"><span class="pre">ecole.observation.MilpBipartite</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.MilpBipartite.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for MilpBipartite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>use_normalization</strong> – Should the features be normalized?
+This is recommended for some application such as deep learning models.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartite.before_reset">
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.MilpBipartite" title="ecole.observation.MilpBipartite"><span class="pre">ecole.observation.MilpBipartite</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.MilpBipartite.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartite.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.MilpBipartite" title="ecole.observation.MilpBipartite"><span class="pre">ecole.observation.MilpBipartite</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ecole.observation.MilpBipartiteObs" title="ecole.observation.MilpBipartiteObs"><span class="pre">ecole.observation.MilpBipartiteObs</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.observation.MilpBipartite.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract a new <a class="reference internal" href="#ecole.observation.MilpBipartiteObs" title="ecole.observation.MilpBipartiteObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">MilpBipartiteObs</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">MilpBipartiteObs</span></span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bipartite graph observation that represents the most recent MILP during presolving.</p>
+<p>The optimization problem is represented as an heterogenous bipartite graph.
+On one side, a node is associated with one variable, on the other side a node is
+associated with one constraint.
+There exist an edge between a variable and a constraint if the variable exists in the
+constraint with a non-zero coefficient.</p>
+<p>Each variable and constraint node is associated with a vector of features.
+Each edge is associated with the coefficient of the variable in the constraint.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.ConstraintFeatures">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">ConstraintFeatures</span></span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>bias</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.ConstraintFeatures.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures" title="ecole.observation.MilpBipartiteObs.ConstraintFeatures"><span class="pre">ecole.observation.MilpBipartiteObs.ConstraintFeatures</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.ConstraintFeatures.bias">
+<span class="sig-name descname"><span class="pre">bias</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ConstraintFeatures.bias:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures.bias" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.ConstraintFeatures.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.ConstraintFeatures.value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.ConstraintFeatures.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">VariableFeatures</span></span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>objective</p>
+<p>is_type_binary</p>
+<p>is_type_integer</p>
+<p>is_type_implicit_integer</p>
+<p>is_type_continuous</p>
+<p>has_lower_bound</p>
+<p>has_upper_bound</p>
+<p>lower_bound</p>
+<p>upper_bound</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.MilpBipartiteObs.VariableFeatures" title="ecole.observation.MilpBipartiteObs.VariableFeatures"><span class="pre">ecole.observation.MilpBipartiteObs.VariableFeatures</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.has_lower_bound">
+<span class="sig-name descname"><span class="pre">has_lower_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.has_lower_bound:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.has_lower_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.has_upper_bound">
+<span class="sig-name descname"><span class="pre">has_upper_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.has_upper_bound:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.has_upper_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_binary">
+<span class="sig-name descname"><span class="pre">is_type_binary</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_binary:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_binary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_continuous">
+<span class="sig-name descname"><span class="pre">is_type_continuous</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_continuous:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_continuous" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_implicit_integer">
+<span class="sig-name descname"><span class="pre">is_type_implicit_integer</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_implicit_integer:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_implicit_integer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_integer">
+<span class="sig-name descname"><span class="pre">is_type_integer</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_integer:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.is_type_integer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.lower_bound">
+<span class="sig-name descname"><span class="pre">lower_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.lower_bound:</span> <span class="pre">7&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.lower_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.objective">
+<span class="sig-name descname"><span class="pre">objective</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.objective:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.objective" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.upper_bound">
+<span class="sig-name descname"><span class="pre">upper_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.upper_bound:</span> <span class="pre">8&gt;</span></em><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.upper_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.VariableFeatures.value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.VariableFeatures.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.constraint_features">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">constraint_features</span></span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.constraint_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix where each row is represents a constraint, and each column a feature of the constraints.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.edge_features">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">edge_features</span></span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.edge_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>The constraint matrix of the optimization problem, with rows for contraints and columns for variables.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.variable_features">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">variable_features</span></span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.variable_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix where each row represents a variable, and each column a feature of the variables.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="strong-branching-scores">
+<h3>Strong Branching Scores<a class="headerlink" href="#strong-branching-scores" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.StrongBranchingScores">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">StrongBranchingScores</span></span><a class="headerlink" href="#ecole.observation.StrongBranchingScores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Strong branching score observation function on branch-and bound node.</p>
+<p>This observation obtains scores for all LP or pseudo candidate variables at a
+branch-and-bound node.  The strong branching score measures the quality of branching
+for each variable.  This observation can be used as an expert for imitation
+learning algorithms.</p>
+<p>This observation function extracts an array containing the strong branching score for
+each variable in the problem which can be indexed by the action set.  Variables for which
+a strong branching score is not applicable are filled with NaN.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.StrongBranchingScores.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.StrongBranchingScores" title="ecole.observation.StrongBranchingScores"><span class="pre">ecole.observation.StrongBranchingScores</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudo_candidates</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.StrongBranchingScores.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for StrongBranchingScores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pseudo_candidates</strong> – The parameter determines if strong branching scores are computed for
+psuedo-candidate variables if true or LP canidate variables if false.
+By default psuedo-candidates will be computed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.StrongBranchingScores.before_reset">
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.StrongBranchingScores" title="ecole.observation.StrongBranchingScores"><span class="pre">ecole.observation.StrongBranchingScores</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.StrongBranchingScores.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.StrongBranchingScores.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.StrongBranchingScores" title="ecole.observation.StrongBranchingScores"><span class="pre">ecole.observation.StrongBranchingScores</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.observation.StrongBranchingScores.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract an array containing strong branching scores.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pseudocosts">
+<h3>Pseudocosts<a class="headerlink" href="#pseudocosts" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.Pseudocosts">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">Pseudocosts</span></span><a class="headerlink" href="#ecole.observation.Pseudocosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pseudocosts observation function on branch-and bound node.</p>
+<p>This observation obtains pseudocosts for all LP fractional candidate variables at a
+branch-and-bound node.  The pseudocost is a cheap approximation to the strong branching
+score and measures the quality of branching for each variable.  This observation can be used
+as a practical branching strategy by always branching on the variable with the highest
+pseudocost, although in practice is it not as efficient as SCIP’s default strategy, reliability
+pseudocost branching (also known as hybrid branching).</p>
+<p>This observation function extracts an array containing the pseudocost for
+each variable in the problem which can be indexed by the action set.  Variables for which
+a pseudocost is not applicable are filled with NaN.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Pseudocosts.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts"><span class="pre">ecole.observation.Pseudocosts</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.Pseudocosts.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Pseudocosts.before_reset">
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts"><span class="pre">ecole.observation.Pseudocosts</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.Pseudocosts.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Pseudocosts.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts"><span class="pre">ecole.observation.Pseudocosts</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.observation.Pseudocosts.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract an array containing pseudocosts.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="khalil-et-al-2016">
+<h3>Khalil et al. 2016<a class="headerlink" href="#khalil-et-al-2016" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">Khalil2016</span></span><a class="headerlink" href="#ecole.observation.Khalil2016" title="Permalink to this definition">¶</a></dt>
+<dd><p>Branching candidates features from Khalil et al. (2016).</p>
+<p>This observation function extract structured <a class="reference internal" href="#ecole.observation.Khalil2016Obs" title="ecole.observation.Khalil2016Obs"><code class="xref py py-class docutils literal notranslate"><span class="pre">Khalil2016Obs</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016" title="ecole.observation.Khalil2016"><span class="pre">ecole.observation.Khalil2016</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.Khalil2016.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016.before_reset">
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016" title="ecole.observation.Khalil2016"><span class="pre">ecole.observation.Khalil2016</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.Khalil2016.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset static features cache.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016" title="ecole.observation.Khalil2016"><span class="pre">ecole.observation.Khalil2016</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ecole.observation.Khalil2016Obs" title="ecole.observation.Khalil2016Obs"><span class="pre">ecole.observation.Khalil2016Obs</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.observation.Khalil2016.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the observation matrix.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">Khalil2016Obs</span></span><a class="headerlink" href="#ecole.observation.Khalil2016Obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Branching candidates features from Khalil et al. (2016).</p>
+<p>The observation is a matrix where rows represent pseudo branching candidates and columns
+represent features related to these variables.
+See <a class="reference internal" href="#khalil2016" id="id1"><span>[Khalil2016]</span></a> for a complete reference on this observation function.</p>
+<p>The first <a class="reference internal" href="#ecole.observation.Khalil2016Obs.n_static_features" title="ecole.observation.Khalil2016Obs.n_static_features"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Khalil2016Obs.n_static_features</span></code></a> are static (they do not change through the solving
+process), and the remaining <a class="reference internal" href="#ecole.observation.Khalil2016Obs.n_dynamic_features" title="ecole.observation.Khalil2016Obs.n_dynamic_features"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Khalil2016Obs.n_dynamic_features</span></code></a> dynamic.</p>
+<dl class="citation">
+<dt class="label" id="khalil2016"><span class="brackets"><a class="fn-backref" href="#id1">Khalil2016</a></span></dt>
+<dd><p>Khalil, Elias Boutros, Pierre Le Bodic, Le Song, George Nemhauser, and Bistra Dilkina.
+“<a class="reference external" href="https://web.archive.org/web/20200812151256/https://www.cc.gatech.edu/~lsong/papers/KhaLebSonNemDil16.pdf">Learning to branch in mixed integer programming.</a>”
+<em>Thirtieth AAAI Conference on Artificial Intelligence</em>. 2016.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Features</span></span><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>obj_coef</p>
+<p>obj_coef_pos_part</p>
+<p>obj_coef_neg_part</p>
+<p>n_rows</p>
+<p>rows_deg_mean</p>
+<p>rows_deg_stddev</p>
+<p>rows_deg_min</p>
+<p>rows_deg_max</p>
+<p>rows_pos_coefs_count</p>
+<p>rows_pos_coefs_mean</p>
+<p>rows_pos_coefs_stddev</p>
+<p>rows_pos_coefs_min</p>
+<p>rows_pos_coefs_max</p>
+<p>rows_neg_coefs_count</p>
+<p>rows_neg_coefs_mean</p>
+<p>rows_neg_coefs_stddev</p>
+<p>rows_neg_coefs_min</p>
+<p>rows_neg_coefs_max</p>
+<p>slack</p>
+<p>ceil_dist</p>
+<p>pseudocost_up</p>
+<p>pseudocost_down</p>
+<p>pseudocost_ratio</p>
+<p>pseudocost_sum</p>
+<p>pseudocost_product</p>
+<p>n_cutoff_up</p>
+<p>n_cutoff_down</p>
+<p>n_cutoff_up_ratio</p>
+<p>n_cutoff_down_ratio</p>
+<p>rows_dynamic_deg_mean</p>
+<p>rows_dynamic_deg_stddev</p>
+<p>rows_dynamic_deg_min</p>
+<p>rows_dynamic_deg_max</p>
+<p>rows_dynamic_deg_mean_ratio</p>
+<p>rows_dynamic_deg_min_ratio</p>
+<p>rows_dynamic_deg_max_ratio</p>
+<p>coef_pos_rhs_ratio_min</p>
+<p>coef_pos_rhs_ratio_max</p>
+<p>coef_neg_rhs_ratio_min</p>
+<p>coef_neg_rhs_ratio_max</p>
+<p>pos_coef_pos_coef_ratio_min</p>
+<p>pos_coef_pos_coef_ratio_max</p>
+<p>pos_coef_neg_coef_ratio_min</p>
+<p>pos_coef_neg_coef_ratio_max</p>
+<p>neg_coef_pos_coef_ratio_min</p>
+<p>neg_coef_pos_coef_ratio_max</p>
+<p>neg_coef_neg_coef_ratio_min</p>
+<p>neg_coef_neg_coef_ratio_max</p>
+<p>active_coef_weight1_count</p>
+<p>active_coef_weight1_sum</p>
+<p>active_coef_weight1_mean</p>
+<p>active_coef_weight1_stddev</p>
+<p>active_coef_weight1_min</p>
+<p>active_coef_weight1_max</p>
+<p>active_coef_weight2_count</p>
+<p>active_coef_weight2_sum</p>
+<p>active_coef_weight2_mean</p>
+<p>active_coef_weight2_stddev</p>
+<p>active_coef_weight2_min</p>
+<p>active_coef_weight2_max</p>
+<p>active_coef_weight3_count</p>
+<p>active_coef_weight3_sum</p>
+<p>active_coef_weight3_mean</p>
+<p>active_coef_weight3_stddev</p>
+<p>active_coef_weight3_min</p>
+<p>active_coef_weight3_max</p>
+<p>active_coef_weight4_count</p>
+<p>active_coef_weight4_sum</p>
+<p>active_coef_weight4_mean</p>
+<p>active_coef_weight4_stddev</p>
+<p>active_coef_weight4_min</p>
+<p>active_coef_weight4_max</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016Obs.Features" title="ecole.observation.Khalil2016Obs.Features"><span class="pre">ecole.observation.Khalil2016Obs.Features</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight1_count">
+<span class="sig-name descname"><span class="pre">active_coef_weight1_count</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight1_count:</span> <span class="pre">48&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight1_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight1_max">
+<span class="sig-name descname"><span class="pre">active_coef_weight1_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight1_max:</span> <span class="pre">53&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight1_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight1_mean">
+<span class="sig-name descname"><span class="pre">active_coef_weight1_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight1_mean:</span> <span class="pre">50&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight1_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight1_min">
+<span class="sig-name descname"><span class="pre">active_coef_weight1_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight1_min:</span> <span class="pre">52&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight1_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight1_stddev">
+<span class="sig-name descname"><span class="pre">active_coef_weight1_stddev</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight1_stddev:</span> <span class="pre">51&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight1_stddev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight1_sum">
+<span class="sig-name descname"><span class="pre">active_coef_weight1_sum</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight1_sum:</span> <span class="pre">49&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight1_sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight2_count">
+<span class="sig-name descname"><span class="pre">active_coef_weight2_count</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight2_count:</span> <span class="pre">54&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight2_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight2_max">
+<span class="sig-name descname"><span class="pre">active_coef_weight2_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight2_max:</span> <span class="pre">59&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight2_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight2_mean">
+<span class="sig-name descname"><span class="pre">active_coef_weight2_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight2_mean:</span> <span class="pre">56&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight2_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight2_min">
+<span class="sig-name descname"><span class="pre">active_coef_weight2_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight2_min:</span> <span class="pre">58&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight2_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight2_stddev">
+<span class="sig-name descname"><span class="pre">active_coef_weight2_stddev</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight2_stddev:</span> <span class="pre">57&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight2_stddev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight2_sum">
+<span class="sig-name descname"><span class="pre">active_coef_weight2_sum</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight2_sum:</span> <span class="pre">55&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight2_sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight3_count">
+<span class="sig-name descname"><span class="pre">active_coef_weight3_count</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight3_count:</span> <span class="pre">60&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight3_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight3_max">
+<span class="sig-name descname"><span class="pre">active_coef_weight3_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight3_max:</span> <span class="pre">65&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight3_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight3_mean">
+<span class="sig-name descname"><span class="pre">active_coef_weight3_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight3_mean:</span> <span class="pre">62&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight3_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight3_min">
+<span class="sig-name descname"><span class="pre">active_coef_weight3_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight3_min:</span> <span class="pre">64&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight3_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight3_stddev">
+<span class="sig-name descname"><span class="pre">active_coef_weight3_stddev</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight3_stddev:</span> <span class="pre">63&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight3_stddev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight3_sum">
+<span class="sig-name descname"><span class="pre">active_coef_weight3_sum</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight3_sum:</span> <span class="pre">61&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight3_sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight4_count">
+<span class="sig-name descname"><span class="pre">active_coef_weight4_count</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight4_count:</span> <span class="pre">66&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight4_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight4_max">
+<span class="sig-name descname"><span class="pre">active_coef_weight4_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight4_max:</span> <span class="pre">71&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight4_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight4_mean">
+<span class="sig-name descname"><span class="pre">active_coef_weight4_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight4_mean:</span> <span class="pre">68&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight4_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight4_min">
+<span class="sig-name descname"><span class="pre">active_coef_weight4_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight4_min:</span> <span class="pre">70&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight4_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight4_stddev">
+<span class="sig-name descname"><span class="pre">active_coef_weight4_stddev</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight4_stddev:</span> <span class="pre">69&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight4_stddev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.active_coef_weight4_sum">
+<span class="sig-name descname"><span class="pre">active_coef_weight4_sum</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.active_coef_weight4_sum:</span> <span class="pre">67&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.active_coef_weight4_sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.ceil_dist">
+<span class="sig-name descname"><span class="pre">ceil_dist</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.ceil_dist:</span> <span class="pre">19&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.ceil_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.coef_neg_rhs_ratio_max">
+<span class="sig-name descname"><span class="pre">coef_neg_rhs_ratio_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.coef_neg_rhs_ratio_max:</span> <span class="pre">39&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.coef_neg_rhs_ratio_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.coef_neg_rhs_ratio_min">
+<span class="sig-name descname"><span class="pre">coef_neg_rhs_ratio_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.coef_neg_rhs_ratio_min:</span> <span class="pre">38&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.coef_neg_rhs_ratio_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.coef_pos_rhs_ratio_max">
+<span class="sig-name descname"><span class="pre">coef_pos_rhs_ratio_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.coef_pos_rhs_ratio_max:</span> <span class="pre">37&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.coef_pos_rhs_ratio_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.coef_pos_rhs_ratio_min">
+<span class="sig-name descname"><span class="pre">coef_pos_rhs_ratio_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.coef_pos_rhs_ratio_min:</span> <span class="pre">36&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.coef_pos_rhs_ratio_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.n_cutoff_down">
+<span class="sig-name descname"><span class="pre">n_cutoff_down</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.n_cutoff_down:</span> <span class="pre">26&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.n_cutoff_down" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.n_cutoff_down_ratio">
+<span class="sig-name descname"><span class="pre">n_cutoff_down_ratio</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.n_cutoff_down_ratio:</span> <span class="pre">28&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.n_cutoff_down_ratio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.n_cutoff_up">
+<span class="sig-name descname"><span class="pre">n_cutoff_up</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.n_cutoff_up:</span> <span class="pre">25&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.n_cutoff_up" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.n_cutoff_up_ratio">
+<span class="sig-name descname"><span class="pre">n_cutoff_up_ratio</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.n_cutoff_up_ratio:</span> <span class="pre">27&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.n_cutoff_up_ratio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.n_rows">
+<span class="sig-name descname"><span class="pre">n_rows</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.n_rows:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.n_rows" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.neg_coef_neg_coef_ratio_max">
+<span class="sig-name descname"><span class="pre">neg_coef_neg_coef_ratio_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.neg_coef_neg_coef_ratio_max:</span> <span class="pre">47&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.neg_coef_neg_coef_ratio_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.neg_coef_neg_coef_ratio_min">
+<span class="sig-name descname"><span class="pre">neg_coef_neg_coef_ratio_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.neg_coef_neg_coef_ratio_min:</span> <span class="pre">46&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.neg_coef_neg_coef_ratio_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.neg_coef_pos_coef_ratio_max">
+<span class="sig-name descname"><span class="pre">neg_coef_pos_coef_ratio_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.neg_coef_pos_coef_ratio_max:</span> <span class="pre">45&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.neg_coef_pos_coef_ratio_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.neg_coef_pos_coef_ratio_min">
+<span class="sig-name descname"><span class="pre">neg_coef_pos_coef_ratio_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.neg_coef_pos_coef_ratio_min:</span> <span class="pre">44&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.neg_coef_pos_coef_ratio_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.obj_coef">
+<span class="sig-name descname"><span class="pre">obj_coef</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.obj_coef:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.obj_coef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.obj_coef_neg_part">
+<span class="sig-name descname"><span class="pre">obj_coef_neg_part</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.obj_coef_neg_part:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.obj_coef_neg_part" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.obj_coef_pos_part">
+<span class="sig-name descname"><span class="pre">obj_coef_pos_part</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.obj_coef_pos_part:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.obj_coef_pos_part" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.pos_coef_neg_coef_ratio_max">
+<span class="sig-name descname"><span class="pre">pos_coef_neg_coef_ratio_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.pos_coef_neg_coef_ratio_max:</span> <span class="pre">43&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.pos_coef_neg_coef_ratio_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.pos_coef_neg_coef_ratio_min">
+<span class="sig-name descname"><span class="pre">pos_coef_neg_coef_ratio_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.pos_coef_neg_coef_ratio_min:</span> <span class="pre">42&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.pos_coef_neg_coef_ratio_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.pos_coef_pos_coef_ratio_max">
+<span class="sig-name descname"><span class="pre">pos_coef_pos_coef_ratio_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.pos_coef_pos_coef_ratio_max:</span> <span class="pre">41&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.pos_coef_pos_coef_ratio_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.pos_coef_pos_coef_ratio_min">
+<span class="sig-name descname"><span class="pre">pos_coef_pos_coef_ratio_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.pos_coef_pos_coef_ratio_min:</span> <span class="pre">40&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.pos_coef_pos_coef_ratio_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.pseudocost_down">
+<span class="sig-name descname"><span class="pre">pseudocost_down</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.pseudocost_down:</span> <span class="pre">21&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.pseudocost_down" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.pseudocost_product">
+<span class="sig-name descname"><span class="pre">pseudocost_product</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.pseudocost_product:</span> <span class="pre">24&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.pseudocost_product" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.pseudocost_ratio">
+<span class="sig-name descname"><span class="pre">pseudocost_ratio</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.pseudocost_ratio:</span> <span class="pre">22&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.pseudocost_ratio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.pseudocost_sum">
+<span class="sig-name descname"><span class="pre">pseudocost_sum</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.pseudocost_sum:</span> <span class="pre">23&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.pseudocost_sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.pseudocost_up">
+<span class="sig-name descname"><span class="pre">pseudocost_up</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.pseudocost_up:</span> <span class="pre">20&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.pseudocost_up" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_deg_max">
+<span class="sig-name descname"><span class="pre">rows_deg_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_deg_max:</span> <span class="pre">7&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_deg_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_deg_mean">
+<span class="sig-name descname"><span class="pre">rows_deg_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_deg_mean:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_deg_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_deg_min">
+<span class="sig-name descname"><span class="pre">rows_deg_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_deg_min:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_deg_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_deg_stddev">
+<span class="sig-name descname"><span class="pre">rows_deg_stddev</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_deg_stddev:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_deg_stddev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_max">
+<span class="sig-name descname"><span class="pre">rows_dynamic_deg_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_dynamic_deg_max:</span> <span class="pre">32&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_max_ratio">
+<span class="sig-name descname"><span class="pre">rows_dynamic_deg_max_ratio</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_dynamic_deg_max_ratio:</span> <span class="pre">35&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_max_ratio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_mean">
+<span class="sig-name descname"><span class="pre">rows_dynamic_deg_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_dynamic_deg_mean:</span> <span class="pre">29&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_mean_ratio">
+<span class="sig-name descname"><span class="pre">rows_dynamic_deg_mean_ratio</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_dynamic_deg_mean_ratio:</span> <span class="pre">33&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_mean_ratio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_min">
+<span class="sig-name descname"><span class="pre">rows_dynamic_deg_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_dynamic_deg_min:</span> <span class="pre">31&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_min_ratio">
+<span class="sig-name descname"><span class="pre">rows_dynamic_deg_min_ratio</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_dynamic_deg_min_ratio:</span> <span class="pre">34&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_min_ratio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_stddev">
+<span class="sig-name descname"><span class="pre">rows_dynamic_deg_stddev</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_dynamic_deg_stddev:</span> <span class="pre">30&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_stddev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_neg_coefs_count">
+<span class="sig-name descname"><span class="pre">rows_neg_coefs_count</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_neg_coefs_count:</span> <span class="pre">13&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_neg_coefs_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_neg_coefs_max">
+<span class="sig-name descname"><span class="pre">rows_neg_coefs_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_neg_coefs_max:</span> <span class="pre">17&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_neg_coefs_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_neg_coefs_mean">
+<span class="sig-name descname"><span class="pre">rows_neg_coefs_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_neg_coefs_mean:</span> <span class="pre">14&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_neg_coefs_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_neg_coefs_min">
+<span class="sig-name descname"><span class="pre">rows_neg_coefs_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_neg_coefs_min:</span> <span class="pre">16&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_neg_coefs_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_neg_coefs_stddev">
+<span class="sig-name descname"><span class="pre">rows_neg_coefs_stddev</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_neg_coefs_stddev:</span> <span class="pre">15&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_neg_coefs_stddev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_pos_coefs_count">
+<span class="sig-name descname"><span class="pre">rows_pos_coefs_count</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_pos_coefs_count:</span> <span class="pre">8&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_pos_coefs_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_pos_coefs_max">
+<span class="sig-name descname"><span class="pre">rows_pos_coefs_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_pos_coefs_max:</span> <span class="pre">12&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_pos_coefs_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_pos_coefs_mean">
+<span class="sig-name descname"><span class="pre">rows_pos_coefs_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_pos_coefs_mean:</span> <span class="pre">9&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_pos_coefs_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_pos_coefs_min">
+<span class="sig-name descname"><span class="pre">rows_pos_coefs_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_pos_coefs_min:</span> <span class="pre">11&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_pos_coefs_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.rows_pos_coefs_stddev">
+<span class="sig-name descname"><span class="pre">rows_pos_coefs_stddev</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.rows_pos_coefs_stddev:</span> <span class="pre">10&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.rows_pos_coefs_stddev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.slack">
+<span class="sig-name descname"><span class="pre">slack</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.slack:</span> <span class="pre">18&gt;</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.slack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.Features.value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.observation.Khalil2016Obs.Features.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.observation.Khalil2016Obs.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.features">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">features</span></span><a class="headerlink" href="#ecole.observation.Khalil2016Obs.features" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix where each row represents a variable, and each column a feature of the variables.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.n_dynamic_features">
+<span class="sig-name descname"><span class="pre">n_dynamic_features</span></span><em class="property"> <span class="pre">=</span> <span class="pre">54</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.n_dynamic_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.n_static_features">
+<span class="sig-name descname"><span class="pre">n_static_features</span></span><em class="property"> <span class="pre">=</span> <span class="pre">18</span></em><a class="headerlink" href="#ecole.observation.Khalil2016Obs.n_static_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="hutter-et-al-2011">
+<h3>Hutter et al. 2011<a class="headerlink" href="#hutter-et-al-2011" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">Hutter2011</span></span><a class="headerlink" href="#ecole.observation.Hutter2011" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instance features from Hutter et al. (2011).</p>
+<p>This observation function extracts a structured <a class="reference internal" href="#ecole.observation.Hutter2011Obs" title="ecole.observation.Hutter2011Obs"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hutter2011Obs</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Hutter2011" title="ecole.observation.Hutter2011"><span class="pre">ecole.observation.Hutter2011</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.Hutter2011.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011.before_reset">
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Hutter2011" title="ecole.observation.Hutter2011"><span class="pre">ecole.observation.Hutter2011</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.Hutter2011.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Hutter2011" title="ecole.observation.Hutter2011"><span class="pre">ecole.observation.Hutter2011</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ecole.observation.Hutter2011Obs" title="ecole.observation.Hutter2011Obs"><span class="pre">ecole.observation.Hutter2011Obs</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.observation.Hutter2011.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the observation matrix.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">Hutter2011Obs</span></span><a class="headerlink" href="#ecole.observation.Hutter2011Obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instance features from Hutter et al. (2011).</p>
+<p>The observation is a vector of features that globally characterize the instance.
+See <a class="reference internal" href="#hutter2011" id="id2"><span>[Hutter2011]</span></a> for a complete reference on this observation function.</p>
+<dl class="citation">
+<dt class="label" id="hutter2011"><span class="brackets"><a class="fn-backref" href="#id2">Hutter2011</a></span></dt>
+<dd><p>Hutter, Frank, Hoos, Holger H., and Leyton-Brown, Kevin.
+“<a class="reference external" href="https://www.cs.ubc.ca/~hutter/papers/10-TR-SMAC.pdf">Sequential model-based optimization for general algorithm configuration.</a>”
+<em>International Conference on Learning and Intelligent Optimization</em>. 2011.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Features</span></span><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members:</p>
+<p>nb_variables</p>
+<p>nb_constraints</p>
+<p>nb_nonzero_coefs</p>
+<p>variable_node_degree_mean</p>
+<p>variable_node_degree_max</p>
+<p>variable_node_degree_min</p>
+<p>variable_node_degree_std</p>
+<p>constraint_node_degree_mean</p>
+<p>constraint_node_degree_max</p>
+<p>constraint_node_degree_min</p>
+<p>constraint_node_degree_std</p>
+<p>node_degree_mean</p>
+<p>node_degree_max</p>
+<p>node_degree_min</p>
+<p>node_degree_std</p>
+<p>node_degree_25q</p>
+<p>node_degree_75q</p>
+<p>edge_density</p>
+<p>lp_slack_mean</p>
+<p>lp_slack_max</p>
+<p>lp_slack_l2</p>
+<p>lp_objective_value</p>
+<p>objective_coef_m_std</p>
+<p>objective_coef_n_std</p>
+<p>objective_coef_sqrtn_std</p>
+<p>constraint_coef_mean</p>
+<p>constraint_coef_std</p>
+<p>constraint_var_coef_mean</p>
+<p>constraint_var_coef_std</p>
+<p>discrete_vars_support_size_mean</p>
+<p>discrete_vars_support_size_std</p>
+<p>ratio_unbounded_discrete_vars</p>
+<p>ratio_continuous_vars</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Hutter2011Obs.Features" title="ecole.observation.Hutter2011Obs.Features"><span class="pre">ecole.observation.Hutter2011Obs.Features</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.constraint_coef_mean">
+<span class="sig-name descname"><span class="pre">constraint_coef_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.constraint_coef_mean:</span> <span class="pre">25&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.constraint_coef_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.constraint_coef_std">
+<span class="sig-name descname"><span class="pre">constraint_coef_std</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.constraint_coef_std:</span> <span class="pre">26&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.constraint_coef_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.constraint_node_degree_max">
+<span class="sig-name descname"><span class="pre">constraint_node_degree_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.constraint_node_degree_max:</span> <span class="pre">8&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.constraint_node_degree_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.constraint_node_degree_mean">
+<span class="sig-name descname"><span class="pre">constraint_node_degree_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.constraint_node_degree_mean:</span> <span class="pre">7&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.constraint_node_degree_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.constraint_node_degree_min">
+<span class="sig-name descname"><span class="pre">constraint_node_degree_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.constraint_node_degree_min:</span> <span class="pre">9&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.constraint_node_degree_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.constraint_node_degree_std">
+<span class="sig-name descname"><span class="pre">constraint_node_degree_std</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.constraint_node_degree_std:</span> <span class="pre">10&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.constraint_node_degree_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.constraint_var_coef_mean">
+<span class="sig-name descname"><span class="pre">constraint_var_coef_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.constraint_var_coef_mean:</span> <span class="pre">27&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.constraint_var_coef_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.constraint_var_coef_std">
+<span class="sig-name descname"><span class="pre">constraint_var_coef_std</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.constraint_var_coef_std:</span> <span class="pre">28&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.constraint_var_coef_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.discrete_vars_support_size_mean">
+<span class="sig-name descname"><span class="pre">discrete_vars_support_size_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.discrete_vars_support_size_mean:</span> <span class="pre">29&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.discrete_vars_support_size_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.discrete_vars_support_size_std">
+<span class="sig-name descname"><span class="pre">discrete_vars_support_size_std</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.discrete_vars_support_size_std:</span> <span class="pre">30&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.discrete_vars_support_size_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.edge_density">
+<span class="sig-name descname"><span class="pre">edge_density</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.edge_density:</span> <span class="pre">17&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.edge_density" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.lp_objective_value">
+<span class="sig-name descname"><span class="pre">lp_objective_value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.lp_objective_value:</span> <span class="pre">21&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.lp_objective_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.lp_slack_l2">
+<span class="sig-name descname"><span class="pre">lp_slack_l2</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.lp_slack_l2:</span> <span class="pre">20&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.lp_slack_l2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.lp_slack_max">
+<span class="sig-name descname"><span class="pre">lp_slack_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.lp_slack_max:</span> <span class="pre">19&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.lp_slack_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.lp_slack_mean">
+<span class="sig-name descname"><span class="pre">lp_slack_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.lp_slack_mean:</span> <span class="pre">18&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.lp_slack_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.nb_constraints">
+<span class="sig-name descname"><span class="pre">nb_constraints</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.nb_constraints:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.nb_constraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.nb_nonzero_coefs">
+<span class="sig-name descname"><span class="pre">nb_nonzero_coefs</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.nb_nonzero_coefs:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.nb_nonzero_coefs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.nb_variables">
+<span class="sig-name descname"><span class="pre">nb_variables</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.nb_variables:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.nb_variables" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.node_degree_25q">
+<span class="sig-name descname"><span class="pre">node_degree_25q</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.node_degree_25q:</span> <span class="pre">15&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.node_degree_25q" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.node_degree_75q">
+<span class="sig-name descname"><span class="pre">node_degree_75q</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.node_degree_75q:</span> <span class="pre">16&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.node_degree_75q" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.node_degree_max">
+<span class="sig-name descname"><span class="pre">node_degree_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.node_degree_max:</span> <span class="pre">12&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.node_degree_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.node_degree_mean">
+<span class="sig-name descname"><span class="pre">node_degree_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.node_degree_mean:</span> <span class="pre">11&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.node_degree_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.node_degree_min">
+<span class="sig-name descname"><span class="pre">node_degree_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.node_degree_min:</span> <span class="pre">13&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.node_degree_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.node_degree_std">
+<span class="sig-name descname"><span class="pre">node_degree_std</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.node_degree_std:</span> <span class="pre">14&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.node_degree_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.objective_coef_m_std">
+<span class="sig-name descname"><span class="pre">objective_coef_m_std</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.objective_coef_m_std:</span> <span class="pre">22&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.objective_coef_m_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.objective_coef_n_std">
+<span class="sig-name descname"><span class="pre">objective_coef_n_std</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.objective_coef_n_std:</span> <span class="pre">23&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.objective_coef_n_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.objective_coef_sqrtn_std">
+<span class="sig-name descname"><span class="pre">objective_coef_sqrtn_std</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.objective_coef_sqrtn_std:</span> <span class="pre">24&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.objective_coef_sqrtn_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.ratio_continuous_vars">
+<span class="sig-name descname"><span class="pre">ratio_continuous_vars</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.ratio_continuous_vars:</span> <span class="pre">32&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.ratio_continuous_vars" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.ratio_unbounded_discrete_vars">
+<span class="sig-name descname"><span class="pre">ratio_unbounded_discrete_vars</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.ratio_unbounded_discrete_vars:</span> <span class="pre">31&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.ratio_unbounded_discrete_vars" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.variable_node_degree_max">
+<span class="sig-name descname"><span class="pre">variable_node_degree_max</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.variable_node_degree_max:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.variable_node_degree_max" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.variable_node_degree_mean">
+<span class="sig-name descname"><span class="pre">variable_node_degree_mean</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.variable_node_degree_mean:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.variable_node_degree_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.variable_node_degree_min">
+<span class="sig-name descname"><span class="pre">variable_node_degree_min</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.variable_node_degree_min:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.variable_node_degree_min" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.Features.variable_node_degree_std">
+<span class="sig-name descname"><span class="pre">variable_node_degree_std</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;Features.variable_node_degree_std:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#ecole.observation.Hutter2011Obs.Features.variable_node_degree_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.observation.Hutter2011Obs.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.Hutter2011Obs.features">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">features</span></span><a class="headerlink" href="#ecole.observation.Hutter2011Obs.features" title="Permalink to this definition">¶</a></dt>
+<dd><p>A vector of instance features.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="rewards.html" class="btn btn-neutral float-right" title="Rewards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="environments.html" class="btn btn-neutral float-left" title="Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

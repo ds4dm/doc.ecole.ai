@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Create New Environments &mdash; Ecole 0.7.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Generate Problem Instances" href="instances.html" />
+    <link rel="prev" title="Create New Functions" href="create-functions.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Create New Environments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#environment-structure">Environment Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-dynamics">Creating Dynamics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reset-and-step">Reset and Step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#passing-parameters">Passing parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instances.html">Generate Problem Instances</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Practical Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/information.html">Informations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/instances.html">Instance Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/utilities.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Zone</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example Contribute Observation Function</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ecole</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Create New Environments</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/howto/create-environments.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="create-new-environments">
+<span id="create-new-environment"></span><h1>Create New Environments<a class="headerlink" href="#create-new-environments" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="environment-structure">
+<h2>Environment Structure<a class="headerlink" href="#environment-structure" title="Permalink to this headline">¶</a></h2>
+<p>In Ecole, it is possible to customize the <a class="reference internal" href="reward-functions.html#use-reward-functions"><span class="std std-ref">reward</span></a> or
+<a class="reference internal" href="reward-functions.html#use-reward-functions"><span class="std std-ref">observation</span></a> returned by the environment.
+The <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> and <code class="xref py py-class docutils literal notranslate"><span class="pre">ObservatioFunction</span></code> are
+taking some responsability away from the environment.
+We call what is left, <em>i.e.</em> an environment without rewards or observations, the environment
+<a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.
+In other words, the dynamics define the bare bone transitions of the Markov Decision Process.</p>
+<p>Dynamics have an interface similar to environments, but with different input parameters and return
+types.
+In fact environments are wrapper around dynamics that drive the following orchestration:</p>
+<ul class="simple">
+<li><p>Environments store the state as a <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>;</p></li>
+<li><p>Forward the <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> to the <a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a> to start a new
+episode or transition to receive an action set;</p></li>
+<li><p>Forward the <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> to the <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> and
+<a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a> to recieve an observation and reward;</p></li>
+<li><p>Return everything to the user.</p></li>
+</ul>
+<p>One susbtancial difference between the environment and the dynamics is the seeding behaviour.
+Given that this is not an easy topic, it is discussed in <a class="reference internal" href="../discussion/seeding.html#seeding-discussion"><span class="std std-ref">Seeding</span></a>.</p>
+</div>
+<div class="section" id="creating-dynamics">
+<h2>Creating Dynamics<a class="headerlink" href="#creating-dynamics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reset-and-step">
+<h3>Reset and Step<a class="headerlink" href="#reset-and-step" title="Permalink to this headline">¶</a></h3>
+<p>Creating dynamics is very similar to
+<a class="reference internal" href="create-functions.html#create-new-functions"><span class="std std-ref">creating reward and observation functions</span></a>.
+It can be done from scratch or by inheriting an existing one.
+The following examples shows how we can inherit <a class="reference internal" href="../reference/environments.html#ecole.dynamics.BranchingDynamics" title="ecole.dynamics.BranchingDynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">BranchingDynamics</span></code></a> to
+deactivate cutting plane and presolve.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For directly changing SCIP parameters, directly pass them to the
+<a class="reference internal" href="../using-environments.html#environment-parameters"><span class="std std-ref">environment construtor</span></a>.</p>
+</div>
+<p>Given that there is a large number of parameters to change, we want to use one of SCIP default mode
+by calling <code class="docutils literal notranslate"><span class="pre">SCIPsetPresolving</span></code> and <code class="docutils literal notranslate"><span class="pre">SCIPsetSeparating</span></code> through PyScipOpt
+(<a class="reference external" href="https://www.scipopt.org/doc/html/group__ParameterMethods.php">SCIP doc</a>).</p>
+<p>We will do so by overriding <a class="reference internal" href="../reference/environments.html#ecole.dynamics.BranchingDynamics.reset_dynamics" title="ecole.dynamics.BranchingDynamics.reset_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset_dynamics()</span></code></a>, which
+get called by <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.
+The similar method <a class="reference internal" href="../reference/environments.html#ecole.dynamics.BranchingDynamics.step_dynamics" title="ecole.dynamics.BranchingDynamics.step_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step_dynamics()</span></code></a>, which is called
+by <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> does not need to be changed in this
+example so we do not override it.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
+<span class="kn">from</span> <span class="nn">pyscipopt.scip</span> <span class="kn">import</span> <span class="n">PY_SCIP_PARAMSETTING</span>
+
+
+<span class="k">class</span> <span class="nc">SimpleBranchingDynamics</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">BranchingDynamics</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">reset_dynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="c1"># Share memory with Ecole model</span>
+        <span class="n">pyscipopt_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span>
+
+        <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setPresolve</span><span class="p">(</span><span class="n">PY_SCIP_PARAMSETTING</span><span class="o">.</span><span class="n">OFF</span><span class="p">)</span>
+        <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setSeparating</span><span class="p">(</span><span class="n">PY_SCIP_PARAMSETTING</span><span class="o">.</span><span class="n">OFF</span><span class="p">)</span>
+
+        <span class="c1"># Let the parent class get the model to the root node and return</span>
+        <span class="c1"># the done flag / action_set</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reset_dynamics</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With the <code class="docutils literal notranslate"><span class="pre">SimpleBranchingDynamics</span></code>, we have defined what we want the solver to do.
+Now, to use it as a full environent that can manage observations and rewards, we wrap it with the
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment" title="ecole.environment.Environment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Environment</span></code></a>.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleBranching</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Environment</span><span class="p">):</span>
+    <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">SimpleBranchingDynamics</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">SimpleBranching</span></code> is a fully featured environment as any other in Ecole.</p>
+</div>
+<div class="section" id="passing-parameters">
+<h3>Passing parameters<a class="headerlink" href="#passing-parameters" title="Permalink to this headline">¶</a></h3>
+<p>We can make the previous example more flexible by deciding what we want to disable.
+To do so, we will take parameters in the constructor</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleBranchingDynamics</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">BranchingDynamics</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disable_presolve</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_cuts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disable_presolve</span> <span class="o">=</span> <span class="n">disable_presolve</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disable_cuts</span> <span class="o">=</span> <span class="n">disable_cuts</span>
+
+    <span class="k">def</span> <span class="nf">reset_dynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="c1"># Share memory with Ecole model</span>
+        <span class="n">pyscipopt_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable_presolve</span><span class="p">:</span>
+            <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setPresolve</span><span class="p">(</span><span class="n">PY_SCIP_PARAMSETTING</span><span class="o">.</span><span class="n">OFF</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable_cuts</span><span class="p">:</span>
+            <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setSeparating</span><span class="p">(</span><span class="n">PY_SCIP_PARAMSETTING</span><span class="o">.</span><span class="n">OFF</span><span class="p">)</span>
+
+        <span class="c1"># Let the parent class get the model to the root node and return</span>
+        <span class="c1"># the done flag / action_set</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reset_dynamics</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">SimpleBranching</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Environment</span><span class="p">):</span>
+    <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">SimpleBranchingDynamics</span>
+</pre></div>
+</div>
+<p>The constructor arguments are forwarded from the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> constructor:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">SimpleBranching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">disable_cuts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similarily, extra arguments given to the environemnt <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> and
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code> are forwarded to the associated
+<a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a> methods.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="instances.html" class="btn btn-neutral float-right" title="Generate Problem Instances" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="create-functions.html" class="btn btn-neutral float-left" title="Create New Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
