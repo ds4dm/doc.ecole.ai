@@ -241,9 +241,11 @@
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics.__init__">__init__() (ecole.dynamics.BranchingDynamics method)</a>
 
       <ul>
-        <li><a href="reference/environments.html#ecole.dynamics.BranchingGUBDynamics.__init__">(ecole.dynamics.BranchingGUBDynamics method)</a>
+        <li><a href="reference/environments.html#ecole.dynamics.BranchingSumDynamics.__init__">(ecole.dynamics.BranchingSumDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.dynamics.ConfiguringDynamics.__init__">(ecole.dynamics.ConfiguringDynamics method)</a>
+</li>
+        <li><a href="reference/environments.html#ecole.dynamics.PrimalSearchDynamics.__init__">(ecole.dynamics.PrimalSearchDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.environment.Environment.__init__">(ecole.environment.Environment method)</a>
 </li>
@@ -460,9 +462,9 @@
 </li>
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics">BranchingDynamics (class in ecole.dynamics)</a>
 </li>
-      <li><a href="reference/environments.html#ecole.environment.BranchingGUB">BranchingGUB (class in ecole.environment)</a>
+      <li><a href="reference/environments.html#ecole.environment.BranchingSum">BranchingSum (class in ecole.environment)</a>
 </li>
-      <li><a href="reference/environments.html#ecole.dynamics.BranchingGUBDynamics">BranchingGUBDynamics (class in ecole.dynamics)</a>
+      <li><a href="reference/environments.html#ecole.dynamics.BranchingSumDynamics">BranchingSumDynamics (class in ecole.dynamics)</a>
 </li>
       <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.budget_factor">budget_factor (ecole.instance.CombinatorialAuctionGenerator property)</a>
 </li>
@@ -536,13 +538,15 @@
 </li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.disable_presolve">disable_presolve() (ecole.scip.Model method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/utilities.html#ecole.RandomEngine.discard">discard() (ecole.RandomEngine method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.discrete_vars_support_size_mean">discrete_vars_support_size_mean (ecole.observation.Hutter2011Obs.Features attribute)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.discrete_vars_support_size_std">discrete_vars_support_size_std (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.dual_bound">dual_bound (ecole.scip.Model property)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.dual_solution_value">dual_solution_value (ecole.observation.NodeBipartiteObs.RowFeatures attribute)</a>
 </li>
@@ -724,7 +728,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_upper_bound">is_solution_at_upper_bound (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
-      <li><a href="reference/scip-interface.html#ecole.scip.Model.is_solved">is_solved() (ecole.scip.Model method)</a>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.is_solved">is_solved (ecole.scip.Model property)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.is_tight">is_tight (ecole.observation.NodeBipartiteObs.RowFeatures attribute)</a>
 </li>
@@ -966,12 +970,18 @@
 </li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.presolve">presolve() (ecole.scip.Model method)</a>
 </li>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.primal_bound">primal_bound (ecole.scip.Model property)</a>
+</li>
       <li><a href="reference/rewards.html#ecole.reward.PrimalDualIntegral">PrimalDualIntegral (class in ecole.reward)</a>
 </li>
       <li><a href="reference/rewards.html#ecole.reward.PrimalIntegral">PrimalIntegral (class in ecole.reward)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/environments.html#ecole.environment.PrimalSearch">PrimalSearch (class in ecole.environment)</a>
+</li>
+      <li><a href="reference/environments.html#ecole.dynamics.PrimalSearchDynamics">PrimalSearchDynamics (class in ecole.dynamics)</a>
+</li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.prob_basic">prob_basic() (ecole.scip.Model static method)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.pseudocost_down">pseudocost_down (ecole.observation.Khalil2016Obs.Features attribute)</a>
@@ -1015,9 +1025,11 @@
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics.reset_dynamics">reset_dynamics() (ecole.dynamics.BranchingDynamics method)</a>
 
       <ul>
-        <li><a href="reference/environments.html#ecole.dynamics.BranchingGUBDynamics.reset_dynamics">(ecole.dynamics.BranchingGUBDynamics method)</a>
+        <li><a href="reference/environments.html#ecole.dynamics.BranchingSumDynamics.reset_dynamics">(ecole.dynamics.BranchingSumDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.dynamics.ConfiguringDynamics.reset_dynamics">(ecole.dynamics.ConfiguringDynamics method)</a>
+</li>
+        <li><a href="reference/environments.html#ecole.dynamics.PrimalSearchDynamics.reset_dynamics">(ecole.dynamics.PrimalSearchDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.typing.Dynamics.reset_dynamics">(ecole.typing.Dynamics method)</a>
 </li>
@@ -1107,9 +1119,11 @@
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics.set_dynamics_random_state">set_dynamics_random_state() (ecole.dynamics.BranchingDynamics method)</a>
 
       <ul>
-        <li><a href="reference/environments.html#ecole.dynamics.BranchingGUBDynamics.set_dynamics_random_state">(ecole.dynamics.BranchingGUBDynamics method)</a>
+        <li><a href="reference/environments.html#ecole.dynamics.BranchingSumDynamics.set_dynamics_random_state">(ecole.dynamics.BranchingSumDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.dynamics.ConfiguringDynamics.set_dynamics_random_state">(ecole.dynamics.ConfiguringDynamics method)</a>
+</li>
+        <li><a href="reference/environments.html#ecole.dynamics.PrimalSearchDynamics.set_dynamics_random_state">(ecole.dynamics.PrimalSearchDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.typing.Dynamics.set_dynamics_random_state">(ecole.typing.Dynamics method)</a>
 </li>
@@ -1141,9 +1155,11 @@
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics.step_dynamics">step_dynamics() (ecole.dynamics.BranchingDynamics method)</a>
 
       <ul>
-        <li><a href="reference/environments.html#ecole.dynamics.BranchingGUBDynamics.step_dynamics">(ecole.dynamics.BranchingGUBDynamics method)</a>
+        <li><a href="reference/environments.html#ecole.dynamics.BranchingSumDynamics.step_dynamics">(ecole.dynamics.BranchingSumDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.dynamics.ConfiguringDynamics.step_dynamics">(ecole.dynamics.ConfiguringDynamics method)</a>
+</li>
+        <li><a href="reference/environments.html#ecole.dynamics.PrimalSearchDynamics.step_dynamics">(ecole.dynamics.PrimalSearchDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.typing.Dynamics.step_dynamics">(ecole.typing.Dynamics method)</a>
 </li>
