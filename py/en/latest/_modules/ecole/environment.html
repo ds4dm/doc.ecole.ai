@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>ecole.environment &mdash; Ecole 0.6.2 documentation</title>
+  <title>ecole.environment &mdash; Ecole 0.7.0 documentation</title>
   
 
   
@@ -74,7 +74,7 @@
             
             
               <div class="version">
-                0.6
+                0.7
               </div>
             
           
@@ -212,7 +212,7 @@
 <div class="viewcode-block" id="Environment"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment">[docs]</a><span class="k">class</span> <span class="nc">Environment</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Ecole Partially Observable Markov Decision Process (POMDP).</span>
 
-<span class="sd">    Similar to OpenAI Gym, environments represent the environment that an agent is supposed to solved.</span>
+<span class="sd">    Similar to OpenAI Gym, environments represent the task that an agent is supposed to solve.</span>
 <span class="sd">    For maximum customizability, different components are composed/orchestrated in this class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -234,16 +234,16 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        observation_function:</span>
-<span class="sd">            An object of type :py:class:`~ecole.observation.ObservationFunction` used to custotize what</span>
-<span class="sd">            observation are returned in :meth:`reset` and :meth:`step`.</span>
+<span class="sd">            An object of type :py:class:`~ecole.observation.ObservationFunction` used to customize the</span>
+<span class="sd">            observation returned by :meth:`reset` and :meth:`step`.</span>
 <span class="sd">        reward_function:</span>
-<span class="sd">            An object of type :py:class:`~ecole.reward.RewardFunction` used to customize what reward</span>
-<span class="sd">            are returned in :meth:`reset` and :meth:`step`.</span>
+<span class="sd">            An object of type :py:class:`~ecole.reward.RewardFunction` used to customize the reward</span>
+<span class="sd">            returned by :meth:`reset` and :meth:`step`.</span>
 <span class="sd">        information_function:</span>
-<span class="sd">            An object of type :py:class:`~ecole.information.InformationFunction` used to customize what</span>
-<span class="sd">            additional information are returned in :meth:`reset` and :meth:`step`.</span>
+<span class="sd">            An object of type :py:class:`~ecole.information.InformationFunction` used to customize the</span>
+<span class="sd">            additional information returned by :meth:`reset` and :meth:`step`.</span>
 <span class="sd">        scip_params:</span>
-<span class="sd">            Parameters set on the underlying :py:class:`~ecole.scip.Model` on every episode.</span>
+<span class="sd">            Parameters set on the underlying :py:class:`~ecole.scip.Model` at the start of every episode.</span>
 <span class="sd">        **dynamics_kwargs:</span>
 <span class="sd">            Other arguments are passed to the constructor of the :py:class:`~ecole.typing.Dynamics`.</span>
 
@@ -272,7 +272,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        instance:</span>
-<span class="sd">            The combinatorial optimization problem to tackle during the newly startedre</span>
+<span class="sd">            The combinatorial optimization problem to tackle during the newly started</span>
 <span class="sd">            episode.</span>
 <span class="sd">            Either a file path to an instance that can be read by SCIP, or a `Model` whose problem</span>
 <span class="sd">            definition data will be copied.</span>
@@ -284,20 +284,21 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        observation:</span>
-<span class="sd">            The observation of extracted from the initial state.</span>
+<span class="sd">            The observation extracted from the initial state.</span>
 <span class="sd">            Typically used to take the next action.</span>
 <span class="sd">        action_set:</span>
-<span class="sd">            An optional subset of accepted action in the next transition.</span>
-<span class="sd">            For some environment, this may change at every transition.</span>
+<span class="sd">            An optional subset that defines which actions are accepted in the next transition.</span>
+<span class="sd">            For some environment, the action set may change at every transition.</span>
 <span class="sd">        reward_offset:</span>
-<span class="sd">            An offset on the initial state.</span>
-<span class="sd">            This reward is not used for learning (as no action has yet been taken) but is used in</span>
-<span class="sd">            evaluation for the sum of rewards when one needs to account for computations that</span>
-<span class="sd">            happened during :py:meth:`reset` (*e.g.* computation time, number of LP iteration in</span>
-<span class="sd">            presolving...).</span>
+<span class="sd">            An offset on the total cumulated reward, a.k.a. the initial reward.</span>
+<span class="sd">            This reward does not impact learning (as no action has yet been taken) but can nonetheless</span>
+<span class="sd">            be used for evaluation purposes. For example, in the total cumulated reward of an episode</span>
+<span class="sd">            one may want to account for computations that happened during :py:meth:`reset`</span>
+<span class="sd">            (*e.g.* computation time, number of LP iteration in presolving...).</span>
 <span class="sd">        done:</span>
-<span class="sd">            A boolean flag indicating wether the current state is terminal.</span>
-<span class="sd">            If this is true, the episode is finished, and :meth:`step` cannot be called.</span>
+<span class="sd">            A boolean flag indicating whether the current state is terminal.</span>
+<span class="sd">            If this flag is true, then the current episode is finished, and :meth:`step`</span>
+<span class="sd">            cannot be called any more.</span>
 <span class="sd">        info:</span>
 <span class="sd">            A collection of environment specific information about the transition.</span>
 <span class="sd">            This is not necessary for the control problem, but is useful to gain</span>
@@ -335,14 +336,14 @@
 <span class="sd">        This method takes a user action to transition from the current state to the</span>
 <span class="sd">        next.</span>
 <span class="sd">        The method **cannot** be called if the environment has not been reset since its</span>
-<span class="sd">        instantiation or since a terminal state.</span>
+<span class="sd">        instantiation or since a terminal state has been reached.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        action:</span>
 <span class="sd">            The action to take in as part of the Markov Decision Process.</span>
 <span class="sd">            If an action set has been given in the latest call (inluding calls to</span>
-<span class="sd">            :meth:`reset`), then the action **must** be in that set.</span>
+<span class="sd">            :meth:`reset`), then the action **must** comply with the action set.</span>
 <span class="sd">        dynamics_args:</span>
 <span class="sd">            Extra arguments are forwarded as is to the underlying :py:class:`~ecole.typing.Dynamics`.</span>
 <span class="sd">        dynamics_kwargs:</span>
@@ -351,17 +352,17 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        observation:</span>
-<span class="sd">            The observation of extracted from the current state.</span>
+<span class="sd">            The observation extracted from the initial state.</span>
 <span class="sd">            Typically used to take the next action.</span>
 <span class="sd">        action_set:</span>
-<span class="sd">            An optional subset of accepted action in the next transition.</span>
-<span class="sd">            For some environment, this may change at every transition.</span>
+<span class="sd">            An optional subset that defines which actions are accepted in the next transition.</span>
+<span class="sd">            For some environment, the action set may change at every transition.</span>
 <span class="sd">        reward:</span>
 <span class="sd">            A real number to use for reinforcement learning.</span>
 <span class="sd">        done:</span>
-<span class="sd">            A boolean flag indicating wether the current state is terminal.</span>
-<span class="sd">            If this is true, the episode is finished, and this method cannot be called</span>
-<span class="sd">            until :meth:`reset` has been called.</span>
+<span class="sd">            A boolean flag indicating whether the current state is terminal.</span>
+<span class="sd">            If this flag is true, then the current episode is finished, and :meth:`step`</span>
+<span class="sd">            cannot be called any more.</span>
 <span class="sd">        info:</span>
 <span class="sd">            A collection of environment specific information about the transition.</span>
 <span class="sd">            This is not necessary for the control problem, but is useful to gain</span>
@@ -386,7 +387,7 @@
 <div class="viewcode-block" id="Environment.seed"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment.seed">[docs]</a>    <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Set the random seed of the environment.</span>
 
-<span class="sd">        The the random seed is used to seed the environment :py:class:`~ecole.RandomEngine`.</span>
+<span class="sd">        The random seed is used to seed the environment :py:class:`~ecole.RandomEngine`.</span>
 <span class="sd">        At every call to :py:meth:`reset`, the random engine is used to create new seeds</span>
 <span class="sd">        for the solver.</span>
 <span class="sd">        Setting the seed once will ensure determinism for the next trajectories.</span>
@@ -401,8 +402,18 @@
     <span class="n">__DefaultObservationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span></div>
 
 
+<div class="viewcode-block" id="BranchingSum"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.BranchingSum">[docs]</a><span class="k">class</span> <span class="nc">BranchingSum</span><span class="p">(</span><span class="n">Environment</span><span class="p">):</span>
+    <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">BranchingSumDynamics</span>
+    <span class="n">__DefaultObservationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span></div>
+
+
 <div class="viewcode-block" id="Configuring"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Configuring">[docs]</a><span class="k">class</span> <span class="nc">Configuring</span><span class="p">(</span><span class="n">Environment</span><span class="p">):</span>
     <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">ConfiguringDynamics</span></div>
+
+
+<div class="viewcode-block" id="PrimalSearch"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.PrimalSearch">[docs]</a><span class="k">class</span> <span class="nc">PrimalSearch</span><span class="p">(</span><span class="n">Environment</span><span class="p">):</span>
+    <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">PrimalSearchDynamics</span>
+    <span class="n">__DefaultObservationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span></div>
 </pre></div>
 
            </div>

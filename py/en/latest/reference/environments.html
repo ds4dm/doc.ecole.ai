@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Environments &mdash; Ecole 0.6.2 documentation</title>
+  <title>Environments &mdash; Ecole 0.7.0 documentation</title>
   
 
   
@@ -76,7 +76,7 @@
             
             
               <div class="version">
-                0.6
+                0.7
               </div>
             
           
@@ -127,7 +127,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#protocol">Protocol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#branching">Branching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#branchingsum">BranchingSum</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuring">Configuring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#primalsearch">PrimalSearch</a></li>
 </ul>
 </li>
 </ul>
@@ -226,7 +228,7 @@
 <dt class="sig sig-object py" id="ecole.environment.Environment">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.environment.</span></span><span class="sig-name descname"><span class="pre">Environment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observation_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">information_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scip_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">dynamics_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/environment.html#Environment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.environment.Environment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ecole Partially Observable Markov Decision Process (POMDP).</p>
-<p>Similar to OpenAI Gym, environments represent the environment that an agent is supposed to solved.
+<p>Similar to OpenAI Gym, environments represent the task that an agent is supposed to solve.
 For maximum customizability, different components are composed/orchestrated in this class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.environment.Environment.__init__">
@@ -235,13 +237,13 @@ For maximum customizability, different components are composed/orchestrated in t
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>observation_function</strong> – An object of type <code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code> used to custotize what
-observation are returned in <a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and <a class="reference internal" href="#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.</p></li>
-<li><p><strong>reward_function</strong> – An object of type <code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code> used to customize what reward
-are returned in <a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and <a class="reference internal" href="#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.</p></li>
-<li><p><strong>information_function</strong> – An object of type <code class="xref py py-class docutils literal notranslate"><span class="pre">InformationFunction</span></code> used to customize what
-additional information are returned in <a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and <a class="reference internal" href="#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.</p></li>
-<li><p><strong>scip_params</strong> – Parameters set on the underlying <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> on every episode.</p></li>
+<li><p><strong>observation_function</strong> – An object of type <code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code> used to customize the
+observation returned by <a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and <a class="reference internal" href="#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.</p></li>
+<li><p><strong>reward_function</strong> – An object of type <code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code> used to customize the reward
+returned by <a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and <a class="reference internal" href="#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.</p></li>
+<li><p><strong>information_function</strong> – An object of type <code class="xref py py-class docutils literal notranslate"><span class="pre">InformationFunction</span></code> used to customize the
+additional information returned by <a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and <a class="reference internal" href="#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.</p></li>
+<li><p><strong>scip_params</strong> – Parameters set on the underlying <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> at the start of every episode.</p></li>
 <li><p><strong>**dynamics_kwargs</strong> – Other arguments are passed to the constructor of the <a class="reference internal" href="#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p></li>
 </ul>
 </dd>
@@ -258,7 +260,7 @@ The method can be called at any point in time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>instance</strong> – The combinatorial optimization problem to tackle during the newly startedre
+<li><p><strong>instance</strong> – The combinatorial optimization problem to tackle during the newly started
 episode.
 Either a file path to an instance that can be read by SCIP, or a <cite>Model</cite> whose problem
 definition data will be copied.</p></li>
@@ -268,17 +270,18 @@ definition data will be copied.</p></li>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><em>observation</em> – The observation of extracted from the initial state.
+<li><p><em>observation</em> – The observation extracted from the initial state.
 Typically used to take the next action.</p></li>
-<li><p><em>action_set</em> – An optional subset of accepted action in the next transition.
-For some environment, this may change at every transition.</p></li>
-<li><p><em>reward_offset</em> – An offset on the initial state.
-This reward is not used for learning (as no action has yet been taken) but is used in
-evaluation for the sum of rewards when one needs to account for computations that
-happened during <a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> (<em>e.g.</em> computation time, number of LP iteration in
-presolving…).</p></li>
-<li><p><em>done</em> – A boolean flag indicating wether the current state is terminal.
-If this is true, the episode is finished, and <a class="reference internal" href="#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> cannot be called.</p></li>
+<li><p><em>action_set</em> – An optional subset that defines which actions are accepted in the next transition.
+For some environment, the action set may change at every transition.</p></li>
+<li><p><em>reward_offset</em> – An offset on the total cumulated reward, a.k.a. the initial reward.
+This reward does not impact learning (as no action has yet been taken) but can nonetheless
+be used for evaluation purposes. For example, in the total cumulated reward of an episode
+one may want to account for computations that happened during <a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>
+(<em>e.g.</em> computation time, number of LP iteration in presolving…).</p></li>
+<li><p><em>done</em> – A boolean flag indicating whether the current state is terminal.
+If this flag is true, then the current episode is finished, and <a class="reference internal" href="#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>
+cannot be called any more.</p></li>
 <li><p><em>info</em> – A collection of environment specific information about the transition.
 This is not necessary for the control problem, but is useful to gain
 insights about the environment.</p></li>
@@ -292,7 +295,7 @@ insights about the environment.</p></li>
 <dt class="sig sig-object py" id="ecole.environment.Environment.seed">
 <span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="../_modules/ecole/environment.html#Environment.seed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.environment.Environment.seed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the random seed of the environment.</p>
-<p>The the random seed is used to seed the environment <a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a>.
+<p>The random seed is used to seed the environment <a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a>.
 At every call to <a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>, the random engine is used to create new seeds
 for the solver.
 Setting the seed once will ensure determinism for the next trajectories.
@@ -307,27 +310,27 @@ By default, the random engine is initialized by the
 <p>This method takes a user action to transition from the current state to the
 next.
 The method <strong>cannot</strong> be called if the environment has not been reset since its
-instantiation or since a terminal state.</p>
+instantiation or since a terminal state has been reached.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>action</strong> – The action to take in as part of the Markov Decision Process.
 If an action set has been given in the latest call (inluding calls to
-<a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>), then the action <strong>must</strong> be in that set.</p></li>
+<a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>), then the action <strong>must</strong> comply with the action set.</p></li>
 <li><p><strong>dynamics_args</strong> – Extra arguments are forwarded as is to the underlying <a class="reference internal" href="#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p></li>
 <li><p><strong>dynamics_kwargs</strong> – Extra arguments are forwarded as is to the underlying <a class="reference internal" href="#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><em>observation</em> – The observation of extracted from the current state.
+<li><p><em>observation</em> – The observation extracted from the initial state.
 Typically used to take the next action.</p></li>
-<li><p><em>action_set</em> – An optional subset of accepted action in the next transition.
-For some environment, this may change at every transition.</p></li>
+<li><p><em>action_set</em> – An optional subset that defines which actions are accepted in the next transition.
+For some environment, the action set may change at every transition.</p></li>
 <li><p><em>reward</em> – A real number to use for reinforcement learning.</p></li>
-<li><p><em>done</em> – A boolean flag indicating wether the current state is terminal.
-If this is true, the episode is finished, and this method cannot be called
-until <a class="reference internal" href="#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> has been called.</p></li>
+<li><p><em>done</em> – A boolean flag indicating whether the current state is terminal.
+If this flag is true, then the current episode is finished, and <a class="reference internal" href="#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>
+cannot be called any more.</p></li>
 <li><p><em>info</em> – A collection of environment specific information about the transition.
 This is not necessary for the control problem, but is useful to gain
 insights about the environment.</p></li>
@@ -438,25 +441,178 @@ For some environment, this may change at every transition.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="ecole.dynamics.BranchingDynamics">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.dynamics.</span></span><span class="sig-name descname"><span class="pre">BranchingDynamics</span></span><a class="headerlink" href="#ecole.dynamics.BranchingDynamics" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Single variable branching Dynamics.</p>
+<p>Based on a SCIP <a class="reference external" href="https://www.scipopt.org/doc/html/BRANCH.php">branching callback</a>
+with maximal priority and no depth limit.
+The dynamics give the control back to the user every time the callback would be called.
+The user receives as an action set the list of branching candidates, and is expected to select
+one of them as the action.</p>
+<dl class="py method">
 <dt class="sig sig-object py" id="ecole.dynamics.BranchingDynamics.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.BranchingDynamics" title="ecole.dynamics.BranchingDynamics"><span class="pre">ecole.dynamics.BranchingDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudo_candidates</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.dynamics.BranchingDynamics.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Create new dynamics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pseudo_candidates</strong> – Whether the action set contains pseudo branching variable candidates (<code class="docutils literal notranslate"><span class="pre">SCIPgetPseudoBranchCands</span></code>)
+or LP branching variable candidates (<code class="docutils literal notranslate"><span class="pre">SCIPgetPseudoBranchCands</span></code>).</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.dynamics.BranchingDynamics.reset_dynamics">
 <span class="sig-name descname"><span class="pre">reset_dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.BranchingDynamics" title="ecole.dynamics.BranchingDynamics"><span class="pre">ecole.dynamics.BranchingDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.dynamics.BranchingDynamics.reset_dynamics" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Start solving up to first branching node.</p>
+<p>Start solving with SCIP defaults (<code class="docutils literal notranslate"><span class="pre">SCIPsolve</span></code>) and give back control to the user on the
+first branching decision.
+Users can inherit from this dynamics to change the defaults settings such as presolving
+and cutting planes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>done</em> – Whether the instance is solved.
+This can happen without branching, for instance if the instance is solved during presolving.</p></li>
+<li><p><em>action_set</em> – List of branching candidates. Candidates depend on parameters in <a class="reference internal" href="#ecole.dynamics.BranchingDynamics.__init__" title="ecole.dynamics.BranchingDynamics.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.dynamics.BranchingDynamics.set_dynamics_random_state">
 <span class="sig-name descname"><span class="pre">set_dynamics_random_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.BranchingDynamics" title="ecole.dynamics.BranchingDynamics"><span class="pre">ecole.dynamics.BranchingDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.dynamics.BranchingDynamics.set_dynamics_random_state" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Set seeds on the <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>.</p>
+<p>Set seed parameters, including permutation, LP, and shift.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p></li>
+<li><p><strong>random_engine</strong> – The source of randomness. Passed by the environment.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.dynamics.BranchingDynamics.step_dynamics">
 <span class="sig-name descname"><span class="pre">step_dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.BranchingDynamics" title="ecole.dynamics.BranchingDynamics"><span class="pre">ecole.dynamics.BranchingDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.dynamics.BranchingDynamics.step_dynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Branch and resume solving until next branching.</p>
+<p>Branching is done on a single variable using <code class="docutils literal notranslate"><span class="pre">SCIPbranchVar</span></code>.
+The control is given back to the user on the next branching decision or when done.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p></li>
+<li><p><strong>action</strong> – The index the LP column of the variable to branch on. One element of the action set.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>done</em> – Whether the instance is solved.</p></li>
+<li><p><em>action_set</em> – List of branching candidates. Candidates depend on parameters in <a class="reference internal" href="#ecole.dynamics.BranchingDynamics.__init__" title="ecole.dynamics.BranchingDynamics.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="branchingsum">
+<h3>BranchingSum<a class="headerlink" href="#branchingsum" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.environment.BranchingSum">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.environment.</span></span><span class="sig-name descname"><span class="pre">BranchingSum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observation_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">information_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scip_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">dynamics_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/environment.html#BranchingSum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.environment.BranchingSum" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.dynamics.BranchingSumDynamics">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.dynamics.</span></span><span class="sig-name descname"><span class="pre">BranchingSumDynamics</span></span><a class="headerlink" href="#ecole.dynamics.BranchingSumDynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sum of variables branching Dynamics.</p>
+<p>Based on a SCIP <a class="reference external" href="https://www.scipopt.org/doc/html/BRANCH.php">branching callback</a>
+with maximal priority and no depth limit.
+The dynamics give the control back to the user every time the callback would be called.
+The user receives as an action set the list of branching candidates, and is expected to select
+a subset of them to branch on their sum.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The function used to perform branching is provided by Ecole and has not been extensively tested on
+a large variety of problem instances.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.dynamics.BranchingSumDynamics.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.BranchingSumDynamics" title="ecole.dynamics.BranchingSumDynamics"><span class="pre">ecole.dynamics.BranchingSumDynamics</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.dynamics.BranchingSumDynamics.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.dynamics.BranchingSumDynamics.reset_dynamics">
+<span class="sig-name descname"><span class="pre">reset_dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.BranchingSumDynamics" title="ecole.dynamics.BranchingSumDynamics"><span class="pre">ecole.dynamics.BranchingSumDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.dynamics.BranchingSumDynamics.reset_dynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start solving up to first branching node.</p>
+<p>Start solving with SCIP defaults (<code class="docutils literal notranslate"><span class="pre">SCIPsolve</span></code>) and give back control to the user on the
+first branching decision.
+Users can inherit from this dynamics to change the defaults settings such as presolving
+and cutting planes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>done</em> – Whether the instance is solved.
+This can happen without branching, for instance if the instance is solved during presolving.</p></li>
+<li><p><em>action_set</em> – List of branching candidates (<code class="docutils literal notranslate"><span class="pre">SCIPgetPseudoBranchCands</span></code>).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.dynamics.BranchingSumDynamics.set_dynamics_random_state">
+<span class="sig-name descname"><span class="pre">set_dynamics_random_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.BranchingSumDynamics" title="ecole.dynamics.BranchingSumDynamics"><span class="pre">ecole.dynamics.BranchingSumDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.dynamics.BranchingSumDynamics.set_dynamics_random_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set seeds on the <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>.</p>
+<p>Set seed parameters, including permutation, LP, and shift.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p></li>
+<li><p><strong>random_engine</strong> – The source of randomness. Passed by the environment.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.dynamics.BranchingSumDynamics.step_dynamics">
+<span class="sig-name descname"><span class="pre">step_dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.BranchingSumDynamics" title="ecole.dynamics.BranchingSumDynamics"><span class="pre">ecole.dynamics.BranchingSumDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint64</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.dynamics.BranchingSumDynamics.step_dynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Branch and resume solving until next branching.</p>
+<p>Branching is done on the sum of the given variables using their LP or pseudo solution value.
+To make a valid branching, the sum of the LP or pseudo solution value of the given variables
+must be non integer.
+In the opposite case, an exception will be thrown,
+The control is given back to the user on the next branching decision or when done.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p></li>
+<li><p><strong>action</strong> – A subset of the variables given in the action set.
+Not all subsets are valid (see above).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>done</em> – Whether the instance is solved.</p></li>
+<li><p><em>action_set</em> – List of branching candidates (<code class="docutils literal notranslate"><span class="pre">SCIPgetPseudoBranchCands</span></code>).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -471,7 +627,9 @@ For some environment, this may change at every transition.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="ecole.dynamics.ConfiguringDynamics">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.dynamics.</span></span><span class="sig-name descname"><span class="pre">ConfiguringDynamics</span></span><a class="headerlink" href="#ecole.dynamics.ConfiguringDynamics" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
+<dd><p>Setting solving parameters Dynamics.</p>
+<p>These dynamics are meant to be used as a (contextual) bandit to find good parameters for SCIP.</p>
+<dl class="py method">
 <dt class="sig sig-object py" id="ecole.dynamics.ConfiguringDynamics.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.ConfiguringDynamics" title="ecole.dynamics.ConfiguringDynamics"><span class="pre">ecole.dynamics.ConfiguringDynamics</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.dynamics.ConfiguringDynamics.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -479,17 +637,160 @@ For some environment, this may change at every transition.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.dynamics.ConfiguringDynamics.reset_dynamics">
 <span class="sig-name descname"><span class="pre">reset_dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.ConfiguringDynamics" title="ecole.dynamics.ConfiguringDynamics"><span class="pre">ecole.dynamics.ConfiguringDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.dynamics.ConfiguringDynamics.reset_dynamics" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Does nothing.</p>
+<p>Users can inherit from this dynamics to change when in the solving process parameters will be set
+(for instance after presolving).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>done</em> – Whether the instance is solved. Always false.</p></li>
+<li><p><em>action_set</em> – Unused.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.dynamics.ConfiguringDynamics.set_dynamics_random_state">
 <span class="sig-name descname"><span class="pre">set_dynamics_random_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.ConfiguringDynamics" title="ecole.dynamics.ConfiguringDynamics"><span class="pre">ecole.dynamics.ConfiguringDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.dynamics.ConfiguringDynamics.set_dynamics_random_state" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Set seeds on the <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>.</p>
+<p>Set seed parameters, including permutation, LP, and shift.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p></li>
+<li><p><strong>random_engine</strong> – The source of randomness. Passed by the environment.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.dynamics.ConfiguringDynamics.step_dynamics">
 <span class="sig-name descname"><span class="pre">step_dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.ConfiguringDynamics" title="ecole.dynamics.ConfiguringDynamics"><span class="pre">ecole.dynamics.ConfiguringDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.dynamics.ConfiguringDynamics.step_dynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set parameters and solve the instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p></li>
+<li><p><strong>action</strong> – A mapping of parameter names and values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>done</em> – Whether the instance is solved. Always true.</p></li>
+<li><p><em>action_set</em> – Unused.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="primalsearch">
+<h3>PrimalSearch<a class="headerlink" href="#primalsearch" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.environment.PrimalSearch">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.environment.</span></span><span class="sig-name descname"><span class="pre">PrimalSearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observation_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">information_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scip_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">dynamics_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/environment.html#PrimalSearch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.environment.PrimalSearch" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.dynamics.PrimalSearchDynamics">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.dynamics.</span></span><span class="sig-name descname"><span class="pre">PrimalSearchDynamics</span></span><a class="headerlink" href="#ecole.dynamics.PrimalSearchDynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for primal solutions Dynamics.</p>
+<p>Based on a SCIP <a class="reference external" href="https://www.scipopt.org/doc/html/HEUR.php">primal heuristic</a>
+callback with maximal priority, which executes
+after the processing of a node is finished (<code class="docutils literal notranslate"><span class="pre">SCIP_HEURTIMING_AFTERNODE</span></code>).
+The dynamics give the control back to the user a few times (trials) each time
+the callback is called. The agent receives as an action set the list of all non-fixed
+discrete variables at the current node (pseudo branching candidates), and is
+expected to give back as an action a partial primal solution, i.e., a value
+assignment for a subset of these variables.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.dynamics.PrimalSearchDynamics.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.PrimalSearchDynamics" title="ecole.dynamics.PrimalSearchDynamics"><span class="pre">ecole.dynamics.PrimalSearchDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">trials_per_node</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth_freq</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth_start</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth_stop</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.dynamics.PrimalSearchDynamics.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize new PrimalSearchDynamics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trials_per_node</strong> – Number of primal searches performed at each node (or -1 for an infinite number of trials).</p></li>
+<li><p><strong>depth_freq</strong> – Depth frequency of when the primal search is called (<code class="docutils literal notranslate"><span class="pre">HEUR_FREQ</span></code> in SCIP).</p></li>
+<li><p><strong>depth_start</strong> – Tree depth at which the primal search starts being called (<code class="docutils literal notranslate"><span class="pre">HEUR_FREQOFS</span></code> in SCIP).</p></li>
+<li><p><strong>depth_stop</strong> – Tree depth after which the primal search stops being called (<code class="docutils literal notranslate"><span class="pre">HEUR_MAXDEPTH</span></code> in SCIP).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.dynamics.PrimalSearchDynamics.reset_dynamics">
+<span class="sig-name descname"><span class="pre">reset_dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.PrimalSearchDynamics" title="ecole.dynamics.PrimalSearchDynamics"><span class="pre">ecole.dynamics.PrimalSearchDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.dynamics.PrimalSearchDynamics.reset_dynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start solving up to first primal heuristic call.</p>
+<p>Start solving with SCIP defaults (<code class="docutils literal notranslate"><span class="pre">SCIPsolve</span></code>) and give back control to the user on the
+first heuristic call.
+Users can inherit from this dynamics to change the defaults settings such as presolving
+and cutting planes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>done</em> – Whether the instance is solved.
+This can happen before the heuristic gets called, for instance if the instance is solved during presolving.</p></li>
+<li><p><em>action_set</em> – List of non-fixed discrete variables (<code class="docutils literal notranslate"><span class="pre">SCIPgetPseudoBranchCands</span></code>).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.dynamics.PrimalSearchDynamics.set_dynamics_random_state">
+<span class="sig-name descname"><span class="pre">set_dynamics_random_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.PrimalSearchDynamics" title="ecole.dynamics.PrimalSearchDynamics"><span class="pre">ecole.dynamics.PrimalSearchDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.dynamics.PrimalSearchDynamics.set_dynamics_random_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set seeds on the <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>.</p>
+<p>Set seed parameters, including permutation, LP, and shift.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p></li>
+<li><p><strong>random_engine</strong> – The source of randomness. Passed by the environment.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.dynamics.PrimalSearchDynamics.step_dynamics">
+<span class="sig-name descname"><span class="pre">step_dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.dynamics.PrimalSearchDynamics" title="ecole.dynamics.PrimalSearchDynamics"><span class="pre">ecole.dynamics.PrimalSearchDynamics</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.uint64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.dynamics.PrimalSearchDynamics.step_dynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to obtain a feasible primal solution from the given (partial) primal solution.</p>
+<p>If the number of search trials per node is exceeded, then continue solving until
+the next time the heuristic gets called.</p>
+<p>To obtain a complete feasible solution, variables are fixed to their partial assignment
+values, and the rest of the variable assigments is deduced by solving an LP in probing
+mode. If the provided partial assigment is empty, then nothing is done.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – The state of the Markov Decision Process. Passed by the environment.</p></li>
+<li><p><strong>action</strong> – A subset of the variables given in the action set, and their assigned values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>done</em> – Whether the instance is solved.</p></li>
+<li><p><em>action_set</em> – List of non-fixed discrete variables (<code class="docutils literal notranslate"><span class="pre">SCIPgetPseudoBranchCands</span></code>).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

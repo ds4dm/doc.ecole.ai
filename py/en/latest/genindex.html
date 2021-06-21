@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Index &mdash; Ecole 0.6.2 documentation</title>
+  <title>Index &mdash; Ecole 0.7.0 documentation</title>
   
 
   
@@ -74,7 +74,7 @@
             
             
               <div class="version">
-                0.6
+                0.7
               </div>
             
           
@@ -241,7 +241,11 @@
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics.__init__">__init__() (ecole.dynamics.BranchingDynamics method)</a>
 
       <ul>
+        <li><a href="reference/environments.html#ecole.dynamics.BranchingSumDynamics.__init__">(ecole.dynamics.BranchingSumDynamics method)</a>
+</li>
         <li><a href="reference/environments.html#ecole.dynamics.ConfiguringDynamics.__init__">(ecole.dynamics.ConfiguringDynamics method)</a>
+</li>
+        <li><a href="reference/environments.html#ecole.dynamics.PrimalSearchDynamics.__init__">(ecole.dynamics.PrimalSearchDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.environment.Environment.__init__">(ecole.environment.Environment method)</a>
 </li>
@@ -260,6 +264,12 @@
         <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.GraphType.__init__">(ecole.instance.IndependentSetGenerator.GraphType method)</a>
 </li>
         <li><a href="reference/instances.html#ecole.instance.SetCoverGenerator.__init__">(ecole.instance.SetCoverGenerator method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.Hutter2011.__init__">(ecole.observation.Hutter2011 method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.__init__">(ecole.observation.Hutter2011Obs method)</a>
+</li>
+        <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.__init__">(ecole.observation.Hutter2011Obs.Features method)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.Khalil2016.__init__">(ecole.observation.Khalil2016 method)</a>
 </li>
@@ -293,11 +303,17 @@
 </li>
         <li><a href="reference/rewards.html#ecole.reward.Constant.__init__">(ecole.reward.Constant method)</a>
 </li>
+        <li><a href="reference/rewards.html#ecole.reward.DualIntegral.__init__">(ecole.reward.DualIntegral method)</a>
+</li>
         <li><a href="reference/rewards.html#ecole.reward.IsDone.__init__">(ecole.reward.IsDone method)</a>
 </li>
         <li><a href="reference/rewards.html#ecole.reward.LpIterations.__init__">(ecole.reward.LpIterations method)</a>
 </li>
         <li><a href="reference/rewards.html#ecole.reward.NNodes.__init__">(ecole.reward.NNodes method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.PrimalDualIntegral.__init__">(ecole.reward.PrimalDualIntegral method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.PrimalIntegral.__init__">(ecole.reward.PrimalIntegral method)</a>
 </li>
         <li><a href="reference/rewards.html#ecole.reward.SolvingTime.__init__">(ecole.reward.SolvingTime method)</a>
 </li>
@@ -397,6 +413,8 @@
       <li><a href="reference/information.html#ecole.information.Nothing.before_reset">before_reset() (ecole.information.Nothing method)</a>
 
       <ul>
+        <li><a href="reference/observations.html#ecole.observation.Hutter2011.before_reset">(ecole.observation.Hutter2011 method)</a>
+</li>
         <li><a href="reference/observations.html#ecole.observation.Khalil2016.before_reset">(ecole.observation.Khalil2016 method)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.MilpBipartite.before_reset">(ecole.observation.MilpBipartite method)</a>
@@ -411,11 +429,17 @@
 </li>
         <li><a href="reference/rewards.html#ecole.reward.Constant.before_reset">(ecole.reward.Constant method)</a>
 </li>
+        <li><a href="reference/rewards.html#ecole.reward.DualIntegral.before_reset">(ecole.reward.DualIntegral method)</a>
+</li>
         <li><a href="reference/rewards.html#ecole.reward.IsDone.before_reset">(ecole.reward.IsDone method)</a>
 </li>
         <li><a href="reference/rewards.html#ecole.reward.LpIterations.before_reset">(ecole.reward.LpIterations method)</a>
 </li>
         <li><a href="reference/rewards.html#ecole.reward.NNodes.before_reset">(ecole.reward.NNodes method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.PrimalDualIntegral.before_reset">(ecole.reward.PrimalDualIntegral method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.PrimalIntegral.before_reset">(ecole.reward.PrimalIntegral method)</a>
 </li>
         <li><a href="reference/rewards.html#ecole.reward.SolvingTime.before_reset">(ecole.reward.SolvingTime method)</a>
 </li>
@@ -437,6 +461,10 @@
       <li><a href="reference/environments.html#ecole.environment.Branching">Branching (class in ecole.environment)</a>
 </li>
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics">BranchingDynamics (class in ecole.dynamics)</a>
+</li>
+      <li><a href="reference/environments.html#ecole.environment.BranchingSum">BranchingSum (class in ecole.environment)</a>
+</li>
+      <li><a href="reference/environments.html#ecole.dynamics.BranchingSumDynamics">BranchingSumDynamics (class in ecole.dynamics)</a>
 </li>
       <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.budget_factor">budget_factor (ecole.instance.CombinatorialAuctionGenerator property)</a>
 </li>
@@ -460,8 +488,6 @@
 </li>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.coef_pos_rhs_ratio_min">coef_pos_rhs_ratio_min (ecole.observation.Khalil2016Obs.Features attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.column_features">column_features (ecole.observation.NodeBipartiteObs property)</a>
 </li>
       <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator">CombinatorialAuctionGenerator (class in ecole.instance)</a>
@@ -470,9 +496,27 @@
 </li>
       <li><a href="reference/environments.html#ecole.dynamics.ConfiguringDynamics">ConfiguringDynamics (class in ecole.dynamics)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/rewards.html#ecole.reward.Constant">Constant (class in ecole.reward)</a>
 </li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.constraint_coef_mean">constraint_coef_mean (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.constraint_coef_std">constraint_coef_std (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
       <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.constraint_features">constraint_features (ecole.observation.MilpBipartiteObs property)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.constraint_node_degree_max">constraint_node_degree_max (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.constraint_node_degree_mean">constraint_node_degree_mean (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.constraint_node_degree_min">constraint_node_degree_min (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.constraint_node_degree_std">constraint_node_degree_std (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.constraint_var_coef_mean">constraint_var_coef_mean (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.constraint_var_coef_std">constraint_var_coef_std (ecole.observation.Hutter2011Obs.Features attribute)</a>
 </li>
       <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.continuous_assignment">continuous_assignment (ecole.instance.CapacitatedFacilityLocationGenerator property)</a>
 </li>
@@ -492,13 +536,21 @@
 </li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.disable_cuts">disable_cuts() (ecole.scip.Model method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.disable_presolve">disable_presolve() (ecole.scip.Model method)</a>
 </li>
       <li><a href="reference/utilities.html#ecole.RandomEngine.discard">discard() (ecole.RandomEngine method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.discrete_vars_support_size_mean">discrete_vars_support_size_mean (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.discrete_vars_support_size_std">discrete_vars_support_size_std (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.dual_bound">dual_bound (ecole.scip.Model property)</a>
+</li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.dual_solution_value">dual_solution_value (ecole.observation.NodeBipartiteObs.RowFeatures attribute)</a>
+</li>
+      <li><a href="reference/rewards.html#ecole.reward.DualIntegral">DualIntegral (class in ecole.reward)</a>
 </li>
       <li><a href="reference/environments.html#ecole.typing.Dynamics">Dynamics (class in ecole.typing)</a>
 </li>
@@ -508,6 +560,8 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.edge_density">edge_density (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
       <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.edge_features">edge_features (ecole.observation.MilpBipartiteObs property)</a>
 
       <ul>
@@ -527,6 +581,8 @@
       <li><a href="reference/information.html#ecole.information.Nothing.extract">extract() (ecole.information.Nothing method)</a>
 
       <ul>
+        <li><a href="reference/observations.html#ecole.observation.Hutter2011.extract">(ecole.observation.Hutter2011 method)</a>
+</li>
         <li><a href="reference/observations.html#ecole.observation.Khalil2016.extract">(ecole.observation.Khalil2016 method)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.MilpBipartite.extract">(ecole.observation.MilpBipartite method)</a>
@@ -541,11 +597,17 @@
 </li>
         <li><a href="reference/rewards.html#ecole.reward.Constant.extract">(ecole.reward.Constant method)</a>
 </li>
+        <li><a href="reference/rewards.html#ecole.reward.DualIntegral.extract">(ecole.reward.DualIntegral method)</a>
+</li>
         <li><a href="reference/rewards.html#ecole.reward.IsDone.extract">(ecole.reward.IsDone method)</a>
 </li>
         <li><a href="reference/rewards.html#ecole.reward.LpIterations.extract">(ecole.reward.LpIterations method)</a>
 </li>
         <li><a href="reference/rewards.html#ecole.reward.NNodes.extract">(ecole.reward.NNodes method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.PrimalDualIntegral.extract">(ecole.reward.PrimalDualIntegral method)</a>
+</li>
+        <li><a href="reference/rewards.html#ecole.reward.PrimalIntegral.extract">(ecole.reward.PrimalIntegral method)</a>
 </li>
         <li><a href="reference/rewards.html#ecole.reward.SolvingTime.extract">(ecole.reward.SolvingTime method)</a>
 </li>
@@ -562,8 +624,12 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.features">features (ecole.observation.Khalil2016Obs property)</a>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.features">features (ecole.observation.Hutter2011Obs property)</a>
+
+      <ul>
+        <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.features">(ecole.observation.Khalil2016Obs property)</a>
 </li>
+      </ul></li>
       <li><a href="reference/instances.html#ecole.instance.FileGenerator">FileGenerator (class in ecole.instance)</a>
 </li>
       <li><a href="reference/instances.html#ecole.instance.FileGenerator.SamplingMode">FileGenerator.SamplingMode (class in ecole.instance)</a>
@@ -616,14 +682,20 @@
         <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_lower_bound">(ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.has_upper_bound">has_upper_bound (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
 
       <ul>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_upper_bound">(ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011">Hutter2011 (class in ecole.observation)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs">Hutter2011Obs (class in ecole.observation)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features">Hutter2011Obs.Features (class in ecole.observation)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -656,7 +728,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_upper_bound">is_solution_at_upper_bound (ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
-      <li><a href="reference/scip-interface.html#ecole.scip.Model.is_solved">is_solved() (ecole.scip.Model method)</a>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.is_solved">is_solved (ecole.scip.Model property)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.is_tight">is_tight (ecole.observation.NodeBipartiteObs.RowFeatures attribute)</a>
 </li>
@@ -708,8 +780,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.lower_bound">lower_bound (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
 </li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.lp_objective_value">lp_objective_value (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.lp_slack_l2">lp_slack_l2 (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.lp_slack_max">lp_slack_max (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.lp_slack_mean">lp_slack_mean (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
       <li><a href="reference/rewards.html#ecole.reward.LpIterations">LpIterations (class in ecole.reward)</a>
 </li>
   </ul></td>
@@ -783,6 +863,8 @@
       <ul>
         <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.GraphType.name">(ecole.instance.IndependentSetGenerator.GraphType property)</a>
 </li>
+        <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.name">(ecole.observation.Hutter2011Obs.Features property)</a>
+</li>
         <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.name">(ecole.observation.Khalil2016Obs.Features property)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.ConstraintFeatures.name">(ecole.observation.MilpBipartiteObs.ConstraintFeatures property)</a>
@@ -793,9 +875,17 @@
 </li>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.name">(ecole.observation.NodeBipartiteObs.RowFeatures property)</a>
 </li>
+        <li><a href="reference/scip-interface.html#ecole.scip.Model.name">(ecole.scip.Model property)</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.nb_constraints">nb_constraints (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.nb_nonzero_coefs">nb_nonzero_coefs (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.nb_variables">nb_variables (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.neg_coef_neg_coef_ratio_max">neg_coef_neg_coef_ratio_max (ecole.observation.Khalil2016Obs.Features attribute)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.neg_coef_neg_coef_ratio_min">neg_coef_neg_coef_ratio_min (ecole.observation.Khalil2016Obs.Features attribute)</a>
@@ -805,6 +895,18 @@
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.neg_coef_pos_coef_ratio_min">neg_coef_pos_coef_ratio_min (ecole.observation.Khalil2016Obs.Features attribute)</a>
 </li>
       <li><a href="reference/rewards.html#ecole.reward.NNodes">NNodes (class in ecole.reward)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.node_degree_25q">node_degree_25q (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.node_degree_75q">node_degree_75q (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.node_degree_max">node_degree_max (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.node_degree_mean">node_degree_mean (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.node_degree_min">node_degree_min (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.node_degree_std">node_degree_std (ecole.observation.Hutter2011Obs.Features attribute)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartite">NodeBipartite (class in ecole.observation)</a>
 </li>
@@ -834,14 +936,20 @@
 </li>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.obj_coef_pos_part">obj_coef_pos_part (ecole.observation.Khalil2016Obs.Features attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.VariableFeatures.objective">objective (ecole.observation.MilpBipartiteObs.VariableFeatures attribute)</a>
 
       <ul>
         <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.ColumnFeatures.objective">(ecole.observation.NodeBipartiteObs.ColumnFeatures attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.objective_coef_m_std">objective_coef_m_std (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.objective_coef_n_std">objective_coef_n_std (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.objective_coef_sqrtn_std">objective_coef_sqrtn_std (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
       <li><a href="reference/observations.html#ecole.observation.NodeBipartiteObs.RowFeatures.objective_cosine_similarity">objective_cosine_similarity (ecole.observation.NodeBipartiteObs.RowFeatures attribute)</a>
 </li>
       <li><a href="reference/observations.html#ecole.typing.ObservationFunction">ObservationFunction (class in ecole.typing)</a>
@@ -862,10 +970,20 @@
 </li>
       <li><a href="reference/scip-interface.html#ecole.scip.Model.presolve">presolve() (ecole.scip.Model method)</a>
 </li>
-      <li><a href="reference/scip-interface.html#ecole.scip.Model.prob_basic">prob_basic() (ecole.scip.Model static method)</a>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.primal_bound">primal_bound (ecole.scip.Model property)</a>
+</li>
+      <li><a href="reference/rewards.html#ecole.reward.PrimalDualIntegral">PrimalDualIntegral (class in ecole.reward)</a>
+</li>
+      <li><a href="reference/rewards.html#ecole.reward.PrimalIntegral">PrimalIntegral (class in ecole.reward)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/environments.html#ecole.environment.PrimalSearch">PrimalSearch (class in ecole.environment)</a>
+</li>
+      <li><a href="reference/environments.html#ecole.dynamics.PrimalSearchDynamics">PrimalSearchDynamics (class in ecole.dynamics)</a>
+</li>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.prob_basic">prob_basic() (ecole.scip.Model static method)</a>
+</li>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.pseudocost_down">pseudocost_down (ecole.observation.Khalil2016Obs.Features attribute)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.pseudocost_product">pseudocost_product (ecole.observation.Khalil2016Obs.Features attribute)</a>
@@ -888,6 +1006,10 @@
 </li>
       <li><a href="reference/instances.html#ecole.instance.CapacitatedFacilityLocationGenerator.ratio">ratio (ecole.instance.CapacitatedFacilityLocationGenerator property)</a>
 </li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.ratio_continuous_vars">ratio_continuous_vars (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.ratio_unbounded_discrete_vars">ratio_unbounded_discrete_vars (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
       <li><a href="reference/instances.html#ecole.instance.FileGenerator.recursive">recursive (ecole.instance.FileGenerator property)</a>
 </li>
       <li><a href="reference/instances.html#ecole.instance.FileGenerator.SamplingMode.remove">remove (ecole.instance.FileGenerator.SamplingMode attribute)</a>
@@ -903,7 +1025,11 @@
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics.reset_dynamics">reset_dynamics() (ecole.dynamics.BranchingDynamics method)</a>
 
       <ul>
+        <li><a href="reference/environments.html#ecole.dynamics.BranchingSumDynamics.reset_dynamics">(ecole.dynamics.BranchingSumDynamics method)</a>
+</li>
         <li><a href="reference/environments.html#ecole.dynamics.ConfiguringDynamics.reset_dynamics">(ecole.dynamics.ConfiguringDynamics method)</a>
+</li>
+        <li><a href="reference/environments.html#ecole.dynamics.PrimalSearchDynamics.reset_dynamics">(ecole.dynamics.PrimalSearchDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.typing.Dynamics.reset_dynamics">(ecole.typing.Dynamics method)</a>
 </li>
@@ -916,12 +1042,12 @@
 </li>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.rows_deg_mean">rows_deg_mean (ecole.observation.Khalil2016Obs.Features attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.rows_deg_min">rows_deg_min (ecole.observation.Khalil2016Obs.Features attribute)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.rows_deg_stddev">rows_deg_stddev (ecole.observation.Khalil2016Obs.Features attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_max">rows_dynamic_deg_max (ecole.observation.Khalil2016Obs.Features attribute)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.rows_dynamic_deg_max_ratio">rows_dynamic_deg_max_ratio (ecole.observation.Khalil2016Obs.Features attribute)</a>
@@ -993,7 +1119,11 @@
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics.set_dynamics_random_state">set_dynamics_random_state() (ecole.dynamics.BranchingDynamics method)</a>
 
       <ul>
+        <li><a href="reference/environments.html#ecole.dynamics.BranchingSumDynamics.set_dynamics_random_state">(ecole.dynamics.BranchingSumDynamics method)</a>
+</li>
         <li><a href="reference/environments.html#ecole.dynamics.ConfiguringDynamics.set_dynamics_random_state">(ecole.dynamics.ConfiguringDynamics method)</a>
+</li>
+        <li><a href="reference/environments.html#ecole.dynamics.PrimalSearchDynamics.set_dynamics_random_state">(ecole.dynamics.PrimalSearchDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.typing.Dynamics.set_dynamics_random_state">(ecole.typing.Dynamics method)</a>
 </li>
@@ -1018,12 +1148,18 @@
 </li>
       <li><a href="reference/utilities.html#ecole.spawn_random_engine">spawn_random_engine() (in module ecole)</a>
 </li>
+      <li><a href="reference/scip-interface.html#ecole.scip.Model.stage">stage (ecole.scip.Model property)</a>
+</li>
       <li><a href="reference/environments.html#ecole.environment.Environment.step">step() (ecole.environment.Environment method)</a>
 </li>
       <li><a href="reference/environments.html#ecole.dynamics.BranchingDynamics.step_dynamics">step_dynamics() (ecole.dynamics.BranchingDynamics method)</a>
 
       <ul>
+        <li><a href="reference/environments.html#ecole.dynamics.BranchingSumDynamics.step_dynamics">(ecole.dynamics.BranchingSumDynamics method)</a>
+</li>
         <li><a href="reference/environments.html#ecole.dynamics.ConfiguringDynamics.step_dynamics">(ecole.dynamics.ConfiguringDynamics method)</a>
+</li>
+        <li><a href="reference/environments.html#ecole.dynamics.PrimalSearchDynamics.step_dynamics">(ecole.dynamics.PrimalSearchDynamics method)</a>
 </li>
         <li><a href="reference/environments.html#ecole.typing.Dynamics.step_dynamics">(ecole.typing.Dynamics method)</a>
 </li>
@@ -1057,6 +1193,8 @@
       <ul>
         <li><a href="reference/instances.html#ecole.instance.IndependentSetGenerator.GraphType.value">(ecole.instance.IndependentSetGenerator.GraphType property)</a>
 </li>
+        <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.value">(ecole.observation.Hutter2011Obs.Features property)</a>
+</li>
         <li><a href="reference/observations.html#ecole.observation.Khalil2016Obs.Features.value">(ecole.observation.Khalil2016Obs.Features property)</a>
 </li>
         <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.ConstraintFeatures.value">(ecole.observation.MilpBipartiteObs.ConstraintFeatures property)</a>
@@ -1073,6 +1211,14 @@
       <li><a href="reference/instances.html#ecole.instance.CombinatorialAuctionGenerator.value_deviation">value_deviation (ecole.instance.CombinatorialAuctionGenerator property)</a>
 </li>
       <li><a href="reference/observations.html#ecole.observation.MilpBipartiteObs.variable_features">variable_features (ecole.observation.MilpBipartiteObs property)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.variable_node_degree_max">variable_node_degree_max (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.variable_node_degree_mean">variable_node_degree_mean (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.variable_node_degree_min">variable_node_degree_min (ecole.observation.Hutter2011Obs.Features attribute)</a>
+</li>
+      <li><a href="reference/observations.html#ecole.observation.Hutter2011Obs.Features.variable_node_degree_std">variable_node_degree_std (ecole.observation.Hutter2011Obs.Features attribute)</a>
 </li>
   </ul></td>
 </tr></table>

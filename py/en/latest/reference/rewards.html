@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Rewards &mdash; Ecole 0.6.2 documentation</title>
+  <title>Rewards &mdash; Ecole 0.7.0 documentation</title>
   
 
   
@@ -76,7 +76,7 @@
             
             
               <div class="version">
-                0.6
+                0.7
               </div>
             
           
@@ -131,6 +131,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#lp-iterations">LP Iterations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nnodes">NNodes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#solving-time">Solving Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#primal-and-dual-integrals">Primal and dual Integrals</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a><ul>
@@ -413,6 +414,122 @@ The solving time is specific to the operating system: it includes time spent in
 <span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.reward.SolvingTime" title="ecole.reward.SolvingTime"><span class="pre">ecole.reward.SolvingTime</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">float</span><a class="headerlink" href="#ecole.reward.SolvingTime.extract" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update the internal clock counter and return the difference.</p>
 <p>The difference in solving time is computed in between calls.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="primal-and-dual-integrals">
+<h3>Primal and dual Integrals<a class="headerlink" href="#primal-and-dual-integrals" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.reward.PrimalIntegral">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.reward.</span></span><span class="sig-name descname"><span class="pre">PrimalIntegral</span></span><a class="headerlink" href="#ecole.reward.PrimalIntegral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Primal integral difference.</p>
+<p>The reward is defined as the primal integral since the previous state, where the integral is
+computed with respect to the solving time. The solving time is specific to the operating system:
+it includes time spent in <a class="reference internal" href="environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and time spent waiting on the agent.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.reward.PrimalIntegral.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.reward.PrimalIntegral" title="ecole.reward.PrimalIntegral"><span class="pre">ecole.reward.PrimalIntegral</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wall</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_function</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.reward.PrimalIntegral.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a PrimalIntegral reward function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wall</strong> – If true, the wall time will be used. If False (default), the process time will be used.</p></li>
+<li><p><strong>bound_function</strong> – A function which takes an ecole model and returns a tuple of the value
+to compute the primal bound with respect to and an initial primal bound.
+Values should be ordered as (primal_bound_reference, initial_primal_bound).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.reward.PrimalIntegral.before_reset">
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.reward.PrimalIntegral" title="ecole.reward.PrimalIntegral"><span class="pre">ecole.reward.PrimalIntegral</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.reward.PrimalIntegral.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the internal clock counter and the event handler.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.reward.PrimalIntegral.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.reward.PrimalIntegral" title="ecole.reward.PrimalIntegral"><span class="pre">ecole.reward.PrimalIntegral</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">float</span><a class="headerlink" href="#ecole.reward.PrimalIntegral.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the current primal integral and returns the difference.</p>
+<p>The difference is computed based on the dual integral between sequential calls.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.reward.DualIntegral">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.reward.</span></span><span class="sig-name descname"><span class="pre">DualIntegral</span></span><a class="headerlink" href="#ecole.reward.DualIntegral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dual integral difference.</p>
+<p>The reward is defined as the dual integral since the previous state, where the integral is
+computed with respect to the solving time. The solving time is specific to the operating system:
+it includes time spent in <a class="reference internal" href="environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and time spent waiting on the agent.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.reward.DualIntegral.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.reward.DualIntegral" title="ecole.reward.DualIntegral"><span class="pre">ecole.reward.DualIntegral</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wall</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_function</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.reward.DualIntegral.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a DualIntegral reward function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wall</strong> – If true, the wall time will be used. If False (default), the process time will be used.</p></li>
+<li><p><strong>bound_function</strong> – A function which takes an ecole model and returns a tuple of an initial dual bound and the value
+to compute the dual bound with respect to.
+Values should be ordered as (initial_dual_bound, dual_bound_reference).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.reward.DualIntegral.before_reset">
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.reward.DualIntegral" title="ecole.reward.DualIntegral"><span class="pre">ecole.reward.DualIntegral</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.reward.DualIntegral.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the internal clock counter and the event handler.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.reward.DualIntegral.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.reward.DualIntegral" title="ecole.reward.DualIntegral"><span class="pre">ecole.reward.DualIntegral</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">float</span><a class="headerlink" href="#ecole.reward.DualIntegral.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the current dual integral and returns the difference.</p>
+<p>The difference is computed based on the dual integral between sequential calls.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.reward.PrimalDualIntegral">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.reward.</span></span><span class="sig-name descname"><span class="pre">PrimalDualIntegral</span></span><a class="headerlink" href="#ecole.reward.PrimalDualIntegral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Primal-dual integral difference.</p>
+<p>The reward is defined as the primal-dual integral since the previous state, where the integral is
+computed with respect to the solving time. The solving time is specific to the operating system:
+it includes time spent in <a class="reference internal" href="environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and time spent waiting on the agent.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.reward.PrimalDualIntegral.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.reward.PrimalDualIntegral" title="ecole.reward.PrimalDualIntegral"><span class="pre">ecole.reward.PrimalDualIntegral</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wall</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_function</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.reward.PrimalDualIntegral.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a PrimalDualIntegral reward function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wall</strong> – If true, the wall time will be used. If False (default), the process time will be used.</p></li>
+<li><p><strong>bound_function</strong> – A function which takes an ecole model and returns a tuple of an initial primal bound and dual bound.
+Values should be ordered as (initial_dual_bound, initial_primal_bound).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.reward.PrimalDualIntegral.before_reset">
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.reward.PrimalDualIntegral" title="ecole.reward.PrimalDualIntegral"><span class="pre">ecole.reward.PrimalDualIntegral</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.reward.PrimalDualIntegral.before_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the internal clock counter and the event handler.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.reward.PrimalDualIntegral.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.reward.PrimalDualIntegral" title="ecole.reward.PrimalDualIntegral"><span class="pre">ecole.reward.PrimalDualIntegral</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">float</span><a class="headerlink" href="#ecole.reward.PrimalDualIntegral.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the current primal-dual integral and returns the difference.</p>
+<p>The difference is computed based on the primal-dual integral between sequential calls.</p>
 </dd></dl>
 
 </dd></dl>
