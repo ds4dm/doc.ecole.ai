@@ -139,14 +139,14 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contribution Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developers/example-observation.html">Example Contribute Observation Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
 </ul>
 
             
@@ -323,7 +323,8 @@ For problems instances that are generated programatically
 <a class="reference internal" href="howto/instances.html#generate-instances"><span class="std std-ref">instance generators</span></a>) a <a class="reference internal" href="reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a> is also accepted.</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">observation</span></code> consists of information about the state of the solver that should be used to select the next
-action to perform (for example, using a machine learning algorithm.)</p></li>
+action to perform (for example, using a machine learning algorithm.) Note that this entry is always <code class="docutils literal notranslate"><span class="pre">None</span></code> when
+the state is terminal (that is, when the <code class="docutils literal notranslate"><span class="pre">done</span></code> flag described below is <code class="docutils literal notranslate"><span class="pre">True</span></code>.)</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">action_set</span></code>, when not <code class="docutils literal notranslate"><span class="pre">None</span></code>, describes the set of candidate actions which are valid for the next transition.
 This is necessary for environments where the action set varies from state to state.
 For instance, in the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment the set of candidate variables
@@ -380,7 +381,7 @@ determinism, without re-using the same seed repeatedly.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
 
     </p>
   </div>

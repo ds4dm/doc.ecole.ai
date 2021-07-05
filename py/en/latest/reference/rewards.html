@@ -148,14 +148,14 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example Contribute Observation Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
 </ul>
 
             
@@ -436,9 +436,9 @@ it includes time spent in <a class="reference internal" href="environments.html#
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>wall</strong> – If true, the wall time will be used. If False (default), the process time will be used.</p></li>
-<li><p><strong>bound_function</strong> – A function which takes an ecole model and returns a tuple of the value
-to compute the primal bound with respect to and an initial primal bound.
-Values should be ordered as (primal_bound_reference, initial_primal_bound).</p></li>
+<li><p><strong>bound_function</strong> – A function which takes an ecole model and returns a tuple of an initial primal bound and the offset
+to compute the primal bound with respect to. Values should be ordered as (offset, initial_primal_bound).
+The default function returns (0, -1e20) if the problem is a maximization and (0, 1e20) otherwise.</p></li>
 </ul>
 </dd>
 </dl>
@@ -474,9 +474,9 @@ it includes time spent in <a class="reference internal" href="environments.html#
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>wall</strong> – If true, the wall time will be used. If False (default), the process time will be used.</p></li>
-<li><p><strong>bound_function</strong> – A function which takes an ecole model and returns a tuple of an initial dual bound and the value
-to compute the dual bound with respect to.
-Values should be ordered as (initial_dual_bound, dual_bound_reference).</p></li>
+<li><p><strong>bound_function</strong> – A function which takes an ecole model and returns a tuple of an initial dual bound and the offset
+to compute the dual bound with respect to.  Values should be ordered as (offset, initial_dual_bound).
+The default function returns (0, 1e20) if the problem is a maximization and (0, -1e20) otherwise.</p></li>
 </ul>
 </dd>
 </dl>
@@ -513,7 +513,8 @@ it includes time spent in <a class="reference internal" href="environments.html#
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>wall</strong> – If true, the wall time will be used. If False (default), the process time will be used.</p></li>
 <li><p><strong>bound_function</strong> – A function which takes an ecole model and returns a tuple of an initial primal bound and dual bound.
-Values should be ordered as (initial_dual_bound, initial_primal_bound).</p></li>
+Values should be ordered as (initial_primal_bound, initial_dual_bound). The default function returns
+(-1e20, 1e20) if the problem is a maximization and (1e20, -1e20) otherwise.</p></li>
 </ul>
 </dd>
 </dl>
@@ -615,7 +616,7 @@ this object and compute the operation on the results.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
 
     </p>
   </div>

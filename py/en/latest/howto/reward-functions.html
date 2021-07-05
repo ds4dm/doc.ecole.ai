@@ -135,14 +135,14 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example Contribute Observation Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
 </ul>
 
             
@@ -214,16 +214,17 @@
             
   <div class="section" id="use-reward-functions">
 <span id="id1"></span><h1>Use Reward Functions<a class="headerlink" href="#use-reward-functions" title="Permalink to this headline">¶</a></h1>
-<p>Similarily to <a class="reference internal" href="observation-functions.html#use-observation-functions"><span class="std std-ref">observation functions</span></a> the reward recieved by
+<p>Similarily to <a class="reference internal" href="observation-functions.html#use-observation-functions"><span class="std std-ref">observation functions</span></a> the reward received by
 the user for learning can be customized by changing the <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> used by the
 solver.
-In fact the mechanism of reward functions is very similar to that of observation
-functions.
-Likewise environment is not computing the reward directly but delegates that
+In fact, the mechanism of reward functions is very similar to that of observation
+functions: environments do not compute the reward directly but delegate that
 responsibility to a <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> object.
-The object has complete access to the solver and extract the data it needs.</p>
-<p>Using a different reward function is done with another parameter to the environment.
-For instance with the <a class="reference internal" href="../reference/environments.html#ecole.environment.Configuring" title="ecole.environment.Configuring"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuring</span></code></a> environment:</p>
+The object has complete access to the solver and extracts the data it needs.</p>
+<p>Specifying a reward function is performed by passing the <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> object to
+the <code class="docutils literal notranslate"><span class="pre">reward_function</span></code> environment parameter.
+For instance, specifying a reward function with the <a class="reference internal" href="../reference/environments.html#ecole.environment.Configuring" title="ecole.environment.Configuring"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuring</span></code></a> environment
+looks as follows:</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIterations</span><span class="p">())</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reward_function</span>  
 <span class="go">ecole.reward.LpIterations()</span>
@@ -233,25 +234,23 @@ For instance with the <a class="reference internal" href="../reference/environme
 <span class="go">(..., ..., 45.0, ..., ...)</span>
 </pre></div>
 </div>
-<p>Environments also have a default reward function.</p>
+<p>Environments also have a default reward function, which will be used if the user does not specify any.</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reward_function</span>  
 <span class="go">ecole.reward.IsDone()</span>
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="../reference/rewards.html#reward-reference"><span class="std std-ref">the reference</span></a> for the list of available reward function,
-as well as <a class="reference internal" href="create-functions.html#create-new-functions"><span class="std std-ref">the documention</span></a> for explanation on how to create one.</p>
+<p>See <a class="reference internal" href="../reference/rewards.html#reward-reference"><span class="std std-ref">the reference</span></a> for the list of available reward functions,
+as well as <a class="reference internal" href="create-functions.html#create-new-functions"><span class="std std-ref">the documention</span></a> for explanations on how to create one.</p>
 <div class="section" id="arithmetic-on-reward-functions">
 <h2>Arithmetic on Reward Functions<a class="headerlink" href="#arithmetic-on-reward-functions" title="Permalink to this headline">¶</a></h2>
-<p>Finding a good reward function that will keep the learning process stable and efficient is
-a complex and active area of research.
-When dealing with new types of data, as is the case with Ecole, it is even more important
-to explore differents rewards.
-To create and combine rewards, python arithmetic operations can be used.</p>
-<p>For instance, one typically want to minimize the number of
-<a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a>.
-To achieve this, one would typically use the opposite of the reward.
-Such a reward function can be created by negating the reward function.</p>
+<p>Reinforcement learning in combinatorial optimization solving is an active area of research, and
+there is at this point little consensus on reward functions to use. In recognition of that fact,
+reward functions have been explicitely designed in Ecole to be easily combined with Python arithmetic.</p>
+<p>For instance, one might want to minimize the number of LP iterations used throughout the solving process.
+To achieve this using a standard reinforcement learning algorithm, one would might use the negative
+number of LP iterations between two steps as a reward: this can be achieved by negating the
+<a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a> function.</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=-</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIterations</span><span class="p">())</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>  
 <span class="go">(..., ..., -0.0, ..., ...)</span>
@@ -259,15 +258,15 @@ Such a reward function can be created by negating the reward function.</p>
 <span class="go">(..., ..., -45.0, ..., ...)</span>
 </pre></div>
 </div>
-<p>Any operation, such as</p>
+<p>More generally, any operation, such as</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ecole.reward</span> <span class="kn">import</span> <span class="n">LpIterations</span>
 
 <span class="o">-</span><span class="mf">3.5</span> <span class="o">*</span> <span class="n">LpIterations</span><span class="p">()</span> <span class="o">**</span> <span class="mf">2.1</span> <span class="o">+</span> <span class="mf">4.4</span>
 </pre></div>
 </div>
-<p>are valid.</p>
-<p>Note that this is a full reward <em>function</em> object that can be given to an environment.
-it is similar to doing the following</p>
+<p>is valid.</p>
+<p>Note that this is a full reward <em>function</em> object that can be given to an environment:
+it is equivalent to doing the following.</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Configuring</span><span class="p">(</span><span class="n">reward_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">reward</span><span class="o">.</span><span class="n">LpIterations</span><span class="p">())</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;path/to/problem&quot;</span><span class="p">)</span>  
 <span class="go">(..., ..., ..., ..., ...)</span>
@@ -275,33 +274,31 @@ it is similar to doing the following</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">reward</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.5</span> <span class="o">*</span> <span class="n">lp_iter_reward</span> <span class="o">**</span> <span class="mf">2.1</span> <span class="o">+</span> <span class="mf">4.4</span>
 </pre></div>
 </div>
-<p>Arithmetic operations on reward functions become extremely powerful when combining mutiple
-rewards functions, such as in</p>
+<p>Arithmetic operations are even allowed between different reward functions,</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ecole.reward</span> <span class="kn">import</span> <span class="n">LpIterations</span><span class="p">,</span> <span class="n">IsDone</span>
 
 <span class="mf">4.0</span> <span class="o">*</span> <span class="n">LpIterations</span><span class="p">()</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">IsDone</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>because in this case it would <em>not</em> be possible to pass both
+<p>which is especially powerful because in this normally it would <em>not</em> be possible to pass both
 <a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a> and <a class="reference internal" href="../reference/rewards.html#ecole.reward.IsDone" title="ecole.reward.IsDone"><code class="xref py py-class docutils literal notranslate"><span class="pre">IsDone</span></code></a> to the
 environment.</p>
-<p>All operations that are valid between scalars are valid with reward functions</p>
+<p>All operations that are valid between scalars are valid between reward functions.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">IsDone</span><span class="p">()</span> <span class="o">**</span> <span class="nb">abs</span><span class="p">(</span><span class="n">LpIterations</span><span class="p">()</span> <span class="o">//</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Not all mathematical operations have a dedicated Python operator.
-Ecole implements a number of other operations as methods of reward functions.
-For instance, to get the exponential of <a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a>, one can
-use</p>
+<p>In addition, not all commonly used mathematical operations have a dedicated Python operator: to
+accomodate this, Ecole implements a number of other operations as methods of reward functions.
+For instance, to get the exponential of <a class="reference internal" href="../reference/rewards.html#ecole.reward.LpIterations" title="ecole.reward.LpIterations"><code class="xref py py-class docutils literal notranslate"><span class="pre">LpIterations</span></code></a>, one can use</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">LpIterations</span><span class="p">()</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>This also works with rewards functions created from any expression</p>
+<p>This also works with rewards functions created from arithmetic expressions.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">LpIterations</span><span class="p">())</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>In last resort, reward functions have an <code class="docutils literal notranslate"><span class="pre">apply</span></code> method to compose rewards with any
-function</p>
+<p>Finally, reward functions have an <code class="docutils literal notranslate"><span class="pre">apply</span></code> method to compose rewards with any
+function.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">LpIterations</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">reward</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">reward</span><span class="p">)))</span>
 </pre></div>
 </div>
@@ -322,7 +319,7 @@ function</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
 
     </p>
   </div>
