@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Create New Environments &mdash; Ecole 0.7.0 documentation</title>
+  <title>Create New Environments &mdash; Ecole 0.7.1 documentation</title>
   
 
   
@@ -140,14 +140,14 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example Contribute Observation Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
 </ul>
 
             
@@ -222,48 +222,46 @@
 <div class="section" id="environment-structure">
 <h2>Environment Structure<a class="headerlink" href="#environment-structure" title="Permalink to this headline">¶</a></h2>
 <p>In Ecole, it is possible to customize the <a class="reference internal" href="reward-functions.html#use-reward-functions"><span class="std std-ref">reward</span></a> or
-<a class="reference internal" href="reward-functions.html#use-reward-functions"><span class="std std-ref">observation</span></a> returned by the environment.
-The <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> and <code class="xref py py-class docutils literal notranslate"><span class="pre">ObservatioFunction</span></code> are
-taking some responsability away from the environment.
-We call what is left, <em>i.e.</em> an environment without rewards or observations, the environment
-<a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.
+<a class="reference internal" href="reward-functions.html#use-reward-functions"><span class="std std-ref">observation</span></a> returned by the environment. These components are structured in
+<a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> and <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a> classes that are
+independent from the rest of the environment. We call what is left, that is, the environment without rewards
+or observations, the environment’s <a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a>.
 In other words, the dynamics define the bare bone transitions of the Markov Decision Process.</p>
 <p>Dynamics have an interface similar to environments, but with different input parameters and return
 types.
-In fact environments are wrapper around dynamics that drive the following orchestration:</p>
+In fact environments are wrappers around dynamics classes that drive the following orchestration:</p>
 <ul class="simple">
 <li><p>Environments store the state as a <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>;</p></li>
-<li><p>Forward the <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> to the <a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a> to start a new
+<li><p>Then, they forward the <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> to the <a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a> to start a new
 episode or transition to receive an action set;</p></li>
-<li><p>Forward the <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> to the <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> and
-<a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a> to recieve an observation and reward;</p></li>
-<li><p>Return everything to the user.</p></li>
+<li><p>Next, they forward the <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> to the <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> and
+<a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a> to receive an observation and reward;</p></li>
+<li><p>Finally, return everything to the user.</p></li>
 </ul>
-<p>One susbtancial difference between the environment and the dynamics is the seeding behaviour.
+<p>One susbtantial difference between the environment and the dynamics is the seeding behavior.
 Given that this is not an easy topic, it is discussed in <a class="reference internal" href="../discussion/seeding.html#seeding-discussion"><span class="std std-ref">Seeding</span></a>.</p>
 </div>
 <div class="section" id="creating-dynamics">
 <h2>Creating Dynamics<a class="headerlink" href="#creating-dynamics" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="reset-and-step">
 <h3>Reset and Step<a class="headerlink" href="#reset-and-step" title="Permalink to this headline">¶</a></h3>
-<p>Creating dynamics is very similar to
-<a class="reference internal" href="create-functions.html#create-new-functions"><span class="std std-ref">creating reward and observation functions</span></a>.
+<p>Creating dynamics is very similar to <a class="reference internal" href="create-functions.html#create-new-functions"><span class="std std-ref">creating reward and observation functions</span></a>.
 It can be done from scratch or by inheriting an existing one.
-The following examples shows how we can inherit <a class="reference internal" href="../reference/environments.html#ecole.dynamics.BranchingDynamics" title="ecole.dynamics.BranchingDynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">BranchingDynamics</span></code></a> to
-deactivate cutting plane and presolve.</p>
+The following examples show how we can inherit a <a class="reference internal" href="../reference/environments.html#ecole.dynamics.BranchingDynamics" title="ecole.dynamics.BranchingDynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">BranchingDynamics</span></code></a> class to
+deactivate cutting planes and presolving in SCIP.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For directly changing SCIP parameters, directly pass them to the
-<a class="reference internal" href="../using-environments.html#environment-parameters"><span class="std std-ref">environment construtor</span></a>.</p>
+<p>One can also more directly deactivate SCIP parameters through the
+<a class="reference internal" href="../using-environments.html#environment-parameters"><span class="std std-ref">environment constructor</span></a>.</p>
 </div>
-<p>Given that there is a large number of parameters to change, we want to use one of SCIP default mode
+<p>Given that there is a large number of parameters to change, we want to use one of SCIP default’s modes
 by calling <code class="docutils literal notranslate"><span class="pre">SCIPsetPresolving</span></code> and <code class="docutils literal notranslate"><span class="pre">SCIPsetSeparating</span></code> through PyScipOpt
 (<a class="reference external" href="https://www.scipopt.org/doc/html/group__ParameterMethods.php">SCIP doc</a>).</p>
 <p>We will do so by overriding <a class="reference internal" href="../reference/environments.html#ecole.dynamics.BranchingDynamics.reset_dynamics" title="ecole.dynamics.BranchingDynamics.reset_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset_dynamics()</span></code></a>, which
-get called by <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.
+gets called by <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.
 The similar method <a class="reference internal" href="../reference/environments.html#ecole.dynamics.BranchingDynamics.step_dynamics" title="ecole.dynamics.BranchingDynamics.step_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step_dynamics()</span></code></a>, which is called
-by <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> does not need to be changed in this
-example so we do not override it.</p>
+by <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>, does not need to be changed in this
+example, so we do not override it.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
 <span class="kn">from</span> <span class="nn">pyscipopt.scip</span> <span class="kn">import</span> <span class="n">PY_SCIP_PARAMSETTING</span>
 
@@ -277,24 +275,24 @@ example so we do not override it.</p>
         <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setPresolve</span><span class="p">(</span><span class="n">PY_SCIP_PARAMSETTING</span><span class="o">.</span><span class="n">OFF</span><span class="p">)</span>
         <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setSeparating</span><span class="p">(</span><span class="n">PY_SCIP_PARAMSETTING</span><span class="o">.</span><span class="n">OFF</span><span class="p">)</span>
 
-        <span class="c1"># Let the parent class get the model to the root node and return</span>
+        <span class="c1"># Let the parent class get the model at the root node and return</span>
         <span class="c1"># the done flag / action_set</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reset_dynamics</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>With the <code class="docutils literal notranslate"><span class="pre">SimpleBranchingDynamics</span></code>, we have defined what we want the solver to do.
-Now, to use it as a full environent that can manage observations and rewards, we wrap it with the
+<p>With our <code class="docutils literal notranslate"><span class="pre">SimpleBranchingDynamics</span></code> class we have defined what we want the solver to do.
+Now, to use it as a full environment that can manage observations and rewards, we wrap it in an
 <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment" title="ecole.environment.Environment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Environment</span></code></a>.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleBranching</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Environment</span><span class="p">):</span>
     <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">SimpleBranchingDynamics</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">SimpleBranching</span></code> is a fully featured environment as any other in Ecole.</p>
+<p>The resulting <code class="docutils literal notranslate"><span class="pre">SimpleBranching</span></code> class is then an environment as valid as any other in Ecole.</p>
 </div>
 <div class="section" id="passing-parameters">
 <h3>Passing parameters<a class="headerlink" href="#passing-parameters" title="Permalink to this headline">¶</a></h3>
 <p>We can make the previous example more flexible by deciding what we want to disable.
-To do so, we will take parameters in the constructor</p>
+To do so, we will take parameters in the constructor.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleBranchingDynamics</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">BranchingDynamics</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disable_presolve</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_cuts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -311,7 +309,7 @@ To do so, we will take parameters in the constructor</p>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable_cuts</span><span class="p">:</span>
             <span class="n">pyscipopt_model</span><span class="o">.</span><span class="n">setSeparating</span><span class="p">(</span><span class="n">PY_SCIP_PARAMSETTING</span><span class="o">.</span><span class="n">OFF</span><span class="p">)</span>
 
-        <span class="c1"># Let the parent class get the model to the root node and return</span>
+        <span class="c1"># Let the parent class get the model at the root node and return</span>
         <span class="c1"># the done flag / action_set</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reset_dynamics</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 
@@ -345,7 +343,7 @@ To do so, we will take parameters in the constructor</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
 
     </p>
   </div>

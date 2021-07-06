@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>ecole.environment &mdash; Ecole 0.7.0 documentation</title>
+  <title>ecole.environment &mdash; Ecole 0.7.1 documentation</title>
   
 
   
@@ -130,14 +130,14 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contribution Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../developers/example-observation.html">Example Contribute Observation Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
 </ul>
 
             
@@ -249,10 +249,10 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">reward_function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__DefaultRewardFunction__</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
             <span class="n">observation_function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__DefaultObservationFunction__</span><span class="p">()</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">reward_function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__DefaultRewardFunction__</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">information_function</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
             <span class="n">information_function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__DefaultInformationFunction__</span><span class="p">()</span>
         <span class="p">)</span>
@@ -315,16 +315,21 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">set_dynamics_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">information_function</span><span class="o">.</span><span class="n">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="n">done</span><span class="p">,</span> <span class="n">action_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">reset_dynamics</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span>
             <span class="p">)</span>
 
-            <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+                <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">observation</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">reward_offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+            <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
             <span class="n">information</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">information_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+
             <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward_offset</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">information</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="kc">False</span>
@@ -376,9 +381,15 @@
             <span class="n">done</span><span class="p">,</span> <span class="n">action_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">step_dynamics</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span>
             <span class="p">)</span>
-            <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+                <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">observation</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+            <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
             <span class="n">information</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">information_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+
             <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">information</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="kc">False</span>
@@ -425,7 +436,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
 
     </p>
   </div>

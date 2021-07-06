@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Example Contribute Observation Function &mdash; Ecole 0.7.0 documentation</title>
+  <title>Example: How to Contribute an Observation Function &mdash; Ecole 0.7.1 documentation</title>
   
 
   
@@ -131,14 +131,14 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Zone</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Example Contribute Observation Function</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example: How to Contribute an Observation Function</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#create-the-observation">Create the Observation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#test-your-code">Test Your Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bind-code-to-python">Bind Code to Python</a></li>
@@ -194,7 +194,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Example Contribute Observation Function</li>
+      <li>Example: How to Contribute an Observation Function</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -215,11 +215,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="example-contribute-observation-function">
-<h1>Example Contribute Observation Function<a class="headerlink" href="#example-contribute-observation-function" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="example-how-to-contribute-an-observation-function">
+<h1>Example: How to Contribute an Observation Function<a class="headerlink" href="#example-how-to-contribute-an-observation-function" title="Permalink to this headline">¶</a></h1>
 <p>To contribute an observation (or reward) function, there are a few files to modify.
 For the purpose of example, let us call our observation <cite>Cookie</cite>.
-For all the instructions, look in the same folder for using the other observation functions as example.</p>
+We recommend looking, at every step, to other observation functions as examples.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Be sure to read the <a class="reference internal" href="../contributing.html#contributing-reference"><span class="std std-ref">contribution guidelines</span></a> to figure out how to get started and
@@ -227,7 +227,7 @@ running the tests.</p>
 </div>
 <div class="section" id="create-the-observation">
 <h2>Create the Observation<a class="headerlink" href="#create-the-observation" title="Permalink to this headline">¶</a></h2>
-<p>C++ code is typically separated into <a class="reference external" href="https://en.wikipedia.org/wiki/Include_directive">headers</a>
+<p>The C++ code is typically separated into <a class="reference external" href="https://en.wikipedia.org/wiki/Include_directive">headers</a>
 and source files.</p>
 <p>Headers care not compiled and should only contains the public
 <a class="reference external" href="https://docs.microsoft.com/en-us/cpp/cpp/declarations-and-definitions-cpp">declaration</a>
@@ -250,7 +250,7 @@ They should <code class="docutils literal notranslate"><span class="pre">#includ
 </div>
 <div class="section" id="test-your-code">
 <h2>Test Your Code<a class="headerlink" href="#test-your-code" title="Permalink to this headline">¶</a></h2>
-<p>Tests are not part of a library so they only need a source file.</p>
+<p>Tests are not part of a library, so they only need a source file.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Create the test file <code class="docutils literal notranslate"><span class="pre">libecole/tests/src/observation/test-cookie.cpp</span></code>,</p></li>
@@ -271,13 +271,13 @@ They should <code class="docutils literal notranslate"><span class="pre">#includ
 </div></blockquote>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Due to some discrepencies between C++ and Python, not all bindings are straightforwards.
+<p>Due to some discrepencies between C++ and Python, not all bindings are straightforward.
 More complex types need to be handled on a case-by-case basis.</p>
 </div>
 </div>
 <div class="section" id="test-the-bindings">
 <h2>Test the Bindings<a class="headerlink" href="#test-the-bindings" title="Permalink to this headline">¶</a></h2>
-<p>We need to make sure nothing is forgotten, or rasing runtime errors when used from Python.</p>
+<p>We need to make sure nothing is forgotten or raises runtime errors when used from Python.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Edit <code class="docutils literal notranslate"><span class="pre">python/tests/test_observation.py</span></code>, test the interface, and the return types.</p></li>
@@ -286,7 +286,7 @@ More complex types need to be handled on a case-by-case basis.</p>
 </div>
 <div class="section" id="reference-the-observation-in-the-documentation">
 <h2>Reference the Observation in the Documentation<a class="headerlink" href="#reference-the-observation-in-the-documentation" title="Permalink to this headline">¶</a></h2>
-<p>Documentation from docstring is automatically read by Sphinx, we only need to tell it where to display it.</p>
+<p>Documentation from docstring is automatically read by Sphinx, so we only need to tell it where to display it.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Add the observation function in the list in <code class="docutils literal notranslate"><span class="pre">docs/reference/observation.rst</span></code>.</p></li>
@@ -312,7 +312,7 @@ More complex types need to be handled on a case-by-case basis.</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
 
     </p>
   </div>

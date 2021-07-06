@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Ecole Theoretical Model &mdash; Ecole 0.7.0 documentation</title>
+  <title>Ecole Theoretical Model &mdash; Ecole 0.7.1 documentation</title>
   
 
   
@@ -133,25 +133,25 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="seeding.html">Seeding</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Ecole Theoretical Model</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#markov-decision-process">Markov decision process</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mdp-control-problem">MDP control problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#markov-decision-process">Markov Decision Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-mdp-control-problem">The MDP Control Problem</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Partially-observable Markov decision process</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#po-mdp-control-problem">PO-MDP control problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Partially-Observable Markov Decision Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-po-mdp-control-problem">The PO-MDP Control Problem</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ecole-as-po-mdp-components">Ecole as PO-MDP components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ecole-as-po-mdp-elements">Ecole as PO-MDP Elements</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example Contribute Observation Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
 </ul>
 
             
@@ -223,11 +223,11 @@
             
   <div class="section" id="ecole-theoretical-model">
 <span id="theory"></span><h1>Ecole Theoretical Model<a class="headerlink" href="#ecole-theoretical-model" title="Permalink to this headline">¶</a></h1>
-<p>The Ecole API directly relates to the different components of
+<p>The Ecole elements directly correspond to the different elements of
 an episodic <a class="reference external" href="https://en.wikipedia.org/wiki/Partially_observable_Markov_decision_process">partially-observable Markov decision process</a>
 (PO-MDP).</p>
 <div class="section" id="markov-decision-process">
-<h2>Markov decision process<a class="headerlink" href="#markov-decision-process" title="Permalink to this headline">¶</a></h2>
+<h2>Markov Decision Process<a class="headerlink" href="#markov-decision-process" title="Permalink to this headline">¶</a></h2>
 <p>Consider a regular Markov decision process
 <span class="math notranslate nohighlight">\((\mathcal{S}, \mathcal{A}, p_\textit{init}, p_\textit{trans}, R)\)</span>,
 whose components are</p>
@@ -242,7 +242,7 @@ whose components are</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Having deterministic rewards <span class="math notranslate nohighlight">\(r_t = R(s_t)\)</span> is an arbitrary choice
-here, in order to best fit the Ecole API. It is not restrictive though,
+here, in order to best fit the Ecole library. It is not restrictive though,
 as any MDP with stochastic rewards
 <span class="math notranslate nohighlight">\(r_t \sim p_\textit{reward}(r_t|s_{t-1},a_{t-1},s_{t})\)</span>
 can be converted into an equivalent MDP with deterministic ones,
@@ -261,8 +261,8 @@ state-action trajectories</p>
 \prod_{t=0}^\infty \underbrace{\pi(a_t | s_t)}_{\text{next action}}
 \underbrace{p_\textit{trans}(s_{t+1} | a_t, s_t)}_{\text{next state}}
 \text{.}\]</div>
-<div class="section" id="mdp-control-problem">
-<h3>MDP control problem<a class="headerlink" href="#mdp-control-problem" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-mdp-control-problem">
+<h3>The MDP Control Problem<a class="headerlink" href="#the-mdp-control-problem" title="Permalink to this headline">¶</a></h3>
 <p>We define the MDP control problem as that of finding a policy
 <span class="math notranslate nohighlight">\(\pi^\star\)</span> which is optimal with respect to the expected total
 reward,</p>
@@ -291,7 +291,7 @@ can be safely ignored in the MDP control problem.</p>
 </div>
 </div>
 <div class="section" id="id1">
-<h2>Partially-observable Markov decision process<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Partially-Observable Markov Decision Process<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>In the PO-MDP setting, complete information about the current MDP state
 is not necessarily available to the decision-maker. Instead,
 at each step only a partial observation <span class="math notranslate nohighlight">\(o \in \Omega\)</span>
@@ -323,8 +323,8 @@ step <span class="math notranslate nohighlight">\(t\)</span>. PO-MDP policies th
 <div class="math notranslate nohighlight">
 \[\pi:\mathcal{A} \times \mathcal{H} \to \mathbb{R}_{\geq 0}\]</div>
 <p>such that <span class="math notranslate nohighlight">\(a_t \sim \pi(a_t|h_t)\)</span>.</p>
-<div class="section" id="po-mdp-control-problem">
-<h3>PO-MDP control problem<a class="headerlink" href="#po-mdp-control-problem" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-po-mdp-control-problem">
+<h3>The PO-MDP Control Problem<a class="headerlink" href="#the-po-mdp-control-problem" title="Permalink to this headline">¶</a></h3>
 <p>The PO-MDP control problem can then be written identically to the MDP one,</p>
 <div class="math notranslate nohighlight" id="equation-pomdp-control">
 <span class="eqno">(2)<a class="headerlink" href="#equation-pomdp-control" title="Permalink to this equation">¶</a></span>\[\pi^\star = \underset{\pi}{\operatorname{arg\,max}} \lim_{T \to \infty}
@@ -332,9 +332,9 @@ step <span class="math notranslate nohighlight">\(t\)</span>. PO-MDP policies th
 \text{.}\]</div>
 </div>
 </div>
-<div class="section" id="ecole-as-po-mdp-components">
-<h2>Ecole as PO-MDP components<a class="headerlink" href="#ecole-as-po-mdp-components" title="Permalink to this headline">¶</a></h2>
-<p>The following Ecole components directly translate into PO-MDP components from
+<div class="section" id="ecole-as-po-mdp-elements">
+<h2>Ecole as PO-MDP Elements<a class="headerlink" href="#ecole-as-po-mdp-elements" title="Permalink to this headline">¶</a></h2>
+<p>The following Ecole elements directly translate into PO-MDP elements from
 the aforementioned formulation:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> &lt;=&gt; <span class="math notranslate nohighlight">\(R\)</span></p></li>
@@ -352,9 +352,9 @@ environment.</p>
 <p class="admonition-title">Note</p>
 <p>In practice, both <a class="reference internal" href="../reference/rewards.html#ecole.typing.RewardFunction" title="ecole.typing.RewardFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RewardFunction</span></code></a> and
 <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a> are implemented as stateful
-classes, and therefore should be considered as part of the MDP state
+classes, and therefore should be considered part of the MDP state
 <span class="math notranslate nohighlight">\(s\)</span>. This <em>extended</em> state is not meant to take part in the MDP
-dynamics per se, but nonetheless it has to be considered as the actual
+dynamics per se, but nonetheless has to be considered as the actual
 PO-MDP state, in order to allow for a strict interpretation of Ecole
 environments as PO-MDPs.</p>
 </div>
@@ -390,7 +390,7 @@ reward <span class="math notranslate nohighlight">\(r_0\)</span> returned by
 <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>
 does not affect the control problem. In Ecole we
 nevertheless chose to preserve this initial reward, in order to obtain
-meaningfull cumulated episode rewards, such as the total running time
+meaningful cumulated episode rewards, such as the total running time
 (which must include the time spend in
 <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>), or the total
 number of branch-and-bound nodes in a
@@ -414,7 +414,7 @@ the root node).</p>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
 
     </p>
   </div>

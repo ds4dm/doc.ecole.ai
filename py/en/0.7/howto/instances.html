@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Generate Problem Instances &mdash; Ecole 0.7.0 documentation</title>
+  <title>Generate Problem Instances &mdash; Ecole 0.7.1 documentation</title>
   
 
   
@@ -114,11 +114,11 @@
 <li class="toctree-l1"><a class="reference internal" href="create-functions.html">Create New Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="create-environments.html">Create New Environments</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Generate Problem Instances</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#generators-random-states">Generators Random States</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generator-random-states">Generator Random States</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#with-an-environment">With an Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#adapt-instance-generators">Adapt Instance Generators</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#combine-multiple-generators">Combine Multiple Generators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#generator-random-parameters">Generator Random Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extending-instance-generators">Extending Instance Generators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#combining-multiple-generators">Combining Multiple Generators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generator-with-random-parameters">Generator with Random Parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -141,14 +141,14 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example Contribute Observation Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
 </ul>
 
             
@@ -220,14 +220,14 @@
             
   <div class="section" id="generate-problem-instances">
 <span id="generate-instances"></span><h1>Generate Problem Instances<a class="headerlink" href="#generate-problem-instances" title="Permalink to this headline">¶</a></h1>
-<p>Ecole contains a number of problem <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> in the <code class="docutils literal notranslate"><span class="pre">ecole.instance</span></code> module.
-They generate instances as <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a>.
-To generate instances, first instantiate a generator.
-All generators are constructed with different parameters depending on the problem type.
-An <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> is infinite <a class="reference external" href="https://wiki.python.org/moin/Iterator">Python iterators</a> so
-we can iterate over them using any of Python iterating mechnisms.</p>
+<p>Ecole contains a number of combinatorial optimization instance generators in the``ecole.instance`` module. The various
+<a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> classes generate instances as <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a> objects.</p>
+<p>To use those classes to generate instances, you first instantiate a generator object from the desired class. The various
+generator classes take problem-specific hyperparameters as constructor arguments, which can be used to control the type
+of instances being generated. The resulting <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> objects are infinite <a class="reference external" href="https://wiki.python.org/moin/Iterator">Python
+iterators</a>, which can then be iterated over to yield as many instances as desired.</p>
 <p>For instance, to generate <a class="reference external" href="https://en.wikipedia.org/wiki/Set_cover_problem">set covering problems</a>, one would use
-<a class="reference internal" href="../reference/instances.html#ecole.instance.SetCoverGenerator" title="ecole.instance.SetCoverGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetCoverGenerator</span></code></a> in the following fashion:</p>
+<a class="reference internal" href="../reference/instances.html#ecole.instance.SetCoverGenerator" title="ecole.instance.SetCoverGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetCoverGenerator</span></code></a> in the following fashion.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ecole.instance</span> <span class="kn">import</span> <span class="n">SetCoverGenerator</span>
 
 
@@ -240,14 +240,13 @@ we can iterate over them using any of Python iterating mechnisms.</p>
     <span class="n">instance</span><span class="o">.</span><span class="n">write_problem</span><span class="p">(</span><span class="s2">&quot;some-folder/set-cover-</span><span class="si">{i:04}</span><span class="s2">.lp&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Note how we are iterating over a <code class="docutils literal notranslate"><span class="pre">range(50)</span></code> and calling <code class="docutils literal notranslate"><span class="pre">next</span></code> on the generator.
-This is because iterating directly over the iterator would produce an infinte loop.
-For users more comfortable with iterators, other possibilities exists, such as
-<a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.islice">islice</a>.</p>
-<div class="section" id="generators-random-states">
-<h2>Generators Random States<a class="headerlink" href="#generators-random-states" title="Permalink to this headline">¶</a></h2>
-<p>An <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> holds a random state to generate instance.
-This can be better understood when using the <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.seed" title="ecole.typing.InstanceGenerator.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seed()</span></code></a> method of the generator.</p>
+<p>Note how we are iterating over a <code class="docutils literal notranslate"><span class="pre">range(50)</span></code> and calling <code class="docutils literal notranslate"><span class="pre">next</span></code> on the generator, as iterating directly over
+the iterator would produce an infinite loop. Another simple syntax would be to use <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.islice">islice</a>
+from the standard Python library.</p>
+<div class="section" id="generator-random-states">
+<h2>Generator Random States<a class="headerlink" href="#generator-random-states" title="Permalink to this headline">¶</a></h2>
+<p>Internally, an <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> holds a random state , which gets updated after generating an instance.
+This state can be reset using the <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.seed" title="ecole.typing.InstanceGenerator.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seed()</span></code></a> method of the generator.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">generator_a</span> <span class="o">=</span> <span class="n">SetCoverGenerator</span><span class="p">(</span><span class="n">n_rows</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_cols</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="n">generator_b</span> <span class="o">=</span> <span class="n">SetCoverGenerator</span><span class="p">(</span><span class="n">n_rows</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_cols</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
@@ -266,8 +265,8 @@ This can be better understood when using the <a class="reference internal" href=
 </div>
 <div class="section" id="with-an-environment">
 <h2>With an Environment<a class="headerlink" href="#with-an-environment" title="Permalink to this headline">¶</a></h2>
-<p>The environment <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> accepts problem instance as
-<a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a>, so there is no need to write generated instances to file.</p>
+<p>The instance objects generated by <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>, can be passed directly to an environment’s
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> method.</p>
 <p>A typical example training over 1000 instances/episodes would look like:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ecole</span>
 
@@ -283,23 +282,18 @@ This can be better understood when using the <a class="reference internal" href=
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>While it is possible to modify the instance before passing it to
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code>, it is not considered a good practice, as it obscure what
-what task is being learned (which is not self contained by the environment class anymore).
-A better alternative is to <a class="reference internal" href="create-environments.html#create-new-environment"><span class="std std-ref">create a new environment</span></a> to perfom such changes.</p>
+<p>The generated instance objects can be, in principle, modified between their generation and their usage in an environment
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> method. To keep code clean, however, we recommend that such modifications
+be wrapped in a custom environment class. Details about custom environments <a class="reference internal" href="create-environments.html#create-new-environment"><span class="std std-ref">can be found here</span></a>.</p>
 </div>
 </div>
-<div class="section" id="adapt-instance-generators">
-<h2>Adapt Instance Generators<a class="headerlink" href="#adapt-instance-generators" title="Permalink to this headline">¶</a></h2>
-<p>An <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> only create instances for users to consume.
-Therefore, there is no constraints on how iterating over instance should be done, it is entirely up to the user.
-Using different data structure, such as lists, dictionaries, <em>etc.</em> is completely valid because environments never
-“<em>see</em>” generators, only the instances.
-Here we illustrate some possibilities to adapt Ecole instance generators.
-Python’s <code class="docutils literal notranslate"><span class="pre">yield</span></code> keyword can make it very compact to create iterators.</p>
-<div class="section" id="combine-multiple-generators">
-<h3>Combine Multiple Generators<a class="headerlink" href="#combine-multiple-generators" title="Permalink to this headline">¶</a></h3>
-<p>To learn over multiple problem types, one could build a generator that, for every instance to generate, chooses a
+<div class="section" id="extending-instance-generators">
+<h2>Extending Instance Generators<a class="headerlink" href="#extending-instance-generators" title="Permalink to this headline">¶</a></h2>
+<p>In various use cases, the provided <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> are too limited. Thankfully, it is easy to extend
+the provided generators in various ways. This section presents a few common patterns.</p>
+<div class="section" id="combining-multiple-generators">
+<h3>Combining Multiple Generators<a class="headerlink" href="#combining-multiple-generators" title="Permalink to this headline">¶</a></h3>
+<p>To learn over multiple problem types, one can build a generator that, for every instance to generate, chooses a
 a problem type at random, and returns it.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 
@@ -314,9 +308,9 @@ a problem type at random, and returns it.</p>
         <span class="k">yield</span> <span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This generator does not have a <code class="docutils literal notranslate"><span class="pre">seed</span></code> method.
-If we want to implement it, we have to write the same generator as the equilvalent class.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CombineGenerators</span><span class="p">:</span>
+<p>Note that this is not quite a fully-fledged instance generator, as it is missing a way to set the seed. A more complete instance generator
+could be written as follows.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CombinedGenerator</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">generators</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generators</span> <span class="o">=</span> <span class="n">generators</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>
@@ -334,13 +328,11 @@ If we want to implement it, we have to write the same generator as the equilvale
 </pre></div>
 </div>
 </div>
-<div class="section" id="generator-random-parameters">
-<h3>Generator Random Parameters<a class="headerlink" href="#generator-random-parameters" title="Permalink to this headline">¶</a></h3>
-<p>Another useful case it to generate instances of a same problem type but with different parameters.
-If there are few different set of parameter to choose from, then we could use the same technique as above.
-However, with more set of parameters (or even infinite), this becomes wasteful (or impossible).</p>
-<p>To do this, we can use the generator’s <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.generate_instance" title="ecole.typing.InstanceGenerator.generate_instance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_instance()</span></code></a> static function
-and manually pass a <a class="reference internal" href="../reference/utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a>.
+<div class="section" id="generator-with-random-parameters">
+<h3>Generator with Random Parameters<a class="headerlink" href="#generator-with-random-parameters" title="Permalink to this headline">¶</a></h3>
+<p>The provided instance generators have fixed hyperparameters, but to increase variability it might be desirable to randomly vary them as well.</p>
+<p>This can be without creating various <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> objects by using a generator’s
+<a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.generate_instance" title="ecole.typing.InstanceGenerator.generate_instance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_instance()</span></code></a> static method, and manually pass a <a class="reference internal" href="../reference/utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a>.
 For instance, to randomly choose the <code class="docutils literal notranslate"><span class="pre">n_cols</span></code> and <code class="docutils literal notranslate"><span class="pre">n_rows</span></code> parameters from
 <a class="reference internal" href="../reference/instances.html#ecole.instance.SetCoverGenerator" title="ecole.instance.SetCoverGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetCoverGenerator</span></code></a>, one could use</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
@@ -351,9 +343,9 @@ For instance, to randomly choose the <code class="docutils literal notranslate">
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_cols_range</span><span class="p">,</span> <span class="n">n_rows_range</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_cols_range</span> <span class="o">=</span> <span class="n">n_cols_range</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_rows_range</span> <span class="o">=</span> <span class="n">n_rows_range</span>
-        <span class="c1"># A Python radnom state for randint</span>
+        <span class="c1"># A Python random state for randint</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">py_random_engine</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>
-        <span class="c1"># An Ecole random state to pass to generating functions.</span>
+        <span class="c1"># An Ecole random state to pass to generating functions</span>
         <span class="c1"># This function returns a random state whose seed depends on Ecole global random state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ecole_random_engine</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">spawn_random_engine</span><span class="p">()</span>
 
@@ -391,7 +383,7 @@ For instance, to randomly choose the <code class="docutils literal notranslate">
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
 
     </p>
   </div>

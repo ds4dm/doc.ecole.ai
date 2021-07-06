@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Use Observation Functions &mdash; Ecole 0.7.0 documentation</title>
+  <title>Use Observation Functions &mdash; Ecole 0.7.1 documentation</title>
   
 
   
@@ -136,14 +136,14 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAi Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example Contribute Observation Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
 </ul>
 
             
@@ -215,12 +215,12 @@
             
   <div class="section" id="use-observation-functions">
 <span id="id1"></span><h1>Use Observation Functions<a class="headerlink" href="#use-observation-functions" title="Permalink to this headline">¶</a></h1>
-<p>Using any environment, the observation <a class="footnote-reference brackets" href="#observation" id="id2">1</a> recieved by the user to take the
+<p>Using any environment, the observation <a class="footnote-reference brackets" href="#observation" id="id2">1</a> received by the user to take the
 next action can be customized changing the <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a> used by the solver.
 The environment is not extracting data directly but delegates that responsibility to an
 <a class="reference internal" href="../reference/observations.html#ecole.typing.ObservationFunction" title="ecole.typing.ObservationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObservationFunction</span></code></a> object.
 The object has complete access to the solver and extract the data it needs.</p>
-<p>Using a different observation function is as easy as passing it as a parameter when
+<p>Specifying an observation function is as easy as specifying a parameter when
 creating an environment.
 For instance with the <a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment:</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">Nothing</span><span class="p">())</span>
@@ -240,12 +240,12 @@ For instance with the <a class="reference internal" href="../reference/environme
 <span class="go">ecole.observation.NodeBipartiteObs(...)</span>
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="../reference/observations.html#observation-reference"><span class="std std-ref">the reference</span></a> for the list of available observation function,
+<p>See <a class="reference internal" href="../reference/observations.html#observation-reference"><span class="std std-ref">the reference</span></a> for the list of available observation functions,
 as well as <a class="reference internal" href="create-functions.html#create-new-functions"><span class="std std-ref">the documention</span></a> for explanation on how to create one.</p>
 <div class="section" id="no-observation-function">
 <h2>No Observation Function<a class="headerlink" href="#no-observation-function" title="Permalink to this headline">¶</a></h2>
-<p>To not use any observation function, for instance for a learning with a bandit algorithm,
-explicitly pass <code class="docutils literal notranslate"><span class="pre">None</span></code> to the environment constructor.</p>
+<p>To not use any observation function, for instance for learning with a bandit algorithm,
+you can explicitly pass <code class="docutils literal notranslate"><span class="pre">None</span></code> to the environment constructor.</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Branching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="o">.</span><span class="n">observation_function</span>  
 <span class="go">ecole.observation.nothing()</span>
@@ -280,8 +280,9 @@ explicitly pass <code class="docutils literal notranslate"><span class="pre">Non
 </div>
 <dl class="footnote brackets">
 <dt class="label" id="observation"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
-<dd><p>We chose to use <em>observation</em>, according to the Partially Observable
-Markov Decision Process, because the state is really the whole state of the solver.</p>
+<dd><p>We use the term <em>observation</em> rather than state since the state
+is really the whole state of the solver, which is unaccessible. Thus, mathematically,
+we really have a Partially Observable Markov Decision Process.</p>
 </dd>
 </dl>
 </div>
@@ -301,7 +302,7 @@ Markov Decision Process, because the state is really the whole state of the solv
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chetelat, Justin Dumouchelle.
+        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
 
     </p>
   </div>
