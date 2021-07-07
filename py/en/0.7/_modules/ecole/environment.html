@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>ecole.environment &mdash; Ecole 0.7.1 documentation</title>
+  <title>ecole.environment &mdash; Ecole 0.7.2 documentation</title>
   
 
   
@@ -315,19 +315,23 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">set_dynamics_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="p">)</span>
 
+            <span class="c1"># Reset data extraction functions</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">information_function</span><span class="o">.</span><span class="n">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+            <span class="c1"># Place the environment in its initial state</span>
             <span class="n">done</span><span class="p">,</span> <span class="n">action_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">reset_dynamics</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span>
             <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">done</span>
 
+            <span class="c1"># Extract additional information to be returned by reset</span>
+            <span class="n">reward_offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
                 <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">observation</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">reward_offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
-            <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
             <span class="n">information</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">information_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward_offset</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">information</span>
@@ -378,16 +382,18 @@
             <span class="k">raise</span> <span class="n">ecole</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Exception</span><span class="p">(</span><span class="s2">&quot;Environment need to be reset.&quot;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Transition the environment to the next state</span>
             <span class="n">done</span><span class="p">,</span> <span class="n">action_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">step_dynamics</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span>
             <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">done</span>
 
+            <span class="c1"># Extract additional information to be returned by step</span>
+            <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
                 <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">observation</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
-            <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
             <span class="n">information</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">information_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="n">action_set</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">information</span>
