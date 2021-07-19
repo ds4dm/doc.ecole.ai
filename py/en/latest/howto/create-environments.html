@@ -267,7 +267,6 @@ example, so we do not override it.</p>
 
 
 <span class="k">class</span> <span class="nc">SimpleBranchingDynamics</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">BranchingDynamics</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="nf">reset_dynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="c1"># Share memory with Ecole model</span>
         <span class="n">pyscipopt_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span>
@@ -294,7 +293,6 @@ Now, to use it as a full environment that can manage observations and rewards, w
 <p>We can make the previous example more flexible by deciding what we want to disable.
 To do so, we will take parameters in the constructor.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleBranchingDynamics</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">BranchingDynamics</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disable_presolve</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_cuts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disable_presolve</span> <span class="o">=</span> <span class="n">disable_presolve</span>

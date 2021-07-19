@@ -238,7 +238,6 @@ maximum absolute value.</p>
 
 
 <span class="k">class</span> <span class="nc">ScaledNodeBipartite</span><span class="p">(</span><span class="n">NodeBipartite</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">):</span>
         <span class="c1"># Call parent method to get the original observation</span>
         <span class="n">obs</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
@@ -259,7 +258,6 @@ environment.</p>
 <a class="reference external" href="https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average">exponential moving averaging</a>, with some coefficient α.
 This will illustrate how the class paradigm is useful to saving information between states.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MovingScaledNodeBipartite</span><span class="p">(</span><span class="n">NodeBipartite</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># Construct parent class with other parameters</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -322,8 +320,7 @@ methods.</p>
 
 
 <span class="k">class</span> <span class="nc">StochasticReward</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reward_function</span><span class="p">,</span> <span class="n">probability</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reward_function</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span> <span class="o">=</span> <span class="n">reward_function</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">probability</span> <span class="o">=</span> <span class="n">probability</span>
 
@@ -334,7 +331,7 @@ methods.</p>
         <span class="c1"># Unconditionally getting reward as reward_funcition.extract may have side effects</span>
         <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">probability</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mf">0.</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">reward</span>
 </pre></div>

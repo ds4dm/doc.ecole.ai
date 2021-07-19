@@ -720,11 +720,10 @@ This second term reflects the economies of scale.</p></li>
 <dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.generate_instance">
 <em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">generate_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">n_nodes:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">500</span></em>, <em class="sig-param"><span class="pre">graph_type:</span> <span class="pre">ecole.instance.IndependentSetGenerator.GraphType</span> <span class="pre">=</span> <span class="pre">&lt;GraphType.barabasi_albert:</span> <span class="pre">0&gt;</span></em>, <em class="sig-param"><span class="pre">edge_probability:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.25</span></em>, <em class="sig-param"><span class="pre">affinity:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">4</span></em>, <em class="sig-param"><span class="pre">random_engine:</span> <span class="pre">ecole.RandomEngine</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.generate_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate an independent set MILP problem instance.</p>
-<p>Given an undireted graph, the problem is to find a maximum subset of nodes such that no pair of nodes are connected.
-There are one variable per node in the underlying graph.
-Instead of adding one constraint per edge, a greedy algorithm is run to replace these inequalities when clique is
-found.
-The maximization problem is unwheighted, that is all objective coefficients are equal to one.</p>
+<p>Given an undireted graph, the problem is to find a maximum subset of nodes such that no pair of nodes are
+connected. There are one variable per node in the underlying graph. Instead of adding one constraint per edge, a
+greedy algorithm is run to replace these inequalities when clique is found. The maximization problem is
+unwheighted, that is all objective coefficients are equal to one.</p>
 <p>The problem are generated using the procedure from <a class="reference internal" href="#bergman2016" id="id4"><span>[Bergman2016]</span></a>, and the graphs are sampled following
 <a class="reference internal" href="#erdos1959" id="id5"><span>[Erdos1959]</span></a> and <a class="reference internal" href="#barabasi1999" id="id6"><span>[Barabasi1999]</span></a>.</p>
 <dl class="field-list simple">
@@ -732,13 +731,13 @@ The maximization problem is unwheighted, that is all objective coefficients are 
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n_nodes</strong> – The number of nodes in the graph, and therefore of variable.</p></li>
 <li><p><strong>graph_type</strong> – The method used in which to generate graphs.
-One of “barabasi_albert” or “erdos_renyi”</p></li>
+One of <code class="docutils literal notranslate"><span class="pre">&quot;barabasi_albert&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;erdos_renyi&quot;</span></code>.</p></li>
 <li><p><strong>edge_probability</strong> – The probability of generating each edge.
 This parameter must be in the range [0, 1].
-This parameter will only be used if <cite>graph_type == “erdos_renyi”</cite>.</p></li>
+This parameter will only be used if <code class="docutils literal notranslate"><span class="pre">graph_type</span> <span class="pre">==</span> <span class="pre">&quot;erdos_renyi&quot;</span></code>.</p></li>
 <li><p><strong>affinity</strong> – The number of nodes each new node will be attached to, in the sampling scheme.
 This parameter must be an integer &gt;= 1.
-This parameter will only be used if <cite>graph_type == “barabasi_albert”</cite>.</p></li>
+This parameter will only be used if <code class="docutils literal notranslate"><span class="pre">graph_type</span> <span class="pre">==</span> <span class="pre">&quot;barabasi_albert&quot;</span></code>.</p></li>
 <li><p><strong>random_engine</strong> – The random number generator used to peform all sampling.</p></li>
 </ul>
 </dd>
