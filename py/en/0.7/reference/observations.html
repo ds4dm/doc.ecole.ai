@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Observations &mdash; Ecole 0.7.2 documentation</title>
+  <title>Observations &mdash; Ecole 0.7.3 documentation</title>
   
 
   
@@ -815,8 +815,15 @@ a pseudocost is not applicable are filled with NaN.</p>
 <p>This observation function extract structured <a class="reference internal" href="#ecole.observation.Khalil2016Obs" title="ecole.observation.Khalil2016Obs"><code class="xref py py-class docutils literal notranslate"><span class="pre">Khalil2016Obs</span></code></a>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.observation.Khalil2016.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016" title="ecole.observation.Khalil2016"><span class="pre">ecole.observation.Khalil2016</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.Khalil2016.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Khalil2016" title="ecole.observation.Khalil2016"><span class="pre">ecole.observation.Khalil2016</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudo_candidates</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.Khalil2016.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pseudo_candidates</strong> – Whether the pseudo branching variable candidates (<code class="docutils literal notranslate"><span class="pre">SCIPgetPseudoBranchCands</span></code>)
+or LP branching variable candidates (<code class="docutils literal notranslate"><span class="pre">SCIPgetPseudoBranchCands</span></code>) are observed.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.observation.Khalil2016.before_reset">
