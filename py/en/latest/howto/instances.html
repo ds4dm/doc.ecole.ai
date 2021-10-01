@@ -1,46 +1,22 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Generate Problem Instances &mdash; Ecole 0.7.3 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-
-  
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-  
-
-  
-  
-
-  
-
-  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Environments" href="../reference/environments.html" />
@@ -52,36 +28,17 @@
 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html">
-          
-
-          
-            
             <img src="../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 0.7
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -89,18 +46,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
@@ -151,75 +97,32 @@
 <li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Ecole</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Generate Problem Instances</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
-            
               <a href="https://github.com/ds4dm/ecole/blob/master/docs/howto/instances.rst" class="fa fa-github"> Edit on GitHub</a>
-            
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="generate-problem-instances">
-<span id="generate-instances"></span><h1>Generate Problem Instances<a class="headerlink" href="#generate-problem-instances" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="generate-problem-instances">
+<span id="generate-instances"></span><h1>Generate Problem Instances<a class="headerlink" href="#generate-problem-instances" title="Permalink to this headline"></a></h1>
 <p>Ecole contains a number of combinatorial optimization instance generators in the``ecole.instance`` module. The various
 <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> classes generate instances as <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a> objects.</p>
 <p>To use those classes to generate instances, you first instantiate a generator object from the desired class. The various
@@ -243,8 +146,8 @@ iterators</a>, which can then be iterated over to yield as many instances as des
 <p>Note how we are iterating over a <code class="docutils literal notranslate"><span class="pre">range(50)</span></code> and calling <code class="docutils literal notranslate"><span class="pre">next</span></code> on the generator, as iterating directly over
 the iterator would produce an infinite loop. Another simple syntax would be to use <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.islice">islice</a>
 from the standard Python library.</p>
-<div class="section" id="generator-random-states">
-<h2>Generator Random States<a class="headerlink" href="#generator-random-states" title="Permalink to this headline">¶</a></h2>
+<section id="generator-random-states">
+<h2>Generator Random States<a class="headerlink" href="#generator-random-states" title="Permalink to this headline"></a></h2>
 <p>Internally, an <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> holds a random state , which gets updated after generating an instance.
 This state can be reset using the <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.seed" title="ecole.typing.InstanceGenerator.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seed()</span></code></a> method of the generator.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">generator_a</span> <span class="o">=</span> <span class="n">SetCoverGenerator</span><span class="p">(</span><span class="n">n_rows</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_cols</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
@@ -262,9 +165,9 @@ This state can be reset using the <a class="reference internal" href="../referen
 <span class="n">instance_b</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">generator_b</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="with-an-environment">
-<h2>With an Environment<a class="headerlink" href="#with-an-environment" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="with-an-environment">
+<h2>With an Environment<a class="headerlink" href="#with-an-environment" title="Permalink to this headline"></a></h2>
 <p>The instance objects generated by <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>, can be passed directly to an environment’s
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> method.</p>
 <p>A typical example training over 1000 instances/episodes would look like:</p>
@@ -286,13 +189,13 @@ This state can be reset using the <a class="reference internal" href="../referen
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> method. To keep code clean, however, we recommend that such modifications
 be wrapped in a custom environment class. Details about custom environments <a class="reference internal" href="create-environments.html#create-new-environment"><span class="std std-ref">can be found here</span></a>.</p>
 </div>
-</div>
-<div class="section" id="extending-instance-generators">
-<h2>Extending Instance Generators<a class="headerlink" href="#extending-instance-generators" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="extending-instance-generators">
+<h2>Extending Instance Generators<a class="headerlink" href="#extending-instance-generators" title="Permalink to this headline"></a></h2>
 <p>In various use cases, the provided <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> are too limited. Thankfully, it is easy to extend
 the provided generators in various ways. This section presents a few common patterns.</p>
-<div class="section" id="combining-multiple-generators">
-<h3>Combining Multiple Generators<a class="headerlink" href="#combining-multiple-generators" title="Permalink to this headline">¶</a></h3>
+<section id="combining-multiple-generators">
+<h3>Combining Multiple Generators<a class="headerlink" href="#combining-multiple-generators" title="Permalink to this headline"></a></h3>
 <p>To learn over multiple problem types, one can build a generator that, for every instance to generate, chooses a
 a problem type at random, and returns it.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
@@ -327,9 +230,9 @@ could be written as follows.</p>
             <span class="n">gen</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="generator-with-random-parameters">
-<h3>Generator with Random Parameters<a class="headerlink" href="#generator-with-random-parameters" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="generator-with-random-parameters">
+<h3>Generator with Random Parameters<a class="headerlink" href="#generator-with-random-parameters" title="Permalink to this headline"></a></h3>
 <p>The provided instance generators have fixed hyperparameters, but to increase variability it might be desirable to randomly vary them as well.</p>
 <p>This can be without creating various <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> objects by using a generator’s
 <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.generate_instance" title="ecole.typing.InstanceGenerator.generate_instance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_instance()</span></code></a> static method, and manually pass a <a class="reference internal" href="../reference/utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a>.
@@ -365,56 +268,39 @@ For instance, to randomly choose the <code class="docutils literal notranslate">
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="../discussion/seeding.html#seeding-discussion"><span class="std std-ref">the discussion on seeding</span></a> for an explanation of <a class="reference internal" href="../reference/utilities.html#ecole.spawn_random_engine" title="ecole.spawn_random_engine"><code class="xref py py-func docutils literal notranslate"><span class="pre">ecole.spawn_random_engine()</span></code></a>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../reference/environments.html" class="btn btn-neutral float-right" title="Environments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="create-environments.html" class="btn btn-neutral float-left" title="Create New Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../reference/environments.html" class="btn btn-neutral float-right" title="Environments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
-
-    </p>
+    <p>&#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

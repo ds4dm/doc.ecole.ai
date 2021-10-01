@@ -1,46 +1,22 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Using Environments &mdash; Ecole 0.7.3 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
-
-  
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/favicon.ico"/>
-  
-
-  
-  
-
-  
-
-  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Use Observation Functions" href="howto/observation-functions.html" />
@@ -52,36 +28,17 @@
 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html">
-          
-
-          
-            
             <img src="_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 0.7
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -89,18 +46,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Getting started</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
@@ -149,75 +95,32 @@
 <li class="toctree-l1"><a class="reference internal" href="developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Ecole</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Using Environments</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
-            
               <a href="https://github.com/ds4dm/ecole/blob/master/docs/using-environments.rst" class="fa fa-github"> Edit on GitHub</a>
-            
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="using-environments">
-<h1>Using Environments<a class="headerlink" href="#using-environments" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="using-environments">
+<h1>Using Environments<a class="headerlink" href="#using-environments" title="Permalink to this headline"></a></h1>
 <p>The goal of Ecole is to provide Markov decision process abstractions of common sequential decision making tasks that
 appear when solving combinatorial optimization problems using a solver.
 These control tasks are represented by stateful classes called environments.</p>
@@ -242,8 +145,8 @@ solving a specific instance once by always selecting the first fractional variab
 </pre></div>
 </div>
 <p>Let us analyze this example in more detail.</p>
-<div class="section" id="general-structure">
-<h2>General structure<a class="headerlink" href="#general-structure" title="Permalink to this headline">¶</a></h2>
+<section id="general-structure">
+<h2>General structure<a class="headerlink" href="#general-structure" title="Permalink to this headline"></a></h2>
 <p>The example is driven by two loops.
 The inner <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, the so-called <em>control loop</em>, transitions from an initial state until a
 terminal state is reached, which is signaled with the boolean flag <code class="docutils literal notranslate"><span class="pre">done</span> <span class="pre">==</span> <span class="pre">True</span></code>.
@@ -252,10 +155,12 @@ optimization algorithm.
 A full execution of this loop is known as an <em>episode</em>.
 The control loop matches a Markov decision process formulation, as used in control theory, dynamic programming and
 reinforcement learning.</p>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <a class="reference internal image-reference" href="_images/mdp.png"><img alt="Markov Decision Process interaction loop." src="_images/mdp.png" style="width: 60%;" /></a>
-<p class="caption"><span class="caption-text">The control loop of a Markov decision process.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">The control loop of a Markov decision process.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>More exactly, the control loop in Ecole is that of a <a class="reference external" href="https://en.wikipedia.org/wiki/Partially_observable_Markov_decision_process">partially-observable Markov decision process</a> (PO-MDP), since
@@ -273,9 +178,9 @@ if the learning policy is tailored to solve a single specific instance.
 Ideally, one would like to sample training episodes from a family of similar instances, in order to solve new, similar
 instances in the future.
 For more details, see the <a class="reference internal" href="discussion/theory.html#theory"><span class="std std-ref">Ecole theortical model</span></a> in the discussion.</p>
-</div>
-<div class="section" id="environment-parameters">
-<span id="id1"></span><h2>Environment parameters<a class="headerlink" href="#environment-parameters" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="environment-parameters">
+<span id="id1"></span><h2>Environment parameters<a class="headerlink" href="#environment-parameters" title="Permalink to this headline"></a></h2>
 <p>Each environment can be given a set of parameters at construction, in order to further customize the task being
 solved.
 For instance, the <a class="reference internal" href="reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment takes a <code class="docutils literal notranslate"><span class="pre">pseudo_candidates</span></code>
@@ -309,9 +214,9 @@ using the dedicated
 <p><a class="reference internal" href="howto/observation-functions.html#use-observation-functions"><span class="std std-ref">Observation functions</span></a> and
 <a class="reference internal" href="howto/observation-functions.html#use-observation-functions"><span class="std std-ref">reward functions</span></a> are more advanced environment
 parameters, which we will discuss later on.</p>
-</div>
-<div class="section" id="resetting-environments">
-<span id="id2"></span><h2>Resetting environments<a class="headerlink" href="#resetting-environments" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="resetting-environments">
+<span id="id2"></span><h2>Resetting environments<a class="headerlink" href="#resetting-environments" title="Permalink to this headline"></a></h2>
 <p>Each episode in the inner <code class="docutils literal notranslate"><span class="pre">while</span></code> starts with a call to
 <a class="reference internal" href="reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> in order to bring the environment into a new
 initial state.
@@ -341,9 +246,9 @@ could be solved though presolving only (never actually getting to branching).</p
 </ul>
 <p>See the reference section for the exact documentation of
 <a class="reference internal" href="reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.</p>
-</div>
-<div class="section" id="transitioning">
-<h2>Transitioning<a class="headerlink" href="#transitioning" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="transitioning">
+<h2>Transitioning<a class="headerlink" href="#transitioning" title="Permalink to this headline"></a></h2>
 <p>The inner <code class="docutils literal notranslate"><span class="pre">while</span></code> loop transitions the environment from one state to the next by giving
 an action to <a class="reference internal" href="reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.
 The nature of <code class="docutils literal notranslate"><span class="pre">observation</span></code>, <code class="docutils literal notranslate"><span class="pre">action_set</span></code>, and <code class="docutils literal notranslate"><span class="pre">done</span></code> is the same as in the previous
@@ -352,9 +257,9 @@ The <code class="docutils literal notranslate"><span class="pre">reward</span></
 the current transition.</p>
 <p>See the reference section for the exact documentation of
 <a class="reference internal" href="reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a>.</p>
-</div>
-<div class="section" id="seeding-environments">
-<h2>Seeding environments<a class="headerlink" href="#seeding-environments" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="seeding-environments">
+<h2>Seeding environments<a class="headerlink" href="#seeding-environments" title="Permalink to this headline"></a></h2>
 <p>Environments can be seeded by using the
 <a class="reference internal" href="reference/environments.html#ecole.environment.Environment.seed" title="ecole.environment.Environment.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seed()</span></code></a> method.
 The seed is used by the environment (and in particular the solver) for all the
@@ -364,55 +269,38 @@ The solver is given a new seed at the beginning of every new trajectory (call to
 determinism, without re-using the same seed repeatedly.</p>
 <p>See the reference section for the exact documentation of
 <a class="reference internal" href="reference/environments.html#ecole.environment.Environment.seed" title="ecole.environment.Environment.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">seed()</span></code></a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="howto/observation-functions.html" class="btn btn-neutral float-right" title="Use Observation Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="howto/observation-functions.html" class="btn btn-neutral float-right" title="Use Observation Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
-
-    </p>
+    <p>&#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

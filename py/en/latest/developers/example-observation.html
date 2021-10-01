@@ -1,46 +1,22 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Example: How to Contribute an Observation Function &mdash; Ecole 0.7.3 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-
-  
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
-  
-
-  
-  
-
-  
-
-  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Contribution Guidelines" href="../contributing.html" />
@@ -51,36 +27,17 @@
 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html">
-          
-
-          
-            
             <img src="../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 0.7
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,18 +45,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
@@ -148,75 +94,32 @@
 </li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Ecole</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Example: How to Contribute an Observation Function</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
-            
               <a href="https://github.com/ds4dm/ecole/blob/master/docs/developers/example-observation.rst" class="fa fa-github"> Edit on GitHub</a>
-            
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="example-how-to-contribute-an-observation-function">
-<h1>Example: How to Contribute an Observation Function<a class="headerlink" href="#example-how-to-contribute-an-observation-function" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="example-how-to-contribute-an-observation-function">
+<h1>Example: How to Contribute an Observation Function<a class="headerlink" href="#example-how-to-contribute-an-observation-function" title="Permalink to this headline"></a></h1>
 <p>To contribute an observation (or reward) function, there are a few files to modify.
 For the purpose of example, let us call our observation <cite>Cookie</cite>.
 We recommend looking, at every step, to other observation functions as examples.</p>
@@ -225,8 +128,8 @@ We recommend looking, at every step, to other observation functions as examples.
 <p>Be sure to read the <a class="reference internal" href="../contributing.html#contributing-reference"><span class="std std-ref">contribution guidelines</span></a> to figure out how to get started and
 running the tests.</p>
 </div>
-<div class="section" id="create-the-observation">
-<h2>Create the Observation<a class="headerlink" href="#create-the-observation" title="Permalink to this headline">¶</a></h2>
+<section id="create-the-observation">
+<h2>Create the Observation<a class="headerlink" href="#create-the-observation" title="Permalink to this headline"></a></h2>
 <p>The C++ code is typically separated into <a class="reference external" href="https://en.wikipedia.org/wiki/Include_directive">headers</a>
 and source files.</p>
 <p>Headers care not compiled and should only contains the public
@@ -247,9 +150,9 @@ They should <code class="docutils literal notranslate"><span class="pre">#includ
 <li><p>Explicitly add the source file in CMake, in <code class="docutils literal notranslate"><span class="pre">libecole/CMakeLists.txt</span></code>.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="test-your-code">
-<h2>Test Your Code<a class="headerlink" href="#test-your-code" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="test-your-code">
+<h2>Test Your Code<a class="headerlink" href="#test-your-code" title="Permalink to this headline"></a></h2>
 <p>Tests are not part of a library, so they only need a source file.</p>
 <blockquote>
 <div><ul class="simple">
@@ -259,9 +162,9 @@ They should <code class="docutils literal notranslate"><span class="pre">#includ
 <li><p>Explicitly add the test file in CMake, in <code class="docutils literal notranslate"><span class="pre">libecole/tests/CMakeLists.txt</span></code>.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="bind-code-to-python">
-<h2>Bind Code to Python<a class="headerlink" href="#bind-code-to-python" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="bind-code-to-python">
+<h2>Bind Code to Python<a class="headerlink" href="#bind-code-to-python" title="Permalink to this headline"></a></h2>
 <p>To expose the code in Python, we are using <a class="reference external" href="https://pybind11.readthedocs.io">PyBind</a> directly from C++.</p>
 <blockquote>
 <div><ul class="simple">
@@ -274,18 +177,18 @@ They should <code class="docutils literal notranslate"><span class="pre">#includ
 <p>Due to some discrepencies between C++ and Python, not all bindings are straightforward.
 More complex types need to be handled on a case-by-case basis.</p>
 </div>
-</div>
-<div class="section" id="test-the-bindings">
-<h2>Test the Bindings<a class="headerlink" href="#test-the-bindings" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="test-the-bindings">
+<h2>Test the Bindings<a class="headerlink" href="#test-the-bindings" title="Permalink to this headline"></a></h2>
 <p>We need to make sure nothing is forgotten or raises runtime errors when used from Python.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Edit <code class="docutils literal notranslate"><span class="pre">python/tests/test_observation.py</span></code>, test the interface, and the return types.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="reference-the-observation-in-the-documentation">
-<h2>Reference the Observation in the Documentation<a class="headerlink" href="#reference-the-observation-in-the-documentation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="reference-the-observation-in-the-documentation">
+<h2>Reference the Observation in the Documentation<a class="headerlink" href="#reference-the-observation-in-the-documentation" title="Permalink to this headline"></a></h2>
 <p>Documentation from docstring is automatically read by Sphinx, so we only need to tell it where to display it.</p>
 <blockquote>
 <div><ul class="simple">
@@ -296,54 +199,37 @@ More complex types need to be handled on a case-by-case basis.</p>
 <p class="admonition-title">Note</p>
 <p>Remember to run the tests and code checks before pushing.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../contributing.html" class="btn btn-neutral float-left" title="Contribution Guidelines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.
-
-    </p>
+    <p>&#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
