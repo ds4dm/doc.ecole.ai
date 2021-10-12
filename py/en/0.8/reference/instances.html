@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instance Generators &mdash; Ecole 0.8.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Utilities" href="utilities.html" />
+    <link rel="prev" title="SCIP Interface" href="scip-interface.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.8
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/instances.html">Generate Problem Instances</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Practical Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="information.html">Informations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Instance Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#protocol">Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listing">Listing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#local-files">Local Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-cover">Set Cover</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combinatorial-auction">Combinatorial Auction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#capacitated-facility-location">Capacitated Facility Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#independent-set">Independent Set</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Zone</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ecole</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Instance Generators</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/reference/instances.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="instance-generators">
+<h1>Instance Generators<a class="headerlink" href="#instance-generators" title="Permalink to this headline"></a></h1>
+<section id="protocol">
+<h2>Protocol<a class="headerlink" href="#protocol" title="Permalink to this headline"></a></h2>
+<p>The protocol of instance generators in Ecole.
+There are no constraints for user defined gnerators.
+The protocol is given for users to know what they can expect from Ecole generators.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.typing.InstanceGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.typing.</span></span><span class="sig-name descname"><span class="pre">InstanceGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/typing.html#InstanceGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.InstanceGenerator" title="Permalink to this definition"></a></dt>
+<dd><p>A class to generate generate and iteratate over random problem instance.</p>
+<p>The class combines a <a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a> with the static function <a class="reference internal" href="#ecole.typing.InstanceGenerator.generate_instance" title="ecole.typing.InstanceGenerator.generate_instance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_instance()</span></code></a>
+to provide iterating capabilities.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.typing.InstanceGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.typing.InstanceGenerator.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.typing.InstanceGenerator.generate_instance">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">generate_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><a class="reference internal" href="../_modules/ecole/typing.html#InstanceGenerator.generate_instance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.InstanceGenerator.generate_instance" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a problem instance using the random engine for any source of randomness.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.typing.InstanceGenerator.seed">
+<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="../_modules/ecole/typing.html#InstanceGenerator.seed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.InstanceGenerator.seed" title="Permalink to this definition"></a></dt>
+<dd><p>Seed the random engine of the class.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="listing">
+<h2>Listing<a class="headerlink" href="#listing" title="Permalink to this headline"></a></h2>
+<p>The list of instance generators is given below.</p>
+<section id="local-files">
+<h3>Local Files<a class="headerlink" href="#local-files" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.instance.</span></span><span class="sig-name descname"><span class="pre">FileGenerator</span></span><a class="headerlink" href="#ecole.instance.FileGenerator" title="Permalink to this definition"></a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">SamplingMode</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode" title="Permalink to this definition"></a></dt>
+<dd><blockquote>
+<div><p>A generator to iterate over files in a directory and load them into :py:class:&lt;ecole.scip.Model&gt;.</p>
+</div></blockquote>
+<p>Members:</p>
+<blockquote>
+<div><p>replace</p>
+<p>remove</p>
+<p>remove_and_repeat</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>__init__(self: ecole.core.instance.FileGenerator.SamplingMode, value: int) -&gt; None</p></li>
+<li><p>__init__(self: ecole.core.instance.FileGenerator.SamplingMode, arg0: str) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;SamplingMode.remove:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.remove_and_repeat">
+<span class="sig-name descname"><span class="pre">remove_and_repeat</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;SamplingMode.remove_and_repeat:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.remove_and_repeat" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.replace">
+<span class="sig-name descname"><span class="pre">replace</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;SamplingMode.replace:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.replace" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.SamplingMode.value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.SamplingMode.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">ecole.instance.FileGenerator</span></em>, <em class="sig-param"><span class="pre">directory:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'instances'</span></em>, <em class="sig-param"><span class="pre">recursive:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em>, <em class="sig-param"><span class="pre">sampling_mode:</span> <span class="pre">ecole.instance.FileGenerator.SamplingMode</span> <span class="pre">=</span> <span class="pre">&lt;SamplingMode.remove_and_repeat:</span> <span class="pre">2&gt;</span></em>, <em class="sig-param"><span class="pre">random_engine:</span> <span class="pre">ecole.RandomEngine</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.FileGenerator.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Create a generator to iterate over local problem files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> – The path of the directory in which to look for files.</p></li>
+<li><p><strong>recursive</strong> – Wether sub-directories are searched as well.</p></li>
+<li><p><strong>sampling_mode</strong> – <dl class="simple">
+<dt>Method to iterate over files</dt><dd><ul>
+<li><p>”replace”: Replace every file in the sampling pool right after it is sampled;</p></li>
+<li><dl class="simple">
+<dt>”remove”: Remove every file from the sampling pool right after it is sampled and finish</dt><dd><p>iteration when all files are sampled once;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>”remove_and_repeat”: Remove every file from the sampling pool right after it is sampled</dt><dd><p>but repeat the procedure (with different order) after all files have been sampled.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.directory">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">directory</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.directory" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.recursive">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">recursive</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.recursive" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.sampling_mode">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">sampling_mode</span></span><a class="headerlink" href="#ecole.instance.FileGenerator.sampling_mode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.FileGenerator.seed">
+<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.instance.FileGenerator" title="ecole.instance.FileGenerator"><span class="pre">ecole.instance.FileGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.FileGenerator.seed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="set-cover">
+<h3>Set Cover<a class="headerlink" href="#set-cover" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.instance.SetCoverGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.instance.</span></span><span class="sig-name descname"><span class="pre">SetCoverGenerator</span></span><a class="headerlink" href="#ecole.instance.SetCoverGenerator" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.SetCoverGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.instance.SetCoverGenerator" title="ecole.instance.SetCoverGenerator"><span class="pre">ecole.instance.SetCoverGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_rows</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cols</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_coef</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.SetCoverGenerator.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.SetCoverGenerator.density">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">density</span></span><a class="headerlink" href="#ecole.instance.SetCoverGenerator.density" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.SetCoverGenerator.generate_instance">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">generate_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">n_rows:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">500</span></em>, <em class="sig-param"><span class="pre">n_cols:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1000</span></em>, <em class="sig-param"><span class="pre">density:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.05</span></em>, <em class="sig-param"><span class="pre">max_coef:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">100</span></em>, <em class="sig-param"><span class="pre">random_engine:</span> <span class="pre">ecole.RandomEngine</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><a class="headerlink" href="#ecole.instance.SetCoverGenerator.generate_instance" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a set cover MILP problem instance.</p>
+<p>Algorithm described in <a class="reference internal" href="#balas1980" id="id1"><span>[Balas1980]</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_rows</strong> – The number of rows.</p></li>
+<li><p><strong>n_cols</strong> – The number of columns.</p></li>
+<li><p><strong>density</strong> – The density of the constraint matrix.
+The value must be in the range ]0,1].</p></li>
+<li><p><strong>max_coef</strong> – Maximum objective coefficient.
+The value must be greater than one.</p></li>
+<li><p><strong>random_engine</strong> – The random number generator used to peform all sampling.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="balas1980"><span class="brackets"><a class="fn-backref" href="#id1">Balas1980</a></span></dt>
+<dd><p>Egon Balas and Andrew Ho.
+“Set covering algorithms using cutting planes, heuristics, and subgradient optimization: A computational study”.
+<em>Mathematical Programming</em>, 12, pp. 37-60. 1980.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.SetCoverGenerator.max_coef">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">max_coef</span></span><a class="headerlink" href="#ecole.instance.SetCoverGenerator.max_coef" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.SetCoverGenerator.n_cols">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">n_cols</span></span><a class="headerlink" href="#ecole.instance.SetCoverGenerator.n_cols" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.SetCoverGenerator.n_rows">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">n_rows</span></span><a class="headerlink" href="#ecole.instance.SetCoverGenerator.n_rows" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.SetCoverGenerator.seed">
+<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.instance.SetCoverGenerator" title="ecole.instance.SetCoverGenerator"><span class="pre">ecole.instance.SetCoverGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.SetCoverGenerator.seed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="combinatorial-auction">
+<h3>Combinatorial Auction<a class="headerlink" href="#combinatorial-auction" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.instance.</span></span><span class="sig-name descname"><span class="pre">CombinatorialAuctionGenerator</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.instance.CombinatorialAuctionGenerator" title="ecole.instance.CombinatorialAuctionGenerator"><span class="pre">ecole.instance.CombinatorialAuctionGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_items</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_deviation</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_item_prob</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_n_sub_bids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additivity</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget_factor</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resale_factor</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warnings</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.add_item_prob">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">add_item_prob</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.add_item_prob" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.additivity">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">additivity</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.additivity" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.budget_factor">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">budget_factor</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.budget_factor" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.generate_instance">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">generate_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">n_items:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">100</span></em>, <em class="sig-param"><span class="pre">n_bids:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">500</span></em>, <em class="sig-param"><span class="pre">min_value:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></em>, <em class="sig-param"><span class="pre">max_value:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">100</span></em>, <em class="sig-param"><span class="pre">value_deviation:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.5</span></em>, <em class="sig-param"><span class="pre">add_item_prob:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.7</span></em>, <em class="sig-param"><span class="pre">max_n_sub_bids:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">5</span></em>, <em class="sig-param"><span class="pre">additivity:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.2</span></em>, <em class="sig-param"><span class="pre">budget_factor:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.5</span></em>, <em class="sig-param"><span class="pre">resale_factor:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.5</span></em>, <em class="sig-param"><span class="pre">integers:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em>, <em class="sig-param"><span class="pre">warnings:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em>, <em class="sig-param"><span class="pre">random_engine:</span> <span class="pre">ecole.RandomEngine</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.generate_instance" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a combinatorial auction MILP problem instance.</p>
+<p>This method generates an instance of a combinatorial auction problem based on the
+specified parameters and returns it as an ecole model.</p>
+<p>Algorithm described in <a class="reference internal" href="#leytonbrown2000" id="id2"><span>[LeytonBrown2000]</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_items</strong> – The number of items.</p></li>
+<li><p><strong>n_bids</strong> – The number of bids.</p></li>
+<li><p><strong>min_value</strong> – The minimum resale value for an item.</p></li>
+<li><p><strong>max_value</strong> – The maximum resale value for an item.</p></li>
+<li><p><strong>value_deviation</strong> – The deviation allowed for each bidder’s private value of an item, relative from max_value.</p></li>
+<li><p><strong>add_item_prob</strong> – The probability of adding a new item to an existing bundle.
+This parameters must be in the range [0,1].</p></li>
+<li><p><strong>max_n_sub_bids</strong> – The maximum number of substitutable bids per bidder (+1 gives the maximum number of bids per bidder).</p></li>
+<li><p><strong>additivity</strong> – Additivity parameter for bundle prices. Note that additivity &lt; 0 gives sub-additive bids, while
+additivity &gt; 0 gives super-additive bids.</p></li>
+<li><p><strong>budget_factor</strong> – The budget factor for each bidder, relative to their initial bid’s price.</p></li>
+<li><p><strong>resale_factor</strong> – The resale factor for each bidder, relative to their initial bid’s resale value.</p></li>
+<li><p><strong>integers</strong> – Determines if the bid prices should be integral.</p></li>
+<li><p><strong>warnings</strong> – Determines if warnings should be printed when invalid bundles are skipped in instance generation.</p></li>
+<li><p><strong>random_engine</strong> – The random number generator used to peform all sampling.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="leytonbrown2000"><span class="brackets"><a class="fn-backref" href="#id2">LeytonBrown2000</a></span></dt>
+<dd><p>Kevin Leyton-Brown, Mark Pearson, and Yoav Shoham.
+“Towards a universal test suite for combinatorial auction algorithms”.
+<em>Proceedings of ACM Conference on Electronic Commerce</em> (EC01) pp. 66-76.
+Section 4.3., the ‘arbitrary’ scheme. 2000.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.integers">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">integers</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.integers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.max_n_sub_bids">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">max_n_sub_bids</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.max_n_sub_bids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.max_value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">max_value</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.max_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.min_value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">min_value</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.min_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.n_bids">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">n_bids</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.n_bids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.n_items">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">n_items</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.n_items" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.resale_factor">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">resale_factor</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.resale_factor" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.seed">
+<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.instance.CombinatorialAuctionGenerator" title="ecole.instance.CombinatorialAuctionGenerator"><span class="pre">ecole.instance.CombinatorialAuctionGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.seed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.value_deviation">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value_deviation</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.value_deviation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CombinatorialAuctionGenerator.warnings">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">warnings</span></span><a class="headerlink" href="#ecole.instance.CombinatorialAuctionGenerator.warnings" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="capacitated-facility-location">
+<h3>Capacitated Facility Location<a class="headerlink" href="#capacitated-facility-location" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.instance.</span></span><span class="sig-name descname"><span class="pre">CapacitatedFacilityLocationGenerator</span></span><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.instance.CapacitatedFacilityLocationGenerator" title="ecole.instance.CapacitatedFacilityLocationGenerator"><span class="pre">ecole.instance.CapacitatedFacilityLocationGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_customers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_facilities</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">continuous_assignment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand_interval</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">(5,</span> <span class="pre">36)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capacity_interval</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">(10,</span> <span class="pre">161)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed_cost_cste_interval</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">(0,</span> <span class="pre">91)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed_cost_scale_interval</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">(100,</span> <span class="pre">111)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><span class="pre">ecole.RandomEngine</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator.capacity_interval">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">capacity_interval</span></span><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.capacity_interval" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator.continuous_assignment">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">continuous_assignment</span></span><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.continuous_assignment" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator.demand_interval">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">demand_interval</span></span><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.demand_interval" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator.fixed_cost_cste_interval">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">fixed_cost_cste_interval</span></span><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.fixed_cost_cste_interval" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator.fixed_cost_scale_interval">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">fixed_cost_scale_interval</span></span><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.fixed_cost_scale_interval" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator.generate_instance">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">generate_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">n_customers:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">100</span></em>, <em class="sig-param"><span class="pre">n_facilities:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">100</span></em>, <em class="sig-param"><span class="pre">continuous_assignment:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em>, <em class="sig-param"><span class="pre">ratio:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">5.0</span></em>, <em class="sig-param"><span class="pre">demand_interval:</span> <span class="pre">Tuple[int</span></em>, <em class="sig-param"><span class="pre">int]</span> <span class="pre">=</span> <span class="pre">(5</span></em>, <em class="sig-param"><span class="pre">36)</span></em>, <em class="sig-param"><span class="pre">capacity_interval:</span> <span class="pre">Tuple[int</span></em>, <em class="sig-param"><span class="pre">int]</span> <span class="pre">=</span> <span class="pre">(10</span></em>, <em class="sig-param"><span class="pre">161)</span></em>, <em class="sig-param"><span class="pre">fixed_cost_cste_interval:</span> <span class="pre">Tuple[int</span></em>, <em class="sig-param"><span class="pre">int]</span> <span class="pre">=</span> <span class="pre">(0</span></em>, <em class="sig-param"><span class="pre">91)</span></em>, <em class="sig-param"><span class="pre">fixed_cost_scale_interval:</span> <span class="pre">Tuple[int</span></em>, <em class="sig-param"><span class="pre">int]</span> <span class="pre">=</span> <span class="pre">(100</span></em>, <em class="sig-param"><span class="pre">111)</span></em>, <em class="sig-param"><span class="pre">random_engine:</span> <span class="pre">ecole.RandomEngine</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.generate_instance" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a capacitated facility location MILP problem instance.</p>
+<p>The capacitated facility location assigns a number of customers to be served from a number of facilities.
+Not all facilities need to be opened.
+In fact, the problem is to minimized the sum of the fixed costs for each facilities and the sum of transportation
+costs for serving a given customer from a given facility.
+In a variant of the problem, the customers can be served from multiple facilities and the associated variables
+become [0,1] continuous.</p>
+<p>The sampling algorithm is described in <a class="reference internal" href="#cornuejols1991" id="id3"><span>[Cornuejols1991]</span></a>, but uniform sampling as been replaced by <em>integer</em>
+uniform sampling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_customers</strong> – The number of customers.</p></li>
+<li><p><strong>n_facilities</strong> – The number of facilities.</p></li>
+<li><p><strong>continuous_assignment</strong> – Whether variable for assigning a customer to a facility are binary or [0,1] continuous.</p></li>
+<li><p><strong>ratio</strong> – After all sampling is performed, the capacities are scaled by <cite>ratio * sum(demands) / sum(capacities)</cite>.</p></li>
+<li><p><strong>demand_interval</strong> – The customer demands are sampled independently as uniform integers in this interval [lower, upper[.</p></li>
+<li><p><strong>capacity_interval</strong> – The facility capacities are sampled independently as uniform integers in this interval [lower, upper[.</p></li>
+<li><p><strong>fixed_cost_cste_interval</strong> – The fixed costs are the sum of two terms.
+The first terms in the fixed costs for opening facilities are sampled independently as uniform integers
+in this interval [lower, upper[.</p></li>
+<li><p><strong>fixed_cost_scale_interval</strong> – The fixed costs are the sum of two terms.
+The second terms in the fixed costs for opening facilities are sampled independently as uniform integers
+in this interval [lower, upper[ multiplied by the square root of their capacity prior to scaling.
+This second term reflects the economies of scale.</p></li>
+<li><p><strong>random_engine</strong> – The random number generator used to peform all sampling.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="cornuejols1991"><span class="brackets"><a class="fn-backref" href="#id3">Cornuejols1991</a></span></dt>
+<dd><p>Cornuejols G, Sridharan R, Thizy J-M.
+“A Comparison of Heuristics and Relaxations for the Capacitated Plant Location Problem”.
+<em>European Journal of Operations Research</em> 50, pp. 280-297. 1991.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator.n_customers">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">n_customers</span></span><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.n_customers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator.n_facilities">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">n_facilities</span></span><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.n_facilities" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator.ratio">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">ratio</span></span><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.ratio" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.CapacitatedFacilityLocationGenerator.seed">
+<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.instance.CapacitatedFacilityLocationGenerator" title="ecole.instance.CapacitatedFacilityLocationGenerator"><span class="pre">ecole.instance.CapacitatedFacilityLocationGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.CapacitatedFacilityLocationGenerator.seed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="independent-set">
+<h3>Independent Set<a class="headerlink" href="#independent-set" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.instance.</span></span><span class="sig-name descname"><span class="pre">IndependentSetGenerator</span></span><a class="headerlink" href="#ecole.instance.IndependentSetGenerator" title="Permalink to this definition"></a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.GraphType">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">GraphType</span></span><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.GraphType" title="Permalink to this definition"></a></dt>
+<dd><p>Members:</p>
+<p>barabasi_albert</p>
+<p>erdos_renyi</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.GraphType.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.GraphType.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Overloaded function.</p>
+<ol class="arabic simple">
+<li><p>__init__(self: ecole.core.instance.IndependentSetGenerator.GraphType, value: int) -&gt; None</p></li>
+<li><p>__init__(self: ecole.core.instance.IndependentSetGenerator.GraphType, arg0: str) -&gt; None</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.GraphType.barabasi_albert">
+<span class="sig-name descname"><span class="pre">barabasi_albert</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;GraphType.barabasi_albert:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.GraphType.barabasi_albert" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.GraphType.erdos_renyi">
+<span class="sig-name descname"><span class="pre">erdos_renyi</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;GraphType.erdos_renyi:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.GraphType.erdos_renyi" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.GraphType.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.GraphType.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.GraphType.value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.GraphType.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">ecole.instance.IndependentSetGenerator</span></em>, <em class="sig-param"><span class="pre">n_nodes:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">500</span></em>, <em class="sig-param"><span class="pre">graph_type:</span> <span class="pre">ecole.instance.IndependentSetGenerator.GraphType</span> <span class="pre">=</span> <span class="pre">&lt;GraphType.barabasi_albert:</span> <span class="pre">0&gt;</span></em>, <em class="sig-param"><span class="pre">edge_probability:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.25</span></em>, <em class="sig-param"><span class="pre">affinity:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">4</span></em>, <em class="sig-param"><span class="pre">random_engine:</span> <span class="pre">ecole.RandomEngine</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.affinity">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">affinity</span></span><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.affinity" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.barabasi_albert">
+<span class="sig-name descname"><span class="pre">barabasi_albert</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;GraphType.barabasi_albert:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.barabasi_albert" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.edge_probability">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">edge_probability</span></span><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.edge_probability" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.erdos_renyi">
+<span class="sig-name descname"><span class="pre">erdos_renyi</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;GraphType.erdos_renyi:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.erdos_renyi" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.generate_instance">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">generate_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">n_nodes:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">500</span></em>, <em class="sig-param"><span class="pre">graph_type:</span> <span class="pre">ecole.instance.IndependentSetGenerator.GraphType</span> <span class="pre">=</span> <span class="pre">&lt;GraphType.barabasi_albert:</span> <span class="pre">0&gt;</span></em>, <em class="sig-param"><span class="pre">edge_probability:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.25</span></em>, <em class="sig-param"><span class="pre">affinity:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">4</span></em>, <em class="sig-param"><span class="pre">random_engine:</span> <span class="pre">ecole.RandomEngine</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.generate_instance" title="Permalink to this definition"></a></dt>
+<dd><p>Generate an independent set MILP problem instance.</p>
+<p>Given an undireted graph, the problem is to find a maximum subset of nodes such that no pair of nodes are
+connected. There are one variable per node in the underlying graph. Instead of adding one constraint per edge, a
+greedy algorithm is run to replace these inequalities when clique is found. The maximization problem is
+unwheighted, that is all objective coefficients are equal to one.</p>
+<p>The problem are generated using the procedure from <a class="reference internal" href="#bergman2016" id="id4"><span>[Bergman2016]</span></a>, and the graphs are sampled following
+<a class="reference internal" href="#erdos1959" id="id5"><span>[Erdos1959]</span></a> and <a class="reference internal" href="#barabasi1999" id="id6"><span>[Barabasi1999]</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_nodes</strong> – The number of nodes in the graph, and therefore of variable.</p></li>
+<li><p><strong>graph_type</strong> – The method used in which to generate graphs.
+One of <code class="docutils literal notranslate"><span class="pre">&quot;barabasi_albert&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;erdos_renyi&quot;</span></code>.</p></li>
+<li><p><strong>edge_probability</strong> – The probability of generating each edge.
+This parameter must be in the range [0, 1].
+This parameter will only be used if <code class="docutils literal notranslate"><span class="pre">graph_type</span> <span class="pre">==</span> <span class="pre">&quot;erdos_renyi&quot;</span></code>.</p></li>
+<li><p><strong>affinity</strong> – The number of nodes each new node will be attached to, in the sampling scheme.
+This parameter must be an integer &gt;= 1.
+This parameter will only be used if <code class="docutils literal notranslate"><span class="pre">graph_type</span> <span class="pre">==</span> <span class="pre">&quot;barabasi_albert&quot;</span></code>.</p></li>
+<li><p><strong>random_engine</strong> – The random number generator used to peform all sampling.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="bergman2016"><span class="brackets"><a class="fn-backref" href="#id4">Bergman2016</a></span></dt>
+<dd><p>David Bergman, Andre A. Cire, Willem-Jan Van Hoeve, and John Hooker.
+“Decision diagrams for optimization”, Section 4.6.4.
+<em>Springer International Publishing</em>, 2016.</p>
+</dd>
+<dt class="label" id="erdos1959"><span class="brackets"><a class="fn-backref" href="#id5">Erdos1959</a></span></dt>
+<dd><p>Paul Erdos and Alfréd Renyi.
+“On Random Graph”
+<em>Publicationes Mathematicae</em>, pp. 290-297, 1959.</p>
+</dd>
+<dt class="label" id="barabasi1999"><span class="brackets"><a class="fn-backref" href="#id6">Barabasi1999</a></span></dt>
+<dd><p>Albert-László Barabási and Réka Albert.
+“Emergence of scaling in random networks”
+<em>Science</em> vol. 286, num. 5439, pp. 509-512, 1999.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.graph_type">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">graph_type</span></span><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.graph_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.n_nodes">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">n_nodes</span></span><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.n_nodes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.instance.IndependentSetGenerator.seed">
+<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.instance.IndependentSetGenerator" title="ecole.instance.IndependentSetGenerator"><span class="pre">ecole.instance.IndependentSetGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.instance.IndependentSetGenerator.seed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scip-interface.html" class="btn btn-neutral float-left" title="SCIP Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utilities.html" class="btn btn-neutral float-right" title="Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

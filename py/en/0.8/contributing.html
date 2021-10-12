@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contribution Guidelines &mdash; Ecole 0.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Example: How to Contribute an Observation Function" href="developers/example-observation.html" />
+    <link rel="prev" title="Ecole Theoretical Model" href="discussion/theory.html" />
+<script>
+	window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://ecoleai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.8
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using-environments.html">Using Environments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How to</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="howto/observation-functions.html">Use Observation Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/reward-functions.html">Use Reward Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/create-functions.html">Create New Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/create-environments.html">Create New Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/instances.html">Generate Problem Instances</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Practical Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference/environments.html">Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/information.html">Informations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/scip-interface.html">SCIP Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/instances.html">Instance Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/utilities.html">Utilities</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discussion/seeding.html">Seeding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discussion/theory.html">Ecole Theoretical Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Developer Zone</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contribution Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#contribution-acceptance">Contribution acceptance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tour-of-the-codebase">Tour of the codebase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies-with-conda">Dependencies with Conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-script">Development script</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configure-with-cmake">Configure with CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-optional">Building (Optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-tests">Running the tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#coding-standards">Coding standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#compilation-database">Compilation database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pre-commit">Pre-commit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#compiler-issues">Compiler issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#when-things-fail">When things fail</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ecole</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Contribution Guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/ds4dm/ecole/blob/master/docs/contributing.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contribution-guidelines">
+<span id="contributing-reference"></span><h1>Contribution Guidelines<a class="headerlink" href="#contribution-guidelines" title="Permalink to this headline"></a></h1>
+<p>Thank you for your interest in contributing to Ecole! 🌟
+Contributions are more diverse than contributing new features.
+Improving the documentation, reporting and reproducing bugs, discussing the direction of Ecole in
+the discussions, helping others use Ecole.</p>
+<section id="contribution-acceptance">
+<h2>Contribution acceptance<a class="headerlink" href="#contribution-acceptance" title="Permalink to this headline"></a></h2>
+<p>Not all code contributions are relevant for Ecole.
+It does not mean that the idea is not good.
+We try to balance added value with maintenance and complexity of a growing codebase.
+For that reason, it is a good idea to communicate with the developpers first to be sure that we agree on
+what should be added/modified.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Be sure to open an issue before sending a pull request.</p>
+</div>
+</section>
+<section id="tour-of-the-codebase">
+<h2>Tour of the codebase<a class="headerlink" href="#tour-of-the-codebase" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">libecole</span></code> is the Ecole C++ library.
+Ecole is mostly written in C++ so this is where you will find most features, rewards, observations…</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span></code> contains some Python and C++ code to create bindings to Python.
+Ecole uses <a class="reference external" href="https://pybind11.readthedocs.io/">PyBind</a> to create the binding, these are all the C++ files
+in this directory.
+Sometimes, you may find Python code as well.
+This is either because a feature is more naturally implemented in Python, or because we have accepted an early contribution
+that is not yet ported to C++.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs</span></code> is the <a class="reference external" href="https://www.sphinx-doc.org">Sphinx</a> documentation written in reStructuredText.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">examples</span></code> are practical examples showcasing how to use Ecole for certain tasks.</p></li>
+</ul>
+</section>
+<section id="dependencies-with-conda">
+<h2>Dependencies with Conda<a class="headerlink" href="#dependencies-with-conda" title="Permalink to this headline"></a></h2>
+<p>All dependencies required for building Ecole (including SCIP) can be resolved using a
+<a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> environment.
+Install everything in a development environment (named <code class="docutils literal notranslate"><span class="pre">ecole</span></code>) using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -n ecole -f dev/conda.yaml
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate ecole
+conda config --append channels conda-forge
+conda config --set channel_priority flexible
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This environment contains tools to build ecole and scip, format code, test,
+generate documentation etc. These are more than the dependencies to only use Ecole.</p>
+</div>
+</section>
+<section id="development-script">
+<h2>Development script<a class="headerlink" href="#development-script" title="Permalink to this headline"></a></h2>
+<p>To ease the burden or remembering the relation between commands, their default values _etc_., we
+provide a script, <code class="docutils literal notranslate"><span class="pre">./dev/run.sh</span></code> to run all commands.
+Contributors are still free to use the script commands manually.</p>
+<p>Full usage and options can be found</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dev/run.sh <span class="nb">help</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This script is meant for development and does not optimize Ecole for speed.
+To install Ecole see the <a class="reference internal" href="installation.html#installation"><span class="std std-ref">installation instructions</span></a></p>
+</div>
+<section id="configure-with-cmake">
+<h3>Configure with CMake<a class="headerlink" href="#configure-with-cmake" title="Permalink to this headline"></a></h3>
+<p><a class="reference external" href="https://cmake.org">CMake</a> is a meta-build tool, used for configuring other build tools
+(<em>e.g.</em> Make) or IDE’s.
+The whole build of Ecole can be done with CMake.
+A one-time configuration is necessary for CMake to find dependencies, detect system
+information, <em>etc</em>.
+CMake is made available in the <code class="docutils literal notranslate"><span class="pre">ecole</span></code> environment created earlier.
+For the following, this environment always needs to be activated.</p>
+<p>In the Ecole source repository, configure using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dev/run.sh configure -D <span class="nv">ECOLE_DEVELOPER</span><span class="o">=</span>ON
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is the time to pass optional build options, such as the build type and compiler
+choice. For instance <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">CMAKE_BUILD_TYPE=Debug</span></code> can be added to compile with debug
+information.</p>
+</div>
+<p>The definition <code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">ECOLE_DEVELOPER=ON</span></code> changes the default settings (such as the build
+type, <em>etc.</em>) for added convenience.
+Only the default settings are changed, this mode does not override any explicit setting.</p>
+</section>
+<section id="building-optional">
+<h3>Building (Optional)<a class="headerlink" href="#building-optional" title="Permalink to this headline"></a></h3>
+<p>Ecole can be build with the following commands, although tests will (re)build Ecole automatically.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dev/run.sh build-lib -- build-py
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Be sure to eliminate all warnings. They will be considered as errors in the PR.</p>
+</div>
+</section>
+<section id="running-the-tests">
+<h3>Running the tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline"></a></h3>
+<p>The C++ tests are build with <a class="reference external" href="https://github.com/catchorg/Catch2">Catch2</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dev/run.sh test-lib
+</pre></div>
+</div>
+<p>Python tests are build with <a class="reference external" href="https://docs.pytest.org/en/latest/">PyTest</a>.
+By default, this will find Ecole inside the devlopement build tree.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dev/run.sh test-py
+</pre></div>
+</div>
+</section>
+<section id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h3>
+<p>The documentation is build with <a class="reference external" href="https://www.sphinx-doc.org">Sphinx</a>.
+It reads the docstrings from the Ecole package.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dev/run.sh build-doc
+</pre></div>
+</div>
+<p>Additional test on the documentation can be run with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dev/run.sh test-doc
+</pre></div>
+</div>
+<p>The generated HTML files are located under <code class="docutils literal notranslate"><span class="pre">build/doc/html</span></code>.
+In particular, <code class="docutils literal notranslate"><span class="pre">build/doc/html/index.html</span></code> can be opened in your browser to visualize the
+documentation.</p>
+</section>
+</section>
+<section id="coding-standards">
+<h2>Coding standards<a class="headerlink" href="#coding-standards" title="Permalink to this headline"></a></h2>
+<p>The quality and conventions of the code are enforced automatically with various tools, for instance
+to format the layout of the code and fix some C++ error-prone patterns.</p>
+<section id="compilation-database">
+<h3>Compilation database<a class="headerlink" href="#compilation-database" title="Permalink to this headline"></a></h3>
+<p>Some C++ tools need access to a <em>compilation database</em>.
+This is a file called <code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code> that is created automatically by CMake and
+symlinked when configuring with <code class="docutils literal notranslate"><span class="pre">./dev/run.sh</span> <span class="pre">configure</span></code>.
+Otherwise, you would need to manually symlink it to the root of the project.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s build/compile_commands.json
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This file is also read by <a class="reference external" href="https://clangd.llvm.org">clangd</a>, a C++ language server (already
+installed in the conda environment).
+To get code completion, compile errors, go-to-definition and more, you can install a language
+server protocol plugin for your editor.</p>
+</div>
+</section>
+<section id="pre-commit">
+<h3>Pre-commit<a class="headerlink" href="#pre-commit" title="Permalink to this headline"></a></h3>
+<p>The tools are configured to run with <a class="reference external" href="https://pre-commit.com/">pre-commit</a>, that is they can be
+added to run automatically when making a commit, pushing, or on demand.
+To have the tools run automatically, install the pre-commit hooks using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit install
+</pre></div>
+</div>
+<p>The tools are configured to run light tests only on the files that were changed during the commit,
+so they should not run for long.
+Installing the pre-commit hooks to run the tools is recommended.
+Similar tests will be run online and pull requests <em>will</em> fail if the tools have not been run.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> hooks, commits will be rejected by <code class="docutils literal notranslate"><span class="pre">git</span></code> if the tests ran by the tools fail.
+If the tools can fix the issue for you, you will find some modifications that you can add to
+your commit.</p>
+<p>Sometimes when working locally, it can be useful not to run the tools.
+You can tell <code class="docutils literal notranslate"><span class="pre">git</span></code> to ignore the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> hooks by passing the <code class="docutils literal notranslate"><span class="pre">--no-verify</span></code> to any
+<code class="docutils literal notranslate"><span class="pre">git</span></code> command making commit, including <code class="docutils literal notranslate"><span class="pre">commit</span></code>, <code class="docutils literal notranslate"><span class="pre">merge</span></code>, <code class="docutils literal notranslate"><span class="pre">rebase</span></code>, <code class="docutils literal notranslate"><span class="pre">push</span></code>…</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit --no-verify
+</pre></div>
+</div>
+<p>Pre-commit can also be run manually using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dev/run.sh check-code
+</pre></div>
+</div>
+</section>
+</section>
+<section id="compiler-issues">
+<h2>Compiler issues<a class="headerlink" href="#compiler-issues" title="Permalink to this headline"></a></h2>
+<p>If you encounter problems with your compiler (because it is too old for instance),
+you can use the ones from ananconda.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge cxx-compiler
+</pre></div>
+</div>
+<p>And start again the configuration of Ecole.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -rf build/ <span class="o">&amp;&amp;</span> ./dev/run.sh configure -D <span class="nv">ECOLE_DEVELOPER</span><span class="o">=</span>ON
+</pre></div>
+</div>
+</section>
+<section id="when-things-fail">
+<h2>When things fail<a class="headerlink" href="#when-things-fail" title="Permalink to this headline"></a></h2>
+<p>If you cannot eliminate some warnings, code checks, errors, do not hesistate to ask questions in the
+<a class="reference external" href="https://github.com/ds4dm/ecole/discussions">Github Discussions</a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When you cannot figure things out, it’s OK to send a failing pull request.
+We wish to grow as a community, and help others improve, not exclude and belittle. 🌈</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="discussion/theory.html" class="btn btn-neutral float-left" title="Ecole Theoretical Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="developers/example-observation.html" class="btn btn-neutral float-right" title="Example: How to Contribute an Observation Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Antoine Prouvost, Maxime Gasse, Didier Chételat, Justin Dumouchelle.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
