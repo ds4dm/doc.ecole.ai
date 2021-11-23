@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; Ecole 0.7.3 documentation</title>
+  <title>Installation &mdash; Ecole 0.8.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="_static/favicon.ico"/>
@@ -37,7 +37,7 @@
             <img src="_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7
+                0.8
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -68,8 +68,8 @@
 </ul>
 <p class="caption"><span class="caption-text">Practical Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits/example.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation/example.ipynb">Branching with Imitation Learning</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
@@ -149,15 +149,24 @@ interface to develop new Ecole components from Python</p>
 </dd>
 </dl>
 <p>For the stable <a class="reference external" href="https://pypi.org/project/ecole/">PyPI version</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install ecole
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pip install ecole
 </pre></div>
 </div>
 <p>To specify the where to find SCIP (or any CMake parameters):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CMAKE_ARGS</span><span class="o">=</span><span class="s2">&quot;-DSCIP_DIR=path/to/lib/cmake/scip -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON&quot;</span> pip install ecole
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CMAKE_ARGS</span><span class="o">=</span><span class="s2">&quot;-DSCIP_DIR=path/to/lib/cmake/scip -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON&quot;</span> python -m pip install ecole
 </pre></div>
 </div>
 <p>For the latest Github version:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/ds4dm/ecole
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pip install git+https://github.com/ds4dm/ecole
+</pre></div>
+</div>
+<p>Or if the latest version is already available locally:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pip install .
+</pre></div>
+</div>
+<p>If all dependencies (build time such as CMake and compiler, and run time such as NumPy) are already installed,
+as is the case when developping Ecole, one can install Ecole with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pip install --no-deps --no-build-isolation <span class="o">[</span>ecole <span class="p">|</span> git+https://github.com/ds4dm/ecole <span class="p">|</span> .<span class="o">]</span>
 </pre></div>
 </div>
 </section>

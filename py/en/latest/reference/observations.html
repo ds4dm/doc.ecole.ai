@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Observations &mdash; Ecole 0.7.3 documentation</title>
+  <title>Observations &mdash; Ecole 0.8.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
@@ -37,7 +37,7 @@
             <img src="../_static/ecole-logo-bare.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.7
+                0.8
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -63,8 +63,8 @@
 </ul>
 <p class="caption"><span class="caption-text">Practical Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits.ipynb">Configuring the Solver with Bandits</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation.ipynb">Branching with Imitation Learning</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits/example.ipynb">Configuring the Solver with Bandits</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation/example.ipynb">Branching with Imitation Learning</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
@@ -242,144 +242,15 @@ Currently, this is only safe if cutting planes are disabled.</p>
 <dd><p>Bipartite graph observation for branch-and-bound nodes.</p>
 <p>The optimization problem is represented as an heterogenous bipartite graph.
 On one side, a node is associated with one variable, on the other side a node is
-associated with one constraint.
+associated with one LP row.
 There exist an edge between a variable and a constraint if the variable exists in the
 constraint with a non-zero coefficient.</p>
 <p>Each variable and constraint node is associated with a vector of features.
 Each edge is associated with the coefficient of the variable in the constraint.</p>
-<dl class="py class">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures">
-<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">ColumnFeatures</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures" title="Permalink to this definition"></a></dt>
-<dd><p>Members:</p>
-<p>objective</p>
-<p>is_type_binary</p>
-<p>is_type_integer</p>
-<p>is_type_implicit_integer</p>
-<p>is_type_continuous</p>
-<p>has_lower_bound</p>
-<p>has_upper_bound</p>
-<p>normed_reduced_cost</p>
-<p>solution_value</p>
-<p>solution_frac</p>
-<p>is_solution_at_lower_bound</p>
-<p>is_solution_at_upper_bound</p>
-<p>scaled_age</p>
-<p>incumbent_value</p>
-<p>average_incumbent_value</p>
-<p>is_basis_lower</p>
-<p>is_basis_basic</p>
-<p>is_basis_upper</p>
-<p>is_basis_zero</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures" title="ecole.observation.NodeBipartiteObs.ColumnFeatures"><span class="pre">ecole.observation.NodeBipartiteObs.ColumnFeatures</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.__init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.average_incumbent_value">
-<span class="sig-name descname"><span class="pre">average_incumbent_value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.average_incumbent_value:</span> <span class="pre">14&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.average_incumbent_value" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.has_lower_bound">
-<span class="sig-name descname"><span class="pre">has_lower_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.has_lower_bound:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_lower_bound" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.has_upper_bound">
-<span class="sig-name descname"><span class="pre">has_upper_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.has_upper_bound:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.has_upper_bound" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.incumbent_value">
-<span class="sig-name descname"><span class="pre">incumbent_value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.incumbent_value:</span> <span class="pre">13&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.incumbent_value" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_basic">
-<span class="sig-name descname"><span class="pre">is_basis_basic</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_basis_basic:</span> <span class="pre">16&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_basic" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_lower">
-<span class="sig-name descname"><span class="pre">is_basis_lower</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_basis_lower:</span> <span class="pre">15&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_lower" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_upper">
-<span class="sig-name descname"><span class="pre">is_basis_upper</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_basis_upper:</span> <span class="pre">17&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_upper" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_zero">
-<span class="sig-name descname"><span class="pre">is_basis_zero</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_basis_zero:</span> <span class="pre">18&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_basis_zero" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_lower_bound">
-<span class="sig-name descname"><span class="pre">is_solution_at_lower_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_solution_at_lower_bound:</span> <span class="pre">10&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_lower_bound" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_upper_bound">
-<span class="sig-name descname"><span class="pre">is_solution_at_upper_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_solution_at_upper_bound:</span> <span class="pre">11&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_solution_at_upper_bound" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_binary">
-<span class="sig-name descname"><span class="pre">is_type_binary</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_type_binary:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_binary" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_continuous">
-<span class="sig-name descname"><span class="pre">is_type_continuous</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_type_continuous:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_continuous" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_implicit_integer">
-<span class="sig-name descname"><span class="pre">is_type_implicit_integer</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_type_implicit_integer:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_implicit_integer" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_integer">
-<span class="sig-name descname"><span class="pre">is_type_integer</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.is_type_integer:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.is_type_integer" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.name">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.normed_reduced_cost">
-<span class="sig-name descname"><span class="pre">normed_reduced_cost</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.normed_reduced_cost:</span> <span class="pre">7&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.normed_reduced_cost" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.objective">
-<span class="sig-name descname"><span class="pre">objective</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.objective:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.objective" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.scaled_age">
-<span class="sig-name descname"><span class="pre">scaled_age</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.scaled_age:</span> <span class="pre">12&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.scaled_age" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_frac">
-<span class="sig-name descname"><span class="pre">solution_frac</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.solution_frac:</span> <span class="pre">9&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_frac" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_value">
-<span class="sig-name descname"><span class="pre">solution_value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;ColumnFeatures.solution_value:</span> <span class="pre">8&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.solution_value" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures.value">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures.value" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<span class="sig-name descname"><span class="pre">ColumnFeatures</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#ecole.observation.NodeBipartiteObs.VariableFeatures" title="ecole.core.observation.NodeBipartiteObs.VariableFeatures"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.core.observation.NodeBipartiteObs.VariableFeatures</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
@@ -433,6 +304,141 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">VariableFeatures</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures" title="Permalink to this definition"></a></dt>
+<dd><p>Members:</p>
+<p>objective</p>
+<p>is_type_binary</p>
+<p>is_type_integer</p>
+<p>is_type_implicit_integer</p>
+<p>is_type_continuous</p>
+<p>has_lower_bound</p>
+<p>has_upper_bound</p>
+<p>normed_reduced_cost</p>
+<p>solution_value</p>
+<p>solution_frac</p>
+<p>is_solution_at_lower_bound</p>
+<p>is_solution_at_upper_bound</p>
+<p>scaled_age</p>
+<p>incumbent_value</p>
+<p>average_incumbent_value</p>
+<p>is_basis_lower</p>
+<p>is_basis_basic</p>
+<p>is_basis_upper</p>
+<p>is_basis_zero</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.NodeBipartiteObs.VariableFeatures" title="ecole.observation.NodeBipartiteObs.VariableFeatures"><span class="pre">ecole.observation.NodeBipartiteObs.VariableFeatures</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.average_incumbent_value">
+<span class="sig-name descname"><span class="pre">average_incumbent_value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.average_incumbent_value:</span> <span class="pre">14&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.average_incumbent_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.has_lower_bound">
+<span class="sig-name descname"><span class="pre">has_lower_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.has_lower_bound:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.has_lower_bound" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.has_upper_bound">
+<span class="sig-name descname"><span class="pre">has_upper_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.has_upper_bound:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.has_upper_bound" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.incumbent_value">
+<span class="sig-name descname"><span class="pre">incumbent_value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.incumbent_value:</span> <span class="pre">13&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.incumbent_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.is_basis_basic">
+<span class="sig-name descname"><span class="pre">is_basis_basic</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_basis_basic:</span> <span class="pre">16&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.is_basis_basic" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.is_basis_lower">
+<span class="sig-name descname"><span class="pre">is_basis_lower</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_basis_lower:</span> <span class="pre">15&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.is_basis_lower" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.is_basis_upper">
+<span class="sig-name descname"><span class="pre">is_basis_upper</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_basis_upper:</span> <span class="pre">17&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.is_basis_upper" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.is_basis_zero">
+<span class="sig-name descname"><span class="pre">is_basis_zero</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_basis_zero:</span> <span class="pre">18&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.is_basis_zero" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.is_solution_at_lower_bound">
+<span class="sig-name descname"><span class="pre">is_solution_at_lower_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_solution_at_lower_bound:</span> <span class="pre">10&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.is_solution_at_lower_bound" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.is_solution_at_upper_bound">
+<span class="sig-name descname"><span class="pre">is_solution_at_upper_bound</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_solution_at_upper_bound:</span> <span class="pre">11&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.is_solution_at_upper_bound" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.is_type_binary">
+<span class="sig-name descname"><span class="pre">is_type_binary</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_binary:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.is_type_binary" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.is_type_continuous">
+<span class="sig-name descname"><span class="pre">is_type_continuous</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_continuous:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.is_type_continuous" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.is_type_implicit_integer">
+<span class="sig-name descname"><span class="pre">is_type_implicit_integer</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_implicit_integer:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.is_type_implicit_integer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.is_type_integer">
+<span class="sig-name descname"><span class="pre">is_type_integer</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.is_type_integer:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.is_type_integer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.normed_reduced_cost">
+<span class="sig-name descname"><span class="pre">normed_reduced_cost</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.normed_reduced_cost:</span> <span class="pre">7&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.normed_reduced_cost" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.objective">
+<span class="sig-name descname"><span class="pre">objective</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.objective:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.objective" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.scaled_age">
+<span class="sig-name descname"><span class="pre">scaled_age</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.scaled_age:</span> <span class="pre">12&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.scaled_age" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.solution_frac">
+<span class="sig-name descname"><span class="pre">solution_frac</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.solution_frac:</span> <span class="pre">9&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.solution_frac" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.solution_value">
+<span class="sig-name descname"><span class="pre">solution_value</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;VariableFeatures.solution_value:</span> <span class="pre">8&gt;</span></em><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.solution_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.VariableFeatures.value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.VariableFeatures.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.__init__" title="Permalink to this definition"></a></dt>
@@ -455,6 +461,12 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 <dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.row_features">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">row_features</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.row_features" title="Permalink to this definition"></a></dt>
 <dd><p>A matrix where each row is represents a constraint, and each column a feature of the constraints.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.variable_features">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">variable_features</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.variable_features" title="Permalink to this definition"></a></dt>
+<dd><p>A matrix where each row is represents a variable, and each column a feature of the variables.</p>
 </dd></dl>
 
 </dd></dl>
@@ -640,15 +652,15 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">StrongBranchingScores</span></span><a class="headerlink" href="#ecole.observation.StrongBranchingScores" title="Permalink to this definition"></a></dt>
 <dd><p>Strong branching score observation function on branch-and bound node.</p>
 <p>This observation obtains scores for all LP or pseudo candidate variables at a
-branch-and-bound node.  The strong branching score measures the quality of branching
-for each variable.  This observation can be used as an expert for imitation
-learning algorithms.</p>
+branch-and-bound node.
+The strong branching score measures the quality of branching for each variable.
+This observation can be used as an expert for imitation learning algorithms.</p>
 <p>This observation function extracts an array containing the strong branching score for
-each variable in the problem which can be indexed by the action set.  Variables for which
-a strong branching score is not applicable are filled with NaN.</p>
+each variable in the problem which can be indexed by the action set.
+Variables for which a strong branching score is not applicable are filled with <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.observation.StrongBranchingScores.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.StrongBranchingScores" title="ecole.observation.StrongBranchingScores"><span class="pre">ecole.observation.StrongBranchingScores</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudo_candidates</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.StrongBranchingScores.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.StrongBranchingScores" title="ecole.observation.StrongBranchingScores"><span class="pre">ecole.observation.StrongBranchingScores</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudo_candidates</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.StrongBranchingScores.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor for StrongBranchingScores.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -687,8 +699,8 @@ as a practical branching strategy by always branching on the variable with the h
 pseudocost, although in practice is it not as efficient as SCIP’s default strategy, reliability
 pseudocost branching (also known as hybrid branching).</p>
 <p>This observation function extracts an array containing the pseudocost for
-each variable in the problem which can be indexed by the action set.  Variables for which
-a pseudocost is not applicable are filled with NaN.</p>
+each variable in the problem which can be indexed by the action set.
+Variables for which a pseudocost is not applicable are filled with <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.observation.Pseudocosts.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.observation.Pseudocosts" title="ecole.observation.Pseudocosts"><span class="pre">ecole.observation.Pseudocosts</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.observation.Pseudocosts.__init__" title="Permalink to this definition"></a></dt>
@@ -746,8 +758,10 @@ or LP branching variable candidates (<code class="docutils literal notranslate">
 <dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">Khalil2016Obs</span></span><a class="headerlink" href="#ecole.observation.Khalil2016Obs" title="Permalink to this definition"></a></dt>
 <dd><p>Branching candidates features from Khalil et al. (2016).</p>
-<p>The observation is a matrix where rows represent pseudo branching candidates and columns
-represent features related to these variables.
+<p>The observation is a matrix where rows represent all variables and columns represent features related
+to these variables.
+Only rows representing pseudo branching candidate contain meaningful observation, other rows are filled
+with <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.
 See <a class="reference internal" href="#khalil2016" id="id1"><span>[Khalil2016]</span></a> for a complete reference on this observation function.</p>
 <p>The first <a class="reference internal" href="#ecole.observation.Khalil2016Obs.n_static_features" title="ecole.observation.Khalil2016Obs.n_static_features"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Khalil2016Obs.n_static_features</span></code></a> are static (they do not change through the solving
 process), and the remaining <a class="reference internal" href="#ecole.observation.Khalil2016Obs.n_dynamic_features" title="ecole.observation.Khalil2016Obs.n_dynamic_features"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Khalil2016Obs.n_dynamic_features</span></code></a> dynamic.</p>
