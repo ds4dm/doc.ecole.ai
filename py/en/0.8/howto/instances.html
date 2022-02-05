@@ -203,10 +203,10 @@ a problem type at random, and returns it.</p>
 
 <span class="k">def</span> <span class="nf">CombineGenerators</span><span class="p">(</span><span class="o">*</span><span class="n">generators</span><span class="p">):</span>
     <span class="c1"># A random state for choice</span>
-    <span class="n">random_engine</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="c1"># Randomly pick a generator</span>
-        <span class="n">gen</span> <span class="o">=</span> <span class="n">random_engine</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">generators</span><span class="p">)</span>
+        <span class="n">gen</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">generators</span><span class="p">)</span>
         <span class="c1"># And yield the instance it generates</span>
         <span class="k">yield</span> <span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
 </pre></div>
@@ -216,16 +216,16 @@ could be written as follows.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CombinedGenerator</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">generators</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generators</span> <span class="o">=</span> <span class="n">generators</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generators</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generators</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">generators</span><span class="p">:</span>
             <span class="n">gen</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 </pre></div>
@@ -235,7 +235,7 @@ could be written as follows.</p>
 <h3>Generator with Random Parameters<a class="headerlink" href="#generator-with-random-parameters" title="Permalink to this headline"></a></h3>
 <p>The provided instance generators have fixed hyperparameters, but to increase variability it might be desirable to randomly vary them as well.</p>
 <p>This can be without creating various <a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator" title="ecole.typing.InstanceGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceGenerator</span></code></a> objects by using a generator’s
-<a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.generate_instance" title="ecole.typing.InstanceGenerator.generate_instance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_instance()</span></code></a> static method, and manually pass a <a class="reference internal" href="../reference/utilities.html#ecole.RandomEngine" title="ecole.RandomEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomEngine</span></code></a>.
+<a class="reference internal" href="../reference/instances.html#ecole.typing.InstanceGenerator.generate_instance" title="ecole.typing.InstanceGenerator.generate_instance"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_instance()</span></code></a> static method, and manually pass a <a class="reference internal" href="../reference/utilities.html#ecole.RandomGenerator" title="ecole.RandomGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomGenerator</span></code></a>.
 For instance, to randomly choose the <code class="docutils literal notranslate"><span class="pre">n_cols</span></code> and <code class="docutils literal notranslate"><span class="pre">n_rows</span></code> parameters from
 <a class="reference internal" href="../reference/instances.html#ecole.instance.SetCoverGenerator" title="ecole.instance.SetCoverGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetCoverGenerator</span></code></a>, one could use</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
@@ -247,27 +247,27 @@ For instance, to randomly choose the <code class="docutils literal notranslate">
         <span class="bp">self</span><span class="o">.</span><span class="n">n_cols_range</span> <span class="o">=</span> <span class="n">n_cols_range</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_rows_range</span> <span class="o">=</span> <span class="n">n_rows_range</span>
         <span class="c1"># A Python random state for randint</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">py_random_engine</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">py_rng</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">()</span>
         <span class="c1"># An Ecole random state to pass to generating functions</span>
         <span class="c1"># This function returns a random state whose seed depends on Ecole global random state</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ecole_random_engine</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">spawn_random_engine</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ecole_rng</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">spawn_random_generator</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">ecole</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">SetCoverGenerator</span><span class="p">(</span>
-            <span class="n">n_cols</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">py_random_engine</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n_cols_range</span><span class="p">),</span>
-            <span class="n">n_rows</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">py_random_engine</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n_rows_range</span><span class="p">),</span>
-            <span class="n">random_engine</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ecole_random_engine</span><span class="p">,</span>
+            <span class="n">n_cols</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">py_rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n_cols_range</span><span class="p">),</span>
+            <span class="n">n_rows</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">py_rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n_rows_range</span><span class="p">),</span>
+            <span class="n">rng</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ecole_rng</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">py_random_engine</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ecole_random_engine</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">py_rng</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ecole_rng</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="../discussion/seeding.html#seeding-discussion"><span class="std std-ref">the discussion on seeding</span></a> for an explanation of <a class="reference internal" href="../reference/utilities.html#ecole.spawn_random_engine" title="ecole.spawn_random_engine"><code class="xref py py-func docutils literal notranslate"><span class="pre">ecole.spawn_random_engine()</span></code></a>.</p>
+<p>See <a class="reference internal" href="../discussion/seeding.html#seeding-discussion"><span class="std std-ref">the discussion on seeding</span></a> for an explanation of <a class="reference internal" href="../reference/utilities.html#ecole.spawn_random_generator" title="ecole.spawn_random_generator"><code class="xref py py-func docutils literal notranslate"><span class="pre">ecole.spawn_random_generator()</span></code></a>.</p>
 </section>
 </section>
 </section>
