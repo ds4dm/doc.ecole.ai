@@ -247,12 +247,6 @@ There exist an edge between a variable and a constraint if the variable exists i
 constraint with a non-zero coefficient.</p>
 <p>Each variable and constraint node is associated with a vector of features.
 Each edge is associated with the coefficient of the variable in the constraint.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.ColumnFeatures">
-<span class="sig-name descname"><span class="pre">ColumnFeatures</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.ColumnFeatures" title="Permalink to this definition"></a></dt>
-<dd><p>alias of <a class="reference internal" href="#ecole.observation.NodeBipartiteObs.VariableFeatures" title="ecole.core.observation.NodeBipartiteObs.VariableFeatures"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.core.observation.NodeBipartiteObs.VariableFeatures</span></code></a></p>
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.RowFeatures">
 <em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">RowFeatures</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.RowFeatures" title="Permalink to this definition"></a></dt>
@@ -446,12 +440,6 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.column_features">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">column_features</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.column_features" title="Permalink to this definition"></a></dt>
-<dd><p>A matrix where each row is represents a variable, and each column a feature of the variables.</p>
-</dd></dl>
-
-<dl class="py property">
 <dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.edge_features">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">edge_features</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.edge_features" title="Permalink to this definition"></a></dt>
 <dd><p>The constraint matrix of the optimization problem, with rows for contraints and columns for variables.</p>
@@ -466,7 +454,9 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 <dl class="py property">
 <dt class="sig sig-object py" id="ecole.observation.NodeBipartiteObs.variable_features">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">variable_features</span></span><a class="headerlink" href="#ecole.observation.NodeBipartiteObs.variable_features" title="Permalink to this definition"></a></dt>
-<dd><p>A matrix where each row is represents a variable, and each column a feature of the variables.</p>
+<dd><p>A matrix where each row represents a variable, and each column a feature of the variable.</p>
+<p>Variables are ordered according to their position in the original problem (<code class="docutils literal notranslate"><span class="pre">SCIPvarGetProbindex</span></code>),
+hence they can be indexed by the <a class="reference internal" href="environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment <code class="docutils literal notranslate"><span class="pre">action_set</span></code>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -639,7 +629,9 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 <dl class="py property">
 <dt class="sig sig-object py" id="ecole.observation.MilpBipartiteObs.variable_features">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">variable_features</span></span><a class="headerlink" href="#ecole.observation.MilpBipartiteObs.variable_features" title="Permalink to this definition"></a></dt>
-<dd><p>A matrix where each row represents a variable, and each column a feature of the variables.</p>
+<dd><p>A matrix where each row represents a variable, and each column a feature of the variable.</p>
+<p>Variables are ordered according to their position in the original problem (<code class="docutils literal notranslate"><span class="pre">SCIPvarGetProbindex</span></code>),
+hence they can be indexed by the <a class="reference internal" href="environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment <code class="docutils literal notranslate"><span class="pre">action_set</span></code>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -653,10 +645,12 @@ Each edge is associated with the coefficient of the variable in the constraint.<
 <dd><p>Strong branching score observation function on branch-and bound node.</p>
 <p>This observation obtains scores for all LP or pseudo candidate variables at a
 branch-and-bound node.
-The strong branching score measures the quality of branching for each variable.
+The strong branching score measures the quality of each variable for branching (higher is better).
 This observation can be used as an expert for imitation learning algorithms.</p>
 <p>This observation function extracts an array containing the strong branching score for
-each variable in the problem which can be indexed by the action set.
+each variable in the problem.
+Variables are ordered according to their position in the original problem (<code class="docutils literal notranslate"><span class="pre">SCIPvarGetProbindex</span></code>),
+hence they can be indexed by the <a class="reference internal" href="environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment <code class="docutils literal notranslate"><span class="pre">action_set</span></code>.
 Variables for which a strong branching score is not applicable are filled with <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.observation.StrongBranchingScores.__init__">
@@ -665,8 +659,7 @@ Variables for which a strong branching score is not applicable are filled with <
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>pseudo_candidates</strong> – The parameter determines if strong branching scores are computed for
-psuedo-candidate variables if true or LP canidate variables if false.
-By default psuedo-candidates will be computed.</p>
+pseudo candidate variables (when true) or LP candidate variables (when false).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -691,15 +684,17 @@ By default psuedo-candidates will be computed.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="ecole.observation.Pseudocosts">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.observation.</span></span><span class="sig-name descname"><span class="pre">Pseudocosts</span></span><a class="headerlink" href="#ecole.observation.Pseudocosts" title="Permalink to this definition"></a></dt>
-<dd><p>Pseudocosts observation function on branch-and bound node.</p>
+<dd><p>Pseudocosts observation function on branch-and-bound nodes.</p>
 <p>This observation obtains pseudocosts for all LP fractional candidate variables at a
-branch-and-bound node.  The pseudocost is a cheap approximation to the strong branching
-score and measures the quality of branching for each variable.  This observation can be used
-as a practical branching strategy by always branching on the variable with the highest
-pseudocost, although in practice is it not as efficient as SCIP’s default strategy, reliability
-pseudocost branching (also known as hybrid branching).</p>
-<p>This observation function extracts an array containing the pseudocost for
-each variable in the problem which can be indexed by the action set.
+branch-and-bound node.
+The pseudocost is a cheap approximation to the strong branching
+score and measures the quality of branching for each variable.
+This observation can be used as a practical branching strategy by always branching on the
+variable with the highest pseudocost, although in practice is it not as efficient as SCIP’s
+default strategy, reliability pseudocost branching (also known as hybrid branching).</p>
+<p>This observation function extracts an array containing the pseudocost for each variable in the problem.
+Variables are ordered according to their position in the original problem (<code class="docutils literal notranslate"><span class="pre">SCIPvarGetProbindex</span></code>),
+hence they can be indexed by the <a class="reference internal" href="environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment <code class="docutils literal notranslate"><span class="pre">action_set</span></code>.
 Variables for which a pseudocost is not applicable are filled with <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.observation.Pseudocosts.__init__">
@@ -760,11 +755,7 @@ or LP branching variable candidates (<code class="docutils literal notranslate">
 <dd><p>Branching candidates features from Khalil et al. (2016).</p>
 <p>The observation is a matrix where rows represent all variables and columns represent features related
 to these variables.
-Only rows representing pseudo branching candidate contain meaningful observation, other rows are filled
-with <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.
 See <a class="reference internal" href="#khalil2016" id="id1"><span>[Khalil2016]</span></a> for a complete reference on this observation function.</p>
-<p>The first <a class="reference internal" href="#ecole.observation.Khalil2016Obs.n_static_features" title="ecole.observation.Khalil2016Obs.n_static_features"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Khalil2016Obs.n_static_features</span></code></a> are static (they do not change through the solving
-process), and the remaining <a class="reference internal" href="#ecole.observation.Khalil2016Obs.n_dynamic_features" title="ecole.observation.Khalil2016Obs.n_dynamic_features"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Khalil2016Obs.n_dynamic_features</span></code></a> dynamic.</p>
 <dl class="citation">
 <dt class="label" id="khalil2016"><span class="brackets"><a class="fn-backref" href="#id1">Khalil2016</a></span></dt>
 <dd><p>Khalil, Elias Boutros, Pierre Le Bodic, Le Song, George Nemhauser, and Bistra Dilkina.
@@ -1234,7 +1225,13 @@ process), and the remaining <a class="reference internal" href="#ecole.observati
 <dl class="py property">
 <dt class="sig sig-object py" id="ecole.observation.Khalil2016Obs.features">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">features</span></span><a class="headerlink" href="#ecole.observation.Khalil2016Obs.features" title="Permalink to this definition"></a></dt>
-<dd><p>A matrix where each row represents a variable, and each column a feature of the variables.</p>
+<dd><p>A matrix where each row represents a variable, and each column a feature of the variable.</p>
+<p>Variables are ordered according to their position in the original problem (<code class="docutils literal notranslate"><span class="pre">SCIPvarGetProbindex</span></code>),
+hence they can be indexed by the <a class="reference internal" href="environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a> environment <code class="docutils literal notranslate"><span class="pre">action_set</span></code>.
+Variables for which the features are not applicable are filled with <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
+<p>The first <a class="reference internal" href="#ecole.observation.Khalil2016Obs.n_static_features" title="ecole.observation.Khalil2016Obs.n_static_features"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Khalil2016Obs.n_static_features</span></code></a> features columns are static (they do not
+change through the solving process), and the remaining <a class="reference internal" href="#ecole.observation.Khalil2016Obs.n_dynamic_features" title="ecole.observation.Khalil2016Obs.n_dynamic_features"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Khalil2016Obs.n_dynamic_features</span></code></a>
+are dynamic.</p>
 </dd></dl>
 
 <dl class="py attribute">

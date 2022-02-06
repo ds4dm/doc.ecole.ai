@@ -129,9 +129,9 @@
 
 <div class="viewcode-block" id="Environment.__init__"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">observation_function</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
-        <span class="n">reward_function</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
-        <span class="n">information_function</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+        <span class="n">observation_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">Default</span><span class="p">,</span>
+        <span class="n">reward_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">Default</span><span class="p">,</span>
+        <span class="n">information_function</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">Default</span><span class="p">,</span>
         <span class="n">scip_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">dynamics_kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -166,7 +166,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Dynamics__</span><span class="p">(</span><span class="o">**</span><span class="n">dynamics_kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">spawn_random_engine</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">spawn_random_generator</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Environment.reset"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="o">*</span><span class="n">dynamics_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dynamics_kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Start a new episode.</span>
@@ -219,7 +219,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scip_params</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">set_dynamics_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">set_dynamics_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="p">)</span>
 
             <span class="c1"># Reset data extraction functions</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reward_function</span><span class="o">.</span><span class="n">before_reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
@@ -285,7 +285,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">can_transition</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ecole</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">Exception</span><span class="p">(</span><span class="s2">&quot;Environment need to be reset.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">ecole</span><span class="o">.</span><span class="n">MarkovError</span><span class="p">(</span><span class="s2">&quot;Environment need to be reset.&quot;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># Transition the environment to the next state</span>
@@ -310,23 +310,18 @@
 <div class="viewcode-block" id="Environment.seed"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Environment.seed">[docs]</a>    <span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Set the random seed of the environment.</span>
 
-<span class="sd">        The random seed is used to seed the environment :py:class:`~ecole.RandomEngine`.</span>
-<span class="sd">        At every call to :py:meth:`reset`, the random engine is used to create new seeds</span>
+<span class="sd">        The random seed is used to seed the environment :py:class:`~ecole.RandomGenerator`.</span>
+<span class="sd">        At every call to :py:meth:`reset`, the random generator is used to create new seeds</span>
 <span class="sd">        for the solver.</span>
 <span class="sd">        Setting the seed once will ensure determinism for the next trajectories.</span>
-<span class="sd">        By default, the random engine is initialized by the</span>
+<span class="sd">        By default, the random generator is initialized by the</span>
 <span class="sd">        `random &lt;https://docs.python.org/library/random.html&gt;`_ module.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">random_engine</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="Branching"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.Branching">[docs]</a><span class="k">class</span> <span class="nc">Branching</span><span class="p">(</span><span class="n">Environment</span><span class="p">):</span>
     <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">BranchingDynamics</span>
-    <span class="n">__DefaultObservationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span></div>
-
-
-<div class="viewcode-block" id="BranchingSum"><a class="viewcode-back" href="../../reference/environments.html#ecole.environment.BranchingSum">[docs]</a><span class="k">class</span> <span class="nc">BranchingSum</span><span class="p">(</span><span class="n">Environment</span><span class="p">):</span>
-    <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">dynamics</span><span class="o">.</span><span class="n">BranchingSumDynamics</span>
     <span class="n">__DefaultObservationFunction__</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">observation</span><span class="o">.</span><span class="n">NodeBipartite</span></div>
 
 
