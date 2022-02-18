@@ -47,13 +47,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Getting started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How to</span></p>
+<p class="caption" role="heading"><span class="caption-text">How to</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../howto/observation-functions.html">Use Observation Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
@@ -61,12 +61,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/instances.html">Generate Problem Instances</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Practical Tutorials</span></p>
+<p class="caption" role="heading"><span class="caption-text">Practical Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits/example.ipynb">Configuring the Solver with Bandits</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation/example.ipynb">Branching with Imitation Learning</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
@@ -76,7 +76,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reference/instances.html">Instance Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/utilities.html">Utilities</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Discussion</span></p>
+<p class="caption" role="heading"><span class="caption-text">Discussion</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Seeding</a><ul>
@@ -87,7 +87,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="theory.html">Ecole Theoretical Model</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Developer Zone</span></p>
+<p class="caption" role="heading"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
@@ -124,7 +124,7 @@ on insignificant behaviours of the solver.
 One such aspect is the solver randomness, which is controlled by its random seed.</p>
 <p>This means that, by default, Ecole environment will generate different episodes (and in
 particular different initial states) after each new call to
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code>.
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a>.
 To do so, the environment keeps a <a class="reference internal" href="../reference/utilities.html#ecole.RandomGenerator" title="ecole.RandomGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomGenerator</span></code></a> (random state)
 between episodes, and start a new episode by calling
 <a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics.set_dynamics_random_state" title="ecole.typing.Dynamics.set_dynamics_random_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_dynamics_random_state()</span></code></a> on the underlying

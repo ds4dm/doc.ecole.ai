@@ -47,13 +47,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Getting started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How to</span></p>
+<p class="caption" role="heading"><span class="caption-text">How to</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../howto/observation-functions.html">Use Observation Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
@@ -61,12 +61,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/instances.html">Generate Problem Instances</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Practical Tutorials</span></p>
+<p class="caption" role="heading"><span class="caption-text">Practical Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits/example.ipynb">Configuring the Solver with Bandits</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation/example.ipynb">Branching with Imitation Learning</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="observations.html">Observations</a></li>
@@ -79,13 +79,13 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Discussion</span></p>
+<p class="caption" role="heading"><span class="caption-text">Discussion</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Developer Zone</span></p>
+<p class="caption" role="heading"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
@@ -121,33 +121,33 @@
 <h2>Random<a class="headerlink" href="#random" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="ecole.RandomGenerator">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.</span></span><span class="sig-name descname"><span class="pre">RandomGenerator</span></span><a class="headerlink" href="#ecole.RandomGenerator" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.</span></span><span class="sig-name descname"><span class="pre">RandomGenerator</span></span><a class="headerlink" href="#ecole.RandomGenerator" title="Permalink to this definition"></a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="ecole.RandomGenerator.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.RandomGenerator" title="ecole.RandomGenerator"><span class="pre">ecole.RandomGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5489</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.RandomGenerator.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.RandomGenerator" title="ecole.RandomGenerator"><span class="pre">ecole.RandomGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5489</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.RandomGenerator.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Construct the pseudo-random number generator.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.RandomGenerator.discard">
-<span class="sig-name descname"><span class="pre">discard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.RandomGenerator" title="ecole.RandomGenerator"><span class="pre">ecole.RandomGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.RandomGenerator.discard" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">discard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.RandomGenerator" title="ecole.RandomGenerator"><span class="pre">ecole.RandomGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.RandomGenerator.discard" title="Permalink to this definition"></a></dt>
 <dd><p>Advance the internal state by n times.</p>
 <p>Equivalent to calling operator() n times and discarding the result.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ecole.RandomGenerator.max_seed">
-<span class="sig-name descname"><span class="pre">max_seed</span></span><em class="property"> <span class="pre">=</span> <span class="pre">18446744073709551615</span></em><a class="headerlink" href="#ecole.RandomGenerator.max_seed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">max_seed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">18446744073709551615</span></em><a class="headerlink" href="#ecole.RandomGenerator.max_seed" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ecole.RandomGenerator.min_seed">
-<span class="sig-name descname"><span class="pre">min_seed</span></span><em class="property"> <span class="pre">=</span> <span class="pre">0</span></em><a class="headerlink" href="#ecole.RandomGenerator.min_seed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">min_seed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#ecole.RandomGenerator.min_seed" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.RandomGenerator.seed">
-<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.RandomGenerator" title="ecole.RandomGenerator"><span class="pre">ecole.RandomGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5489</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.RandomGenerator.seed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.RandomGenerator" title="ecole.RandomGenerator"><span class="pre">ecole.RandomGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5489</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.RandomGenerator.seed" title="Permalink to this definition"></a></dt>
 <dd><p>Reinitialize the internal state of the random-number generator using new seed value.</p>
 </dd></dl>
 
@@ -155,13 +155,13 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ecole.seed">
-<span class="sig-prename descclassname"><span class="pre">ecole.</span></span><span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.seed" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">ecole.</span></span><span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.seed" title="Permalink to this definition"></a></dt>
 <dd><p>Seed the global source of randomness in Ecole.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ecole.spawn_random_generator">
-<span class="sig-prename descclassname"><span class="pre">ecole.</span></span><span class="sig-name descname"><span class="pre">spawn_random_generator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#ecole.RandomGenerator" title="ecole.RandomGenerator"><span class="pre">ecole.RandomGenerator</span></a><a class="headerlink" href="#ecole.spawn_random_generator" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">ecole.</span></span><span class="sig-name descname"><span class="pre">spawn_random_generator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ecole.RandomGenerator" title="ecole.RandomGenerator"><span class="pre">ecole.RandomGenerator</span></a></span></span><a class="headerlink" href="#ecole.spawn_random_generator" title="Permalink to this definition"></a></dt>
 <dd><p>Create new random generator deriving from global source of randomness.</p>
 <p>The global source of randomness is advance so two random engien created successively have different states.</p>
 </dd></dl>

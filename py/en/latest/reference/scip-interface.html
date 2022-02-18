@@ -47,13 +47,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Getting started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How to</span></p>
+<p class="caption" role="heading"><span class="caption-text">How to</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../howto/observation-functions.html">Use Observation Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
@@ -61,12 +61,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/instances.html">Generate Problem Instances</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Practical Tutorials</span></p>
+<p class="caption" role="heading"><span class="caption-text">Practical Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits/example.ipynb">Configuring the Solver with Bandits</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation/example.ipynb">Branching with Imitation Learning</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="observations.html">Observations</a></li>
@@ -74,18 +74,25 @@
 <li class="toctree-l1"><a class="reference internal" href="information.html">Informations</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">SCIP Interface</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#model">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#callbacks">Callbacks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#branchrule">Branchrule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#heuristic">Heuristic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#utilities">Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#scip-data-types">SCIP Data Types</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="instances.html">Instance Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Discussion</span></p>
+<p class="caption" role="heading"><span class="caption-text">Discussion</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Developer Zone</span></p>
+<p class="caption" role="heading"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
@@ -121,116 +128,641 @@
 <h2>Model<a class="headerlink" href="#model" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="ecole.scip.Model">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.scip.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><a class="headerlink" href="#ecole.scip.Model" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.scip.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><a class="headerlink" href="#ecole.scip.Model" title="Permalink to this definition"></a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.scip.Model.__init__" title="Permalink to this definition"></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.as_pyscipopt">
-<span class="sig-name descname"><span class="pre">as_pyscipopt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">object</span><a class="headerlink" href="#ecole.scip.Model.as_pyscipopt" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">as_pyscipopt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="headerlink" href="#ecole.scip.Model.as_pyscipopt" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.copy_orig">
-<span class="sig-name descname"><span class="pre">copy_orig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><a class="headerlink" href="#ecole.scip.Model.copy_orig" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">copy_orig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></span><a class="headerlink" href="#ecole.scip.Model.copy_orig" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.disable_cuts">
-<span class="sig-name descname"><span class="pre">disable_cuts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.scip.Model.disable_cuts" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">disable_cuts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.Model.disable_cuts" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.disable_presolve">
-<span class="sig-name descname"><span class="pre">disable_presolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.scip.Model.disable_presolve" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">disable_presolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.Model.disable_presolve" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="ecole.scip.Model.dual_bound">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">dual_bound</span></span><a class="headerlink" href="#ecole.scip.Model.dual_bound" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dual_bound</span></span><a class="headerlink" href="#ecole.scip.Model.dual_bound" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.from_file">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">os.PathLike</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><a class="headerlink" href="#ecole.scip.Model.from_file" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">os.PathLike</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></span><a class="headerlink" href="#ecole.scip.Model.from_file" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.from_pyscipopt">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_pyscipopt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><a class="headerlink" href="#ecole.scip.Model.from_pyscipopt" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_pyscipopt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></span><a class="headerlink" href="#ecole.scip.Model.from_pyscipopt" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.get_param">
-<span class="sig-name descname"><span class="pre">get_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.scip.Model.get_param" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#ecole.scip.Model.get_param" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.scip.Model.get_params" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#ecole.scip.Model.get_params" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="ecole.scip.Model.is_solved">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_solved</span></span><a class="headerlink" href="#ecole.scip.Model.is_solved" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_solved</span></span><a class="headerlink" href="#ecole.scip.Model.is_solved" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="ecole.scip.Model.name">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.scip.Model.name" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.scip.Model.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.presolve">
-<span class="sig-name descname"><span class="pre">presolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.scip.Model.presolve" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">presolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.Model.presolve" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="ecole.scip.Model.primal_bound">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">primal_bound</span></span><a class="headerlink" href="#ecole.scip.Model.primal_bound" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">primal_bound</span></span><a class="headerlink" href="#ecole.scip.Model.primal_bound" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.prob_basic">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">prob_basic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'Model'</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a><a class="headerlink" href="#ecole.scip.Model.prob_basic" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prob_basic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Model'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></span><a class="headerlink" href="#ecole.scip.Model.prob_basic" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.set_messagehdlr_quiet">
-<span class="sig-name descname"><span class="pre">set_messagehdlr_quiet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.scip.Model.set_messagehdlr_quiet" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_messagehdlr_quiet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.Model.set_messagehdlr_quiet" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.set_param">
-<span class="sig-name descname"><span class="pre">set_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.scip.Model.set_param" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.Model.set_param" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.set_params">
-<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.scip.Model.set_params" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.Model.set_params" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.scip.Model.solve" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.Model.solve" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.scip.Model.solve_iter">
+<span class="sig-name descname"><span class="pre">solve_iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ecole.scip.callback.BranchruleCall" title="ecole.scip.callback.BranchruleCall"><span class="pre">ecole.scip.callback.BranchruleCall</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#ecole.scip.callback.HeuristicCall" title="ecole.scip.callback.HeuristicCall"><span class="pre">ecole.scip.callback.HeuristicCall</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#ecole.scip.Model.solve_iter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.scip.Model.solve_iter_continue">
+<span class="sig-name descname"><span class="pre">solve_iter_continue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.callback.Result" title="ecole.scip.callback.Result"><span class="pre">ecole.scip.callback.Result</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ecole.scip.callback.BranchruleCall" title="ecole.scip.callback.BranchruleCall"><span class="pre">ecole.scip.callback.BranchruleCall</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#ecole.scip.callback.HeuristicCall" title="ecole.scip.callback.HeuristicCall"><span class="pre">ecole.scip.callback.HeuristicCall</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#ecole.scip.Model.solve_iter_continue" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="ecole.scip.Model.stage">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">stage</span></span><a class="headerlink" href="#ecole.scip.Model.stage" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stage</span></span><a class="headerlink" href="#ecole.scip.Model.stage" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.transform_prob">
-<span class="sig-name descname"><span class="pre">transform_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.scip.Model.transform_prob" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">transform_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.Model.transform_prob" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.scip.Model.write_problem">
-<span class="sig-name descname"><span class="pre">write_problem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">os.PathLike</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.scip.Model.write_problem" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">write_problem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">os.PathLike</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.Model.write_problem" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="callbacks">
+<h2>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this headline"></a></h2>
+<section id="branchrule">
+<h3>Branchrule<a class="headerlink" href="#branchrule" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleConstructor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.scip.callback.</span></span><span class="sig-name descname"><span class="pre">BranchruleConstructor</span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleConstructor" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleConstructor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.callback.BranchruleConstructor" title="ecole.scip.callback.BranchruleConstructor"><span class="pre">ecole.scip.callback.BranchruleConstructor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">536870911</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_bound_distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleConstructor.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleConstructor.max_bound_distance">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_bound_distance</span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleConstructor.max_bound_distance" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleConstructor.max_depth">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_depth</span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleConstructor.max_depth" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleConstructor.priority">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">priority</span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleConstructor.priority" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleCall">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.scip.callback.</span></span><span class="sig-name descname"><span class="pre">BranchruleCall</span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleCall" title="Permalink to this definition"></a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleCall.Where">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Where</span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleCall.Where" title="Permalink to this definition"></a></dt>
+<dd><p>Members:</p>
+<p>LP</p>
+<p>External</p>
+<p>Pseudo</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleCall.Where.External">
+<span class="sig-name descname"><span class="pre">External</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Where.External:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.BranchruleCall.Where.External" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleCall.Where.LP">
+<span class="sig-name descname"><span class="pre">LP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Where.LP:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.BranchruleCall.Where.LP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleCall.Where.Pseudo">
+<span class="sig-name descname"><span class="pre">Pseudo</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Where.Pseudo:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.BranchruleCall.Where.Pseudo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleCall.Where.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.callback.BranchruleCall.Where" title="ecole.scip.callback.BranchruleCall.Where"><span class="pre">ecole.scip.callback.BranchruleCall.Where</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleCall.Where.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleCall.Where.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleCall.Where.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleCall.Where.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleCall.Where.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleCall.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self:</span> <span class="pre">ecole.scip.callback.BranchruleCall</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_add_constraints:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where:</span> <span class="pre">ecole.scip.callback.BranchruleCall.Where</span> <span class="pre">=</span> <span class="pre">&lt;Where.LP:</span> <span class="pre">0&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleCall.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleCall.allow_add_constraints">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allow_add_constraints</span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleCall.allow_add_constraints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.BranchruleCall.where">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">where</span></span><a class="headerlink" href="#ecole.scip.callback.BranchruleCall.where" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="heuristic">
+<h3>Heuristic<a class="headerlink" href="#heuristic" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.scip.callback.HeuristicConstructor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.scip.callback.</span></span><span class="sig-name descname"><span class="pre">HeuristicConstructor</span></span><a class="headerlink" href="#ecole.scip.callback.HeuristicConstructor" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ecole.scip.callback.HeuristicConstructor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.callback.HeuristicConstructor" title="ecole.scip.callback.HeuristicConstructor"><span class="pre">ecole.scip.callback.HeuristicConstructor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">536870911</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timing_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">24</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.callback.HeuristicConstructor.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.HeuristicConstructor.frequency">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frequency</span></span><a class="headerlink" href="#ecole.scip.callback.HeuristicConstructor.frequency" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.HeuristicConstructor.frequency_offset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frequency_offset</span></span><a class="headerlink" href="#ecole.scip.callback.HeuristicConstructor.frequency_offset" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.HeuristicConstructor.max_depth">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_depth</span></span><a class="headerlink" href="#ecole.scip.callback.HeuristicConstructor.max_depth" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.HeuristicConstructor.priority">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">priority</span></span><a class="headerlink" href="#ecole.scip.callback.HeuristicConstructor.priority" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.HeuristicConstructor.timing_mask">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timing_mask</span></span><a class="headerlink" href="#ecole.scip.callback.HeuristicConstructor.timing_mask" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.scip.callback.HeuristicCall">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.scip.callback.</span></span><span class="sig-name descname"><span class="pre">HeuristicCall</span></span><a class="headerlink" href="#ecole.scip.callback.HeuristicCall" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ecole.scip.callback.HeuristicCall.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.callback.HeuristicCall" title="ecole.scip.callback.HeuristicCall"><span class="pre">ecole.scip.callback.HeuristicCall</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">heuristic_timing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_infeasible</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.callback.HeuristicCall.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.HeuristicCall.heuristic_timing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">heuristic_timing</span></span><a class="headerlink" href="#ecole.scip.callback.HeuristicCall.heuristic_timing" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.HeuristicCall.node_infeasible">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">node_infeasible</span></span><a class="headerlink" href="#ecole.scip.callback.HeuristicCall.node_infeasible" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="utilities">
+<h3>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline"></a></h3>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.priority_max">
+<span class="sig-prename descclassname"><span class="pre">callback.</span></span><span class="sig-name descname"><span class="pre">priority_max</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">536870911</span></em><a class="headerlink" href="#ecole.scip.callback.priority_max" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.max_depth_none">
+<span class="sig-prename descclassname"><span class="pre">callback.</span></span><span class="sig-name descname"><span class="pre">max_depth_none</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#ecole.scip.callback.max_depth_none" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.max_bound_distance_none">
+<span class="sig-prename descclassname"><span class="pre">callback.</span></span><span class="sig-name descname"><span class="pre">max_bound_distance_none</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></em><a class="headerlink" href="#ecole.scip.callback.max_bound_distance_none" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.frequency_always">
+<span class="sig-prename descclassname"><span class="pre">callback.</span></span><span class="sig-name descname"><span class="pre">frequency_always</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#ecole.scip.callback.frequency_always" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.frequency_offset_none">
+<span class="sig-prename descclassname"><span class="pre">callback.</span></span><span class="sig-name descname"><span class="pre">frequency_offset_none</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#ecole.scip.callback.frequency_offset_none" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.scip.callback.</span></span><span class="sig-name descname"><span class="pre">Result</span></span><a class="headerlink" href="#ecole.scip.callback.Result" title="Permalink to this definition"></a></dt>
+<dd><p>Members:</p>
+<p>DidNotRun</p>
+<p>Delayed</p>
+<p>DidNotFind</p>
+<p>Feasible</p>
+<p>Infeasible</p>
+<p>Unbounded</p>
+<p>CutOff</p>
+<p>Separated</p>
+<p>NewRound</p>
+<p>ReducedDOM</p>
+<p>ConsAdded</p>
+<p>ConsChanged</p>
+<p>Branched</p>
+<p>SolveLP</p>
+<p>FoundSol</p>
+<p>Suspended</p>
+<p>Success</p>
+<p>DelayNode</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.Branched">
+<span class="sig-name descname"><span class="pre">Branched</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.Branched:</span> <span class="pre">13&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.Branched" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.ConsAdded">
+<span class="sig-name descname"><span class="pre">ConsAdded</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.ConsAdded:</span> <span class="pre">11&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.ConsAdded" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.ConsChanged">
+<span class="sig-name descname"><span class="pre">ConsChanged</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.ConsChanged:</span> <span class="pre">12&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.ConsChanged" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.CutOff">
+<span class="sig-name descname"><span class="pre">CutOff</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.CutOff:</span> <span class="pre">7&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.CutOff" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.DelayNode">
+<span class="sig-name descname"><span class="pre">DelayNode</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.DelayNode:</span> <span class="pre">18&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.DelayNode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.Delayed">
+<span class="sig-name descname"><span class="pre">Delayed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.Delayed:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.Delayed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.DidNotFind">
+<span class="sig-name descname"><span class="pre">DidNotFind</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.DidNotFind:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.DidNotFind" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.DidNotRun">
+<span class="sig-name descname"><span class="pre">DidNotRun</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.DidNotRun:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.DidNotRun" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.Feasible">
+<span class="sig-name descname"><span class="pre">Feasible</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.Feasible:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.Feasible" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.FoundSol">
+<span class="sig-name descname"><span class="pre">FoundSol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.FoundSol:</span> <span class="pre">15&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.FoundSol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.Infeasible">
+<span class="sig-name descname"><span class="pre">Infeasible</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.Infeasible:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.Infeasible" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.NewRound">
+<span class="sig-name descname"><span class="pre">NewRound</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.NewRound:</span> <span class="pre">9&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.NewRound" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.ReducedDOM">
+<span class="sig-name descname"><span class="pre">ReducedDOM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.ReducedDOM:</span> <span class="pre">10&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.ReducedDOM" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.Separated">
+<span class="sig-name descname"><span class="pre">Separated</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.Separated:</span> <span class="pre">8&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.Separated" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.SolveLP">
+<span class="sig-name descname"><span class="pre">SolveLP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.SolveLP:</span> <span class="pre">14&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.SolveLP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.Success">
+<span class="sig-name descname"><span class="pre">Success</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.Success:</span> <span class="pre">17&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.Success" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.Suspended">
+<span class="sig-name descname"><span class="pre">Suspended</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.Suspended:</span> <span class="pre">16&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.Suspended" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.Unbounded">
+<span class="sig-name descname"><span class="pre">Unbounded</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Result.Unbounded:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Result.Unbounded" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.callback.Result" title="ecole.scip.callback.Result"><span class="pre">ecole.scip.callback.Result</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.callback.Result.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.scip.callback.Result.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.Result.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.scip.callback.Result.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.scip.callback.Type">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.scip.callback.</span></span><span class="sig-name descname"><span class="pre">Type</span></span><a class="headerlink" href="#ecole.scip.callback.Type" title="Permalink to this definition"></a></dt>
+<dd><p>Members:</p>
+<p>Branchrule</p>
+<p>Heuristic</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Type.Branchrule">
+<span class="sig-name descname"><span class="pre">Branchrule</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Type.Branchrule:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Type.Branchrule" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.callback.Type.Heuristic">
+<span class="sig-name descname"><span class="pre">Heuristic</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Type.Heuristic:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.scip.callback.Type.Heuristic" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.scip.callback.Type.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.callback.Type" title="ecole.scip.callback.Type"><span class="pre">ecole.scip.callback.Type</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.callback.Type.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.Type.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.scip.callback.Type.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.callback.Type.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.scip.callback.Type.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="scip-data-types">
+<h2>SCIP Data Types<a class="headerlink" href="#scip-data-types" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.scip.Stage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.scip.</span></span><span class="sig-name descname"><span class="pre">Stage</span></span><a class="headerlink" href="#ecole.scip.Stage" title="Permalink to this definition"></a></dt>
+<dd><p>Members:</p>
+<p>Init</p>
+<p>Problem</p>
+<p>Transforming</p>
+<p>Transformed</p>
+<p>InitPresolve</p>
+<p>Presolving</p>
+<p>ExitPresolve</p>
+<p>Presolved</p>
+<p>InitSolve</p>
+<p>Solving</p>
+<p>Solved</p>
+<p>ExitSolve</p>
+<p>FreeTrans</p>
+<p>Free</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.ExitPresolve">
+<span class="sig-name descname"><span class="pre">ExitPresolve</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.ExitPresolve:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.ExitPresolve" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.ExitSolve">
+<span class="sig-name descname"><span class="pre">ExitSolve</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.ExitSolve:</span> <span class="pre">11&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.ExitSolve" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.Free">
+<span class="sig-name descname"><span class="pre">Free</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.Free:</span> <span class="pre">13&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.Free" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.FreeTrans">
+<span class="sig-name descname"><span class="pre">FreeTrans</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.FreeTrans:</span> <span class="pre">12&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.FreeTrans" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.Init">
+<span class="sig-name descname"><span class="pre">Init</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.Init:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.Init" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.InitPresolve">
+<span class="sig-name descname"><span class="pre">InitPresolve</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.InitPresolve:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.InitPresolve" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.InitSolve">
+<span class="sig-name descname"><span class="pre">InitSolve</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.InitSolve:</span> <span class="pre">8&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.InitSolve" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.Presolved">
+<span class="sig-name descname"><span class="pre">Presolved</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.Presolved:</span> <span class="pre">7&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.Presolved" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.Presolving">
+<span class="sig-name descname"><span class="pre">Presolving</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.Presolving:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.Presolving" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.Problem">
+<span class="sig-name descname"><span class="pre">Problem</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.Problem:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.Problem" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.Solved">
+<span class="sig-name descname"><span class="pre">Solved</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.Solved:</span> <span class="pre">10&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.Solved" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.Solving">
+<span class="sig-name descname"><span class="pre">Solving</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.Solving:</span> <span class="pre">9&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.Solving" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.Transformed">
+<span class="sig-name descname"><span class="pre">Transformed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.Transformed:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.Transformed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.Stage.Transforming">
+<span class="sig-name descname"><span class="pre">Transforming</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Stage.Transforming:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#ecole.scip.Stage.Transforming" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.scip.Stage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.scip.Stage" title="ecole.scip.Stage"><span class="pre">ecole.scip.Stage</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.scip.Stage.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.Stage.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#ecole.scip.Stage.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ecole.scip.Stage.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#ecole.scip.Stage.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.scip.</span></span><span class="sig-name descname"><span class="pre">HeurTiming</span></span><a class="headerlink" href="#ecole.scip.HeurTiming" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.AfterLpLoop">
+<span class="sig-name descname"><span class="pre">AfterLpLoop</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.AfterLpLoop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.AfterLpNode">
+<span class="sig-name descname"><span class="pre">AfterLpNode</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.AfterLpNode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.AfterLpPlunge">
+<span class="sig-name descname"><span class="pre">AfterLpPlunge</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.AfterLpPlunge" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.AfterNode">
+<span class="sig-name descname"><span class="pre">AfterNode</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">24</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.AfterNode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.AfterPlunge">
+<span class="sig-name descname"><span class="pre">AfterPlunge</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">96</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.AfterPlunge" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.AfterPropLoop">
+<span class="sig-name descname"><span class="pre">AfterPropLoop</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1024</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.AfterPropLoop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.AfterPseudoNode">
+<span class="sig-name descname"><span class="pre">AfterPseudoNode</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.AfterPseudoNode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.AfterPseudoPlunge">
+<span class="sig-name descname"><span class="pre">AfterPseudoPlunge</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.AfterPseudoPlunge" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.BeforePresol">
+<span class="sig-name descname"><span class="pre">BeforePresol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.BeforePresol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.DuringLpLoop">
+<span class="sig-name descname"><span class="pre">DuringLpLoop</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.DuringLpLoop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.DuringPresolLoop">
+<span class="sig-name descname"><span class="pre">DuringPresolLoop</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">512</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.DuringPresolLoop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.DuringPricingLoop">
+<span class="sig-name descname"><span class="pre">DuringPricingLoop</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#ecole.scip.HeurTiming.DuringPricingLoop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ecole.scip.HeurTiming.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.scip.HeurTiming.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

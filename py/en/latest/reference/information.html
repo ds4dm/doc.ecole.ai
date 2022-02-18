@@ -47,13 +47,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Getting started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How to</span></p>
+<p class="caption" role="heading"><span class="caption-text">How to</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../howto/observation-functions.html">Use Observation Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/reward-functions.html">Use Reward Functions</a></li>
@@ -61,12 +61,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../howto/create-environments.html">Create New Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/instances.html">Generate Problem Instances</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Practical Tutorials</span></p>
+<p class="caption" role="heading"><span class="caption-text">Practical Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits/example.ipynb">Configuring the Solver with Bandits</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation/example.ipynb">Branching with Imitation Learning</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="observations.html">Observations</a></li>
@@ -83,13 +83,13 @@
 <li class="toctree-l1"><a class="reference internal" href="instances.html">Instance Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Discussion</span></p>
+<p class="caption" role="heading"><span class="caption-text">Discussion</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Developer Zone</span></p>
+<p class="caption" role="heading"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
@@ -125,7 +125,7 @@
 <h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="ecole.typing.InformationFunction">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.typing.</span></span><span class="sig-name descname"><span class="pre">InformationFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/typing.html#InformationFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.InformationFunction" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.typing.</span></span><span class="sig-name descname"><span class="pre">InformationFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ecole/typing.html#InformationFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.InformationFunction" title="Permalink to this definition"></a></dt>
 <dd><p>Class repsonsible for extracting the the information dictionnary.</p>
 <p>Information functions are objects given to the <a class="reference internal" href="environments.html#ecole.environment.Environment" title="ecole.environment.Environment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Environment</span></code></a> to
 extract the addtional information about the environment.</p>
@@ -145,12 +145,11 @@ It is exists to support Python type hints.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.typing.InformationFunction.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ecole.typing.InformationFunction.__init__" title="Permalink to this definition"></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.typing.InformationFunction.before_reset">
-<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="reference internal" href="../_modules/ecole/typing.html#InformationFunction.before_reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.InformationFunction.before_reset" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/ecole/typing.html#InformationFunction.before_reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.InformationFunction.before_reset" title="Permalink to this definition"></a></dt>
 <dd><p>Reset internal data at the start of episodes.</p>
 <p>The method is called on new episodes <a class="reference internal" href="environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> right before
 the MDP is actually reset, that is right before the environment calls
@@ -165,7 +164,7 @@ the MDP is actually reset, that is right before the environment calls
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.typing.InformationFunction.extract">
-<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">ecole.typing.Information</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../_modules/ecole/typing.html#InformationFunction.extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.InformationFunction.extract" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ecole.typing.Information</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/ecole/typing.html#InformationFunction.extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ecole.typing.InformationFunction.extract" title="Permalink to this definition"></a></dt>
 <dd><p>Extract the information on the given state.</p>
 <p>Extract the information  after transitionning on the new state given by <code class="docutils literal notranslate"><span class="pre">model</span></code>.
 The function is reponsible for keeping track of relevant information from previous states.
@@ -194,21 +193,21 @@ this method is not a getter and can have side effects.</p>
 <h3>Nothing<a class="headerlink" href="#nothing" title="Permalink to this headline"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="ecole.information.Nothing">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ecole.information.</span></span><span class="sig-name descname"><span class="pre">Nothing</span></span><a class="headerlink" href="#ecole.information.Nothing" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ecole.information.</span></span><span class="sig-name descname"><span class="pre">Nothing</span></span><a class="headerlink" href="#ecole.information.Nothing" title="Permalink to this definition"></a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="ecole.information.Nothing.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.information.Nothing" title="ecole.information.Nothing"><span class="pre">ecole.information.Nothing</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.information.Nothing.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.information.Nothing" title="ecole.information.Nothing"><span class="pre">ecole.information.Nothing</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.information.Nothing.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.information.Nothing.before_reset">
-<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.information.Nothing" title="ecole.information.Nothing"><span class="pre">ecole.information.Nothing</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#ecole.information.Nothing.before_reset" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">before_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.information.Nothing" title="ecole.information.Nothing"><span class="pre">ecole.information.Nothing</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ecole.information.Nothing.before_reset" title="Permalink to this definition"></a></dt>
 <dd><p>Do nothing.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ecole.information.Nothing.extract">
-<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ecole.information.Nothing" title="ecole.information.Nothing"><span class="pre">ecole.information.Nothing</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#ecole.information.Nothing.extract" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ecole.information.Nothing" title="ecole.information.Nothing"><span class="pre">ecole.information.Nothing</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><span class="pre">ecole.scip.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#ecole.information.Nothing.extract" title="Permalink to this definition"></a></dt>
 <dd><p>Return an empty dictionnary.</p>
 </dd></dl>
 

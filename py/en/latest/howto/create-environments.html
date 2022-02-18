@@ -47,13 +47,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Getting started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../using-environments.html">Using Environments</a></li>
 </ul>
-<p class="caption"><span class="caption-text">How to</span></p>
+<p class="caption" role="heading"><span class="caption-text">How to</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="observation-functions.html">Use Observation Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reward-functions.html">Use Reward Functions</a></li>
@@ -65,16 +65,17 @@
 <li class="toctree-l3"><a class="reference internal" href="#passing-parameters">Passing parameters</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#using-control-inversion">Using Control Inversion</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="instances.html">Generate Problem Instances</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Practical Tutorials</span></p>
+<p class="caption" role="heading"><span class="caption-text">Practical Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/configuring-bandits/example.ipynb">Configuring the Solver with Bandits</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ds4dm/ecole/tree/master/examples/branching-imitation/example.ipynb">Branching with Imitation Learning</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../reference/environments.html">Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/observations.html">Observations</a></li>
@@ -84,13 +85,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../reference/instances.html">Instance Generators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/utilities.html">Utilities</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Discussion</span></p>
+<p class="caption" role="heading"><span class="caption-text">Discussion</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/gym-differences.html">Differences with OpenAI Gym</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/seeding.html">Seeding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../discussion/theory.html">Ecole Theoretical Model</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Developer Zone</span></p>
+<p class="caption" role="heading"><span class="caption-text">Developer Zone</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribution Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developers/example-observation.html">Example: How to Contribute an Observation Function</a></li>
@@ -219,14 +220,107 @@ To do so, we will take parameters in the constructor.</p>
     <span class="n">__Dynamics__</span> <span class="o">=</span> <span class="n">SimpleBranchingDynamics</span>
 </pre></div>
 </div>
-<p>The constructor arguments are forwarded from the <code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code> constructor:</p>
+<p>The constructor arguments are forwarded from the <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.__init__" title="ecole.environment.Environment.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a> constructor:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">SimpleBranching</span><span class="p">(</span><span class="n">observation_function</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">disable_cuts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Similarily, extra arguments given to the environemnt <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> and
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code> are forwarded to the associated
+<p>Similarily, extra arguments given to the environemnt <a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.reset" title="ecole.environment.Environment.reset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code></a> and
+<a class="reference internal" href="../reference/environments.html#ecole.environment.Environment.step" title="ecole.environment.Environment.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> are forwarded to the associated
 <a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics" title="ecole.typing.Dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dynamics</span></code></a> methods.</p>
 </section>
+</section>
+<section id="using-control-inversion">
+<h2>Using Control Inversion<a class="headerlink" href="#using-control-inversion" title="Permalink to this headline"></a></h2>
+<p>When using a traditional SCIP callback, the user has to add the callback to SCIP, call <code class="docutils literal notranslate"><span class="pre">SCIPsolve</span></code>, and wait for the
+solving process to terminate.
+We say that <em>SCIP has the control</em>.
+This has some downsides, such a having to forward all the data the agent will use to the callback, making it harder to
+stop the solving process, and reduce interactivity.
+For instance when using a callback in a notebook, if the user forgot to fetch some data, then they have to re-execute
+the whole solving process.</p>
+<p>On the contrary, when using an Ecole environment such as <a class="reference internal" href="../reference/environments.html#ecole.environment.Branching" title="ecole.environment.Branching"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branching</span></code></a>, the environment
+pauses on every branch-and-bound node (<em>i.e.</em> every branchrule callback call) to let the user make a decision,
+or inspect the <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>.
+We say that the <em>user (or the agent) has the control</em>.
+To do so, we did not reconstruct the solving algorithm <code class="docutils literal notranslate"><span class="pre">SCIPsolve</span></code> to fit our needs.
+Rather, we have implemented a general <em>inversion of control</em> mechanism to let SCIP pause and be resumed on every
+callback call (using a form of <em>stackful coroutine</em>).
+We call this approach <em>iterative solving</em> and it runs exactly the same <code class="docutils literal notranslate"><span class="pre">SCIPsolve</span></code> algorithm, without noticable
+overhead, while perfectly forwarding all information available in the callback.</p>
+<p>To use this tool, the user start by calling <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model.solve_iter" title="ecole.scip.Model.solve_iter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ecole.scip.Model.solve_iter()</span></code></a>, with a set of call callback
+constructor arguments.
+Iterative solving will then add these callbacks, start solving, and return the first time that one of these callback
+is executed.
+The return value describes where the solving has stopped, and the parameters of the callback where it has stopped.
+This is the time for the user to perform whichever action they would have done in the callback.
+Solving can be resumed by calling <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model.solve_iter_continue" title="ecole.scip.Model.solve_iter_continue"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ecole.scip.Model.solve_iter_continue()</span></code></a> with the
+<a class="reference internal" href="../reference/scip-interface.html#ecole.scip.callback.Result" title="ecole.scip.callback.Result"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.callback.Result</span></code></a> that would have been set in the callback.
+Solving is finished when one of the iterative solving function returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+The <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model" title="ecole.scip.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">ecole.scip.Model</span></code></a> can safely be deleted an any time (SCIP termination is handled automatically).</p>
+<p>For instance, iterative solving an environement while pausing on branchrule and heuristic callbacks look like the
+following.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;path/to/file&quot;</span><span class="p">)</span>
+
+<span class="c1"># Start solving until the first pause, if any.</span>
+<span class="n">fcall</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">solve_iter</span><span class="p">(</span>
+    <span class="c1"># Stop on branchrule callback.</span>
+    <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">BranchruleConstructor</span><span class="p">(),</span>
+    <span class="c1"># Stop on heuristic callback after node.</span>
+    <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">HeuristicConstructor</span><span class="p">(</span><span class="n">timing_mask</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">HeurTiming</span><span class="o">.</span><span class="n">AfterNode</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="c1"># While solving is not finished, `fcall` contains information about the current stop.</span>
+<span class="k">while</span> <span class="n">fcall</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># Solving stopped on a branchrule callback.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fcall</span><span class="p">,</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">BranchruleCall</span><span class="p">):</span>
+        <span class="c1"># Perform some branching (through PyScipOpt).</span>
+        <span class="o">...</span>
+        <span class="c1"># Resume solving until next pause.</span>
+        <span class="n">fcall</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">solve_iter_continue</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">Result</span><span class="o">.</span><span class="n">Branched</span><span class="p">)</span>
+    <span class="c1"># Solving stopped on a heurisitc callback.</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fcall</span><span class="p">,</span> <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">HeuristicCall</span><span class="p">):</span>
+        <span class="c1"># Return as no heuristic was performed (only data collection)</span>
+        <span class="n">fcall</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">solve_iter_continue</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">Result</span><span class="o">.</span><span class="n">DidNotRun</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.callback.BranchruleConstructor" title="ecole.scip.callback.BranchruleConstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">BranchruleConstructor</span></code></a>, <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.callback.HeuristicConstructor" title="ecole.scip.callback.HeuristicConstructor"><code class="xref py py-class docutils literal notranslate"><span class="pre">HeuristicConstructor</span></code></a> for
+callback constructor parameters, as well as <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.callback.BranchruleCall" title="ecole.scip.callback.BranchruleCall"><code class="xref py py-class docutils literal notranslate"><span class="pre">BranchruleCall</span></code></a> and
+<a class="reference internal" href="../reference/scip-interface.html#ecole.scip.callback.BranchruleCall" title="ecole.scip.callback.BranchruleCall"><code class="xref py py-class docutils literal notranslate"><span class="pre">BranchruleCall</span></code></a> for callbacks functions parameters passed by SCIP to the callback
+methods.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default callback parameters such as <code class="docutils literal notranslate"><span class="pre">priority</span></code>, <code class="docutils literal notranslate"><span class="pre">frequency</span></code>, and <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> taht control how when
+the callback are evaluated by SCIP are set to run as often as possible.
+However, it is entirely possible to run it with lower priority or frequency for create specific environments or
+whatever other purpose.</p>
+</div>
+<p>To create dynamics using iterative solving, one should call <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model.solve_iter" title="ecole.scip.Model.solve_iter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ecole.scip.Model.solve_iter()</span></code></a> in
+<a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics.reset_dynamics" title="ecole.typing.Dynamics.reset_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset_dynamics()</span></code></a> and <a class="reference internal" href="../reference/scip-interface.html#ecole.scip.Model.solve_iter_continue" title="ecole.scip.Model.solve_iter_continue"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ecole.scip.Model.solve_iter_continue()</span></code></a> in
+<a class="reference internal" href="../reference/environments.html#ecole.typing.Dynamics.step_dynamics" title="ecole.typing.Dynamics.step_dynamics"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step_dynamics()</span></code></a>.
+For instance, a branching environment could be created with the following dynamics.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyBranchingDynamics</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pseudo_candidates</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">max_depth_none</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pseudo_candidates</span> <span class="o">=</span> <span class="n">pseudo_candidates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
+
+    <span class="k">def</span> <span class="nf">action_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pseudo_candidates</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span><span class="o">.</span><span class="n">getPseudoBranchCands</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span><span class="o">.</span><span class="n">getLPBranchCands</span><span class="p">()</span>
+        <span class="k">return</span> <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">reset_dynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="n">fcall</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">solve_iter</span><span class="p">(</span>
+            <span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">BranchruleConstructor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">fcall</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_set</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">step_dynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">as_pyscipopt</span><span class="p">()</span><span class="o">.</span><span class="n">branchVar</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">fcall</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">solve_iter_continue</span><span class="p">(</span><span class="n">ecole</span><span class="o">.</span><span class="n">scip</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">Result</span><span class="o">.</span><span class="n">Branched</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">fcall</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_set</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 
